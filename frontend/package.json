@@ -21,10 +21,16 @@
     "eslint-plugin-react": "^7.33.0",
     "eslint-plugin-react-hooks": "^4.6.0",
     "prettier": "^3.0.0",
-    "vite": "^4.4.7"
+    "vite": "^4.5.2"
   },
   "lint-staged": {
     "*.{html,scss,css}": "prettier --check",
     "*.{jsx,js}": "eslint"
-  }
+  },
+  "name": "frontend",
+  "version": "1.0.0",
+  "main": "vite.config.js",
+  "author": "",
+  "license": "ISC",
+  "description": ""
 }
