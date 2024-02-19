@@ -19,10 +19,19 @@
   padding: 20px;
 }
 
+.sidebar.collapsed .sidebar-logo img {
+  width: 63%;
+  margin: 5px 0;
+}
+
+.sidebar.collapsed {
+  width: 100px; /* Ajustez cette valeur selon les besoins */
+}
+
 .sidebar ul {
   list-style-type: none;
-  padding: 1.8rem;
   margin: 0;
+  padding-left: 1.8rem;
 }
 
 .icon-container {
