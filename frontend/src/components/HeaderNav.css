@@ -1,0 +1,110 @@
+.navbar-header {
+  width: 80%;
+  margin-top: 2%;
+  margin-left: auto;
+  /* font-family: ; */
+}
+
+.Navbar-top {
+  display: flex;
+  justify-content: space-between;
+}
+
+.searchbar-container {
+  display: flex;
+  height: 2rem;
+  background-color: #f6f6f6;
+}
+
+.menu-triangle {
+  width: 7rem;
+  height: 2rem;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 0 0.1rem 0 0;
+}
+
+.menu-button {
+  border: none; /* Supprime la bordure */
+  outline: none; /* Supprime la mise en évidence de la bordure lorsqu'il est sélectionné */
+  background-color: #f6f6f6;
+  font-size: 1.3rem;
+  color: gray;
+  padding: 0;
+}
+
+/*-------------creation triangle menu-------------*/
+.icone-triangle {
+  width: 0;
+  height: 0;
+  border-right: 8px solid transparent;
+  border-left: 8px solid transparent;
+  border-top: 10px solid gray;
+}
+/*------------------------------------------------*/
+
+.scroll-menu {
+  display: flex;
+  flex-direction: column;
+  list-style-type: none;
+  padding: 0 0 0 0.7rem;
+  margin: 0;
+  background-color: #f6f6f6;
+  font-size: 1.3rem;
+  color: gray;
+  display: none; /*cache scroll-menu*/
+}
+.menu-triangle:hover + .scroll-menu,
+.scroll-menu:hover {
+  display: flex; /* Affiche scroll-menu lorsque l'on passe sur menu */
+  visibility: visible;
+}
+
+.Explorer {
+  padding: 1rem 0 0.5rem 0;
+}
+.Catalogue {
+  padding: 0.5rem 0 1rem 0;
+}
+
+.line {
+  border-left: 1px solid gray;
+  display: inline-block;
+  height: 2rem;
+  padding-right: 0.5rem;
+}
+.searchbar-container [type="text"] {
+  width: 20rem;
+  border: none; /* Supprime la bordure */
+  outline: none; /* Supprime la mise en évidence de la bordure lorsqu'il est sélectionné */
+  background-color: #f6f6f6;
+  font-size: 1.3em;
+  padding: 0 0 0 0.5rem;
+}
+
+.icone-loupe {
+  width: 1.5rem;
+  height: 1.5rem;
+  background-image: url(./assets/icone-loupe.png);
+  background-size: cover;
+}
+
+.incription-login-button {
+  background-color: white;
+  height: 2rem;
+  width: 10rem;
+  border: 0.1rem solid #dd7a06;
+  border-radius: 5px;
+  color: #dd7a06;
+}
+
+.vendre-button {
+  background-color: #dd7a06;
+  height: 2rem;
+  width: 10rem;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  margin-left: 1rem;
+}
