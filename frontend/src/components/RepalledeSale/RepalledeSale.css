@@ -5,13 +5,12 @@
   align-items: center;
   height: 100px;
   font-family: "Montserrat", sans-serif;
+  border-radius: 10px;
 }
-
 .repalledeText {
   color: hsl(0, 0%, 0%);
   font-weight: 600;
 }
-
 .repalledeBoutton {
   padding: 10px;
   font-family: "Montserrat", sans-serif;
@@ -24,14 +23,12 @@
   font-size: 18px;
   text-decoration: none;
 }
-
 .repalledecontenu {
   display: flex;
   align-items: center;
   width: 250px;
   justify-content: center;
 }
-
 .repalledeImg {
   height: 20px;
   margin-right: 5px;
