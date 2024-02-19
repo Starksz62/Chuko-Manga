@@ -1,42 +1,11 @@
-INSERT INTO
-  genre (genre)
-VALUES
-  (
-    'Shonen'
-  ),
-  (
-    'Shojo'
-  ),
-  (
-    'Seinen'
-  ),
-  (
-    'Josei'
-  ),
-  (
-    'Kodomo'
-  ),
-  (
-    'Isekai'
-  );
+INSERT INTO publishing_house (name_publishing_house)
+VALUES ('Crunchyroll'), ('Meian'), ('Doki-doki');
 
-INSERT INTO
-  publishing_house (name_publishing_house)
-VALUES
-  (
-    'Crunchyroll'
-  ),
-  (
-    'Meian'
-  ),
-  (
-    'Doki-doki'
-  );
+INSERT INTO genre (genre)
+VALUES ('Shonen'), ('Shojo'), ('Seinen'), ('Josei'), ('Kodomo'), ('Isekai');
 
-INSERT INTO
-  manga (title, description, image, author, script_writer, illustrator, release_date, publishing_house_id, genre_id, finish_japan, finish_france, date_france, date_japan)
-VALUES
-  (
+INSERT INTO manga (title, description, image, author, script_writer, illustrator, release_date, publishing_house_id, genre_id, finish_japan, finish_france, date_france, date_japan)
+VALUES (
     -- title
     'Naruto',
     -- description
@@ -120,3 +89,64 @@ VALUES
     -- date japan
     "1995/06/04"
   );
+
+INSERT INTO volume (title, number_volume, publication_year, image, ISBN, manga_id)
+VALUES ('Tome 1', '1', '2002', 'https://bdi.dlpdomain.com/album/9782871294146-couv-M480x680.jpg', '9782', '1');
+
+INSERT INTO `condition` (name_condition)
+VALUES ('abimé'), ('bon état'), ('comme neuf');
+
+INSERT INTO
+user (firstname, lastname, email, password, phone, role, picture, order_id)
+VALUES
+(
+  -- firstname
+'Julie', 
+-- lastname
+'Dubois', 
+-- email
+'j.dubois@gmail.com', 
+-- password
+'01001', 
+-- phone
+'0611223344', 
+-- role
+'user', 
+-- picture
+'https://cdn.pixabay.com/photo/2015/03/03/08/55/portrait-657116_960_720.jpg', 
+-- order_id
+NULL
+);
+
+
+INSERT INTO 
+advert (price, item_condition, description, alert, batch, title_search_manga, view_number, publication_date_advert, delete_advert, user_id, volume_id, condition_id, manga_id) 
+VALUES 
+  (
+    -- price
+    3, 
+    -- item_condition
+    'bon état', 
+    -- description
+    'Vends manga Naruto en bon état. Seul défaut : la couverture est un peu cornée', 
+    -- alert
+    0, 
+    -- batch
+    0, 
+    -- title_search_manga
+    'Naruto tome 1 en bon état', 
+    -- View Number entrée en dur, mais devra être reliée aux clics
+    3, 
+    -- publication_date_advert
+    '2024-02-19', 
+    -- delete_advert
+    0, 
+    -- user_id
+    1, 
+    -- volume_id
+    1, 
+    -- condition_id
+    1, 
+    -- manga_id
+    1
+    );
