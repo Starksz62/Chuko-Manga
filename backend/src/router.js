@@ -10,6 +10,7 @@ const router = express.Router();
 // Import itemControllers module for handling item-related operations
 const itemControllers = require("./controllers/itemControllers");
 const charactersControllers = require("./controllers/charactersControllers");
+const mangasControllers = require("./controllers/mangasControllers");
 // const moviesControllers = require("./controllers/moviesControllers");
 
 // Route to get a list of items
@@ -23,5 +24,7 @@ router.post("/items", itemControllers.add);
 
 /* ************************************************************************* */
 router.get("/characters", charactersControllers.browse);
+
+router.get("/mangas", mangasControllers.getAllMangas);
 
 module.exports = router;
