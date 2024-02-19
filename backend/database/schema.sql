@@ -182,6 +182,7 @@ CREATE TABLE IF NOT EXISTS `chuko_manga_db`.`user` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `firstname` VARCHAR(45) NOT NULL,
   `lastname` VARCHAR(45) NOT NULL,
+  `pseudo` VARCHAR(45) NOT NULL,
   `email` VARCHAR(150) NOT NULL,
   `password` BINARY(50) NOT NULL,
   `phone` INT NULL,

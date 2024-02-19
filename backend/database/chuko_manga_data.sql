@@ -97,13 +97,15 @@ INSERT INTO `condition` (name_condition)
 VALUES ('abimé'), ('bon état'), ('comme neuf');
 
 INSERT INTO
-user (firstname, lastname, email, password, phone, role, picture, order_id)
+user (firstname, lastname, pseudo, email, password, phone, role, picture, order_id)
 VALUES
 (
   -- firstname
 'Julie', 
 -- lastname
 'Dubois', 
+-- pseudo
+'Jul', 
 -- email
 'j.dubois@gmail.com', 
 -- password
@@ -117,7 +119,6 @@ VALUES
 -- order_id
 NULL
 );
-
 
 INSERT INTO 
 advert (price, item_condition, description, alert, batch, title_search_manga, view_number, publication_date_advert, delete_advert, user_id, volume_id, condition_id, manga_id) 
@@ -150,3 +151,10 @@ VALUES
     -- manga_id
     1
     );
+
+INSERT INTO 
+advert_image (image_path, is_primary, advert_id)
+VALUES ('https://images1.vinted.net/t/01_01827_QnAYhyGADWncsoxqVv4js6Mh/f800/1708184899.jpeg?s=fbe64ea0a877c53c42b87282922cb295617cd44e', '1', '1'), ('https://images1.vinted.net/t/01_0017a_cKAn9GExwyPFFj4fZZqcVMoU/f800/1708184899.jpeg?s=461e8f7628bcb5421a8751a11ca13f763ce86971', '0', '1');
+
+INSERT INTO feedback (rating, comment, created_on, user_id)
+VALUES ('5', 'Vendeuse très réactive !', '2024/02/19', '1'), ('4', 'Satisfait - produit coforme à la description', '2024/02/21', '1'), ('5', 'Je recommande !', '2024/02/18', '1');

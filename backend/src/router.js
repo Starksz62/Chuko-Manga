@@ -15,6 +15,7 @@ const charactersControllers = require("./controllers/charactersControllers");
 
 router.get("/mangas", mangasControllers.getAllMangas);
 router.get("/adverts", advertsControllers.getAllAdverts);
+router.get("/display-adverts", advertsControllers.getAllCards);
 
 // Route to get a list of items
 router.get("/items", itemControllers.browse);

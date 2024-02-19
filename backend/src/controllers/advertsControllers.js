@@ -7,6 +7,14 @@ const getAllAdverts = (req, res) => {
     .catch((err) => console.error(err));
 };
 
+const getAllCards = (req, res) => {
+  models.advert
+    .findCards()
+    .then((cards) => res.json(cards))
+    .catch((err) => console.error(err));
+};
+
 module.exports = {
   getAllAdverts,
+  getAllCards,
 };
