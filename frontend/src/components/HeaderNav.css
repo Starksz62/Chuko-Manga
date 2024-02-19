@@ -2,6 +2,7 @@
   max-width: 80%;
   margin-top: 2%;
   margin-left: auto;
+  margin-right: 5%;
   /* font-family: ; */
 }
 
@@ -84,7 +85,7 @@
 }
 
 .searchbar-container [type="text"] {
-  width: 20rem;
+  width: 50rem;
   border: none; /* Supprime la bordure */
   outline: none; /* Supprime la mise en évidence de la bordure lorsqu'il est sélectionné */
   background-color: #f6f6f6;
