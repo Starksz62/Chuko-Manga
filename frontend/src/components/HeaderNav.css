@@ -1,5 +1,5 @@
 .navbar-header {
-  width: 80%;
+  max-width: 80%;
   margin-top: 2%;
   margin-left: auto;
   /* font-family: ; */
@@ -74,6 +74,15 @@
   height: 2rem;
   padding-right: 0.5rem;
 }
+
+.icone-loupe {
+  width: 1.5rem;
+  height: 1.5rem;
+  margin-top: 0.25rem;
+  background-image: url(../assets/icone-loupe.png);
+  background-size: cover;
+}
+
 .searchbar-container [type="text"] {
   width: 20rem;
   border: none; /* Supprime la bordure */
@@ -81,13 +90,6 @@
   background-color: #f6f6f6;
   font-size: 1.3em;
   padding: 0 0 0 0.5rem;
-}
-
-.icone-loupe {
-  width: 1.5rem;
-  height: 1.5rem;
-  background-image: url(./assets/icone-loupe.png);
-  background-size: cover;
 }
 
 .incription-login-button {

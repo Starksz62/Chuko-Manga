@@ -2,13 +2,13 @@ import React, { useState } from "react";
 // import { Link } from "react-router-dom";
 import "./HeaderNav.css";
 
+// const url = "http://localhost:3000/api/";
+
 function HeaderNav() {
   const [searchQuery, setSearchQuery] = useState("");
 
   // const handleSearch = () => {
-  //   fetch(
-  //     `https://api`
-  //   )
+  //   fetch.get (url,results)
   //     .then((response) => response.json())
   //     .then((response) => {
   //       if (response.results) {
