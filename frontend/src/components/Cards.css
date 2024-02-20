@@ -1,0 +1,107 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.card-content {
+  width: 250px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: start;
+  margin: 0.4rem;
+}
+
+.card-image {
+  width: 100%;
+  box-shadow: 0 0 5px rgb(184, 184, 184);
+  margin-bottom: 0.5rem;
+}
+
+.card-title {
+  font-size: 0.9rem;
+  font-weight: normal;
+}
+
+.card-price-section {
+  display: flex;
+  flex: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.card-price {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.card-favorite {
+  width: 24px;
+  height: 24px;
+}
+
+.card-condition {
+  color: #b5b5b5;
+  margin-bottom: 0.2rem;
+}
+
+.card-user-section {
+  display: flex;
+  flex-direction: row;
+  gap: 15px;
+  align-items: center;
+}
+
+.user {
+  display: flex;
+  flex-direction: row;
+  gap: 5px;
+  align-items: center;
+}
+
+.card-user-name {
+  font-size: 0.9rem;
+}
+
+.note {
+  display: flex;
+  flex-direction: row;
+  gap: 3px;
+  align-items: center;
+}
+
+.note-text {
+  display: flex;
+  flex-direction: row;
+}
+
+.card-evaluation {
+  font-size: 1.1rem;
+}
+
+.card-number-feedback {
+  font-size: 0.8rem;
+}
+
+.card-user-photo {
+  clip-path: circle(50%);
+  width: 24px;
+  height: 24px;
+}
+
+.card-star {
+  clip-path: polygon(
+    50% 0%,
+    61% 35%,
+    98% 35%,
+    68% 57%,
+    79% 91%,
+    50% 70%,
+    21% 91%,
+    32% 57%,
+    2% 35%,
+    39% 35%
+  );
+  width: 24px;
+  height: 24px;
+}
