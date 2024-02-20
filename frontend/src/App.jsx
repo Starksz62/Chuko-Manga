@@ -1,9 +1,22 @@
-import Counter from "./components/Counter";
+// import { useEffect } from "react";
+// import axios from "axios";
 import logo from "./assets/logo.svg";
+import Counter from "./components/Counter";
 
 import "./App.css";
 
 function App() {
+  // Test to fetch advert cards
+  // const getAdvertCards = () => {
+  //   axios.get("http://localhost:3310/api/display-adverts").then((res) => {
+  //     console.info(res.data);
+  //   });
+  // };
+
+  // useEffect(() => {
+  //   getAdvertCards();
+  // }, []);
+
   return (
     <div className="App">
       <header className="App-header">
