@@ -1,14 +1,17 @@
 import React, { useState } from "react";
+// import axios from "axios";
 // import { Link } from "react-router-dom";
 import "./HeaderNav.css";
 
-// const url = "http://localhost:3000/api/";
+// const url = "http://localhost:3310/api/mangas";
 
 function HeaderNav() {
   const [searchQuery, setSearchQuery] = useState("");
+  // // const [searchResults, setSearchResults] = useState([]);
 
   // const handleSearch = () => {
-  //   fetch.get (url,results)
+  //   axios
+  //     .get(url)
   //     .then((response) => response.json())
   //     .then((response) => {
   //       if (response.results) {
