@@ -14,7 +14,23 @@ const getAllCards = (req, res) => {
     .catch((err) => console.error(err));
 };
 
+const getRecentUniqueAdverts = (req, res) => {
+  models.advert
+    .findRecentUniqueItems()
+    .then((cards) => res.json(cards))
+    .catch((err) => console.error(err));
+};
+
+const getRecentBatch = (req, res) => {
+  models.advert
+    .findRecentBatch()
+    .then((cards) => res.json(cards))
+    .catch((err) => console.error(err));
+};
+
 module.exports = {
   getAllAdverts,
   getAllCards,
+  getRecentUniqueAdverts,
+  getRecentBatch,
 };

@@ -91,7 +91,8 @@ VALUES (
   );
 
 INSERT INTO volume (title, number_volume, publication_year, image, ISBN, manga_id)
-VALUES ('Tome 1', '1', '2002', 'https://bdi.dlpdomain.com/album/9782871294146-couv-M480x680.jpg', '9782', '1');
+VALUES ('Tome 1', '1', '2002', 'https://bdi.dlpdomain.com/album/9782871294146-couv-M480x680.jpg', '1234', '1'), 
+('Tome 2', '2', '2002', 'https://bdi.dlpdomain.com/album/9782871294146-couv-M480x680.jpg', '1234', '1');
 
 INSERT INTO `condition` (name_condition)
 VALUES ('abimé'), ('bon état'), ('comme neuf');
@@ -115,7 +116,7 @@ VALUES
 -- role
 'user', 
 -- picture
-'https://cdn.pixabay.com/photo/2015/03/03/08/55/portrait-657116_960_720.jpg', 
+'https://images.pexels.com/photos/1239291/pexels-photo-1239291.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1', 
 -- order_id
 NULL
 );
@@ -136,7 +137,7 @@ VALUES
     0, 
     -- title_search_manga
     'Naruto tome 1 en bon état', 
-    -- View Number entrée en dur, mais devra être reliée aux clics
+    -- View Number entré en dur, mais devrait être reliée aux clics
     3, 
     -- publication_date_advert
     '2024-02-19', 
@@ -150,11 +151,99 @@ VALUES
     1, 
     -- manga_id
     1
+    ), 
+    (
+    -- price
+    4, 
+    -- item_condition
+    'comme neuf', 
+    -- description
+    'Je mets en vente ce tome 2 de Naruto, comme neuf.', 
+    -- alert
+    0, 
+    -- batch
+    0, 
+    -- title_search_manga
+    'Naruto tome 2 comme neuf', 
+    -- View Number entré en dur, mais devrait être reliée aux clics
+    2, 
+    -- publication_date_advert
+    '2024-02-20', 
+    -- delete_advert
+    0, 
+    -- user_id
+    1, 
+    -- volume_id
+    2, 
+    -- condition_id
+    3, 
+    -- manga_id
+    1
+    ),
+    (
+    -- price
+    40, 
+    -- item_condition
+    'abimé', 
+    -- description
+    'Je vens un lot Dragon Ball à bon prix ! Se référer aux photos pour les tomes constituant le lot.', 
+    -- alert
+    0, 
+    -- batch
+    1, 
+    -- title_search_manga
+    'Lot Dragon Ball à saisir !', 
+    -- View Number entré en dur, mais devrait être reliée aux clics
+    5, 
+    -- publication_date_advert
+    '2024-02-12', 
+    -- delete_advert
+    0, 
+    -- user_id
+    1, 
+    -- volume_id
+    NULL,
+    -- condition_id
+    1, 
+    -- manga_id
+    2
+    ),
+    (
+    -- price
+    20, 
+    -- item_condition
+    'bon état', 
+    -- description
+    'One Piece 66 67 68 69 70. Je reste disponible si vous voulez plus de photos. Je vends également d''autres livres n''hésitez pas à faire un tour sur mon profil.', 
+    -- alert
+    0, 
+    -- batch
+    1, 
+    -- title_search_manga
+    'Lot One Piece 66 à 70', 
+    -- View Number entré en dur, mais devrait être reliée aux clics
+    5, 
+    -- publication_date_advert
+    '2024-02-14', 
+    -- delete_advert
+    0, 
+    -- user_id
+    1, 
+    -- volume_id
+    NULL,
+    -- condition_id
+    2, 
+    -- manga_id
+    3
     );
 
 INSERT INTO 
 advert_image (image_path, is_primary, advert_id)
-VALUES ('https://images1.vinted.net/t/01_01827_QnAYhyGADWncsoxqVv4js6Mh/f800/1708184899.jpeg?s=fbe64ea0a877c53c42b87282922cb295617cd44e', '1', '1'), ('https://images1.vinted.net/t/01_0017a_cKAn9GExwyPFFj4fZZqcVMoU/f800/1708184899.jpeg?s=461e8f7628bcb5421a8751a11ca13f763ce86971', '0', '1');
+VALUES ('https://images1.vinted.net/t/01_01827_QnAYhyGADWncsoxqVv4js6Mh/f800/1708184899.jpeg?s=fbe64ea0a877c53c42b87282922cb295617cd44e', '1', '1'), 
+('https://images1.vinted.net/t/01_0017a_cKAn9GExwyPFFj4fZZqcVMoU/f800/1708184899.jpeg?s=461e8f7628bcb5421a8751a11ca13f763ce86971', '0', '1'),
+('https://images1.vinted.net/t/02_00936_va4rY9rWwT3HbU2ThLRULkU7/f800/1708376632.jpeg?s=1412896b180252dd463c6e8981b2e83726ed8294', '1', '2'),
+('https://images1.vinted.net/t/03_021d1_FNvSHX9kxBzHei8GBnGDbbL2/f800/1708376632.jpeg?s=c202bf962b04c720d1b69c5397df9e7909e5758b', '0', '2'),
+('https://images1.vinted.net/t/01_0091d_7AbN4FEoTkVpFHcTevqmssPj/f800/1708301885.jpeg?s=a35767a3203f7cf7b0967c3bac29231976117099', '1', '3');
 
 INSERT INTO feedback (rating, comment, created_on, user_id)
-VALUES ('5', 'Vendeuse très réactive !', '2024/02/19', '1'), ('4', 'Satisfait - produit coforme à la description', '2024/02/21', '1'), ('5', 'Je recommande !', '2024/02/18', '1');
+VALUES ('5', 'Vendeuse très réactive !', '2024/02/19', '1'), ('4', 'Satisfait - produit conforme à la description', '2024/02/21', '1'), ('5', 'Je recommande !', '2024/02/18', '1');
