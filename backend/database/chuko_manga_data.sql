@@ -178,7 +178,9 @@ VALUES ('Bordeaux', '33000', '18 Boulevard de la Paix', 'France', 'maison'),
 
 INSERT INTO address_has_user (address_id, user_id)
 VALUES ('1','1'),
-('2','1');
+('2','1'),
+('3','2'),
+('4','2');
 
 INSERT INTO 
 advert (price, item_condition, description, alert, batch, title_search_manga, view_number, publication_date_advert, delete_advert, user_id, volume_id, condition_id, manga_id) 
