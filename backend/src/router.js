@@ -6,11 +6,21 @@ const router = express.Router();
 /* ************************************************************************* */
 // Define Your API Routes Here
 /* ************************************************************************* */
-
 // Import itemControllers module for handling item-related operations
+const mangasControllers = require("./controllers/mangasControllers");
+const advertsControllers = require("./controllers/advertsControllers");
 const itemControllers = require("./controllers/itemControllers");
 const charactersControllers = require("./controllers/charactersControllers");
 // const moviesControllers = require("./controllers/moviesControllers");
+
+router.get("/mangas", mangasControllers.getAllMangas);
+router.get("/adverts", advertsControllers.getAllAdverts);
+router.get("/display-adverts", advertsControllers.getAllCards);
+router.get(
+  "/unique-adverts-date-desc",
+  advertsControllers.getRecentUniqueAdverts
+);
+router.get("/batch-adverts-date-desc", advertsControllers.getRecentBatch);
 
 // Route to get a list of items
 router.get("/items", itemControllers.browse);
