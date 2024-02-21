@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 // eslint-disable-next-line import/no-extraneous-dependencies
 import axios from "axios";
+import "./Inscription.css";
 
 const url = "http://localhost:3310/api/users";
 
@@ -43,52 +44,73 @@ function Inscription() {
   };
 
   return (
-    <div>
-      <h1>Inscription</h1>
-      <form onSubmit={handleSubmit}>
-        <label htmlFor="firstname">Prénom</label>
-        <input
-          type="text"
-          id="firstname"
-          name="firstname"
-          value={formData.firstname}
-          onChange={handleChange}
-          required
-        />
-        <br />
-        <label htmlFor="lastname">Nom</label>
-        <input
-          type="text"
-          id="lastname"
-          name="lastname"
-          value={formData.lastname}
-          onChange={handleChange}
-          required
-        />
-        <br />
-        <label htmlFor="email">Email</label>
-        <input
-          type="email"
-          id="email"
-          name="email"
-          value={formData.email}
-          onChange={handleChange}
-          required
-        />
-        <br />
-        <label htmlFor="password">Mot de passe</label>
-        <input
-          type="password"
-          id="password"
-          name="password"
-          value={formData.password}
-          onChange={handleChange}
-          required
-        />
-        <br />
-        <br />
-        <button type="submit">Soumettre</button>
-      </form>
+    <div className="inscription">
+      <div className="form">
+        <h1>Inscription</h1>
+        <form className="inForm" onSubmit={handleSubmit}>
+          <label htmlFor="firstname">a</label>
+          <input
+            type="text"
+            id="firstname"
+            name="firstname"
+            value={formData.firstname}
+            onChange={handleChange}
+            className="transparent-input"
+            placeholder="Entrez votre prénom"
+            required
+          />
+          <br />
+          <label htmlFor="lastname">a</label>
+          <input
+            type="text"
+            id="lastname"
+            name="lastname"
+            value={formData.lastname}
+            onChange={handleChange}
+            className="transparent-input"
+            placeholder="Entrez votre nom"
+            required
+          />
+          <br />
+          <label htmlFor="email">a</label>
+          <input
+            type="email"
+            id="email"
+            name="email"
+            value={formData.email}
+            onChange={handleChange}
+            className="transparent-input"
+            placeholder="Entrez votre email"
+            required
+          />
+          <br />
+          <label htmlFor="password">a</label>
+          <input
+            type="password"
+            id="password"
+            name="password"
+            value={formData.password}
+            onChange={handleChange}
+            className="transparent-input"
+            placeholder="Entrez votre mot de passe"
+            required
+          />
+          <br />
+          <br />
+          <button className="Button-type" type="submit">
+            Continuer
+          </button>
+          <a
+            href="youtube.com"
+            target="_blank"
+            rel="noreferrer"
+            style={{ color: "orange" }}
+          >
+            <p>Besoin d'aide ?</p>
+          </a>
+        </form>
+      </div>
+      <img className="imgIns" src="src/assets/image-inscription.png" alt="" />
     </div>
   );
 }

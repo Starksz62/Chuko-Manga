@@ -1,13 +1,11 @@
 import "./App.css";
-import Footer from "./components/Footer";
-import Inscription from "./components/Inscription";
+import InscriptionModal from "./components/InscriptionModal";
 
 function App() {
   return (
-    <>
-      <Inscription />
-      <Footer />
-    </>
+    <div>
+      <InscriptionModal />
+    </div>
   );
 }
 
