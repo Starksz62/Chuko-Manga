@@ -1,6 +1,7 @@
 .container {
     display: flex;
     flex-direction: column;
+    width: 100%;
   }
   
   .navbar-payment {
@@ -8,7 +9,9 @@
     align-items: center;
     justify-content: space-between; 
   }
-  
+  .main-content {
+    display: flex;
+  }
   .title-navbar-payment {
     position: absolute;
     width: 100%;
@@ -16,15 +19,33 @@
     left: 0;
     top: 0;
   }
-  
+  .left-column {
+    flex: 1; 
+  }
+
+  .right-column {
+    display: flex;
+    margin-right: 15%;
+  }
   .order-cards {
     display: flex;
     flex-direction: column;
     margin-top: 20px;
     list-style: none;
+    padding: 0;
   }
   
 .component-card li {
   justify-content: center;
     display: flex;
+}
+.address-container {
+  display: flex;
+  text-align: center;
+  justify-content: space-around;
+  align-items: center;
+}
+.cross-icon {
+  cursor: pointer;
+  display: flex;
 }

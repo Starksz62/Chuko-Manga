@@ -1,22 +1,67 @@
 import { useState } from "react";
+import "./Address.css";
 
 function Address({ adresse, handleChange, updateModal }) {
   const [formData, setFormData] = useState({ ...adresse });
+  const [errors, setErrors] = useState({});
+  const [submitted, setSubmitted] = useState(false);
+
+  const validateAddress = (value) => {
+    return value.trim() ? "" : "L'adresse ne peut pas être vide";
+  };
+
+  const validateCity = (value) => {
+    return value.trim() ? "" : "Veuillez saisir un nom de ville.";
+  };
+
+  const validatePostalCode = (value) => {
+    if (!value.trim()) {
+      return "Veuillez saisir un code postal";
+    }
+    if (!/^\d+$/.test(value.trim())) {
+      return "Le code postal doit être un nombre";
+    }
+    return "";
+  };
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
+    if (submitted) {
+      setErrors({
+        ...errors,
+        [name]:
+          name === "adresse"
+            ? validateAddress(value)
+            : name === "ville"
+              ? validateCity(value)
+              : name === "codePostal"
+                ? validatePostalCode(value)
+                : "",
+      });
+    }
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    updateModal();
-    handleChange(formData);
-  };
+    const newErrors = {
+      adresse: validateAddress(formData.adresse),
+      ville: validateCity(formData.ville),
+      codePostal: validatePostalCode(formData.codePostal),
+    };
+    setErrors(newErrors);
+    setSubmitted(true);
 
+    if (Object.values(newErrors).every((error) => !error)) {
+      handleChange(formData);
+      setSubmitted(false);
+      updateModal();
+    }
+  };
   return (
-    <form onSubmit={handleSubmit}>
-      <label>
+    <form className="modification-address" onSubmit={handleSubmit}>
+      <h2>Saisissez une adresse de livraison</h2>
+      <label className="champ">
         Adresse :
         <input
           type="text"
@@ -24,8 +69,11 @@ function Address({ adresse, handleChange, updateModal }) {
           value={formData.adresse}
           onChange={handleInputChange}
         />
+        {submitted && errors.adresse && (
+          <p className="error-message">{errors.adresse}</p>
+        )}
       </label>
-      <label>
+      <label className="champ">
         Ville :
         <input
           type="text"
@@ -33,8 +81,11 @@ function Address({ adresse, handleChange, updateModal }) {
           value={formData.ville}
           onChange={handleInputChange}
         />
+        {submitted && errors.ville && (
+          <p className="error-message">{errors.ville}</p>
+        )}
       </label>
-      <label>
+      <label className="champ">
         Code Postal :
         <input
           type="text"
@@ -42,9 +93,14 @@ function Address({ adresse, handleChange, updateModal }) {
           value={formData.codePostal}
           onChange={handleInputChange}
         />
+        {submitted && errors.codePostal && (
+          <p className="error-message">{errors.codePostal}</p>
+        )}
       </label>
 
-      <button type="submit">Ajouter</button>
+      <button className="submit-new-address" type="submit">
+        Ajouter cette adresse
+      </button>
     </form>
   );
 }
