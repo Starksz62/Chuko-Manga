@@ -28,9 +28,51 @@ const getRecentBatch = (req, res) => {
     .catch((err) => console.error(err));
 };
 
+const getAdvertById = async (req, res) => {
+  try {
+    const advert = await models.advert.getAdvertById(req.params.id);
+    if (advert == null) {
+      res.sendStatus(404);
+    } else {
+      res.json(advert);
+    }
+  } catch (err) {
+    console.error(err);
+  }
+};
+
+const getAdvertsBySeller = async (req, res) => {
+  try {
+    const adverts = await models.advert.getAdvertsBySeller(req.params.id);
+    if (adverts == null) {
+      res.sendStatus(404);
+    } else {
+      res.json(adverts);
+    }
+  } catch (err) {
+    console.error(err);
+  }
+};
+
+const getAdvertsByGenre = async (req, res) => {
+  try {
+    const adverts = await models.advert.getAdvertsByGenre(req.params.id);
+    if (adverts == null) {
+      res.sendStatus(404);
+    } else {
+      res.json(adverts);
+    }
+  } catch (err) {
+    console.error(err);
+  }
+};
+
 module.exports = {
   getAllAdverts,
   getAllCards,
   getRecentUniqueAdverts,
   getRecentBatch,
+  getAdvertById,
+  getAdvertsBySeller,
+  getAdvertsByGenre,
 };

@@ -81,7 +81,7 @@ CREATE TABLE IF NOT EXISTS `chuko_manga_db`.`volume` (
   `number_volume` INT NOT NULL,
   `publication_year` YEAR NULL,
   `image` VARCHAR(255) NOT NULL,
-  `ISBN` INT NULL,
+  `ISBN` VARCHAR(45) NULL,
   `manga_id` INT NOT NULL,
   PRIMARY KEY (`id`),
   INDEX `fk_volume_manga1_idx` (`manga_id` ASC) VISIBLE,
