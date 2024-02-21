@@ -3,15 +3,13 @@ import React, { useState } from "react";
 // import { Link } from "react-router-dom";
 import "./HeaderNav.css";
 
-// const url = "http://localhost:3310/api/mangas";
-
 function HeaderNav() {
   const [searchQuery, setSearchQuery] = useState("");
-  // // const [searchResults, setSearchResults] = useState([]);
+  // const [searchResults, setSearchResults] = useState([]);
 
   // const handleSearch = () => {
   //   axios
-  //     .get(url)
+  //     .get("http://localhost:3310/api/mangas")
   //     .then((response) => response.json())
   //     .then((response) => {
   //       if (response.results) {
@@ -34,7 +32,7 @@ function HeaderNav() {
 
   const handleKeyPress = (e) => {
     if (e.key === "Enter") {
-      // window.location.href = `/explorer/${searchQuery}`; */ url a définir */
+      window.location.href = `/explorer/${searchQuery}`;
     }
   };
 

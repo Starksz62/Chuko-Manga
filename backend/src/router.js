@@ -11,6 +11,7 @@ const mangasControllers = require("./controllers/mangasControllers");
 const advertsControllers = require("./controllers/advertsControllers");
 const itemControllers = require("./controllers/itemControllers");
 const charactersControllers = require("./controllers/charactersControllers");
+const usersControllers = require("./controllers/usersControllers");
 // const moviesControllers = require("./controllers/moviesControllers");
 
 router.get("/mangas", mangasControllers.getAllMangas);
@@ -21,6 +22,8 @@ router.get(
   advertsControllers.getRecentUniqueAdverts
 );
 router.get("/batch-adverts-date-desc", advertsControllers.getRecentBatch);
+router.get("/user", usersControllers.getAllUsers);
+router.get("/user/:id", usersControllers.getUserById);
 
 // Route to get a list of items
 router.get("/items", itemControllers.browse);

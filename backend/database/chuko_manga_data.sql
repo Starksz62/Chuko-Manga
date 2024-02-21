@@ -121,6 +121,16 @@ VALUES
 NULL
 );
 
+INSERT INTO address (city, zip_code, number_street, country, name_adress)
+VALUES ('Bordeaux', '33000', '18 Boulevard de la Paix', 'France', 'maison'),
+('Artigues-près-Bordeaux', '33370', '4 impasse Marc-Antoine', 'France', 'boulot'),
+('Paris','75000','145 Avenue du Général Leclerc','France','domicile'),
+('Lille','59000','46 Rue Marie-Antoinette','France','Papy et Mamie');
+
+INSERT INTO address_has_user (address_id, user_id)
+VALUES ('1','1'),
+('2','1');
+
 INSERT INTO 
 advert (price, item_condition, description, alert, batch, title_search_manga, view_number, publication_date_advert, delete_advert, user_id, volume_id, condition_id, manga_id) 
 VALUES 
