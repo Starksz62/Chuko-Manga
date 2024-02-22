@@ -11,6 +11,7 @@ const router = express.Router();
 const itemControllers = require("./controllers/itemControllers");
 const charactersControllers = require("./controllers/charactersControllers");
 const mangasControllers = require("./controllers/mangasControllers");
+const usersControllers = require("./controllers/usersControllers");
 // const moviesControllers = require("./controllers/moviesControllers");
 
 // Route to get a list of items
@@ -26,5 +27,9 @@ router.post("/items", itemControllers.add);
 router.get("/characters", charactersControllers.browse);
 
 router.get("/mangas", mangasControllers.getAllMangas);
+
+router.get("/users", usersControllers.getAllUsers);
+
+router.post("/users", usersControllers.add);
 
 module.exports = router;
