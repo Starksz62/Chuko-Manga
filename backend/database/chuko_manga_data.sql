@@ -193,7 +193,7 @@ VALUES
     -- volume_id
     1, 
     -- condition_id
-    1, 
+    2, 
     -- manga_id
     1
     ), 
@@ -285,9 +285,9 @@ VALUES
     -- price
     15, 
     -- item_condition
-    'bon état', 
+    'comme neuf', 
     -- description
-    'Lot de 3 mangas dragon Ball en très bon état - vendeur de confiance', 
+    'Lot de 3 mangas dragon Ball en excellent état - vendeur de confiance', 
     -- alert
     0, 
     -- batch
@@ -305,7 +305,7 @@ VALUES
     -- volume_id
     NULL,
     -- condition_id
-    1, 
+    3, 
     -- manga_id
     2
     ),
@@ -313,7 +313,7 @@ VALUES
     -- price
     2, 
     -- item_condition
-    'bon état', 
+    'abimé', 
     -- description
     'A vendre : tome 1 Nana', 
     -- alert

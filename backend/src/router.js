@@ -16,7 +16,7 @@ const charactersControllers = require("./controllers/charactersControllers");
 // Route to get mangas
 router.get("/mangas", mangasControllers.getAllMangas);
 
-// Route to get adverts
+// ROUTES TO GET ADVERTS
 // Route to display advert table
 router.get("/adverts", advertsControllers.getAllAdverts);
 // Route to display advert card
@@ -35,10 +35,20 @@ router.get(
   "/display-adverts-byseller/:id",
   advertsControllers.getAdvertsBySeller
 );
-// Route to get all adverts for one specific genre (page explorer)
+// Route to filter adverts by genre (page explorer)
 router.get(
   "/display-adverts-bygenre/:id",
   advertsControllers.getAdvertsByGenre
+);
+// Route to filter adverts by condition (page explorer)
+router.get(
+  "/display-adverts-bycondition/:id",
+  advertsControllers.getAdvertsByCondition
+);
+// Route to filter adverts by max price (page explorer)
+router.get(
+  "/display-adverts-byprice/:price",
+  advertsControllers.getAdvertsByPrice
 );
 
 // Route to get a list of items
