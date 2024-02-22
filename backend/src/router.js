@@ -28,9 +28,9 @@ router.get(
 );
 // Route to get only adverts for batch, ordered by date of publication (homepage)
 router.get("/batch-adverts-date-desc", advertsControllers.getRecentBatch);
-// Route to get detailed information for one specific advert (page on detail advert)
+// Route to get detailed information for one specific advert (page detailed advert)
 router.get("/display-adverts/:id", advertsControllers.getAdvertById);
-// Route to get all adverts for one specific seller (page on detail advert)
+// Route to get all adverts for one specific seller (page on detailed advert)
 router.get(
   "/display-adverts-byseller/:id",
   advertsControllers.getAdvertsBySeller
@@ -50,6 +50,10 @@ router.get(
   "/display-adverts-byprice/:price",
   advertsControllers.getAdvertsByPrice
 );
+
+// ROUTES TO POST ADVERTS
+// Route to add a new advert (page advert creation)
+router.post("/new-advert", advertsControllers.addAdvert);
 
 // Route to get a list of items
 router.get("/items", itemControllers.browse);

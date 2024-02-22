@@ -93,6 +93,22 @@ const getAdvertsByPrice = async (req, res) => {
   }
 };
 
+const addAdvert = async (req, res) => {
+  // Extract the advert data from the request body
+  const advert = req.body;
+
+  try {
+    // Insert the advert into the database
+    const insertId = await models.advert.addAdvert(advert);
+
+    // Respond with HTTP 201 (Created) and the ID of the newly inserted item
+    res.status(201).json({ insertId });
+  } catch (err) {
+    // Pass any errors to the error-handling middleware
+    console.error(err);
+  }
+};
+
 module.exports = {
   getAllAdverts,
   getAllCards,
@@ -103,4 +119,5 @@ module.exports = {
   getAdvertsByGenre,
   getAdvertsByCondition,
   getAdvertsByPrice,
+  addAdvert,
 };

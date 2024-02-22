@@ -18,7 +18,6 @@ class AdvertsManager extends AbstractManager {
 		    GROUP BY user.pseudo) as joint_table ON user.pseudo=joint_table.rated_pseudo;`
     );
 
-    // Return the array of items
     return rows;
   }
 
@@ -37,7 +36,6 @@ class AdvertsManager extends AbstractManager {
       ORDER BY advert.publication_date_advert DESC;`
     );
 
-    // Return the array of items
     return rows;
   }
 
@@ -56,7 +54,6 @@ class AdvertsManager extends AbstractManager {
       ORDER BY advert.publication_date_advert DESC;`
     );
 
-    // Return the array of items
     return rows;
   }
 
@@ -77,7 +74,6 @@ class AdvertsManager extends AbstractManager {
       [id]
     );
 
-    // Return the array of items
     return rows;
   }
 
@@ -96,7 +92,6 @@ class AdvertsManager extends AbstractManager {
       [id]
     );
 
-    // Return the array of items
     return rows;
   }
 
@@ -116,7 +111,6 @@ class AdvertsManager extends AbstractManager {
       [id]
     );
 
-    // Return the array of items
     return rows;
   }
 
@@ -135,7 +129,6 @@ class AdvertsManager extends AbstractManager {
       [id]
     );
 
-    // Return the array of items
     return rows;
   }
 
@@ -154,8 +147,31 @@ class AdvertsManager extends AbstractManager {
       [price]
     );
 
-    // Return the array of items
     return rows;
+  }
+
+  async addAdvert(advert) {
+    const [result] = await this.database.query(
+      `INSERT INTO ${this.table} (price, item_condition, description, alert, batch, title_search_manga, view_number, publication_date_advert, delete_advert, user_id, volume_id, article_condition_id, manga_id) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+      [
+        advert.price,
+        advert.item_condition,
+        advert.description,
+        advert.alert,
+        advert.batch,
+        advert.title_search_manga,
+        advert.view_number,
+        advert.publication_date_advert,
+        advert.delete_advert,
+        advert.user_id,
+        advert.volume_id,
+        advert.article_condition_id,
+        advert.manga_id,
+      ]
+    );
+
+    // Return the ID of the newly inserted item
+    return result.insertId;
   }
 }
 
