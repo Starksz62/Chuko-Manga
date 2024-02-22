@@ -15,6 +15,7 @@ const charactersControllers = require("./controllers/charactersControllers");
 
 // Route to get mangas
 router.get("/mangas", mangasControllers.getAllMangas);
+router.get("/mangas/:id", mangasControllers.getMangaById);
 
 // Route to get adverts
 // Route to display advert table
