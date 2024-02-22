@@ -12,7 +12,7 @@ const router = createBrowserRouter([
     element: <App />,
     children: [
       {
-        path: "manga/:mangaId",
+        path: "manga/:id",
         element: <MangaDetails />,
       },
     ],
