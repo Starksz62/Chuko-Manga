@@ -8,12 +8,14 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: start;
   margin: 0.4rem;
 }
 
 .card-image {
   width: 100%;
+  height: 350px;
+  object-fit: cover;
+  object-position: center;
   box-shadow: 0 0 5px rgb(184, 184, 184);
   margin-bottom: 0.5rem;
 }
@@ -21,6 +23,8 @@
 .card-title {
   font-size: 0.9rem;
   font-weight: normal;
+  display: flex;
+  align-items: start;
 }
 
 .card-price-section {
@@ -43,6 +47,8 @@
 .card-condition {
   color: #b5b5b5;
   margin-bottom: 0.2rem;
+  display: flex;
+  align-items: start;
 }
 
 .card-user-section {
