@@ -93,7 +93,7 @@ VALUES (
     -- title
     'Nana',
     -- description
-    'Nana follows the lives of two young women, both named Nana, who meet by chance and decide to live together in Tokyo. Despite their different personalities, they form a strong bond as they pursue their dreams and navigate the challenges of love and friendship in the city''s music scene.',
+    'Nana follows the lives of two young women, both named Nana, who meet by chance and decide to live together in Tokyo.',
     -- image
     'https://www.manga-news.com/public/images/series/nana_01.jpg',
     -- author
@@ -123,7 +123,7 @@ VALUES ('Tome 1', 1, '2002', 'https://bdi.dlpdomain.com/album/9782871294146-couv
 ('Tome 2', 2, '2002', 'https://bdi.dlpdomain.com/album/9782871294146-couv-M480x680.jpg', '2871294178', 1),
 ('Tome 1', 1, '2000', 'https://www.manga-news.com/public/images/series/nana_01.jpg', '9782840559573', 1);
 
-INSERT INTO `condition` (name_condition)
+INSERT INTO article_condition (name_condition)
 VALUES ('abimé'), ('bon état'), ('comme neuf');
 
 INSERT INTO
@@ -368,9 +368,9 @@ VALUES ('https://images1.vinted.net/t/01_01827_QnAYhyGADWncsoxqVv4js6Mh/f800/170
 ('https://images1.vinted.net/t/03_01d33_yhvKkq3bfzfmTqnsk2VA72ZF/f800/1708437469.jpeg?s=6e1c5dff10d9f8202989a695f7ac0dedac76ea3e', '1', '6'),
 ('https://images1.vinted.net/t/03_01b81_81gVNq3szf7EA94eupaDVkXG/f800/1708437469.jpeg?s=1de325fb4055aff0395218fe38e932fa328d94cb', '0', '6');
 
-INSERT INTO feedback (rating, comment, created_on, user_id)
-VALUES ('5', 'Vendeuse très réactive !', '2024/02/19', '1'), 
-('4', 'Satisfait - produit conforme à la description', '2024/02/21', '1'), 
-('5', 'Je recommande !', '2024/02/18', '1'),
-('3.5', 'Délai d''envoi assez long, manga en moins bon état que prévu', '2024/02/05', '2'), 
-('4', 'Satisfait', '2024/02/21', '2');
+INSERT INTO feedback (rating, comment, created_on, user_id, user_buyer)
+VALUES ('5', 'Vendeuse très réactive !', '2024/02/19', '1', '2'), 
+('4', 'Satisfait - produit conforme à la description', '2024/02/21', '1', '2'), 
+('5', 'Je recommande !', '2024/02/18', '1', '2'),
+('3.5', 'Délai d''envoi assez long, manga en moins bon état que prévu', '2024/02/05', '2', '1'), 
+('4', 'Satisfait', '2024/02/21', '2', '1');
