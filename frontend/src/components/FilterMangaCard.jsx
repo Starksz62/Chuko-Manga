@@ -2,11 +2,11 @@ import React, { useState, useEffect } from "react";
 import MangaCard from "./MangaCard";
 
 function FilteredMangasCard() {
-  const [, setMangas] = useState([]);
-  const [filteredMangas, setFilteredMangas] = useState([]);
+  const [, setAdvert] = useState([]);
+  const [filteredMangas, setFilteredAdvert] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:3310/api/mangas")
+    fetch("http://localhost:3310/api/advert")
       .then((response) => {
         if (!response.ok) {
           throw new Error(`Erreur HTTP, statut : ${response.status}`);
@@ -14,8 +14,8 @@ function FilteredMangasCard() {
         return response.json();
       })
       .then((data) => {
-        setMangas(data);
-        setFilteredMangas(data); // Initialisation avec tous les mangas
+        setAdvert(data);
+        setFilteredAdvert(data); // Initialisation avec tous les mangas
       })
       .catch((error) => {
         console.error(
@@ -27,10 +27,10 @@ function FilteredMangasCard() {
 
   // Tri par ordre alphabétique
   const handleSortByTitle = () => {
-    const sortedMangas = [...filteredMangas].sort((a, b) =>
+    const sortedAdvert = [...filteredMangas].sort((a, b) =>
       a.title.localeCompare(b.title)
     );
-    setFilteredMangas(sortedMangas);
+    setFilteredAdvert(sortedAdvert);
   };
 
   return (
@@ -42,8 +42,8 @@ function FilteredMangasCard() {
       {filteredMangas.length > 0 ? (
         filteredMangas.map(
           (
-            manga // Correction ici : changer mangas en manga
-          ) => <MangaCard key={manga.id} manga={manga} />
+            advert // Correction ici : changer mangas en manga
+          ) => <MangaCard key={advert.id} advert={advert} />
         )
       ) : (
         <p>Chargement en cours...</p>
