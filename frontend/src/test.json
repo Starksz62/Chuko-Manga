@@ -10,16 +10,6 @@
         "condition": "Bon",
         "price": 3.00,
         "image": "../src/assets/narutoTome.png"
-      },
-      {
-        "id": "naruto-tome2",
-        "title": "Naruto Tome 1",
-        "description": "Le premier tome de la célèbre série manga Naruto.",
-        "author": "Masashi Kishimoto",
-        "isbn": "9782871294146",
-        "condition": "Bon",
-        "price": 3.00,
-        "image": "../src/assets/narutoTome.png"
       }
     ]
   }

@@ -54,7 +54,12 @@
     font-weight: bold;
     cursor: pointer;
   }
-  
+  .cross-icon{
+    display: flex;
+  }
+  .cross-icon img {
+    cursor: pointer;
+  }
   button {
     background-color: #DD7A06;
     border: 1px solid;

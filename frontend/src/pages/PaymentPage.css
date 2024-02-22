@@ -45,7 +45,11 @@
   justify-content: space-around;
   align-items: center;
 }
-.cross-icon {
-  cursor: pointer;
+
+.add-payment-card {
   display: flex;
+  text-align: center;
+  justify-content: space-around;
+  align-items: center;
+
 }

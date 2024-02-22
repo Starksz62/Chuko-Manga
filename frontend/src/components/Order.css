@@ -1,16 +1,17 @@
 .card {
     display: flex;
-    align-items: center;
     border-radius: 8px;
     margin-bottom: 20px; 
-    padding: 20px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     list-style: none;
-    width: 25%;
-    margin-left: 400px;
+    width: 50%;
+
     }
   
   
 .card img {
-    width: 25%;
+    width: 35%;
+}
+.information-card {
+    margin-top: 5px;
 }

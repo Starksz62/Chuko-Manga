@@ -1,17 +1,17 @@
 import "./Order.css";
 
-function Order({ panier }) {
+function Order({ price }) {
   return (
     <div className="component-card">
-      <li key={panier.id}>
+      <li key={price.id}>
         <div className="card">
-          <img src={panier.image} alt={panier.title} />
+          <img src={price.image} alt={price.title} />
           <div className="information-card">
-            <h3>{panier.title}</h3>
-            <p>Auteur : {panier.author}</p>
-            <p>État : {panier.condition}</p>
-            <p>ISBN : {panier.isbn}</p>
-            <p>{panier.price} €</p>
+            <h3>{price.title}</h3>
+            <p>Auteur : {price.author}</p>
+            <p>État : {price.condition}</p>
+            <p>ISBN : {price.isbn}</p>
+            <p>{price.price} €</p>
           </div>
         </div>
       </li>

@@ -29,3 +29,6 @@ width: 68%;
 .information-security-payment img {
   height: 50%;
 }
+.add-payment-card img {
+  cursor: pointer;
+}

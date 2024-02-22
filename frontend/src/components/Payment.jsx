@@ -2,14 +2,16 @@ import "./Payment.css";
 import cartePayment from "../assets/cartePayment.png";
 import crypte from "../assets/crypte1.png";
 
-function Payment() {
+function Payment({price}) {
+  const fraisDePort = (price * 5) / 100;
+  const total = price + fraisDePort;
   return (
     <div>
       <p>Résumé de ta commande</p>
       <div className="final-price">
-        <p>Commande</p>
-        <p>Frais de port</p>
-        <p>Total</p>
+        <p>Commande : {price} </p>
+        <p>Frais de port : {fraisDePort} </p>
+        <p>Total :{total} </p>
       </div>
       <div className="confirmation-payment">
         <button>Paiement</button>

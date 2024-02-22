@@ -2,14 +2,19 @@ import { useState } from "react";
 import logo from "../assets/logo.png";
 import "./PaymentPage.css";
 import Order from "../components/Order";
+import CreditCard from "../components/creditCard";
 import data from "../test.json";
 import Address from "../components/Address";
 import cross from "../assets/openModal.png";
 import Payment from "../components/Payment";
+import DeliveryOption from "../components/DeliveryOption";
 
 function PaymentPage() {
-  const paniers = data.commandes;
+  const prices = data.commandes;
+
+
   const [showModal, setShowModal] = useState(false);
+  const [showModalCreditCard, setShowModalCreditCard] = useState(false);
   const [adresse, setAdresse] = useState({
     adresse: "",
     ville: "",
@@ -22,7 +27,13 @@ function PaymentPage() {
   const closeModal = () => {
     setShowModal(false);
   };
+  const openModalCreditCard = () => {
+    setShowModalCreditCard(true);
+  };
 
+  const closeModalCreditCard = () => {
+    setShowModalCreditCard(false);
+  };
   const handleAddressChange = (newAddress) => {
     setAdresse(newAddress);
   };
@@ -36,15 +47,15 @@ function PaymentPage() {
       <div className="main-content">
         <div className="left-column">
           <ul className="order-cards">
-            {paniers.map((panier) => (
-              <li key={panier.id} className="card-item">
-                <Order panier={panier} />
+            {prices.map((allData) => (
+              <li key={allData.id} className="card-item">
+                <Order price={allData} />
               </li>
             ))}
           </ul>
         </div>
         <div className="right-column">
-          <Payment />
+          <Payment price={prices[0].price} />
         </div>
       </div>
       <h1>Adresse</h1>
@@ -68,7 +79,7 @@ function PaymentPage() {
         ) : (
           <div className="cross-icon">
             <img src={cross} onClick={openModal} alt="cross" />
-            <p>ajoute une adresse</p>
+            <p>nouvelle adresse</p>
           </div>
         )}
         {showModal && (
@@ -86,6 +97,27 @@ function PaymentPage() {
           </div>
         )}
       </div>
+      <DeliveryOption />
+      <div className="payment-credit-card">
+        <h2>Paiement</h2>
+        <div className="add-payment-card">
+          <p>Ajoute une méthode de paiement</p>
+          <img src={cross} onClick={openModalCreditCard} alt="cross" />
+        </div>
+
+        <p>Sélectionne le mode de paiement</p>
+      </div>
+      {showModalCreditCard && (
+        <div className="modal">
+          <div className="modal-content">
+            <span className="close" onClick={closeModalCreditCard}>
+              &times;
+            </span>
+
+            <CreditCard updateModalCreditCard={closeModalCreditCard} />
+          </div>
+        </div>
+      )}
     </div>
   );
 }
