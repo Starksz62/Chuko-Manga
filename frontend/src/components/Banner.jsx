@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
 import banner from "../assets/banniereAbdou.png";
 import "./Banner.css";
 

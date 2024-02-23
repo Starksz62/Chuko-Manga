@@ -19,7 +19,6 @@ class AdvertsManager extends AbstractManager {
 		    GROUP BY user.pseudo) as joint_table ON user.pseudo=joint_table.rated_pseudo;`
     );
 
-    // Return the array of items
     return rows;
   }
 
@@ -38,7 +37,6 @@ class AdvertsManager extends AbstractManager {
       ORDER BY advert.publication_date_advert DESC;`
     );
 
-    // Return the array of items
     return rows;
   }
 
@@ -57,7 +55,6 @@ class AdvertsManager extends AbstractManager {
       ORDER BY advert.publication_date_advert DESC;`
     );
 
-    // Return the array of items
     return rows;
   }
 
@@ -98,7 +95,6 @@ class AdvertsManager extends AbstractManager {
       [id]
     );
 
-    // Return the array of items
     return rows;
   }
 
@@ -117,7 +113,6 @@ class AdvertsManager extends AbstractManager {
       [id]
     );
 
-    // Return the array of items
     return rows;
   }
 
@@ -137,7 +132,6 @@ class AdvertsManager extends AbstractManager {
       [id]
     );
 
-    // Return the array of items
     return rows;
   }
 
@@ -156,7 +150,6 @@ class AdvertsManager extends AbstractManager {
       [id]
     );
 
-    // Return the array of items
     return rows;
   }
 
@@ -175,59 +168,31 @@ class AdvertsManager extends AbstractManager {
       [price]
     );
 
-    // Return the array of items
     return rows;
   }
+
+  async addAdvert(advert) {
+    const [result] = await this.database.query(
+      `INSERT INTO ${this.table} (price, description, alert, batch, title_search_manga, view_number, publication_date_advert, delete_advert, user_id, volume_id, article_condition_id, manga_id) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+      [
+        advert.price,
+        advert.description,
+        advert.alert,
+        advert.batch,
+        advert.title_search_manga,
+        advert.view_number,
+        advert.publication_date_advert,
+        advert.delete_advert,
+        advert.user_id,
+        advert.volume_id,
+        advert.article_condition_id,
+        advert.manga_id,
+      ]
+    );
+
+    // Return the ID of the newly inserted item
+    return result.insertId;
+  }
 }
-
-// crée la fonction pour recuperer les adverts (title) puis condition comparer title LIKE %query%
-
-// async findAdvertQuery(query) {
-//   console.info(query);
-//   try {
-//     if (!query) {
-//       throw new Error("Query parameter cannot be empty or null.");
-//     }
-
-//     const sql = `SELECT * FROM advert WHERE title_search_manga LIKE ?`;
-//     const [rows] = await this.database.query(sql, [`%${query}%`]);
-
-//     return rows;
-//   } catch (error) {
-//     console.error("Error in findAdvertQuery:", error);
-//     throw error; // Rethrow the error to handle it upstream
-//   }
-// }
-
-// async findAdvertQuery(searchQuery) {
-//   console.log("je suis dans le manager", searchQuery);
-//   const [rows] = await this.database.query(
-//     `SELECT * FROM advert WHERE title_search_manga OR description LIKE "%en%";`
-//   );
-//   return rows;
-// }
-
-// async findAdvertQuery(searchQuery) {
-//   console.log("je suis dans le manager", searchQuery);
-//   const [rows] = await this.database.query(
-//     `SELECT * FROM advert WHERE title_search_manga OR description LIKE ?`,
-//     [`%${searchQuery}%`]
-//   );
-//   return rows;
-// }
-
-//
-// const [rows] = await this.database.query(`SELECT advert where id = 1;`);
-
-// IGNORER
-// async createSearchQuery() {
-//   const [rows] = await this.database.query(
-//     `INSERT INTO search_query (query)
-//   VALUES (?)
-//   ON DUPLICATE KEY UPDATE query = VALUES(query);
-//   `
-//   );
-//   return rows;
-// }
 
 module.exports = AdvertsManager;

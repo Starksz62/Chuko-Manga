@@ -183,7 +183,7 @@ advert (price, description, alert, batch, title_search_manga, view_number, publi
 VALUES 
   (
     -- price
-    3,  
+    3, 
     -- description
     'Vends manga Naruto en bon état. Seul défaut : la couverture est un peu cornée', 
     -- alert
