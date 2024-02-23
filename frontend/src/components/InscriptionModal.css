@@ -1,4 +1,10 @@
 .modal {
-  display: flex;
-  justify-content: center;
+  position: absolute;
+  top: 35%;
+  left: 50%;
+  transform: translate(
+    -50%,
+    -50%
+  ); /* Centrer horizontalement et verticalement */
+  border: 0.01rem #000 solid;
 }

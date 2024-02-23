@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-
 import axios from "axios";
+import InscriptionModal from "./InscriptionModal";
 
 import "../style/HeaderNav.css";
 
@@ -32,6 +32,11 @@ function HeaderNav() {
   //   }, 100);
   //   return () => clearTimeout(delaySearch);
   // }, [searchQuery]);
+  const [isModalOpen, setIsModalOpen] = useState(true);
+
+  const handleButtonClick = () => {
+    setIsModalOpen(!isModalOpen);
+  };
 
   const handleKeyPress = async (e) => {
     // contrsuire le lien /explore/'${searchQuery}', et faire un redirection (use navigate) vers ce lien
@@ -59,9 +64,7 @@ function HeaderNav() {
             <Link to="/explore">
               <li className="Explorer">Explorer</li>
             </Link>
-            {/* <Link to={`/Catalogue/`}> */}
             <li className="Catalogue">Catalogue</li>
-            {/* </Link> */}
           </ul>
         </div>
         <div className="icone-loupe" />
@@ -76,13 +79,20 @@ function HeaderNav() {
         />
       </div>
       <div className="buttonHeader-container">
-        <button className="incription-login-button" type="button">
+        <button
+          className="incription-login-button"
+          type="button"
+          onClick={handleButtonClick}
+        >
           S'incrire | Se connecter
         </button>
         <button className="vendre-button" type="button">
           Vends tes Mangas
         </button>
       </div>
+      {isModalOpen && (
+        <InscriptionModal onClose={() => setIsModalOpen(false)} />
+      )}
     </header>
   );
 }
