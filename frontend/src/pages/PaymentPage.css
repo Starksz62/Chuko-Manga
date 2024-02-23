@@ -1,44 +1,49 @@
 .container {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-  }
-  
-  .navbar-payment {
-    display: flex;
-    align-items: center;
-    justify-content: space-between; 
-  }
-  .main-content {
-    display: flex;
-  }
-  .title-navbar-payment {
-    position: absolute;
-    width: 100%;
-    text-align: center;
-    left: 0;
-    top: 0;
-  }
-  .left-column {
-    flex: 1; 
-  }
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
 
-  .right-column {
-    display: flex;
-    margin-right: 15%;
-  }
-  .order-cards {
-    display: flex;
-    flex-direction: column;
-    margin-top: 20px;
-    list-style: none;
-    padding: 0;
-  }
-  
+.navbar-payment {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.main-content {
+  display: flex;
+}
+
+.title-navbar-payment {
+  position: absolute;
+  width: 100%;
+  text-align: center;
+  left: 0;
+  top: 0;
+}
+
+.left-column {
+  flex: 1;
+}
+
+.right-column {
+  display: flex;
+  margin-right: 15%;
+}
+
+.order-cards {
+  display: flex;
+  flex-direction: column;
+  margin-top: 20px;
+  list-style: none;
+  padding: 0;
+}
+
 .component-card li {
   justify-content: center;
-    display: flex;
+  display: flex;
 }
+
 .address-container {
   display: flex;
   text-align: center;

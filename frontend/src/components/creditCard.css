@@ -1,6 +1,7 @@
 .card-information {
     display: flex;
 }
+
 .renseignement {
     display: flex;
     flex-direction: column;
@@ -14,6 +15,7 @@
 .button-container {
     margin-top: 5px;
 }
+
 .validation-button {
     margin-right: 5px;
 }
