@@ -30,5 +30,11 @@
   "lint-staged": {
     "*.{html,scss,css}": "prettier --check",
     "*.{jsx,js}": "eslint"
-  }
+  },
+  "name": "frontend",
+  "version": "1.0.0",
+  "main": "vite.config.js",
+  "author": "",
+  "license": "ISC",
+  "description": ""
 }
