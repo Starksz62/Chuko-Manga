@@ -1,0 +1,61 @@
+.form {
+  display: flex;
+  background-color: white;
+  width: 40rem;
+  height: 25rem;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.inForm {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.Button-type {
+  background-color: orange;
+  width: 100%;
+  height: fit-content;
+}
+
+.transparent-input {
+  background-color: transparent;
+  border: 1px solid #ccc;
+  /* Adjust border color as needed */
+  border-radius: 4px;
+  padding: 4px 12px;
+  color: black;
+  /* Text color for transparency */
+}
+
+.transparent-input::placeholder {
+  color: #ccc;
+  /* Adjust color as needed */
+  opacity: 0.5;
+  /* Adjust opacity as needed */
+  transition: opacity 0.2s ease-in-out;
+}
+
+.transparent-input:focus::placeholder {
+  opacity: 0;
+  /* Placeholder disappears on focus */
+}
+
+.inscription {
+  position: relative;
+  display: flex;
+  background-color: red;
+}
+
+.imgIns {
+  position: absolute;
+  width: 15rem;
+  right: 0;
+}
+
+.help {
+  color: orange;
+}

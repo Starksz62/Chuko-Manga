@@ -1,54 +1,35 @@
-// import { useEffect } from "react";
-// import axios from "axios";
-import logo from "./assets/logo.svg";
-import Counter from "./components/Counter";
-
 import "./App.css";
+import { Outlet } from "react-router-dom";
+import { useState, useEffect } from "react";
+import axios from "axios";
+import LeftNavbar from "./components/LeftNavbar";
+import HeaderNav from "./components/HeaderNav";
+import Footer from "./components/Footer";
 
+/* eslint-disable import/no-extraneous-dependencies */
 function App() {
-  // Test to fetch advert cards
-  // const getAdvertCards = () => {
-  //   axios.get("http://localhost:3310/api/display-adverts/1").then((res) => {
-  //     console.info(res.data);
-  //   });
-  // };
+  const [data, setData] = useState([]);
 
-  // useEffect(() => {
-  //   getAdvertCards();
-  // }, []);
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get("http://localhost:3310/api/mangas");
+        // console.info("Response data:", response.data);
+        setData(response.data);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    };
 
+    fetchData();
+  }, []);
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>Hello Vite + React !</p>
-
-        <Counter />
-
-        <p>
-          Edit <code>App.jsx</code> and save to test HMR updates.
-        </p>
-        <p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-          {" | "}
-          <a
-            className="App-link"
-            href="https://vitejs.dev/guide/features.html"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Vite Docs
-          </a>
-        </p>
-      </header>
-    </div>
+    <>
+      <LeftNavbar />
+      <HeaderNav />
+      <Outlet context={[data]} />
+      <Footer />
+    </>
   );
 }
 

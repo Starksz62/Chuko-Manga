@@ -1,3 +1,4 @@
+
 -- MySQL Workbench Forward Engineering
 
 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
@@ -176,7 +177,7 @@ KEY_BLOCK_SIZE = 8;
 CREATE TABLE IF NOT EXISTS `chuko_manga_db`.`order` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `id_user_buy` INT NOT NULL,
-  `total_price` INT NOT NULL,
+  `total_price` DECIMAL(10,2) NOT NULL,
   `order_date` DATE NOT NULL,
   `status_order` ENUM('pending', 'completed', 'cancelled') NOT NULL,
   `feedback_order` TINYINT NOT NULL,
@@ -197,19 +198,6 @@ CREATE TABLE IF NOT EXISTS `chuko_manga_db`.`order` (
     ON UPDATE NO ACTION)
 ENGINE = InnoDB
 AUTO_INCREMENT = 1;
-
-
--- -----------------------------------------------------
--- Table `chuko_manga_db`.`v_avis`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `chuko_manga_db`.`v_avis` (
-  `id_avis` INT NOT NULL,
-  `id_vendeur` VARCHAR(45) NULL,
-  `id_acheteur` VARCHAR(45) NULL,
-  `id_vente` VARCHAR(45) NULL,
-  `commentaire` VARCHAR(255) NULL,
-  PRIMARY KEY (`id_avis`))
-ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
@@ -373,3 +361,10 @@ AUTO_INCREMENT = 1;
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
+
+
+-- CREATE TABLE search_query (
+--   `id` INT NOT NULL AUTO_INCREMENT,
+--   `query` VARCHAR(255) NOT NULL,
+--   PRIMARY KEY (`id`)
+-- ) ENGINE = InnoDB;

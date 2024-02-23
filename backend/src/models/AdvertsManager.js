@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 const AbstractManager = require("./AbstractManager");
 
 class AdvertsManager extends AbstractManager {
@@ -54,6 +55,26 @@ class AdvertsManager extends AbstractManager {
       ORDER BY advert.publication_date_advert DESC;`
     );
 
+    return rows;
+  }
+
+  async findAdvertQuery(searchQuery) {
+    console.info("je suis dans le manager", searchQuery);
+
+    // Constructing the SQL query dynamically
+    const searchTerms = searchQuery.split(" "); // Split the search query into individual terms
+    const likeConditions = searchTerms.map(
+      () => `(title_search_manga LIKE ? OR description LIKE ?)`
+    ); // Construct LIKE conditions for each term
+    const sqlQuery = `SELECT * FROM advert WHERE ${likeConditions.join(
+      " OR "
+    )}`; // Join LIKE conditions with OR operator
+    const queryParams = searchTerms.flatMap((term) => [
+      `%${term}%`,
+      `%${term}%`,
+    ]); // Construct parameter array for each term
+
+    const [rows] = await this.database.query(sqlQuery, queryParams);
     return rows;
   }
 

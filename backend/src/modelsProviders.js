@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 /* ************************************************************************* */
 // Register Data Managers for Tables
 /* ************************************************************************* */
@@ -8,7 +9,9 @@ const ItemManager = require("./models/ItemManager");
 const CharactersManager = require("./models/CharactersManager");
 // const housesManager = require("./models/housesManager");
 const MangasManager = require("./models/MangasManager");
+const UsersManager = require("./models/UsersManagers");
 const AdvertsManager = require("./models/AdvertsManager");
+
 
 const managers = [
   ItemManager,
@@ -17,6 +20,7 @@ const managers = [
   // housesManager,
   MangasManager,
   AdvertsManager,
+  UsersManager,
 ];
 
 // Create an empty object to hold data managers for different tables

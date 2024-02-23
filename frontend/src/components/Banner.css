@@ -1,0 +1,58 @@
+.banner-container {
+  position: relative;
+  display: flex;
+  justify-content: flex-end;
+  width: 80%;
+  height: auto;
+  margin-top: 60px;
+  margin-left: 325px;
+}
+
+.image-banner {
+  width: 80%;
+  height: 600px;
+}
+
+.banner-content {
+  position: absolute;
+  top: 57%;
+  right: 57%;
+  width: 20%;
+  background: rgba(255, 255, 255, 0.8);
+  border-radius: 8px;
+  padding-bottom: 10px;
+  font-size: 1.2rem;
+}
+
+.name-banner {
+  display: flex;
+  margin-left: 10px;
+  margin-bottom: 5px;
+}
+
+.redirection-text {
+  margin: 5px 0px 5px 10px;
+  color: #dd7a06;
+  font-size: 0.9rem;
+}
+
+.sell-button {
+  background-color: #dd7a06;
+  border: none;
+  margin: 10px 10px 10px 10px;
+  padding-right: 0px;
+  padding-left: 0px;
+  cursor: pointer;
+  font-size: 16px;
+  color: white;
+  border-radius: 5px;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+  width: 90%;
+  opacity: 1;
+}
+
+.redirection-sell {
+  text-align: center;
+  margin: 5px 0px 5px 0px;
+}

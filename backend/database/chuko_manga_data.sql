@@ -93,7 +93,7 @@ VALUES (
     -- title
     'Nana',
     -- description
-    'Nana follows the lives of two young women, both named Nana, who meet by chance and decide to live together in Tokyo. Despite their different personalities, they form a strong bond as they pursue their dreams and navigate the challenges of love and friendship in the city''s music scene.',
+    'Nana follows the lives of two young women, both named Nana, who meet by chance and decide to live together in Tokyo.',
     -- image
     'https://www.manga-news.com/public/images/series/nana_01.jpg',
     -- author
@@ -165,6 +165,18 @@ VALUES
 -- picture
 'https://images.pexels.com/photos/2379004/pexels-photo-2379004.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'
 );
+
+INSERT INTO address (city, zip_code, number_street, country, name_adress)
+VALUES ('Bordeaux', '33000', '18 Boulevard de la Paix', 'France', 'maison'),
+('Artigues-près-Bordeaux', '33370', '4 impasse Marc-Antoine', 'France', 'boulot'),
+('Paris','75000','145 Avenue du Général Leclerc','France','domicile'),
+('Lille','59000','46 Rue Marie-Antoinette','France','Papy et Mamie');
+
+INSERT INTO address_has_user (address_id, user_id)
+VALUES ('1','1'),
+('2','1'),
+('3','2'),
+('4','2');
 
 INSERT INTO 
 advert (price, description, alert, batch, title_search_manga, view_number, publication_date_advert, delete_advert, user_id, volume_id, article_condition_id, manga_id) 
@@ -339,6 +351,11 @@ VALUES ('https://images1.vinted.net/t/01_01827_QnAYhyGADWncsoxqVv4js6Mh/f800/170
 ('https://images1.vinted.net/t/01_0069d_8rBzBXNiBnK7Kn94k5hmPLVr/f800/1708523145.jpeg?s=b6119bc3ae9905e339202eb71806650a85ba261c', 0, 5),
 ('https://images1.vinted.net/t/03_01d33_yhvKkq3bfzfmTqnsk2VA72ZF/f800/1708437469.jpeg?s=6e1c5dff10d9f8202989a695f7ac0dedac76ea3e', 1, 6),
 ('https://images1.vinted.net/t/03_01b81_81gVNq3szf7EA94eupaDVkXG/f800/1708437469.jpeg?s=1de325fb4055aff0395218fe38e932fa328d94cb', 0, 6);
+
+INSERT INTO `order` (id_user_buy, total_price, order_date, status_order, feedback_order, advert_id, user_id)
+VALUES ('2','3.80', '2024/02/20', 'completed', 0, '1', '1'),
+('2','4.80', '2024/02/20', 'completed', 0, '2', '1'),
+('1','15.80', '2024/02/21', 'completed', 0, '5', '2');
 
 INSERT INTO feedback (rating, comment, created_on, user_buyer, user_id)
 VALUES (5, 'Vendeuse très réactive !', '2024/02/19', 2, 1), 
