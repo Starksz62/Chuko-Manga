@@ -5,6 +5,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import LeftNavbar from "./components/LeftNavbar";
 import HeaderNav from "./components/HeaderNav";
+import Footer from "./components/Footer";
 
 // NEW
 
@@ -28,7 +29,8 @@ function App() {
     <>
       <LeftNavbar />
       <HeaderNav />
-      <Outlet context={[data]} />;
+      <Outlet context={[data]} />
+      <Footer />
     </>
   );
 }
