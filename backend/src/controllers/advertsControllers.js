@@ -93,11 +93,36 @@ const getAdvertsByPrice = async (req, res) => {
   }
 };
 
+const getSearchAdverts = async (req, res) => {
+  try {
+    // Extract ID from the request
+    const userQuery = req.params.query;
+
+    console.info("je suis le controller", userQuery);
+
+    // Check if the item exists based on the ID
+    const advert = await models.advert.findAdvertQuery(userQuery);
+
+    // If the advert is not found, respond with HTTP 404 (Not Found)
+
+    if (advert == null) {
+      res.sendStatus(404);
+    } else {
+      res.json(advert);
+      console.info(advert);
+    }
+  } catch (err) {
+    // Pass any errors to the error-handling middleware
+    console.error(err);
+  }
+};
+
 module.exports = {
   getAllAdverts,
   getAllCards,
   getRecentUniqueAdverts,
   getRecentBatch,
+  getSearchAdverts,
   getAdvertById,
   getAdvertsBySeller,
   getAdvertsByGenre,

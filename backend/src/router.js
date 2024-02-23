@@ -11,6 +11,7 @@ const mangasControllers = require("./controllers/mangasControllers");
 const advertsControllers = require("./controllers/advertsControllers");
 const itemControllers = require("./controllers/itemControllers");
 const charactersControllers = require("./controllers/charactersControllers");
+// const searchControllers = require("./controllers/searchControllers");
 // const moviesControllers = require("./controllers/moviesControllers");
 
 // Route to get mangas
@@ -62,5 +63,13 @@ router.post("/items", itemControllers.add);
 
 /* ************************************************************************* */
 router.get("/characters", charactersControllers.browse);
+
+// Search route, post and retrieve search queries for advert
+// router.get("/search", searchControllers.getSearchQuery);
+// router.post("/explore", searchControllers.postSearchQuery);
+
+// Post ma query du front au back
+router.get("/explore", advertsControllers.getAllAdverts);
+router.get("/explore/:query", advertsControllers.getSearchAdverts);
 
 module.exports = router;
