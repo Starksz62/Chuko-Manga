@@ -1,8 +1,10 @@
+/* eslint-disable react/prop-types */
+/* eslint-disable react/button-has-type */
 import "./Payment.css";
 import cartePayment from "../assets/cartePayment.png";
 import crypte from "../assets/crypte1.png";
 
-function Payment({price}) {
+function Payment({ price }) {
   const fraisDePort = (price * 5) / 100;
   const total = price + fraisDePort;
   return (

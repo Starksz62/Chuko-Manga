@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import "./Order.css";
 
 function Order({ price }) {

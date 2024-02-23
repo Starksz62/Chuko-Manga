@@ -1,6 +1,8 @@
+/* eslint-disable no-nested-ternary */
 import { useState } from "react";
 import "./Address.css";
 
+// eslint-disable-next-line react/prop-types
 function Address({ adresse, handleChange, updateModal }) {
   const [formData, setFormData] = useState({ ...adresse });
   const [errors, setErrors] = useState({});

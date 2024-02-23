@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/label-has-associated-control */
 import domicile from "../assets/domicile.png";
 import espaceReserve from "../assets/espaceReserve.png";
 

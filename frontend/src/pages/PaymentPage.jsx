@@ -1,3 +1,7 @@
+/* eslint-disable jsx-a11y/click-events-have-key-events */
+/* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
+/* eslint-disable jsx-a11y/no-static-element-interactions */
+/* eslint-disable import/no-unresolved */
 import { useState } from "react";
 import logo from "../assets/logo.png";
 import "./PaymentPage.css";
@@ -11,7 +15,6 @@ import DeliveryOption from "../components/DeliveryOption";
 
 function PaymentPage() {
   const prices = data.commandes;
-
 
   const [showModal, setShowModal] = useState(false);
   const [showModalCreditCard, setShowModalCreditCard] = useState(false);

@@ -4,8 +4,6 @@ import ReactDOM from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import PaymentPage from "./pages/PaymentPage";
 
-
-
 const router = createBrowserRouter([
   {
     path: "/",

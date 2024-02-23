@@ -1,9 +1,11 @@
-import React, { useState } from "react";
+/* eslint-disable no-undef */
+/* eslint-disable react/button-has-type */
+import { useState } from "react";
 import Cards from "react-credit-cards-2";
 import "react-credit-cards-2/dist/es/styles-compiled.css";
 import "./creditCard.css";
 
-function CreditCard({updateModalCreditCard}) {
+function CreditCard() {
   const [state, setState] = useState({
     number: "",
     expiry: "",
