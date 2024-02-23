@@ -1,4 +1,3 @@
-/* eslint-disable import/no-extraneous-dependencies */
 import "./App.css";
 import { Outlet } from "react-router-dom";
 import { useState, useEffect } from "react";
@@ -7,6 +6,7 @@ import LeftNavbar from "./components/LeftNavbar";
 import HeaderNav from "./components/HeaderNav";
 import Footer from "./components/Footer";
 
+/* eslint-disable import/no-extraneous-dependencies */
 function App() {
   const [data, setData] = useState([]);
 
