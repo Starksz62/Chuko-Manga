@@ -179,13 +179,11 @@ VALUES ('1','1'),
 ('4','2');
 
 INSERT INTO 
-advert (price, item_condition, description, alert, batch, title_search_manga, view_number, publication_date_advert, delete_advert, user_id, volume_id, article_condition_id, manga_id) 
+advert (price, description, alert, batch, title_search_manga, view_number, publication_date_advert, delete_advert, user_id, volume_id, article_condition_id, manga_id) 
 VALUES 
   (
     -- price
-    3, 
-    -- item_condition
-    'bon état', 
+    3,  
     -- description
     'Vends manga Naruto en bon état. Seul défaut : la couverture est un peu cornée', 
     -- alert
@@ -205,15 +203,13 @@ VALUES
     -- volume_id
     1, 
     -- condition_id
-    1, 
+    2, 
     -- manga_id
     1
     ), 
     (
     -- price
     4, 
-    -- item_condition
-    'comme neuf', 
     -- description
     'Je mets en vente ce tome 2 de Naruto, comme neuf.', 
     -- alert
@@ -240,8 +236,6 @@ VALUES
     (
     -- price
     40, 
-    -- item_condition
-    'abimé', 
     -- description
     'Je vens un lot Dragon Ball à bon prix ! Se référer aux photos pour les tomes constituant le lot.', 
     -- alert
@@ -268,8 +262,6 @@ VALUES
     (
     -- price
     20, 
-    -- item_condition
-    'bon état', 
     -- description
     'One Piece 66 67 68 69 70. Je reste disponible si vous voulez plus de photos. Je vends également d''autres livres n''hésitez pas à faire un tour sur mon profil.', 
     -- alert
@@ -296,10 +288,8 @@ VALUES
     (
     -- price
     15, 
-    -- item_condition
-    'bon état', 
     -- description
-    'Lot de 3 mangas dragon Ball en très bon état - vendeur de confiance', 
+    'Lot de 3 mangas dragon Ball en excellent état - vendeur de confiance', 
     -- alert
     0, 
     -- batch
@@ -317,15 +307,13 @@ VALUES
     -- volume_id
     NULL,
     -- condition_id
-    1, 
+    3, 
     -- manga_id
     2
     ),
     (
     -- price
     2, 
-    -- item_condition
-    'bon état', 
     -- description
     'A vendre : tome 1 Nana', 
     -- alert

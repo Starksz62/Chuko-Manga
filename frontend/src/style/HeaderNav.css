@@ -1,25 +1,32 @@
 .navbar-header {
-  max-width: 80%;
-  margin-top: 2%;
-  margin-left: auto;
-  margin-right: 5%;
-  /* font-family: ; */
-}
-
-.Navbar-top {
+  z-index: 5;
+  padding: 1rem;
+  background-color: pink;
   display: flex;
   justify-content: space-between;
+  /* font-family: ; */
 }
 
 .searchbar-container {
   display: flex;
+  justify-content: center;
+  align-items: center;
   height: 2rem;
-  background-color: #f6f6f6;
+  background-color: grey;
+  gap: 2px;
+  border: none; /* Supprime la bordure */
+  outline: none; /* Supprime la mise en évidence de la bordure lorsqu'il est sélectionné */
+}
+
+.searchbar {
+  padding: 0.5rem;
+  border: none;
 }
 
 .menu-triangle {
+  background-color: #f6f6f6;
   width: 7rem;
-  height: 2rem;
+  height: 100%;
   display: flex;
   justify-content: space-around;
   align-items: center;
@@ -30,7 +37,6 @@
   border: none; /* Supprime la bordure */
   outline: none; /* Supprime la mise en évidence de la bordure lorsqu'il est sélectionné */
   background-color: #f6f6f6;
-  font-size: 1.3rem;
   color: gray;
   padding: 0;
 }
@@ -52,7 +58,6 @@
   padding: 0 0 0 0.7rem;
   margin: 0;
   background-color: #f6f6f6;
-  font-size: 1.3rem;
   color: gray;
   display: none; /*cache scroll-menu*/
 }
@@ -79,33 +84,24 @@
 .icone-loupe {
   width: 1.5rem;
   height: 1.5rem;
-  margin-top: 0.25rem;
   background-image: url(../assets/icone-loupe.png);
   background-size: cover;
-}
-
-.searchbar-container [type="text"] {
-  width: 50rem;
-  border: none; /* Supprime la bordure */
-  outline: none; /* Supprime la mise en évidence de la bordure lorsqu'il est sélectionné */
   background-color: #f6f6f6;
-  font-size: 1.3em;
-  padding: 0 0 0 0.5rem;
 }
 
 .incription-login-button {
+  padding: 0.5rem;
   background-color: white;
   height: 2rem;
-  width: 10rem;
   border: 0.1rem solid #dd7a06;
   border-radius: 5px;
   color: #dd7a06;
 }
 
 .vendre-button {
+  padding: 0.5rem;
   background-color: #dd7a06;
   height: 2rem;
-  width: 10rem;
   border: none;
   border-radius: 5px;
   color: white;
