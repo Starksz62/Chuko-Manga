@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+// eslint-disable-next-line import/no-extraneous-dependencies
 import axios from "axios";
 import "./Inscription.css";
 
