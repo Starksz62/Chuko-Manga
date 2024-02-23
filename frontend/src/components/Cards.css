@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap");
+
 * {
   margin: 0;
   padding: 0;
@@ -9,6 +11,7 @@
   flex-direction: column;
   justify-content: center;
   margin: 0.4rem;
+  font-family: "Monserrat", sans-serif;
 }
 
 .card-image {
@@ -45,6 +48,7 @@
 }
 
 .card-condition {
+  font-size: 0.9rem;
   color: #b5b5b5;
   margin-bottom: 0.2rem;
   display: flex;
@@ -72,7 +76,7 @@
 .note {
   display: flex;
   flex-direction: row;
-  gap: 3px;
+  gap: 5px;
   align-items: center;
 }
 
@@ -96,6 +100,6 @@
 }
 
 .card-star {
-  width: 24px;
-  height: 24px;
+  width: 20px;
+  height: 20px;
 }
