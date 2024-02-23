@@ -5,14 +5,32 @@ SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION';
 
 -- -----------------------------------------------------
--- Schema manga chuko
+-- Schema chuko_manga_db
 -- -----------------------------------------------------
 
 -- -----------------------------------------------------
--- Schema manga chuko
+-- Schema chuko_manga_db
 -- -----------------------------------------------------
 CREATE SCHEMA IF NOT EXISTS `chuko_manga_db` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci ;
 USE `chuko_manga_db` ;
+
+-- -----------------------------------------------------
+-- Table `chuko_manga_db`.`user`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `chuko_manga_db`.`user` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `pseudo` VARCHAR(45) NOT NULL,
+  `firstname` VARCHAR(45) NOT NULL,
+  `lastname` VARCHAR(45) NOT NULL,
+  `email` VARCHAR(150) NOT NULL,
+  `password` BINARY(50) NOT NULL,
+  `phone` INT NULL,
+  `role` ENUM('admin', 'user') NOT NULL,
+  `picture` VARCHAR(255) NULL,
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB
+AUTO_INCREMENT = 1;
+
 
 -- -----------------------------------------------------
 -- Table `chuko_manga_db`.`publishing_house`
@@ -81,7 +99,7 @@ CREATE TABLE IF NOT EXISTS `chuko_manga_db`.`volume` (
   `number_volume` INT NOT NULL,
   `publication_year` YEAR NULL,
   `image` VARCHAR(255) NOT NULL,
-  `ISBN` VARCHAR(45) NULL,
+  `ISBN` VARCHAR(55) NULL,
   `manga_id` INT NOT NULL,
   PRIMARY KEY (`id`),
   INDEX `fk_volume_manga1_idx` (`manga_id` ASC) VISIBLE,
@@ -95,13 +113,13 @@ AUTO_INCREMENT = 1;
 
 
 -- -----------------------------------------------------
--- Table `chuko_manga_db`.`condition`
+-- Table `chuko_manga_db`.`article_condition`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `chuko_manga_db`.`condition` (
+CREATE TABLE IF NOT EXISTS `chuko_manga_db`.`article_condition` (
   `id` INT NOT NULL AUTO_INCREMENT,
-  `name_condition` VARCHAR(255) NOT NULL,
+  `name_condition` VARCHAR(75) NOT NULL,
   PRIMARY KEY (`id`))
-ENGINE = InnoDB CHARACTER SET utf8 COLLATE utf8_bin
+ENGINE = InnoDB
 AUTO_INCREMENT = 1;
 
 
@@ -111,7 +129,6 @@ AUTO_INCREMENT = 1;
 CREATE TABLE IF NOT EXISTS `chuko_manga_db`.`advert` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `price` INT NOT NULL,
-  `item_condition` VARCHAR(45) NOT NULL,
   `description` VARCHAR(255) NOT NULL,
   `alert` TINYINT NOT NULL,
   `batch` TINYINT NOT NULL,
@@ -121,12 +138,12 @@ CREATE TABLE IF NOT EXISTS `chuko_manga_db`.`advert` (
   `delete_advert` TINYINT NOT NULL,
   `user_id` INT NOT NULL,
   `volume_id` INT NULL,
-  `condition_id` INT NOT NULL,
+  `article_condition_id` INT NOT NULL,
   `manga_id` INT NULL,
   PRIMARY KEY (`id`),
   INDEX `fk_advert_user1_idx` (`user_id` ASC) INVISIBLE,
   INDEX `fk_advert_volume1_idx` (`volume_id` ASC) VISIBLE,
-  INDEX `fk_advert_condition1_idx` (`condition_id` ASC) VISIBLE,
+  INDEX `fk_advert_condition1_idx` (`article_condition_id` ASC) VISIBLE,
   INDEX `fk_advert_manga1_idx` (`manga_id` ASC) VISIBLE,
   CONSTRAINT `fk_advert_user1`
     FOREIGN KEY (`user_id`)
@@ -139,8 +156,8 @@ CREATE TABLE IF NOT EXISTS `chuko_manga_db`.`advert` (
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_advert_condition1`
-    FOREIGN KEY (`condition_id`)
-    REFERENCES `chuko_manga_db`.`condition` (`id`)
+    FOREIGN KEY (`article_condition_id`)
+    REFERENCES `chuko_manga_db`.`article_condition` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_advert_manga1`
@@ -164,36 +181,18 @@ CREATE TABLE IF NOT EXISTS `chuko_manga_db`.`order` (
   `status_order` ENUM('pending', 'completed', 'cancelled') NOT NULL,
   `feedback_order` TINYINT NOT NULL,
   `advert_id` INT NOT NULL,
+  `user_id` INT NOT NULL,
   PRIMARY KEY (`id`),
   INDEX `fk_order_advert1_idx` (`advert_id` ASC) VISIBLE,
+  INDEX `fk_order_user1_idx` (`user_id` ASC) VISIBLE,
   CONSTRAINT `fk_order_advert1`
     FOREIGN KEY (`advert_id`)
     REFERENCES `chuko_manga_db`.`advert` (`id`)
     ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB
-AUTO_INCREMENT = 1;
-
-
--- -----------------------------------------------------
--- Table `chuko_manga_db`.`user`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `chuko_manga_db`.`user` (
-  `id` INT NOT NULL AUTO_INCREMENT,
-  `firstname` VARCHAR(45) NOT NULL,
-  `lastname` VARCHAR(45) NOT NULL,
-  `pseudo` VARCHAR(45) NOT NULL,
-  `email` VARCHAR(150) NOT NULL,
-  `password` BINARY(50) NOT NULL,
-  `phone` INT NULL,
-  `role` ENUM('admin', 'user') NOT NULL,
-  `picture` VARCHAR(255) NULL,
-  `order_id` INT NULL,
-  PRIMARY KEY (`id`),
-  INDEX `fk_user_order1_idx` (`order_id` ASC) VISIBLE,
-  CONSTRAINT `fk_user_order1`
-    FOREIGN KEY (`order_id`)
-    REFERENCES `chuko_manga_db`.`order` (`id`)
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_order_user1`
+    FOREIGN KEY (`user_id`)
+    REFERENCES `chuko_manga_db`.`user` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB
@@ -236,6 +235,7 @@ CREATE TABLE IF NOT EXISTS `chuko_manga_db`.`feedback` (
   `rating` INT NOT NULL,
   `comment` VARCHAR(255) NOT NULL,
   `created_on` DATETIME NOT NULL,
+  `user_buyer` INT NOT NULL,
   `user_id` INT NOT NULL,
   PRIMARY KEY (`id`),
   INDEX `fk_feedback_user1_idx` (`user_id` ASC) VISIBLE,
