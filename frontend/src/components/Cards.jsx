@@ -1,8 +1,5 @@
 /* eslint-disable react/prop-types */
 import "./Cards.css";
-// import Naruto from "../assets/NarutoTome13.jpg";
-// import Favorite from "../assets/heart.png";
-// import Orange from "../assets/orange.jpg";
 
 function Cards({ data }) {
   return (
