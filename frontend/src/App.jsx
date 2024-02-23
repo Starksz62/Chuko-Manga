@@ -1,11 +1,9 @@
-// import "./App.css";
 import "./App.css";
 import { Outlet } from "react-router-dom";
 
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import LeftNavbar from "./components/LeftNavbar";
-
 import HeaderNav from "./components/HeaderNav";
 
 // NEW

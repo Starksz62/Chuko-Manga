@@ -11,8 +11,7 @@ const mangasControllers = require("./controllers/mangasControllers");
 const advertsControllers = require("./controllers/advertsControllers");
 const itemControllers = require("./controllers/itemControllers");
 const charactersControllers = require("./controllers/charactersControllers");
-// const searchControllers = require("./controllers/searchControllers");
-// const moviesControllers = require("./controllers/moviesControllers");
+const usersControllers = require("./controllers/usersControllers");
 
 // Route to get mangas
 router.get("/mangas", mangasControllers.getAllMangas);
@@ -29,6 +28,14 @@ router.get(
 );
 // Route to get only adverts for batch, ordered by date of publication (homepage)
 router.get("/batch-adverts-date-desc", advertsControllers.getRecentBatch);
+// Route to get user table
+router.get("/user", usersControllers.getAllUsers);
+// Route to get all users for one specific user
+router.get("/user/:id", usersControllers.getUserById);
+// Route to get profil user for one specific user
+router.get("/user-profil/:id", usersControllers.getUserProfilById);
+// Route to get comment profil user for one specific user
+router.get("/user-profil-com/:id", usersControllers.getUserProfilComById);
 // Route to get detailed information for one specific advert (page on detail advert)
 router.get("/display-adverts/:id", advertsControllers.getAdvertById);
 // Route to get all adverts for one specific seller (page on detail advert)
