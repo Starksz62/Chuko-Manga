@@ -19,6 +19,43 @@ const add = async (req, res) => {
     res.status(201).json({ insertId });
   } catch (err) {
     // Pass any errors to the error-handling middleware
+  }
+};
+const getUserById = async (req, res) => {
+  try {
+    const user = await models.user.getUserById(req.params.id);
+    if (user == null) {
+      res.sendStatus(404);
+    } else {
+      res.json(user);
+    }
+  } catch (err) {
+    console.error(err);
+  }
+};
+
+const getUserProfilById = async (req, res) => {
+  try {
+    const user = await models.user.getUserProfilById(req.params.id);
+    if (user == null) {
+      res.sendStatus(404);
+    } else {
+      res.json(user);
+    }
+  } catch (err) {
+    console.error(err);
+  }
+};
+
+const getUserProfilComById = async (req, res) => {
+  try {
+    const user = await models.user.getUserProfilComById(req.params.id);
+    if (user == null) {
+      res.sendStatus(404);
+    } else {
+      res.json(user);
+    }
+  } catch (err) {
     console.error(err);
   }
 };
@@ -26,4 +63,7 @@ const add = async (req, res) => {
 module.exports = {
   getAllUsers,
   add,
+  getUserById,
+  getUserProfilById,
+  getUserProfilComById,
 };
