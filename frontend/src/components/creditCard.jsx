@@ -1,5 +1,3 @@
-/* eslint-disable no-undef */
-/* eslint-disable react/button-has-type */
 import { useState } from "react";
 import Cards from "react-credit-cards-2";
 import "react-credit-cards-2/dist/es/styles-compiled.css";
@@ -24,12 +22,10 @@ function CreditCard() {
     setState((prev) => ({ ...prev, focus: evt.target.name }));
   };
   const handleValidation = (e) => {
-    updateModal();
     e.stopPropagation();
   };
 
   const handleCancel = (e) => {
-    updateModal();
     e.stopPropagation();
   };
   return (
@@ -67,10 +63,18 @@ function CreditCard() {
           onFocus={handleInputFocus}
         />
         <div className="button-container">
-          <button className="validate-button" onClick={handleValidation}>
+          <button
+            type="button"
+            className="validate-button"
+            onClick={handleValidation}
+          >
             Valider
           </button>
-          <button className="cancel-button" onClick={handleCancel}>
+          <button
+            type="button"
+            className="cancel-button"
+            onClick={handleCancel}
+          >
             Annuler
           </button>
         </div>

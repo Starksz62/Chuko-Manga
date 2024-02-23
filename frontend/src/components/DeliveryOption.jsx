@@ -1,4 +1,3 @@
-/* eslint-disable jsx-a11y/label-has-associated-control */
 import domicile from "../assets/domicile.png";
 import espaceReserve from "../assets/espaceReserve.png";
 
@@ -24,6 +23,7 @@ function DeliveryOption() {
         <img src={domicile} alt="" />
         <h3>Envoi à domicile</h3>
         <label htmlFor="option2">
+          Option 2
           <input
             type="radio"
             id="option2"

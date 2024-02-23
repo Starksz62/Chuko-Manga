@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-/* eslint-disable react/button-has-type */
+
 import "./Payment.css";
 import cartePayment from "../assets/cartePayment.png";
 import crypte from "../assets/crypte1.png";
@@ -16,7 +16,7 @@ function Payment({ price }) {
         <p>Total :{total} </p>
       </div>
       <div className="confirmation-payment">
-        <button>Paiement</button>
+        <button type="button">Paiement</button>
       </div>
       <div className="logo-card-payment">
         <img src={cartePayment} alt="payment-card" />

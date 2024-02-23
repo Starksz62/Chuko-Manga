@@ -1,7 +1,5 @@
-/* eslint-disable jsx-a11y/click-events-have-key-events */
-/* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
-/* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable import/no-unresolved */
+
 import { useState } from "react";
 import logo from "../assets/logo.png";
 import "./PaymentPage.css";
@@ -75,20 +73,46 @@ function PaymentPage() {
           </div>
         )}
         {adresse.adresse && adresse.ville && adresse.codePostal ? (
-          <div className="cross-icon">
-            <img src={cross} onClick={openModal} alt="cross" />
+          <div
+            className="cross-icon"
+            onClick={openModal}
+            role="button"
+            onKeyDown={(e) => {
+              if (e.key === "Enter" || e.key === " ") {
+                openModal();
+              }
+            }}
+            tabIndex={0}
+          >
+            <img src={cross} alt="cross" />
             <p>modifie ton adresse</p>
           </div>
         ) : (
           <div className="cross-icon">
-            <img src={cross} onClick={openModal} alt="cross" />
+            <img
+              src={cross}
+              onClick={openModal}
+              aria-hidden
+              alt="cross"
+              type="image"
+            />
             <p>nouvelle adresse</p>
           </div>
         )}
         {showModal && (
           <div className="modal">
             <div className="modal-content">
-              <span className="close" onClick={closeModal}>
+              <span
+                className="close"
+                role="button"
+                onClick={closeModal}
+                onKeyDown={(e) => {
+                  if (e.key === "Enter" || e.key === " ") {
+                    closeModal();
+                  }
+                }}
+                tabIndex={0}
+              >
                 &times;
               </span>
               <Address
@@ -105,7 +129,13 @@ function PaymentPage() {
         <h2>Paiement</h2>
         <div className="add-payment-card">
           <p>Ajoute une méthode de paiement</p>
-          <img src={cross} onClick={openModalCreditCard} alt="cross" />
+          <button
+            onClick={openModalCreditCard}
+            aria-label="Close modal"
+            type="button"
+          >
+            <img src={cross} alt="cross" />
+          </button>
         </div>
 
         <p>Sélectionne le mode de paiement</p>
@@ -113,9 +143,13 @@ function PaymentPage() {
       {showModalCreditCard && (
         <div className="modal">
           <div className="modal-content">
-            <span className="close" onClick={closeModalCreditCard}>
-              &times;
-            </span>
+            <button
+              type="button"
+              className="close"
+              onClick={closeModalCreditCard}
+            >
+              <span className="close">&times;</span>
+            </button>
 
             <CreditCard updateModalCreditCard={closeModalCreditCard} />
           </div>

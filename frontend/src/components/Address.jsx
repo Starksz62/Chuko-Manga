@@ -1,4 +1,3 @@
-/* eslint-disable no-nested-ternary */
 import { useState } from "react";
 import "./Address.css";
 
@@ -30,16 +29,17 @@ function Address({ adresse, handleChange, updateModal }) {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
     if (submitted) {
+      let validationResult = "";
+      if (name === "adresse") {
+        validationResult = validateAddress(value);
+      } else if (name === "ville") {
+        validationResult = validateCity(value);
+      } else if (name === "codePostal") {
+        validationResult = validatePostalCode(value);
+      }
       setErrors({
         ...errors,
-        [name]:
-          name === "adresse"
-            ? validateAddress(value)
-            : name === "ville"
-              ? validateCity(value)
-              : name === "codePostal"
-                ? validatePostalCode(value)
-                : "",
+        [name]: validationResult,
       });
     }
   };
