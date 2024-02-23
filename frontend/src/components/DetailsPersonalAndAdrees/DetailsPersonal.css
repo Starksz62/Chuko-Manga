@@ -1,0 +1,35 @@
+.ContainerCreation {
+  font-family: "Montserrat", sans-serif;
+  border: 1px solid black;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.label_profil {
+  margin-bottom: 8px;
+}
+.input_profil {
+  margin-bottom: 16px;
+  padding: 8px;
+  width: 100%;
+  box-sizing: border-box;
+}
+.checkbox_container {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+.checkbox_container p {
+  margin-left: 8px;
+}
+.orange_button {
+  background-color: orange;
+  color: white;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-family: "Montserrat", sans-serif;
+  margin-top: 16px;
+}
