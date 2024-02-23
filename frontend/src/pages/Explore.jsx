@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
 import axios from "axios";
-import HeaderNav from "../components/HeaderNav";
 
 // Importer use params de react router dom,
 
@@ -30,7 +29,6 @@ function Explore() {
   return (
     <>
       {console.info("je suis le search query avant SELECT", dataAdvert)}
-      <HeaderNav />
       <div>Explore page</div>
       <Link to="/">
         <button type="button">Home</button>

@@ -2,14 +2,11 @@ import { Link, useOutletContext } from "react-router-dom";
 
 import React from "react";
 
-import HeaderNav from "../components/HeaderNav";
-
 function Home() {
   const [data] = useOutletContext();
 
   return (
     <>
-      <HeaderNav />
       <div>Home page</div>
       <Link to="/explore">
         <button type="button">Explorer</button>

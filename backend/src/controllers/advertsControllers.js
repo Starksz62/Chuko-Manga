@@ -28,14 +28,70 @@ const getRecentBatch = (req, res) => {
     .catch((err) => console.error(err));
 };
 
-// SEARCH
+const getAdvertById = async (req, res) => {
+  try {
+    const advert = await models.advert.getAdvertById(req.params.id);
+    if (advert == null) {
+      res.sendStatus(404);
+    } else {
+      res.json(advert);
+    }
+  } catch (err) {
+    console.error(err);
+  }
+};
 
-// const getSearchAdverts = (req, res) => {
-//   models.advert.
-//     .findAdvertQuery()
-//     .then((search) => res.json(search))
-//     .catch((err) => console.error(err));
-// };
+const getAdvertsBySeller = async (req, res) => {
+  try {
+    const adverts = await models.advert.getAdvertsBySeller(req.params.id);
+    if (adverts == null) {
+      res.sendStatus(404);
+    } else {
+      res.json(adverts);
+    }
+  } catch (err) {
+    console.error(err);
+  }
+};
+
+const getAdvertsByGenre = async (req, res) => {
+  try {
+    const adverts = await models.advert.getAdvertsByGenre(req.params.id);
+    if (adverts == null) {
+      res.sendStatus(404);
+    } else {
+      res.json(adverts);
+    }
+  } catch (err) {
+    console.error(err);
+  }
+};
+
+const getAdvertsByCondition = async (req, res) => {
+  try {
+    const adverts = await models.advert.getAdvertsByCondition(req.params.id);
+    if (adverts == null) {
+      res.sendStatus(404);
+    } else {
+      res.json(adverts);
+    }
+  } catch (err) {
+    console.error(err);
+  }
+};
+
+const getAdvertsByPrice = async (req, res) => {
+  try {
+    const adverts = await models.advert.getAdvertsByPrice(req.params.price);
+    if (adverts == null) {
+      res.sendStatus(404);
+    } else {
+      res.json(adverts);
+    }
+  } catch (err) {
+    console.error(err);
+  }
+};
 
 const getSearchAdverts = async (req, res) => {
   try {
@@ -60,20 +116,6 @@ const getSearchAdverts = async (req, res) => {
     console.error(err);
   }
 };
-// if (!advert) {
-//   return res.sendStatus(404);
-// }
-
-//   // If the item is found, proceed with the search logic
-//   models.advert
-//     .findAdvertQuery()
-//     .then((search) => res.json(search))
-//     .catch((err) => console.error(err));
-// } catch (err) {
-//   // Pass any errors to the error-handling middleware
-//   console.error(err);
-//   res.sendStatus(500); // Internal Server Error
-// }
 
 module.exports = {
   getAllAdverts,
@@ -81,4 +123,9 @@ module.exports = {
   getRecentUniqueAdverts,
   getRecentBatch,
   getSearchAdverts,
+  getAdvertById,
+  getAdvertsBySeller,
+  getAdvertsByGenre,
+  getAdvertsByCondition,
+  getAdvertsByPrice,
 };
