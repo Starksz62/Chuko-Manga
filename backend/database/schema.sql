@@ -129,7 +129,6 @@ AUTO_INCREMENT = 1;
 CREATE TABLE IF NOT EXISTS `chuko_manga_db`.`advert` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `price` INT NOT NULL,
-  `item_condition` VARCHAR(45) NOT NULL,
   `description` VARCHAR(255) NOT NULL,
   `alert` TINYINT NOT NULL,
   `batch` TINYINT NOT NULL,

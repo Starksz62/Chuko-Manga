@@ -68,6 +68,32 @@ const getAdvertsByGenre = async (req, res) => {
   }
 };
 
+const getAdvertsByCondition = async (req, res) => {
+  try {
+    const adverts = await models.advert.getAdvertsByCondition(req.params.id);
+    if (adverts == null) {
+      res.sendStatus(404);
+    } else {
+      res.json(adverts);
+    }
+  } catch (err) {
+    console.error(err);
+  }
+};
+
+const getAdvertsByPrice = async (req, res) => {
+  try {
+    const adverts = await models.advert.getAdvertsByPrice(req.params.price);
+    if (adverts == null) {
+      res.sendStatus(404);
+    } else {
+      res.json(adverts);
+    }
+  } catch (err) {
+    console.error(err);
+  }
+};
+
 module.exports = {
   getAllAdverts,
   getAllCards,
@@ -76,4 +102,6 @@ module.exports = {
   getAdvertById,
   getAdvertsBySeller,
   getAdvertsByGenre,
+  getAdvertsByCondition,
+  getAdvertsByPrice,
 };

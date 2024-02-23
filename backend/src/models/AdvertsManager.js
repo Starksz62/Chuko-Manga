@@ -8,9 +8,10 @@ class AdvertsManager extends AbstractManager {
 
   async findCards() {
     const [rows] = await this.database.query(
-      `SELECT advert.title_search_manga, advert.price, advert.item_condition, advert_image.image_path, user.pseudo, user.picture as user_picture, joint_table.average, joint_table.feedback_nber
+      `SELECT advert.title_search_manga, advert.price, article_condition.name_condition, advert_image.image_path, user.pseudo, user.picture as user_picture, joint_table.average, joint_table.feedback_nber
       FROM ${this.table}
       LEFT JOIN advert_image ON advert.id=advert_image.advert_id AND advert_image.is_primary=1
+      JOIN article_condition ON advert.article_condition_id=article_condition.id
       JOIN user ON advert.user_id=user.id 
       JOIN (SELECT user.pseudo as rated_pseudo, AVG(feedback.rating) as average, COUNT(feedback.rating) as feedback_nber
 		    FROM user
@@ -24,9 +25,10 @@ class AdvertsManager extends AbstractManager {
 
   async findRecentUniqueItems() {
     const [rows] = await this.database.query(
-      `SELECT advert.title_search_manga, advert.price, advert.item_condition, advert_image.image_path, user.pseudo, user.picture as user_picture, joint_table.average, joint_table.feedback_nber, advert.publication_date_advert
+      `SELECT advert.title_search_manga, advert.price, article_condition.name_condition, advert_image.image_path, user.pseudo, user.picture as user_picture, joint_table.average, joint_table.feedback_nber, advert.publication_date_advert
       FROM ${this.table}
       LEFT JOIN advert_image ON advert.id=advert_image.advert_id AND advert_image.is_primary=1
+      JOIN article_condition ON advert.article_condition_id=article_condition.id
       JOIN user ON advert.user_id=user.id 
       JOIN (SELECT user.pseudo as rated_pseudo, AVG(feedback.rating) as average, COUNT(feedback.rating) as feedback_nber
 		    FROM user
@@ -42,9 +44,10 @@ class AdvertsManager extends AbstractManager {
 
   async findRecentBatch() {
     const [rows] = await this.database.query(
-      `SELECT advert.title_search_manga, advert.price, advert.item_condition, advert_image.image_path, user.pseudo, user.picture as user_picture, joint_table.average, joint_table.feedback_nber, advert.publication_date_advert
+      `SELECT advert.title_search_manga, advert.price, article_condition.name_condition, advert_image.image_path, user.pseudo, user.picture as user_picture, joint_table.average, joint_table.feedback_nber, advert.publication_date_advert
       FROM ${this.table}
       LEFT JOIN advert_image ON advert.id=advert_image.advert_id AND advert_image.is_primary=1
+      JOIN article_condition ON advert.article_condition_id=article_condition.id
       JOIN user ON advert.user_id=user.id 
       JOIN (SELECT user.pseudo as rated_pseudo, AVG(feedback.rating) as average, COUNT(feedback.rating) as feedback_nber
 		    FROM user
@@ -60,9 +63,10 @@ class AdvertsManager extends AbstractManager {
 
   async getAdvertById(id) {
     const [rows] = await this.database.query(
-      `SELECT advert.price, advert.title_search_manga, advert.description, advert.item_condition, advert.view_number, advert.publication_date_advert, manga.title as manga_title, volume.title as volume_title, volume.ISBN, user.pseudo, user.picture as user_picture, joint_table.average, joint_table.feedback_nber, JSON_ARRAYAGG(advert_image.image_path) as image_paths
+      `SELECT advert.price, advert.title_search_manga, advert.description, article_condition.name_condition, advert.view_number, advert.publication_date_advert, manga.title as manga_title, volume.title as volume_title, volume.ISBN, user.pseudo, user.picture as user_picture, joint_table.average, joint_table.feedback_nber, JSON_ARRAYAGG(advert_image.image_path) as image_paths
       FROM ${this.table} 
       LEFT JOIN manga ON advert.manga_id=manga.id
+      JOIN article_condition ON advert.article_condition_id=article_condition.id
       LEFT JOIN volume ON advert.volume_id=volume.id
       LEFT JOIN advert_image ON advert.id=advert_image.advert_id 
       JOIN user ON advert.user_id=user.id
@@ -80,9 +84,10 @@ class AdvertsManager extends AbstractManager {
 
   async getAdvertsBySeller(id) {
     const [rows] = await this.database.query(
-      `SELECT advert.title_search_manga, advert.price, advert.item_condition, advert_image.image_path, user.pseudo, user.picture as user_picture, joint_table.average, joint_table.feedback_nber
+      `SELECT advert.title_search_manga, advert.price, article_condition.name_condition, advert_image.image_path, user.pseudo, user.picture as user_picture, joint_table.average, joint_table.feedback_nber
       FROM ${this.table}
       LEFT JOIN advert_image ON advert.id=advert_image.advert_id AND advert_image.is_primary=1
+      JOIN article_condition ON advert.article_condition_id=article_condition.id
       JOIN user ON advert.user_id=user.id 
       JOIN (SELECT user.pseudo as rated_pseudo, AVG(feedback.rating) as average, COUNT(feedback.rating) as feedback_nber
 		    FROM user
@@ -98,9 +103,10 @@ class AdvertsManager extends AbstractManager {
 
   async getAdvertsByGenre(id) {
     const [rows] = await this.database.query(
-      `SELECT advert.title_search_manga, advert.price, advert.item_condition, advert_image.image_path, user.pseudo, user.picture as user_picture, joint_table.average, joint_table.feedback_nber, manga.genre_id
+      `SELECT advert.title_search_manga, advert.price, article_condition.name_condition, advert_image.image_path, user.pseudo, user.picture as user_picture, joint_table.average, joint_table.feedback_nber, manga.genre_id
       FROM ${this.table}
       LEFT JOIN advert_image ON advert.id=advert_image.advert_id AND advert_image.is_primary=1
+      JOIN article_condition ON advert.article_condition_id=article_condition.id
       JOIN user ON advert.user_id=user.id 
       JOIN manga ON advert.manga_id=manga.id 
       JOIN (SELECT user.pseudo as rated_pseudo, AVG(feedback.rating) as average, COUNT(feedback.rating) as feedback_nber
@@ -109,6 +115,44 @@ class AdvertsManager extends AbstractManager {
 		    GROUP BY user.pseudo) as joint_table ON user.pseudo=joint_table.rated_pseudo
       WHERE manga.genre_id = ?`,
       [id]
+    );
+
+    // Return the array of items
+    return rows;
+  }
+
+  async getAdvertsByCondition(id) {
+    const [rows] = await this.database.query(
+      `SELECT advert.title_search_manga, advert.price, article_condition.name_condition, advert_image.image_path, user.pseudo, user.picture as user_picture, joint_table.average, joint_table.feedback_nber, article_condition.id as condition_id
+      FROM ${this.table}
+      LEFT JOIN advert_image ON advert.id=advert_image.advert_id AND advert_image.is_primary=1
+      JOIN article_condition ON advert.article_condition_id=article_condition.id
+      JOIN user ON advert.user_id=user.id 
+      JOIN (SELECT user.pseudo as rated_pseudo, AVG(feedback.rating) as average, COUNT(feedback.rating) as feedback_nber
+		    FROM user
+		    JOIN feedback ON user.id = feedback.user_id
+		    GROUP BY user.pseudo) as joint_table ON user.pseudo=joint_table.rated_pseudo
+      WHERE advert.article_condition_id = ?`,
+      [id]
+    );
+
+    // Return the array of items
+    return rows;
+  }
+
+  async getAdvertsByPrice(price) {
+    const [rows] = await this.database.query(
+      `SELECT advert.title_search_manga, advert.price, article_condition.name_condition, advert_image.image_path, user.pseudo, user.picture as user_picture, joint_table.average, joint_table.feedback_nber
+      FROM ${this.table}
+      LEFT JOIN advert_image ON advert.id=advert_image.advert_id AND advert_image.is_primary=1
+      JOIN article_condition ON advert.article_condition_id=article_condition.id
+      JOIN user ON advert.user_id=user.id 
+      JOIN (SELECT user.pseudo as rated_pseudo, AVG(feedback.rating) as average, COUNT(feedback.rating) as feedback_nber
+		    FROM user
+		    JOIN feedback ON user.id = feedback.user_id
+		    GROUP BY user.pseudo) as joint_table ON user.pseudo=joint_table.rated_pseudo
+      WHERE advert.price < ?`,
+      [price]
     );
 
     // Return the array of items
