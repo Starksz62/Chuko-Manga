@@ -1,7 +1,22 @@
+/* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
+/* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable react/prop-types */
 import "./Cards.css";
+import { useState } from "react";
+import heart from "../assets/heart.png";
+import heartFull from "../assets/heartFull.png";
 
 function Cards({ data }) {
+  const [favorite, setFavorite] = useState(heart);
+
+  const handleClickFavorite = () => {
+    if (favorite === heart) {
+      setFavorite(heartFull);
+    } else {
+      setFavorite(heart);
+    }
+  };
+
   return (
     <section className="card-content">
       <img src={data.image} alt={data.title} className="card-image" />
@@ -9,9 +24,10 @@ function Cards({ data }) {
       <div className="card-price-section">
         <p className="card-price">{data.price}€</p>
         <img
-          src={data.favorite}
+          src={favorite}
           alt="logo favorite"
           className="card-favorite"
+          onClick={handleClickFavorite}
         />
       </div>
       <p className="card-condition">{data.condition}</p>
