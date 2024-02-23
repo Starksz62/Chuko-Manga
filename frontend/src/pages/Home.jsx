@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
-import Banner from "../components/Banner";
+
+import React from "react";
 
 function Home() {
   return (
@@ -8,7 +9,6 @@ function Home() {
       <Link to="/explore">
         <button type="button">Explorer</button>
       </Link>
-      <Banner />
     </>
   );
 }
