@@ -42,7 +42,7 @@
 }
 
 /* Cible uniquement les li de premier niveau dans .icon-container */
-.icon-container>ul>li:hover {
+.icon-container > ul > li:hover {
   background-color: #83aac7;
   color: white;
 }
