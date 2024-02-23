@@ -28,7 +28,7 @@ function App() {
       <LeftNavbar />
       <HeaderNav />
       <Outlet context={[data]} />
-      {/* <Footer /> */}
+      <Footer />
     </>
   );
 }
