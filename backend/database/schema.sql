@@ -178,7 +178,7 @@ KEY_BLOCK_SIZE = 8;
 CREATE TABLE IF NOT EXISTS `chuko_manga_db`.`order` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `id_user_buy` INT NOT NULL,
-  `total_price` INT NOT NULL,
+  `total_price` DECIMAL(10,2) NOT NULL,
   `order_date` DATE NOT NULL,
   `status_order` ENUM('pending', 'completed', 'cancelled') NOT NULL,
   `feedback_order` TINYINT NOT NULL,

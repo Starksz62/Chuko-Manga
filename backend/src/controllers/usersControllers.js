@@ -33,8 +33,22 @@ const getUserProfilById = async (req, res) => {
   }
 };
 
+const getUserProfilComById = async (req, res) => {
+  try {
+    const user = await models.user.getUserProfilComById(req.params.id);
+    if (user == null) {
+      res.sendStatus(404);
+    } else {
+      res.json(user);
+    }
+  } catch (err) {
+    console.error(err);
+  }
+};
+
 module.exports = {
   getAllUsers,
   getUserById,
   getUserProfilById,
+  getUserProfilComById,
 };

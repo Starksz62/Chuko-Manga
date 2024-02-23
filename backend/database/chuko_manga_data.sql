@@ -364,6 +364,11 @@ VALUES ('https://images1.vinted.net/t/01_01827_QnAYhyGADWncsoxqVv4js6Mh/f800/170
 ('https://images1.vinted.net/t/03_01d33_yhvKkq3bfzfmTqnsk2VA72ZF/f800/1708437469.jpeg?s=6e1c5dff10d9f8202989a695f7ac0dedac76ea3e', 1, 6),
 ('https://images1.vinted.net/t/03_01b81_81gVNq3szf7EA94eupaDVkXG/f800/1708437469.jpeg?s=1de325fb4055aff0395218fe38e932fa328d94cb', 0, 6);
 
+INSERT INTO `order` (id_user_buy, total_price, order_date, status_order, feedback_order, advert_id, user_id)
+VALUES ('2','3.80', '2024/02/20', 'completed', 0, '1', '1'),
+('2','4.80', '2024/02/20', 'completed', 0, '2', '1'),
+('1','15.80', '2024/02/21', 'completed', 0, '5', '2');
+
 INSERT INTO feedback (rating, comment, created_on, user_buyer, user_id)
 VALUES (5, 'Vendeuse très réactive !', '2024/02/19', 2, 1), 
 (4, 'Satisfait - produit conforme à la description', '2024/02/21', 2, 1), 

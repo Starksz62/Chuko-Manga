@@ -35,6 +35,8 @@ router.get("/user", usersControllers.getAllUsers);
 router.get("/user/:id", usersControllers.getUserById);
 // Route to get profil user for one specific user
 router.get("/user-profil/:id", usersControllers.getUserProfilById);
+// Route to get comment profil user for one specific user
+router.get("/user-profil-com/:id", usersControllers.getUserProfilComById);
 // Route to get detailed information for one specific advert (page on detail advert)
 router.get("/display-adverts/:id", advertsControllers.getAdvertById);
 // Route to get all adverts for one specific seller (page on detail advert)
