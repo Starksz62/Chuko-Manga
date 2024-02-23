@@ -152,10 +152,9 @@ class AdvertsManager extends AbstractManager {
 
   async addAdvert(advert) {
     const [result] = await this.database.query(
-      `INSERT INTO ${this.table} (price, item_condition, description, alert, batch, title_search_manga, view_number, publication_date_advert, delete_advert, user_id, volume_id, article_condition_id, manga_id) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+      `INSERT INTO ${this.table} (price, description, alert, batch, title_search_manga, view_number, publication_date_advert, delete_advert, user_id, volume_id, article_condition_id, manga_id) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
       [
         advert.price,
-        advert.item_condition,
         advert.description,
         advert.alert,
         advert.batch,
