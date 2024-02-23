@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 
 import React from "react";
-import Banner from "../components/Banner";
+// import Banner from "../components/Banner";
 
 function Home() {
   return (
@@ -10,7 +10,7 @@ function Home() {
       <Link to="/explore">
         <button type="button">Explorer</button>
       </Link>
-      <Banner />
+      {/* <Banner /> */}
     </>
   );
 }
