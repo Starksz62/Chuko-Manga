@@ -67,6 +67,19 @@ const getAdvertsByGenre = async (req, res) => {
   }
 };
 
+const getAllAdvertsById = async (req, res) => {
+  try {
+    const adverts = await models.advert.getAllAdvertsById(req.params.id);
+    if (adverts == null) {
+      res.sendStatus(404);
+    } else {
+      res.json(adverts);
+    }
+  } catch (err) {
+    console.error(err);
+  }
+};
+
 module.exports = {
   getAllAdverts,
   getAllCards,
@@ -75,4 +88,5 @@ module.exports = {
   getAdvertById,
   getAdvertsBySeller,
   getAdvertsByGenre,
+  getAllAdvertsById,
 };

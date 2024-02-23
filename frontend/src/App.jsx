@@ -1,3 +1,4 @@
+import FilteredadvertsCard from "./components/FilterAdvert";
 import FilterMangaCard from "./components/FilterMangaCard";
 
 function App() {
@@ -15,6 +16,7 @@ function App() {
   return (
     <div>
       <FilterMangaCard />
+      <FilteredadvertsCard />
     </div>
   );
 }
