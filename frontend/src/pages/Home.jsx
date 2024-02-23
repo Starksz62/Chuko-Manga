@@ -1,10 +1,15 @@
 import { Link, useOutletContext } from "react-router-dom";
 
+import React from "react";
+
+import HeaderNav from "../components/HeaderNav";
+
 function Home() {
   const [data] = useOutletContext();
 
   return (
     <>
+      <HeaderNav />
       <div>Home page</div>
       <Link to="/explore">
         <button type="button">Explorer</button>
@@ -13,13 +18,12 @@ function Home() {
         <div className="card" key={manga.id}>
           <h1>Manga: {manga.title}</h1>
           <img
-            src={import.meta.env.VITE_BACKEND_URL + manga.image}
+            src={`${import.meta.env.VITE_BACKEND_URL}/${manga.image}`}
             alt="an specific thing"
           />
           <p>{manga.description}</p>
           <h2>Genre: {manga.genre}</h2>
           <h2>Publishing house: {manga.name_publishing_house}</h2>
-
           <h5>Date france:{manga.date_france}</h5>
           <h5>author:{manga.author}</h5>
           <h5>illustrator:{manga.illustrator}</h5>

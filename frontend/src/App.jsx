@@ -11,7 +11,7 @@ function App() {
     const fetchData = async () => {
       try {
         const response = await axios.get("http://localhost:3310/api/mangas");
-        console.info("Response data:", response.data);
+        // console.info("Response data:", response.data);
         setData(response.data);
       } catch (error) {
         console.error("Error fetching data:", error);
