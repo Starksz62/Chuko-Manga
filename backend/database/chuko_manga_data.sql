@@ -93,7 +93,7 @@ VALUES (
     -- title
     'Nana',
     -- description
-    'Nana follows the lives of two young women, both named Nana, who meet by chance and decide to live together in Tokyo. Despite their different personalities, they form a strong bond as they pursue their dreams and navigate the challenges of love and friendship in the city''s music scene.',
+    'Nana follows the lives of two young women, both named Nana, who meet by chance and decide to live together in Tokyo.',
     -- image
     'https://www.manga-news.com/public/images/series/nana_01.jpg',
     -- author
@@ -123,11 +123,11 @@ VALUES ('Tome 1', 1, '2002', 'https://bdi.dlpdomain.com/album/9782871294146-couv
 ('Tome 2', 2, '2002', 'https://bdi.dlpdomain.com/album/9782871294146-couv-M480x680.jpg', '2871294178', 1),
 ('Tome 1', 1, '2000', 'https://www.manga-news.com/public/images/series/nana_01.jpg', '9782840559573', 1);
 
-INSERT INTO `condition` (name_condition)
+INSERT INTO article_condition (name_condition)
 VALUES ('abimé'), ('bon état'), ('comme neuf');
 
 INSERT INTO
-user (firstname, lastname, pseudo, email, password, phone, role, picture, order_id)
+user (firstname, lastname, pseudo, email, password, phone, role, picture)
 VALUES
 (
   -- firstname
@@ -145,9 +145,7 @@ VALUES
 -- role
 'user', 
 -- picture
-'https://images.pexels.com/photos/1239291/pexels-photo-1239291.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1', 
--- order_id
-NULL
+'https://images.pexels.com/photos/1239291/pexels-photo-1239291.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1' 
 ),
 (
   -- firstname
@@ -165,19 +163,27 @@ NULL
 -- role
 'user', 
 -- picture
-'https://images.pexels.com/photos/2379004/pexels-photo-2379004.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1', 
--- order_id
-NULL
+'https://images.pexels.com/photos/2379004/pexels-photo-2379004.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'
 );
 
+INSERT INTO address (city, zip_code, number_street, country, name_adress)
+VALUES ('Bordeaux', '33000', '18 Boulevard de la Paix', 'France', 'maison'),
+('Artigues-près-Bordeaux', '33370', '4 impasse Marc-Antoine', 'France', 'boulot'),
+('Paris','75000','145 Avenue du Général Leclerc','France','domicile'),
+('Lille','59000','46 Rue Marie-Antoinette','France','Papy et Mamie');
+
+INSERT INTO address_has_user (address_id, user_id)
+VALUES ('1','1'),
+('2','1'),
+('3','2'),
+('4','2');
+
 INSERT INTO 
-advert (price, item_condition, description, alert, batch, title_search_manga, view_number, publication_date_advert, delete_advert, user_id, volume_id, condition_id, manga_id) 
+advert (price, description, alert, batch, title_search_manga, view_number, publication_date_advert, delete_advert, user_id, volume_id, article_condition_id, manga_id) 
 VALUES 
   (
     -- price
     3, 
-    -- item_condition
-    'bon état', 
     -- description
     'Vends manga Naruto en bon état. Seul défaut : la couverture est un peu cornée', 
     -- alert
@@ -197,15 +203,13 @@ VALUES
     -- volume_id
     1, 
     -- condition_id
-    1, 
+    2, 
     -- manga_id
     1
     ), 
     (
     -- price
     4, 
-    -- item_condition
-    'comme neuf', 
     -- description
     'Je mets en vente ce tome 2 de Naruto, comme neuf.', 
     -- alert
@@ -232,8 +236,6 @@ VALUES
     (
     -- price
     40, 
-    -- item_condition
-    'abimé', 
     -- description
     'Je vens un lot Dragon Ball à bon prix ! Se référer aux photos pour les tomes constituant le lot.', 
     -- alert
@@ -260,8 +262,6 @@ VALUES
     (
     -- price
     20, 
-    -- item_condition
-    'bon état', 
     -- description
     'One Piece 66 67 68 69 70. Je reste disponible si vous voulez plus de photos. Je vends également d''autres livres n''hésitez pas à faire un tour sur mon profil.', 
     -- alert
@@ -288,10 +288,8 @@ VALUES
     (
     -- price
     15, 
-    -- item_condition
-    'bon état', 
     -- description
-    'Lot de 3 mangas dragon Ball en très bon état - vendeur de confiance', 
+    'Lot de 3 mangas dragon Ball en excellent état - vendeur de confiance', 
     -- alert
     0, 
     -- batch
@@ -309,15 +307,13 @@ VALUES
     -- volume_id
     NULL,
     -- condition_id
-    1, 
+    3, 
     -- manga_id
     2
     ),
     (
     -- price
     2, 
-    -- item_condition
-    'bon état', 
     -- description
     'A vendre : tome 1 Nana', 
     -- alert
@@ -344,21 +340,26 @@ VALUES
 
 INSERT INTO 
 advert_image (image_path, is_primary, advert_id)
-VALUES ('https://images1.vinted.net/t/01_01827_QnAYhyGADWncsoxqVv4js6Mh/f800/1708184899.jpeg?s=fbe64ea0a877c53c42b87282922cb295617cd44e', '1', '1'), 
-('https://images1.vinted.net/t/01_0017a_cKAn9GExwyPFFj4fZZqcVMoU/f800/1708184899.jpeg?s=461e8f7628bcb5421a8751a11ca13f763ce86971', '0', '1'),
-('https://images1.vinted.net/t/02_00936_va4rY9rWwT3HbU2ThLRULkU7/f800/1708376632.jpeg?s=1412896b180252dd463c6e8981b2e83726ed8294', '1', '2'),
-('https://images1.vinted.net/t/03_021d1_FNvSHX9kxBzHei8GBnGDbbL2/f800/1708376632.jpeg?s=c202bf962b04c720d1b69c5397df9e7909e5758b', '0', '2'),
-('https://images1.vinted.net/t/01_0091d_7AbN4FEoTkVpFHcTevqmssPj/f800/1708301885.jpeg?s=a35767a3203f7cf7b0967c3bac29231976117099', '1', '3'),
-('https://images1.vinted.net/t/03_01d33_yhvKkq3bfzfmTqnsk2VA72ZF/f800/1708437469.jpeg?s=6e1c5dff10d9f8202989a695f7ac0dedac76ea3e', '1', '4'),
-('https://images1.vinted.net/t/02_015e6_gyPVAkxkXVQxfAmnUjYUECyc/f800/1708414740.jpeg?s=14d6cae4a9ede4a2f9824ef8208b87a186e13d82', '0', '4'),
-('https://images1.vinted.net/t/03_00a44_Ao9k6K9g9dyZ8a6oFGS241Az/f800/1708523145.jpeg?s=9c69bf4c8085bb90c02b5a90720c44a77bf226a6', '1', '5'),
-('https://images1.vinted.net/t/01_0069d_8rBzBXNiBnK7Kn94k5hmPLVr/f800/1708523145.jpeg?s=b6119bc3ae9905e339202eb71806650a85ba261c', '0', '5'),
-('https://images1.vinted.net/t/03_01d33_yhvKkq3bfzfmTqnsk2VA72ZF/f800/1708437469.jpeg?s=6e1c5dff10d9f8202989a695f7ac0dedac76ea3e', '1', '6'),
-('https://images1.vinted.net/t/03_01b81_81gVNq3szf7EA94eupaDVkXG/f800/1708437469.jpeg?s=1de325fb4055aff0395218fe38e932fa328d94cb', '0', '6');
+VALUES ('https://images1.vinted.net/t/01_01827_QnAYhyGADWncsoxqVv4js6Mh/f800/1708184899.jpeg?s=fbe64ea0a877c53c42b87282922cb295617cd44e', 1, 1), 
+('https://images1.vinted.net/t/01_0017a_cKAn9GExwyPFFj4fZZqcVMoU/f800/1708184899.jpeg?s=461e8f7628bcb5421a8751a11ca13f763ce86971', 0, 1),
+('https://images1.vinted.net/t/02_00936_va4rY9rWwT3HbU2ThLRULkU7/f800/1708376632.jpeg?s=1412896b180252dd463c6e8981b2e83726ed8294', 1, 2),
+('https://images1.vinted.net/t/03_021d1_FNvSHX9kxBzHei8GBnGDbbL2/f800/1708376632.jpeg?s=c202bf962b04c720d1b69c5397df9e7909e5758b', 0, 2),
+('https://images1.vinted.net/t/01_0091d_7AbN4FEoTkVpFHcTevqmssPj/f800/1708301885.jpeg?s=a35767a3203f7cf7b0967c3bac29231976117099', 1, 3),
+('https://images1.vinted.net/t/03_01d33_yhvKkq3bfzfmTqnsk2VA72ZF/f800/1708437469.jpeg?s=6e1c5dff10d9f8202989a695f7ac0dedac76ea3e', 1, 4),
+('https://images1.vinted.net/t/02_015e6_gyPVAkxkXVQxfAmnUjYUECyc/f800/1708414740.jpeg?s=14d6cae4a9ede4a2f9824ef8208b87a186e13d82', 0, 4),
+('https://images1.vinted.net/t/03_00a44_Ao9k6K9g9dyZ8a6oFGS241Az/f800/1708523145.jpeg?s=9c69bf4c8085bb90c02b5a90720c44a77bf226a6', 1, 5),
+('https://images1.vinted.net/t/01_0069d_8rBzBXNiBnK7Kn94k5hmPLVr/f800/1708523145.jpeg?s=b6119bc3ae9905e339202eb71806650a85ba261c', 0, 5),
+('https://images1.vinted.net/t/03_01d33_yhvKkq3bfzfmTqnsk2VA72ZF/f800/1708437469.jpeg?s=6e1c5dff10d9f8202989a695f7ac0dedac76ea3e', 1, 6),
+('https://images1.vinted.net/t/03_01b81_81gVNq3szf7EA94eupaDVkXG/f800/1708437469.jpeg?s=1de325fb4055aff0395218fe38e932fa328d94cb', 0, 6);
 
-INSERT INTO feedback (rating, comment, created_on, user_id)
-VALUES ('5', 'Vendeuse très réactive !', '2024/02/19', '1'), 
-('4', 'Satisfait - produit conforme à la description', '2024/02/21', '1'), 
-('5', 'Je recommande !', '2024/02/18', '1'),
-('3.5', 'Délai d''envoi assez long, manga en moins bon état que prévu', '2024/02/05', '2'), 
-('4', 'Satisfait', '2024/02/21', '2');
+INSERT INTO `order` (id_user_buy, total_price, order_date, status_order, feedback_order, advert_id, user_id)
+VALUES ('2','3.80', '2024/02/20', 'completed', 0, '1', '1'),
+('2','4.80', '2024/02/20', 'completed', 0, '2', '1'),
+('1','15.80', '2024/02/21', 'completed', 0, '5', '2');
+
+INSERT INTO feedback (rating, comment, created_on, user_buyer, user_id)
+VALUES (5, 'Vendeuse très réactive !', '2024/02/19', 2, 1), 
+(4, 'Satisfait - produit conforme à la description', '2024/02/21', 2, 1), 
+(5, 'Je recommande !', '2024/02/18',2, 1),
+(3.5, 'Délai d''envoi assez long, manga en moins bon état que prévu', '2024/02/05', 1, 2), 
+(4, 'Satisfait', '2024/02/21', 1, 2);

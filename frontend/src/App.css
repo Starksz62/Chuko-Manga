@@ -4,3 +4,13 @@
   justify-content: center;
   width: 100%;
 }
+
+* {
+  padding: 0px;
+  margin: 0px;
+  box-sizing: border-box;
+}
+
+body {
+  max-width: 400vh;
+}

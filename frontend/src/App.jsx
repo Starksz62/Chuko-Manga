@@ -1,22 +1,28 @@
-// import { useEffect } from "react";
-// // import axios from "axios";
-// import logo from "./assets/logo.svg";
-// import Counter from "./components/Counter";
+import "./App.css";
+import { Outlet } from "react-router-dom";
+import { useState, useEffect } from "react";
+import axios from "axios";
+import LeftNavbar from "./components/LeftNavbar";
+import HeaderNav from "./components/HeaderNav";
+import Footer from "./components/Footer";
 import Cards from "./components/Cards";
 
-import "./App.css";
-
+/* eslint-disable import/no-extraneous-dependencies */
 function App() {
-  // Test to fetch advert cards
-  // const getAdvertCards = () => {
-  //   axios.get("http://localhost:3310/api/display-adverts/1").then((res) => {
-  //     console.info(res.data);
-  //   });
-  // };
+  const [data, setData] = useState([]);
 
-  // useEffect(() => {
-  //   getAdvertCards();
-  // }, []);
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get("http://localhost:3310/api/mangas");
+        // console.info("Response data:", response.data);
+        setData(response.data);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    };
+    fetchData();
+  }, []);
 
   const annonces = [
     {
@@ -154,13 +160,19 @@ function App() {
   ];
 
   return (
-    <div className="main">
-      {annonces.map((annonce) => (
-        <div key={annonce.id} className="annonce-item">
-          <Cards data={annonce} />
-        </div>
-      ))}
-    </div>
+    <>
+      <LeftNavbar />
+      <HeaderNav />
+      <div className="main">
+        {annonces.map((annonce) => (
+          <div key={annonce.id} className="annonce-item">
+            <Cards data={annonce} />
+          </div>
+        ))}
+      </div>
+      <Outlet context={[data]} />
+      <Footer />
+    </>
   );
 }
 
