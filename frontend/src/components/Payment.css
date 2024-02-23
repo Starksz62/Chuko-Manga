@@ -32,3 +32,13 @@ width: 68%;
 .add-payment-card img {
   cursor: pointer;
 }
+.confirmation-payment button {
+  background-color: #DD7A06;
+    border: 1px solid;
+    border-color: #DD7A06;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+    color: white;
+}

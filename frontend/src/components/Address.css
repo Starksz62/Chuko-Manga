@@ -60,7 +60,7 @@
   .cross-icon img {
     cursor: pointer;
   }
-  button {
+  .submit-new-address button {
     background-color: #DD7A06;
     border: 1px solid;
     border-color: #DD7A06;
