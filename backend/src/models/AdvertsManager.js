@@ -61,6 +61,26 @@ class AdvertsManager extends AbstractManager {
     return rows;
   }
 
+  async findAdvertQuery(searchQuery) {
+    console.info("je suis dans le manager", searchQuery);
+
+    // Constructing the SQL query dynamically
+    const searchTerms = searchQuery.split(" "); // Split the search query into individual terms
+    const likeConditions = searchTerms.map(
+      () => `(title_search_manga LIKE ? OR description LIKE ?)`
+    ); // Construct LIKE conditions for each term
+    const sqlQuery = `SELECT * FROM advert WHERE ${likeConditions.join(
+      " OR "
+    )}`; // Join LIKE conditions with OR operator
+    const queryParams = searchTerms.flatMap((term) => [
+      `%${term}%`,
+      `%${term}%`,
+    ]); // Construct parameter array for each term
+
+    const [rows] = await this.database.query(sqlQuery, queryParams);
+    return rows;
+  }
+
   async getAdvertById(id) {
     const [rows] = await this.database.query(
       `SELECT advert.price, advert.title_search_manga, advert.description, article_condition.name_condition, advert.view_number, advert.publication_date_advert, manga.title as manga_title, volume.title as volume_title, volume.ISBN, user.pseudo, user.picture as user_picture, joint_table.average, joint_table.feedback_nber, JSON_ARRAYAGG(advert_image.image_path) as image_paths
@@ -159,5 +179,55 @@ class AdvertsManager extends AbstractManager {
     return rows;
   }
 }
+
+// crée la fonction pour recuperer les adverts (title) puis condition comparer title LIKE %query%
+
+// async findAdvertQuery(query) {
+//   console.info(query);
+//   try {
+//     if (!query) {
+//       throw new Error("Query parameter cannot be empty or null.");
+//     }
+
+//     const sql = `SELECT * FROM advert WHERE title_search_manga LIKE ?`;
+//     const [rows] = await this.database.query(sql, [`%${query}%`]);
+
+//     return rows;
+//   } catch (error) {
+//     console.error("Error in findAdvertQuery:", error);
+//     throw error; // Rethrow the error to handle it upstream
+//   }
+// }
+
+// async findAdvertQuery(searchQuery) {
+//   console.log("je suis dans le manager", searchQuery);
+//   const [rows] = await this.database.query(
+//     `SELECT * FROM advert WHERE title_search_manga OR description LIKE "%en%";`
+//   );
+//   return rows;
+// }
+
+// async findAdvertQuery(searchQuery) {
+//   console.log("je suis dans le manager", searchQuery);
+//   const [rows] = await this.database.query(
+//     `SELECT * FROM advert WHERE title_search_manga OR description LIKE ?`,
+//     [`%${searchQuery}%`]
+//   );
+//   return rows;
+// }
+
+//
+// const [rows] = await this.database.query(`SELECT advert where id = 1;`);
+
+// IGNORER
+// async createSearchQuery() {
+//   const [rows] = await this.database.query(
+//     `INSERT INTO search_query (query)
+//   VALUES (?)
+//   ON DUPLICATE KEY UPDATE query = VALUES(query);
+//   `
+//   );
+//   return rows;
+// }
 
 module.exports = AdvertsManager;
