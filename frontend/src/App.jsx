@@ -30,7 +30,7 @@ function App() {
     fetch(`http://localhost:3310/api/display-adverts-byseller/1`)
       .then((res) => res.json())
       .then((data) => {
-        console.info("articles :", articles);
+        console.info("articles :", data);
         setArticles(data);
       });
   }, []);
@@ -51,6 +51,24 @@ function App() {
           <button type="button" className="buttonOnglet">
             Mon historique d'achat
           </button>
+        </div>
+        <div className="containerArticles">
+          {articles?.map((article) => (
+            <div key={article.id}>
+              <li className="card">
+                <div>
+                  <img
+                    className="image_path"
+                    src={`${article.image_path}`}
+                    alt="image_article_seller"
+                  />
+                  <p className="title_search_manga">{`${article.title_search_manga}`}</p>
+                  <p className="price">{`${article.price}`} €</p>
+                  <p className="name_condition">{`${article.name_condition}`}</p>
+                </div>
+              </li>
+            </div>
+          ))}
         </div>
       </div>
     </>
