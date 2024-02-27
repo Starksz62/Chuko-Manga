@@ -1,5 +1,5 @@
-import domicile from "../assets/domicile.png";
-import espaceReserve from "../assets/espaceReserve.png";
+import domicile from "../../assets/domicile.png";
+import espaceReserve from "../../assets/espaceReserve.png";
 
 function DeliveryOption() {
   return (

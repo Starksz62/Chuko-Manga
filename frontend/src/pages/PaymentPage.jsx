@@ -1,19 +1,18 @@
-/* eslint-disable import/no-unresolved */
-
+/* eslint-disable jsx-a11y/click-events-have-key-events */
+/* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 import { useState } from "react";
-import logo from "../assets/logo.png";
+import { useLocation } from "react-router-dom";
 import "./PaymentPage.css";
-import Order from "../components/Order";
-import CreditCard from "../components/creditCard";
-import data from "../test.json";
-import Address from "../components/Address";
+import Order from "../components/PaymentPage/Order";
+import CreditCard from "../components/PaymentPage/creditCard";
+import Address from "../components/PaymentPage/Address";
 import cross from "../assets/openModal.png";
-import Payment from "../components/Payment";
-import DeliveryOption from "../components/DeliveryOption";
+import Payment from "../components/PaymentPage/Payment";
+import DeliveryOption from "../components/PaymentPage/DeliveryOption";
 
 function PaymentPage() {
-  const prices = data.commandes;
-
+  const location = useLocation();
+  const { articleData } = location.state;
   const [showModal, setShowModal] = useState(false);
   const [showModalCreditCard, setShowModalCreditCard] = useState(false);
   const [adresse, setAdresse] = useState({
@@ -33,30 +32,27 @@ function PaymentPage() {
   };
 
   const closeModalCreditCard = () => {
+    console.info("Fermeture de la modal");
     setShowModalCreditCard(false);
   };
   const handleAddressChange = (newAddress) => {
     setAdresse(newAddress);
   };
+
   return (
     <div className="container">
       <div className="navbar-payment">
-        <img src={logo} alt="logo-site" />
         <h1 className="title-navbar-payment">Commande</h1>
       </div>
       <h2>Commande</h2>
       <div className="main-content">
         <div className="left-column">
-          <ul className="order-cards">
-            {prices.map((allData) => (
-              <li key={allData.id} className="card-item">
-                <Order price={allData} />
-              </li>
-            ))}
-          </ul>
+          <div className="order-cards">
+            <Order articleInfo={articleData} />
+          </div>
         </div>
         <div className="right-column">
-          <Payment price={prices[0].price} />
+          <Payment price={articleData.price} />
         </div>
       </div>
       <h1>Adresse</h1>
@@ -129,13 +125,8 @@ function PaymentPage() {
         <h2>Paiement</h2>
         <div className="add-payment-card">
           <p>Ajoute une méthode de paiement</p>
-          <button
-            onClick={openModalCreditCard}
-            aria-label="Close modal"
-            type="button"
-          >
-            <img src={cross} alt="cross" />
-          </button>
+
+          <img src={cross} alt="cross" onClick={openModalCreditCard} />
         </div>
 
         <p>Sélectionne le mode de paiement</p>
@@ -143,14 +134,6 @@ function PaymentPage() {
       {showModalCreditCard && (
         <div className="modal">
           <div className="modal-content">
-            <button
-              type="button"
-              className="close"
-              onClick={closeModalCreditCard}
-            >
-              <span className="close">&times;</span>
-            </button>
-
             <CreditCard updateModalCreditCard={closeModalCreditCard} />
           </div>
         </div>
