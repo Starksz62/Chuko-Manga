@@ -49,3 +49,56 @@
 .name_condition {
   color: #b5b5b5;
 }
+
+.containerNoteCom {
+  border-bottom: solid 0.1rem;
+  height: 70px;
+  display: flex;
+  align-items: center;
+}
+
+.average_rating {
+  padding: 0 2rem 0 4.5rem;
+  font-size: 2.5rem;
+  font-weight: bold;
+}
+
+.picture_buyer {
+  height: 22rem;
+  clip-path: ellipse(50% 33%);
+}
+
+.starcontainer {
+  display: flex;
+  font-size: 1.5rem;
+}
+
+.rating {
+  display: flex;
+}
+/* -----------------------------------CSS pour les couleurs des étoiles----------------------------------- */
+/* CSS pour les demi-étoiles */
+.half-star {
+  color: #a6a6a6;
+  position: relative;
+}
+
+.half-star::after {
+  content: "★";
+  position: absolute;
+  left: 0;
+  overflow: hidden;
+  width: 50%;
+  color: #ffd700;
+}
+
+/* CSS pour les étoiles vides */
+.empty-star {
+  color: #a6a6a6;
+}
+
+/* CSS pour les étoiles pleines */
+.full-star {
+  color: #ffd700;
+}
+/* ------------------------------------------------------------------------------------------------------ */

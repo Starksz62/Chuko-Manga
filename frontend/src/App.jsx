@@ -51,6 +51,44 @@ function App() {
       });
   }, []);
 
+  function renderStars(averageRating) {
+    const fullStars = Math.floor(averageRating); // Nombre d'étoiles pleines
+    const decimalPart = averageRating - fullStars; // Partie décimale de la note
+    let partialStar = ""; // Classe pour l'étoile partielle
+    // Déterminer la classe de l'étoile partielle en fonction de la partie décimale
+    if (decimalPart >= 0.75) {
+      partialStar = "half-star";
+    } else if (decimalPart >= 0.25) {
+      partialStar = "half-star";
+    } else {
+      partialStar = "empty-star";
+    }
+    // Création des étoiles en fonction du nombre d'étoiles pleines et de l'étoile partielle
+    const stars = [];
+    for (let i = 0; i < fullStars; i += 1) {
+      stars.push(
+        <div key={i} className="star full-star">
+          ★
+        </div>
+      );
+    }
+    if (partialStar !== "empty-star") {
+      stars.push(
+        <div key="partial" className={`star ${partialStar}`}>
+          ★
+        </div>
+      );
+    }
+    for (let i = fullStars + 1; i < 5; i += 1) {
+      stars.push(
+        <div key={i} className="star empty-star">
+          ★
+        </div>
+      );
+    }
+    return <div className="starcontainer">{stars}</div>;
+  }
+
   return (
     <>
       {/* <LeftNavbar />
@@ -104,20 +142,28 @@ function App() {
             {ongletActif === "Mes évaluations" &&
               evaluations?.map((evaluation) => (
                 <div key={evaluation.id}>
-                  <li className="cardCom">
-                    <div>
-                      <p className="average_rating">{`${evaluation.average_rating}`}</p>
-                      <img
-                        className="picture_buyer"
-                        src={`${evaluation.picture_buyer}`}
-                        alt="image_buyer"
-                      />
-                      <p className="created_on">{`${evaluation.created_on.split("T")[0]}`}</p>
-                      <p className="speudo_buyer">{`${evaluation.pseudo}`}</p>
-                      <p className="rating">{`${evaluation.rating}`}</p>
-                      <p className="com">{`${evaluation.comment}`}</p>
+                  <div className="cardCom">
+                    <div className="containerNoteCom">
+                      <p className="average_rating">{`${(Math.round(evaluation.average_rating * 100) / 100).toFixed(2)}`}</p>
+                      <div className="StarNumbCom">
+                        <p className="starcontainer">
+                          {renderStars(parseFloat(evaluation.average_rating))}
+                        </p>
+                        <p className="Number_comment">({evaluations.length})</p>
+                      </div>
                     </div>
-                  </li>
+                    <img
+                      className="picture_buyer"
+                      src={`${evaluation.picture_buyer}`}
+                      alt="image_buyer"
+                    />
+                    <p className="created_on">{`${evaluation.created_on.split("T")[0]}`}</p>
+                    <p className="speudo_buyer">{`${evaluation.pseudo}`}</p>
+                    <p className="rating">
+                      {renderStars(parseFloat(evaluation.rating))}
+                    </p>
+                    <p className="comment">{`${evaluation.comment}`}</p>
+                  </div>
                 </div>
               ))}
           </div>
