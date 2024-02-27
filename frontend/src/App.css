@@ -4,9 +4,8 @@
 }
 
 .containerOnglets {
-  border: solid 0.1rem red;
-  width: 60%;
-  height: 500px;
+  width: 80%;
+  margin: 10%;
 }
 
 .containerButton {
@@ -18,8 +17,7 @@
   border: none;
   background-color: rgba(255, 255, 255, 0);
   text-decoration: underline;
-  padding-right: 1rem;
-  padding-left: 1rem;
+  padding-left: 4.5rem;
 }
 .buttonOnglet:hover {
   transform: scale(1.1);
@@ -32,7 +30,6 @@
 }
 
 .card {
-  height: 15rem;
   margin: 30px;
   list-style: none;
 }
