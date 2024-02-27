@@ -1,22 +1,26 @@
-import React, { useState, useEffect } from "react";
-// eslint-disable-next-line import/no-extraneous-dependencies
+import React, { useEffect, useState } from "react";
+
 import axios from "axios";
 
+import "./MangaDetails.css";
+import dragonBallImage from "../assets/dragonBall.webp";
+
 function MangaDetails() {
-  const [manga, setManga] = useState(null);
+  const [manga, setManga] = useState({});
   const [isLoading, setIsLoading] = useState(true);
-  const [error, setError] = useState(null);
+  const [error, setError] = useState("");
 
   useEffect(() => {
     axios
-      .get("http://localhost:3310/api/mangas/2")
+      .get(`http://localhost:3310/api/mangas/2`)
       .then((response) => {
-        setManga(response.data);
+        console.info("Réponse de l'API:", response.data);
+        setManga(response.data[0]);
         setIsLoading(false);
       })
       // eslint-disable-next-line no-shadow
       .catch((error) => {
-        console.error("Axios error:", error);
+        console.error("Erreur Axios:", error);
         setError(error.toString());
         setIsLoading(false);
       });
@@ -25,29 +29,53 @@ function MangaDetails() {
   if (isLoading) return <div>Chargement...</div>;
   if (error) return <div>Erreur : {error}</div>;
 
+  const formatDate = (isoString) => {
+    return new Date(isoString).toLocaleDateString("fr-FR", {
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+    });
+  };
+
   return (
-    <div>
-      {manga && (
-        <div>
-          <h2>{manga.title}</h2>
+    <div className="naruto-details">
+      <div className="top-section">
+        <div className="image-container">
+          <img src={dragonBallImage} alt={manga.title} />
+        </div>
+        <div className="description-manga">
+          <h2 className="title-manga">{manga.title}</h2>
+          <p>{manga.description}</p>
+        </div>
+      </div>
+
+      <div className="bottom-section">
+        <div className="status-manga">
           <p>
-            <strong>Description :</strong> {manga.description}
+            <strong>Date de sortie en France :</strong>{" "}
+            {formatDate(manga.date_france)}
           </p>
           <p>
-            <strong>Auteur :</strong> {manga.author}
-          </p>
-          <p>
-            <strong>Illustrateur :</strong> {manga.illustrator}
-          </p>
-          <p>
-            <strong>Date de sortie :</strong>{" "}
-            {new Date(manga.release_date).getFullYear()}
-          </p>
-          <p>
-            <strong>Maison d'édition :</strong> {manga.publishing_house_id}
+            <strong>Date de sortie au Japon :</strong>{" "}
+            {formatDate(manga.date_japan)}
           </p>
         </div>
-      )}
+
+        <div className="authors-container">
+          <div className="data-authors">
+            <h2 className="title-authors">Authors</h2>
+            <p>
+              <span>Auteur :</span> {manga.author}
+            </p>
+            <p>
+              <span>Scénariste :</span> {manga.script_writer}
+            </p>
+            <p>
+              <span>Illustrateur :</span> {manga.illustrator}
+            </p>
+          </div>
+        </div>
+      </div>
     </div>
   );
 }
