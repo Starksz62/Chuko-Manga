@@ -9,7 +9,7 @@ function MangaDetails() {
 
   useEffect(() => {
     axios
-      .get("http://localhost3000/api/mangas/id")
+      .get("http://localhost:3310/api/mangas/2")
       .then((response) => {
         setManga(response.data);
         setIsLoading(false);
