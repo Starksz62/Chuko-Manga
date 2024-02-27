@@ -93,6 +93,20 @@ const getAdvertsByPrice = async (req, res) => {
     console.error(err);
   }
 };
+const getAdvertsImage = async (req, res) => {
+  try {
+    const adverts = await models.advert.getAdvertsImage(req.params.image_path);
+    if (adverts == null) {
+      res.sendStatus(404);
+    } else {
+      res.json(adverts);
+    }
+  } catch (err) {
+    console.error(err);
+  }
+};
+
+
 
 const addAdvert = async (req, res) => {
   const advert = req.body;
@@ -136,4 +150,5 @@ module.exports = {
   getAdvertsByCondition,
   getAdvertsByPrice,
   addAdvert,
+  getAdvertsImage
 };
