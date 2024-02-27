@@ -1,12 +1,15 @@
 import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import AdvertCard from "./AdvertCard";
+import "./PrefilterAdvertByDesc.css";
+import "./PrefilterAdvertByBatch.css";
 
 function FilteredadvertsCard() {
   const [, setAdverts] = useState([]);
   const [filteredAdverts, setFilteredAdverts] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:3310/api/display-adverts")
+    fetch("http://localhost:3310/api/batch-adverts-date-desc")
       .then((response) => {
         if (!response.ok) {
           throw new Error(`Erreur HTTP, statut : ${response.status}`);
@@ -25,27 +28,26 @@ function FilteredadvertsCard() {
       });
   }, []);
 
-  // Fonction pour trier les annonces par ordre croissant de prix
-  const sortByPriceAscending = () => {
-    const sortedAdverts = [...filteredAdverts].sort(
-      (a, b) => parseFloat(a.price) - parseFloat(b.price)
-    );
-    setFilteredAdverts(sortedAdverts);
-  };
-
   return (
     <div className="App">
-      <h1>Liste des adverts</h1>
-      <button type="button" onClick={sortByPriceAscending}>
-        Trier par prix croissant
-      </button>
-      {filteredAdverts.length > 0 ? (
-        filteredAdverts.map((advert) => (
-          <AdvertCard key={advert.id} advert={advert} />
-        ))
-      ) : (
-        <p>Chargement en cours...</p>
-      )}
+      <h1>Explorer les dernières collections ajoutées :</h1>
+      <div className="FilterByDate">
+        {filteredAdverts.length > 0 ? (
+          filteredAdverts
+            .slice(0, 3)
+            .map((advert) => <AdvertCard key={advert.id} advert={advert} />)
+        ) : (
+          <p>Chargement en cours...</p>
+        )}
+        <Link to="/explore">
+          <button type="button" className="bntSeeAllTomes">
+            <div className="textBtn">
+              {" "}
+              Voir tous <br /> les tomes
+            </div>
+          </button>
+        </Link>
+      </div>
     </div>
   );
 }

@@ -16,6 +16,7 @@ const app = express();
 // You may find the following magic line in forums:
 
 app.use(cors());
+app.use("/static", express.static(`${__dirname}/assets`));
 
 app.use("/static", express.static(`${__dirname}/assets`));
 
