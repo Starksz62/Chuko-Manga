@@ -7,6 +7,8 @@ import dragonBallImage from "../assets/dragonBall.webp";
 
 function MangaDetails() {
   const [manga, setManga] = useState({});
+  // const [genre, setGenre] = useState("");
+  // const [publishingHouse, setPublishingHouse] = useState("");
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState("");
 
@@ -28,6 +30,7 @@ function MangaDetails() {
 
   if (isLoading) return <div>Chargement...</div>;
   if (error) return <div>Erreur : {error}</div>;
+  if (!manga) return <div>Aucun détail trouvé</div>;
 
   const formatDate = (isoString) => {
     return new Date(isoString).toLocaleDateString("fr-FR", {
@@ -52,18 +55,28 @@ function MangaDetails() {
       <div className="bottom-section">
         <div className="status-manga">
           <p>
-            <strong>Date de sortie en France :</strong>{" "}
-            {formatDate(manga.date_france)}
+            <strong>Sortie en France :</strong> {formatDate(manga.date_france)}
           </p>
           <p>
-            <strong>Date de sortie au Japon :</strong>{" "}
-            {formatDate(manga.date_japan)}
+            <strong>Sortie au Japon :</strong> {formatDate(manga.date_japan)}
+          </p>
+          <p>
+            <strong>Genre</strong>
+            {manga.genre}
+          </p>
+          <p>
+            <strong>Japon</strong>{" "}
+            {manga.finish_japan ? "Terminée" : "Pas terminée"}
+          </p>
+          <p>
+            <strong>France </strong>
+            {manga.finish_france ? "Terminée" : "Pas terminée"}
           </p>
         </div>
 
         <div className="authors-container">
+          <h2 className="title-authors">Authors</h2>
           <div className="data-authors">
-            <h2 className="title-authors">Authors</h2>
             <p>
               <span>Auteur :</span> {manga.author}
             </p>
