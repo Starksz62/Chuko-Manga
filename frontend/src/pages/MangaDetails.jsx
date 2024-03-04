@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 
 import "./MangaDetails.css";
-import dragonBallImage from "../assets/dragonBall.webp";
+import dragonBallImage from "../../../backend/public/assets/dragonBall.png";
 
 function MangaDetails() {
   const [manga, setManga] = useState({});
