@@ -4,34 +4,38 @@ import "./DeliveryOption.css";
 function DeliveryOption() {
   return (
     <div className="delivery-option-container">
-      <div className="delivery-option-pickup-point">
-        <img src="/static/espaceReserve.png" alt="" />
-        <h2>Option de livraison</h2>
-        <h3>Envoi au point de relais</h3>
-        <label htmlFor="option1">
-          <input
-            type="radio"
-            id="option1"
-            name="deliveryOption"
-            value="pickupPoint"
-            checked
-          />
-          <p>A partir de...</p>
-        </label>
-      </div>
-      <div className="delivery-option-home">
-        <img src="/static/domicile.png" alt="" />
-        <h3>Envoi à domicile</h3>
-        <label htmlFor="option2">
-          <input
-            type="radio"
-            id="option2"
-            name="deliveryOption"
-            value="homeDelivery"
-          />
-        </label>
-        <p>A partir de...</p>
-      </div>
+      <h3>Option de livraison</h3>
+      <label className="delivery-option">
+        <input
+          type="radio"
+          id="pickupPoint"
+          name="deliveryOption"
+          value="pickupPoint"
+          defaultChecked
+        />
+        <div className="option-content">
+          <img src="/static/espaceReserve.png" alt="Point relais" />
+          <div className="text-content">
+            <h3>Envoi au point de relais</h3>
+            <p>A partir de...</p>
+          </div>
+        </div>
+      </label>
+      <label className="delivery-option">
+        <input
+          type="radio"
+          id="homeDelivery"
+          name="deliveryOption"
+          value="homeDelivery"
+        />
+        <div className="option-content">
+          <img src="/static/domicile.png" alt="Domicile" />
+          <div className="text-content">
+            <h3>Envoi à domicile</h3>
+            <p>A partir de...</p>
+          </div>
+        </div>
+      </label>
     </div>
   );
 }

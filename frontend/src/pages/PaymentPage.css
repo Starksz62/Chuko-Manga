@@ -4,26 +4,28 @@
   margin: 0 auto;
   padding: 20px;
   box-sizing: border-box;
-  background: #f8f8f8; /* Couleur de fond de la page */
 }
 
+.component-card li {
+  list-style-type: none;
+}
 .main-content {
   display: flex;
-  justify-content: flex-start; /* Alignement sur la gauche */
-  gap: 20px; /* Espace entre les colonnes */
+  justify-content: flex-start;
+  gap: 20px;
 }
 
 .left-column {
-  width: 70%; /* Largeur de la colonne de gauche */
+  width: 70%;
 }
 
 .right-column {
-  width: 30%; /* Largeur de la colonne de droite */
-  margin-left: auto; /* Pousser la colonne de droite vers la droite */
+  width: 25%;
+  /* margin-left: auto;  */
 }
 
 .order-cards {
-  background: #fff;
+  background: #f8f8f8;
   padding: 20px;
   margin-bottom: 20px;
   border: 1px solid #ddd;
@@ -32,13 +34,17 @@
 
 .address-container,
 .payment-section {
-  background: #fff;
+  background: #f8f8f8;
   padding: 20px;
   margin-bottom: 20px;
   border: 1px solid #ddd;
   border-radius: 4px;
 }
-
+.add-address {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
 .cross-icon {
   display: flex;
   align-items: center;
@@ -51,4 +57,49 @@
   cursor: pointer;
 }
 
-/* Ajoutez plus de styles ici selon vos besoins */
+.address-section {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 0;
+  padding: 0;
+}
+.address-info {
+  position: relative;
+}
+
+.address-actions {
+  display: flex;
+  align-items: center;
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+
+.payment-section {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1rem;
+}
+
+.payment-section h3 {
+  color: #333;
+  margin-bottom: 20px;
+}
+
+.payment-method-add {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.5rem;
+  cursor: pointer;
+}
+
+.payment-method-add .plus-icon {
+  font-size: 1.5rem; /* Adjust the size of the plus icon */
+  margin-left: 10px; /* Adds space between the text and the plus icon */
+}
+
+.payment-method-select {
+  color: #dd7a06;
+}

@@ -7,14 +7,20 @@ function Payment({ price }) {
   const total = cost + fraisDePort;
 
   return (
-    <div>
+    <div className="resume-payment">
       <p>Résumé de ta commande</p>
       <div className="final-price">
-        <div className="commande-label">Commande :</div>
-        <div className="price-value">{price} €</div>
+        <div className="commande-label">
+          Commande :<div className="price-value">{price} €</div>
+        </div>
 
-        <p>Frais de port : {fraisDePort.toFixed(2)} €</p>
-        <p>Total : {total.toFixed(2)} €</p>
+        <div className="commande-label">
+          Frais de port :
+          <div className="price-value"> {fraisDePort.toFixed(2)} € </div>
+        </div>
+        <div className="commande-label">
+          Total : <div className="price-value"> {total.toFixed(2)} €</div>
+        </div>
       </div>
       <div className="confirmation-payment">
         <button type="button">Paiement</button>

@@ -116,7 +116,8 @@ VALUES (
    "2002/09/11",
     -- date japan
     "2000/05/15"
-  );
+  )
+  ;
 
 INSERT INTO volume (title, number_volume, publication_year, image, ISBN, manga_id)
 VALUES ('Tome 1', 1, '2002', 'https://bdi.dlpdomain.com/album/9782871294146-couv-M480x680.jpg', '2871294143', 1), 
