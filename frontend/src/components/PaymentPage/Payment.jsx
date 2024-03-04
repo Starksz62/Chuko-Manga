@@ -1,28 +1,29 @@
 /* eslint-disable react/prop-types */
-
 import "./Payment.css";
-import cartePayment from "../../assets/cartePayment.png";
-import crypte from "../../assets/crypte1.png";
 
 function Payment({ price }) {
-  const fraisDePort = (price * 5) / 100;
-  const total = price + fraisDePort;
+  const cost = parseFloat(price);
+  const fraisDePort = (cost * 5) / 100;
+  const total = cost + fraisDePort;
+
   return (
     <div>
       <p>Résumé de ta commande</p>
       <div className="final-price">
-        <p>Commande : {price} € </p>
-        <p>Frais de port : {fraisDePort} €</p>
-        <p>Total :{total}€</p>
+        <div className="commande-label">Commande :</div>
+        <div className="price-value">{price} €</div>
+
+        <p>Frais de port : {fraisDePort.toFixed(2)} €</p>
+        <p>Total : {total.toFixed(2)} €</p>
       </div>
       <div className="confirmation-payment">
         <button type="button">Paiement</button>
       </div>
       <div className="logo-card-payment">
-        <img src={cartePayment} alt="payment-card" />
+        <img src="" alt="payment-card" />
       </div>
       <div className="information-security-payment">
-        <img src={crypte} alt="texte protection " />
+        <img src="" alt="texte protection " />
         <p>Ce paiement est crypté et sécurisé</p>
       </div>
     </div>

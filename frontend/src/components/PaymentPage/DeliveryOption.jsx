@@ -1,11 +1,8 @@
-import domicile from "../../assets/domicile.png";
-import espaceReserve from "../../assets/espaceReserve.png";
-
 function DeliveryOption() {
   return (
     <div className="delivery-option-container">
       <div className="delivery-option-pickup-point">
-        <img src={espaceReserve} alt="" />
+        <img src="/static/espaceReserve.png" alt="" />
         <h2>Option de livraison</h2>
         <h3>Envoi au point de relais</h3>
         <label htmlFor="option1">
@@ -20,7 +17,7 @@ function DeliveryOption() {
         </label>
       </div>
       <div className="delivery-option-home">
-        <img src={domicile} alt="" />
+        <img src="/static/domicile.png" alt="" />
         <h3>Envoi à domicile</h3>
         <label htmlFor="option2">
           Option 2
