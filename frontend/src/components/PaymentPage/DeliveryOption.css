@@ -1,0 +1,42 @@
+.delivery-option-container {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid #ddd;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  background: #fff;
+}
+
+.delivery-option-container h2 {
+  margin-bottom: 1rem;
+  font-size: 1rem;
+  font-weight: normal;
+  color: #333;
+}
+
+.delivery-option-pickup-point,
+.delivery-option-home {
+  display: flex;
+  align-items: center;
+  margin-bottom: 0.5rem;
+}
+
+.delivery-option-pickup-point h3,
+.delivery-option-home h3 {
+  margin-left: 0.5rem;
+  font-size: 0.9rem;
+  font-weight: normal;
+}
+
+.delivery-option-container img {
+  width: 20px;
+  height: 20px;
+}
+
+input[type="radio"] {
+  margin-right: 0.5rem;
+}
+
+input[type="radio"]:checked + p {
+  font-weight: bold;
+}

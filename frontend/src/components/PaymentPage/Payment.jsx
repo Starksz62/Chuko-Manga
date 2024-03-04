@@ -20,10 +20,10 @@ function Payment({ price }) {
         <button type="button">Paiement</button>
       </div>
       <div className="logo-card-payment">
-        <img src="" alt="payment-card" />
+        <img src="/static/cartePayment.png" alt="payment-card" />
       </div>
       <div className="information-security-payment">
-        <img src="" alt="texte protection " />
+        <img src="/static/crypte1.png" alt="texte protection " />
         <p>Ce paiement est crypté et sécurisé</p>
       </div>
     </div>

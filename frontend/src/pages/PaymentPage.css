@@ -1,59 +1,54 @@
 .container {
-  display: flex;
-  flex-direction: column;
   width: 100%;
-}
-
-.navbar-payment {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  box-sizing: border-box;
+  background: #f8f8f8; /* Couleur de fond de la page */
 }
 
 .main-content {
   display: flex;
-}
-
-.title-navbar-payment {
-  position: absolute;
-  width: 100%;
-  text-align: center;
-  left: 0;
-  top: 0;
+  justify-content: flex-start; /* Alignement sur la gauche */
+  gap: 20px; /* Espace entre les colonnes */
 }
 
 .left-column {
-  flex: 1;
+  width: 70%; /* Largeur de la colonne de gauche */
 }
 
 .right-column {
-  display: flex;
-  margin-right: 15%;
+  width: 30%; /* Largeur de la colonne de droite */
+  margin-left: auto; /* Pousser la colonne de droite vers la droite */
 }
 
 .order-cards {
-  display: flex;
-  flex-direction: column;
-  margin-top: 20px;
-  list-style: none;
-  padding: 0;
+  background: #fff;
+  padding: 20px;
+  margin-bottom: 20px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
 }
 
-.component-card li {
-  justify-content: center;
-  display: flex;
+.address-container,
+.payment-section {
+  background: #fff;
+  padding: 20px;
+  margin-bottom: 20px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
 }
 
-.address-container {
+.cross-icon {
   display: flex;
-  text-align: center;
-  justify-content: space-around;
   align-items: center;
+  cursor: pointer;
 }
 
-.add-payment-card {
-  display: flex;
-  text-align: center;
-  justify-content: space-around;
-  align-items: center;
+.plus-icon {
+  font-size: 1.5rem;
+  margin-right: 0.5rem;
+  cursor: pointer;
 }
+
+/* Ajoutez plus de styles ici selon vos besoins */

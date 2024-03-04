@@ -62,7 +62,7 @@ function Address({ adresse, handleChange, updateModal }) {
   };
   return (
     <form className="modification-address" onSubmit={handleSubmit}>
-      <h2>Saisissez une adresse de livraison</h2>
+      <span>Saisissez une adresse de livraison</span>
       <label className="champ">
         Adresse :
         <input

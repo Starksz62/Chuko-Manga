@@ -21,7 +21,7 @@ function Home() {
       id: 2,
       image: "./src/assets/20centuryboys.jpg",
       title: "20 century boys - Tome 1",
-      price: "3,50",
+      price: "3,5",
       condition: "Neuf",
       imageUser: "./src/assets/orange.jpg",
       nameUser: "Utilisateur2",

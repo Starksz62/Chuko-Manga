@@ -1,3 +1,6 @@
+/* eslint-disable jsx-a11y/label-has-associated-control */
+import "./DeliveryOption.css";
+
 function DeliveryOption() {
   return (
     <div className="delivery-option-container">
@@ -20,7 +23,6 @@ function DeliveryOption() {
         <img src="/static/domicile.png" alt="" />
         <h3>Envoi à domicile</h3>
         <label htmlFor="option2">
-          Option 2
           <input
             type="radio"
             id="option2"
