@@ -1,19 +1,35 @@
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import React from "react";
 import ReactDOM from "react-dom/client";
-
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
-
 import App from "./App";
 import MangaDetails from "./pages/MangaDetails";
+import Explore from "./pages/Explore";
+import Home from "./pages/home";
+import PaymentPage from "./pages/PaymentPage";
 
 const router = createBrowserRouter([
   {
-    path: "/",
     element: <App />,
     children: [
       {
+        path: "/",
+        element: <Home />,
+      },
+      {
+        path: "/explore",
+        element: <Explore />,
+      },
+      {
+        path: "/explore/:searchQuery",
+        element: <Explore />,
+      },
+      {
         path: "manga/:id",
         element: <MangaDetails />,
+      },
+      {
+        path: "/paymentPage",
+        element: <PaymentPage />,
       },
     ],
   },
@@ -21,8 +37,4 @@ const router = createBrowserRouter([
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
-root.render(
-  <React.StrictMode>
-    <RouterProvider router={router} />
-  </React.StrictMode>
-);
+root.render(<RouterProvider router={router} />);
