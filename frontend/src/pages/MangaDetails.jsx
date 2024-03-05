@@ -3,18 +3,17 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 
 import "./MangaDetails.css";
-import dragonBallImage from "../../../backend/public/assets/dragonBall.png";
+import { useParams } from "react-router-dom";
 
 function MangaDetails() {
   const [manga, setManga] = useState({});
-  // const [genre, setGenre] = useState("");
-  // const [publishingHouse, setPublishingHouse] = useState("");
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState("");
+  const { id } = useParams();
 
   useEffect(() => {
     axios
-      .get(`http://localhost:3310/api/mangas/2`)
+      .get(`http://localhost:3310/api/mangas/${id}`)
       .then((response) => {
         console.info("Réponse de l'API:", response.data);
         setManga(response.data[0]);
@@ -26,7 +25,7 @@ function MangaDetails() {
         setError(error.toString());
         setIsLoading(false);
       });
-  }, []);
+  }, [id]);
 
   if (isLoading) return <div>Chargement...</div>;
   if (error) return <div>Erreur : {error}</div>;
@@ -40,11 +39,13 @@ function MangaDetails() {
     });
   };
 
+  const imageUrl = `http://localhost:3310${manga.image}`;
+
   return (
     <div className="naruto-details">
       <div className="top-section">
         <div className="image-container">
-          <img src={dragonBallImage} alt={manga.title} />
+          <img src={imageUrl} alt={manga.title} />
         </div>
         <div className="description-manga">
           <h2 className="title-manga">{manga.title}</h2>
@@ -60,9 +61,11 @@ function MangaDetails() {
           <p>
             <strong>Sortie au Japon :</strong> {formatDate(manga.date_japan)}
           </p>
-          <p>
-            <strong>Genre</strong>
-            {manga.genre}
+          <p className="genre-info">
+            <span className="genre-label">
+              <strong>Genre</strong>
+            </span>
+            <span className="genre-value">{manga.genre_genre}</span>
           </p>
           <p>
             <strong>Japon</strong>{" "}

@@ -11,12 +11,14 @@
 
 .image-container img {
   width: 285px;
-  height: 320px;
+  height: auto;
   margin-right: 20px;
   padding-left: 10px;
+  padding-top: 20px;
 }
 
 .title-manga {
+  padding: 20px 20px 20px 0;
   font-size: xx-large;
 }
 
@@ -38,6 +40,11 @@
   color: white;
   padding: 10px;
 }
+
+.genre-value {
+  margin-left: 5px;
+}
+
 .authors-container {
   display: flex;
   flex-direction: column;

@@ -7,17 +7,19 @@ class MangasManager extends AbstractManager {
 
   async getMangaById(id) {
     const [rows] = await this.database.query(
-      `SELECT manga.id, manga.title, manga.description, manga.image, manga.author, manga.script_writer, manga.illustrator, manga.release_date, manga.publishing_house_id, manga.genre_id, manga.finish_japan, manga.finish_france, manga.date_france, manga.date_japan
+      `SELECT manga.id, manga.title, manga.description, manga.image, manga.author, manga.script_writer, manga.illustrator, manga.release_date, manga.publishing_house_id, manga.genre_id, genre.genre AS genre_genre, manga.finish_japan, manga.finish_france, manga.date_france, manga.date_japan
       FROM ${this.table}
+      LEFT JOIN genre ON manga.genre_id = genre.id
       WHERE manga.id = ?`,
       [id]
     );
-    return rows[0];
+
+    return rows;
   }
 
   async getMangaData() {
     const [rows] = await this.database
-      .query(`SELECT m.title, m.description, m.image, p.name_publishing_house, g.genre, m.author, m.script_writer, m.illustrator, m.release_date, m.date_japan, m.date_france
+      .query(`SELECT m.title, m.description, m.image, p.name_publishing_house, g.genre, m.author, m.script_writer, m. illustrator, m.release_date, m.date_japan, m.date_france
       FROM manga m
       LEFT JOIN publishing_house p ON m.publishing_house_id = p.id
       LEFT JOIN genre g ON m.genre_id = g.id;`);
