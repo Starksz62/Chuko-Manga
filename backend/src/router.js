@@ -22,8 +22,10 @@ router.get("/mangas", mangasControllers.getAllMangas);
 // ROUTES TO GET ADVERTS
 // Route to display advert table
 router.get("/adverts", advertsControllers.getAllAdverts);
+// router.get("/adverts/:id", advertsControllers.getAllAdvertsById);
 // Route to display advert card
 router.get("/display-adverts", advertsControllers.getAllCards);
+router.get("/advert-image", advertsControllers.getAdvertsImage);
 // Route to get only adverts for one item, ordered by date of publication (homepage)
 router.get(
   "/unique-adverts-date-desc",
