@@ -1,4 +1,6 @@
 import "./App.css";
+import "./style/global.css";
+import "./style/variables.css";
 import { Outlet } from "react-router-dom";
 import { useState, useEffect } from "react";
 import axios from "axios";
@@ -160,19 +162,19 @@ function App() {
   ];
 
   return (
-    <>
+    <div className="mainContainer">
       <LeftNavbar />
-      <HeaderNav />
       <div className="main">
+        <HeaderNav />
         {annonces.map((annonce) => (
           <div key={annonce.id} className="annonce-item">
             <Cards data={annonce} />
           </div>
         ))}
+        <Outlet context={[data]} />
+        <Footer />
       </div>
-      <Outlet context={[data]} />
-      <Footer />
-    </>
+    </div>
   );
 }
 

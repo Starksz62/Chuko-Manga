@@ -1,14 +1,21 @@
+* {
+  padding: 0px;
+  margin: 0px;
+  box-sizing: border-box;
+}
+
+.mainContainer {
+  display: flex;
+  flex-direction: row;
+  background-color: green;
+}
+
 .main {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   width: 100%;
-}
-
-* {
-  padding: 0px;
-  margin: 0px;
-  box-sizing: border-box;
+  background-color: red;
 }
 
 body {
