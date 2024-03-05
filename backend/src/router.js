@@ -19,6 +19,7 @@ const ordersControllers = require("./controllers/ordersControllers");
 
 // Route to get mangas
 router.get("/mangas", mangasControllers.getAllMangas);
+router.get("/mangas/:id", mangasControllers.getMangaById);
 
 // ROUTES TO GET ADVERTS
 // Route to display advert table

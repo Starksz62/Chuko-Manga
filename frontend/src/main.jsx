@@ -2,6 +2,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import React from "react";
 import ReactDOM from "react-dom/client";
 import App from "./App";
+import MangaDetails from "./pages/MangaDetails";
 import Explore from "./pages/Explore";
 import Home from "./pages/Home";
 import PaymentPage from "./pages/PaymentPage";
@@ -21,6 +22,10 @@ const router = createBrowserRouter([
       {
         path: "/explore/:searchQuery",
         element: <Explore />,
+      },
+      {
+        path: "manga/:id",
+        element: <MangaDetails />,
       },
       {
         path: "/paymentPage/:id",
