@@ -38,7 +38,8 @@
 }
 
 .information-security-payment img {
-  height: 50%;
+  width: 10%;
+  padding-bottom: 10px;
 }
 
 .add-payment-card img {
@@ -54,4 +55,8 @@
   cursor: pointer;
   font-weight: bold;
   color: white;
+}
+
+.logo-card-payment img {
+  width: 100%;
 }

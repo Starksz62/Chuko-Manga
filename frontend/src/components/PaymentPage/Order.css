@@ -13,4 +13,19 @@
 
 .information-card {
   margin-top: 5px;
+  margin-left: 25px;
+}
+
+.user-section {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.user-section img {
+  clip-path: circle(50%);
+  width: 24px;
+  height: 24px;
 }

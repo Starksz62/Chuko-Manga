@@ -14,7 +14,10 @@ function DeliveryOption() {
           defaultChecked
         />
         <div className="option-content">
-          <img src="/static/espaceReserve.png" alt="Point relais" />
+          <img
+            src="http://localhost:3310/static/espaceReserve.png"
+            alt="Point relais"
+          />
           <div className="text-content">
             <h3>Envoi au point de relais</h3>
             <p>A partir de...</p>
@@ -29,7 +32,11 @@ function DeliveryOption() {
           value="homeDelivery"
         />
         <div className="option-content">
-          <img src="/static/domicile.png" alt="Domicile" />
+          <img
+            className="homeDeliveryImage"
+            src="http://localhost:3310/static/domicile.png"
+            alt="Domicile"
+          />
           <div className="text-content">
             <h3>Envoi à domicile</h3>
             <p>A partir de...</p>

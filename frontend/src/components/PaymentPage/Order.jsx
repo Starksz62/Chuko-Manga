@@ -9,10 +9,11 @@ function Order({ articleInfo }) {
           <img src={articleInfo.image} alt={articleInfo.title} />
           <div className="information-card">
             <h3>{articleInfo.title}</h3>
-            <p>Vendeur : {articleInfo.nameUser}</p>
-            <img src={articleInfo.imageUser} alt="userImage" />
+            <div className="user-section">
+              <img src={articleInfo.imageUser} alt="userImage" />
+              <p> {articleInfo.nameUser}</p>
+            </div>
             <p>État : {articleInfo.condition}</p>
-            <p>ISBN : {articleInfo.isbn}</p>
             <p>{articleInfo.price} €</p>
           </div>
         </div>

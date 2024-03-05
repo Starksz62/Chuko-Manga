@@ -7,11 +7,11 @@ function Home() {
   const annonces = [
     {
       id: 1,
-      image: "./src/assets/NarutoTome13.jpg",
+      image: "http://localhost:3310/static/NarutoTome13.jpg",
       title: "Naruto - Tome 13",
       price: "5,00",
       condition: "Bon état",
-      imageUser: "./src/assets/orange.jpg",
+      imageUser: "http://localhost:3310/static/orange.jpg",
       nameUser: "Utilisateur",
       star: "./src/assets/star.png",
       note: "5",
