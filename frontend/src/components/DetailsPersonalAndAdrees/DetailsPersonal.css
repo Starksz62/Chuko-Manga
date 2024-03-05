@@ -5,25 +5,67 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin: 50px;
 }
+.custom_button {
+  border-radius: 50%;
+  border: none;
+  height: 80px;
+  width: 80px;
+}
+.input_label_profil {
+  display: flex;
+  justify-content: flex-start; /* Заменяем flex-start на space-between */
+  align-items: center;
+  width: 100%;
+  margin-top: 10px; /* Добавляем ширину 100% */
+}
+
 .label_profil {
   margin-bottom: 8px;
+  width: 15%; /* Задаем фиксированную ширину label */
 }
+
 .input_profil {
+  border: none;
+  border-bottom: 1px solid black;
   margin-bottom: 16px;
   padding: 8px;
-  width: 100%;
+  width: 60%; /* Задаем ширину input */
   box-sizing: border-box;
+  position: relative;
 }
+#email_input {
+  margin-bottom: 0%;
+}
+
+#phone {
+  margin-bottom: 0%;
+}
+
 .checkbox_container {
   display: flex;
   align-items: center;
-  cursor: pointer;
+  justify-content: flex-start; /* Помещаем контейнер в конец flex-контейнера .input_label_profil */
+  width: 65%;
+}
+
+.checkbox {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border: 1px solid rgb(159, 155, 155);
+  text-align: center;
+  line-height: 10px;
+  font-size: 14px;
 }
 .checkbox_container p {
   margin-left: 8px;
+  color: rgb(124 119 119);
+  font-size: 15px;
 }
-.orange_button {
+
+.button_creer_profil {
   background-color: orange;
   color: white;
   padding: 10px;
@@ -32,4 +74,18 @@
   cursor: pointer;
   font-family: "Montserrat", sans-serif;
   margin-top: 16px;
+}
+
+.upload_icon {
+  font-size: 20px;
+  margin-right: 8px;
+}
+
+.custom_file_input {
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  padding: 8px;
+  border: 1px solid gray;
+  border-radius: 5px;
 }

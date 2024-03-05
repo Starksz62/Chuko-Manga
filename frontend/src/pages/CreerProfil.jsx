@@ -1,4 +1,5 @@
 /* eslint-disable react/button-has-type */
+import Adresse from "../components/DetailsPersonalAndAdrees/Adresse";
 import DetailsPersonal from "../components/DetailsPersonalAndAdrees/DetailsPersonal";
 
 function CreerProfil() {
@@ -6,7 +7,8 @@ function CreerProfil() {
     <div>
       <h1>Créé ton profil</h1>
       <DetailsPersonal />
-      <button className="orange_button">CREER</button>
+      <Adresse />
+      <button className="button_creer_profil">CREER</button>
     </div>
   );
 }
