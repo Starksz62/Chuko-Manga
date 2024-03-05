@@ -3,7 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 
 import axios from "axios";
 
-import "../style/HeaderNav.css";
+import "./HeaderNav.css";
 
 function HeaderNav() {
   const [searchQuery, setSearchQuery] = useState("");
