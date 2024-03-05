@@ -10,6 +10,7 @@ const CharactersManager = require("./models/CharactersManager");
 const MangasManager = require("./models/MangasManager");
 const AdvertsManager = require("./models/AdvertsManager");
 const UsersManager = require("./models/UsersManager");
+const OrdersManager = require("./models/OrdersManager");
 
 const managers = [
   ItemManager,
@@ -19,6 +20,7 @@ const managers = [
   MangasManager,
   AdvertsManager,
   UsersManager,
+  OrdersManager,
 ];
 
 // Create an empty object to hold data managers for different tables

@@ -21,9 +21,11 @@
 }
 .buttonOnglet:hover {
   transform: scale(1.1);
+  color: #dd7a06;
 }
 
-.containerArticles {
+/********************** Utilise ces propriétées pour l'onglet "Mes annonces et Mon historique d'achat" ***********************/
+.containerAnnonces {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
@@ -49,8 +51,35 @@
 .name_condition {
   color: #b5b5b5;
 }
+/******************************************************************************************************************************/
 
-.containerNoteCom {
+.statusOrder {
+  font-size: 0.8rem;
+  margin-top: 2%;
+}
+.completed {
+  color: green;
+}
+
+.pending {
+  color: orange;
+}
+
+.cancelled {
+  color: red;
+}
+
+.default {
+  color: gray;
+}
+
+.orderDate {
+  font-size: 0.8rem;
+  margin-top: 2%;
+}
+
+/********************** Utilise ces propriétées pour l'onglet "Mes évaluations" ***********************************************/
+.containerNote {
   border-bottom: solid 0.1rem;
   height: 70px;
   display: flex;
@@ -63,9 +92,35 @@
   font-weight: bold;
 }
 
+.containerCom {
+  display: flex;
+  align-items: center;
+}
+
 .picture_buyer {
-  height: 22rem;
-  clip-path: ellipse(50% 33%);
+  height: 10rem;
+  width: 10rem;
+  clip-path: circle(50%);
+  object-fit: cover;
+  margin: 20px 45px 20px 90px;
+}
+
+.commentBuyer {
+  height: auto;
+}
+
+.speudoBuyer {
+  color: #dd7a06;
+  font-size: 1.2rem;
+}
+.createdOn {
+  color: #b5b5b5;
+  font-size: 0.8rem;
+  margin-top: 2%;
+}
+
+.comment {
+  margin-top: 2%;
 }
 
 .starcontainer {
@@ -102,3 +157,4 @@
   color: #ffd700;
 }
 /* ------------------------------------------------------------------------------------------------------ */
+/******************************************************************************************************************************/

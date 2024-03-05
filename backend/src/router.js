@@ -12,6 +12,7 @@ const advertsControllers = require("./controllers/advertsControllers");
 const itemControllers = require("./controllers/itemControllers");
 const charactersControllers = require("./controllers/charactersControllers");
 const usersControllers = require("./controllers/usersControllers");
+const ordersControllers = require("./controllers/ordersControllers");
 
 // Route to get mangas
 router.get("/mangas", mangasControllers.getAllMangas);
@@ -58,7 +59,11 @@ router.get(
   "/display-adverts-byprice/:price",
   advertsControllers.getAdvertsByPrice
 );
-
+// Route to get all orders by buyer (page Profil/onglet my purchase history)
+router.get(
+  "/display-order-history-bybuyer/:id",
+  ordersControllers.getHistoryOrderByBuyer
+);
 // Route to get a list of items
 router.get("/items", itemControllers.browse);
 
