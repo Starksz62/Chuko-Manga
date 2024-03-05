@@ -6,7 +6,7 @@ import { useState } from "react";
 import heart from "../assets/heart.png";
 import heartFull from "../assets/heartFull.png";
 
-function Cards({ data }) {
+function Cards({ data, onImageClick }) {
   const [favorite, setFavorite] = useState(heart);
 
   const handleClickFavorite = () => {
@@ -19,7 +19,12 @@ function Cards({ data }) {
 
   return (
     <section className="card-content">
-      <img src={data.image} alt={data.title} className="card-image" />
+      <img
+        src={data.image}
+        alt={data.title}
+        className="card-image"
+        onClick={onImageClick}
+      />
       <h2 className="card-title">{data.title}</h2>
       <div className="card-price-section">
         <p className="card-price">{data.price}€</p>
