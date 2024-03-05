@@ -10,7 +10,6 @@ import Footer from "./components/Footer";
 import PrefilterAdvertByDesc from "./components/PrefilterAdvertByDesc";
 import PrefilterAdvertByBatch from "./components/PrefilterAdvertByBatch";
 
-/* eslint-disable import/no-extraneous-dependencies */
 function App() {
   const [data, setData] = useState([]);
 

@@ -13,6 +13,7 @@ const advertsControllers = require("./controllers/advertsControllers");
 const itemControllers = require("./controllers/itemControllers");
 const charactersControllers = require("./controllers/charactersControllers");
 const usersControllers = require("./controllers/usersControllers");
+const ordersControllers = require("./controllers/ordersControllers");
 // const searchControllers = require("./controllers/searchControllers");
 // const moviesControllers = require("./controllers/moviesControllers");
 
@@ -54,6 +55,11 @@ router.get(
 router.get(
   "/display-adverts-byprice/:price",
   advertsControllers.getAdvertsByPrice
+);
+// Route to get all orders by buyer (page Profil/onglet my purchase history)
+router.get(
+  "/display-order-history-bybuyer/:id",
+  ordersControllers.getHistoryOrderByBuyer
 );
 
 // ROUTES TO POST ADVERTS
