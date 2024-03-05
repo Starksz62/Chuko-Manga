@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 const models = require("../modelsProviders");
 
 const getAllAdverts = (req, res) => {
@@ -92,19 +93,39 @@ const getAdvertsByPrice = async (req, res) => {
     console.error(err);
   }
 };
+const getAdvertsImage = async (req, res) => {
+  try {
+    const adverts = await models.advert.getAdvertsImage(req.params.image_path);
+    if (adverts == null) {
+      res.sendStatus(404);
+    } else {
+      res.json(adverts);
+    }
+  } catch (err) {
+    console.error(err);
+  }
+};
+
+
+
+const addAdvert = async (req, res) => {
+  const advert = req.body;
+  try {
+    const insertId = await models.advert.addAdvert(advert);
+    res.status(201).json({ insertId });
+  } catch (err) {
+    console.error(err);
+  }
+};
 
 const getSearchAdverts = async (req, res) => {
   try {
     // Extract ID from the request
     const userQuery = req.params.query;
-
     console.info("je suis le controller", userQuery);
-
     // Check if the item exists based on the ID
     const advert = await models.advert.findAdvertQuery(userQuery);
-
     // If the advert is not found, respond with HTTP 404 (Not Found)
-
     if (advert == null) {
       res.sendStatus(404);
     } else {
@@ -128,4 +149,6 @@ module.exports = {
   getAdvertsByGenre,
   getAdvertsByCondition,
   getAdvertsByPrice,
+  addAdvert,
+  getAdvertsImage
 };

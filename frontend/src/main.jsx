@@ -1,11 +1,10 @@
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import React from "react";
 import ReactDOM from "react-dom/client";
-
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
-
 import App from "./App";
 import Explore from "./pages/Explore";
-import Home from "./pages/Home";
+// import Home from "./pages/Home";
+import PaymentPage from "./pages/PaymentPage";
 
 const router = createBrowserRouter([
   {
@@ -13,7 +12,7 @@ const router = createBrowserRouter([
     children: [
       {
         path: "/",
-        element: <Home />,
+        // element: <Home />,
       },
       {
         path: "/explore",
@@ -22,6 +21,10 @@ const router = createBrowserRouter([
       {
         path: "/explore/:searchQuery",
         element: <Explore />,
+      },
+      {
+        path: "/paymentPage",
+        element: <PaymentPage />,
       },
     ],
   },
