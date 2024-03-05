@@ -1,9 +1,11 @@
+/* eslint-disable react/prop-types */
+/* eslint-disable import/no-extraneous-dependencies */
 import { useState } from "react";
 import Cards from "react-credit-cards-2";
 import "react-credit-cards-2/dist/es/styles-compiled.css";
 import "./creditCard.css";
 
-function CreditCard() {
+function CreditCard({ updateModalCreditCard }) {
   const [state, setState] = useState({
     number: "",
     expiry: "",
@@ -14,20 +16,21 @@ function CreditCard() {
 
   const handleInputChange = (evt) => {
     const { name, value } = evt.target;
-
     setState((prev) => ({ ...prev, [name]: value }));
   };
 
   const handleInputFocus = (evt) => {
     setState((prev) => ({ ...prev, focus: evt.target.name }));
   };
-  const handleValidation = (e) => {
-    e.stopPropagation();
+
+  const handleCancel = () => {
+    updateModalCreditCard();
   };
 
-  const handleCancel = (e) => {
-    e.stopPropagation();
+  const handleValidation = () => {
+    updateModalCreditCard();
   };
+
   return (
     <div className="card-information">
       <Cards
@@ -41,7 +44,7 @@ function CreditCard() {
         <input
           type="text"
           name="name"
-          placeholder="Full Name"
+          placeholder="Nom complet"
           value={state.name}
           onChange={handleInputChange}
           onFocus={handleInputFocus}
@@ -49,7 +52,7 @@ function CreditCard() {
         <input
           type="text"
           name="expiry"
-          placeholder="Valid Thru"
+          placeholder="Valide jusqu'à"
           value={state.expiry}
           onChange={handleInputChange}
           onFocus={handleInputFocus}
