@@ -25,7 +25,7 @@ class UsersManager extends AbstractManager {
       LIMIT 1`,
       [id, id]
     );
-    return rows[0];
+    return rows;
   }
 
   async getUserProfilComById(id) {
@@ -37,7 +37,7 @@ class UsersManager extends AbstractManager {
       WHERE user_id=?;`,
       [id, id]
     );
-    return rows[0];
+    return rows;
   }
 }
 
