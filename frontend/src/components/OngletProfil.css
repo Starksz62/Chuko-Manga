@@ -4,24 +4,6 @@
   box-sizing: border-box;
 }
 
-.mainContainer {
-  display: flex;
-  flex-direction: row;
-  background-color: green;
-}
-
-.main {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  width: 100%;
-  background-color: red;
-}
-
-body {
-  max-width: 400vh;
-}
-
 .containerOnglets {
   width: 80%;
   margin: 10%;
@@ -50,21 +32,21 @@ body {
   justify-content: space-around;
 }
 
-.card {
+.cardAnnonces {
   margin: 30px;
   list-style: none;
 }
 
-.image_path {
+.imagePathAnnonces {
   height: 20rem;
   border-radius: 3px;
   box-shadow: 0px 7px 9px 0px rgba(0, 0, 0, 0.56);
 }
 
-.title_search_manga {
+.titleSearchMangaAnnonces {
   margin-top: 1rem;
 }
-.price {
+.priceAnnonces {
   font-weight: bold;
 }
 .name_condition {
@@ -98,6 +80,10 @@ body {
 }
 
 /********************** Utilise ces propriétées pour l'onglet "Mes évaluations" ***********************************************/
+.containerEvaluations {
+  height: auto;
+}
+
 .containerNote {
   border-bottom: solid 0.1rem;
   height: 70px;
@@ -114,6 +100,7 @@ body {
 .containerCom {
   display: flex;
   align-items: center;
+  border-bottom: solid 0.1rem #b5b5b5;
 }
 
 .picture_buyer {
