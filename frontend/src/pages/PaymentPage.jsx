@@ -1,19 +1,18 @@
-/* eslint-disable import/no-unresolved */
-
+/* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
+/* eslint-disable jsx-a11y/click-events-have-key-events */
+/* eslint-disable jsx-a11y/no-static-element-interactions */
 import { useState } from "react";
-import logo from "../assets/logo.png";
+import { useLocation } from "react-router-dom";
 import "./PaymentPage.css";
-import Order from "../components/Order";
-import CreditCard from "../components/creditCard";
-import data from "../test.json";
-import Address from "../components/Address";
-import cross from "../assets/openModal.png";
-import Payment from "../components/Payment";
-import DeliveryOption from "../components/DeliveryOption";
+import Order from "../components/PaymentPage/Order";
+import CreditCard from "../components/PaymentPage/creditCard";
+import Address from "../components/PaymentPage/Address";
+import Payment from "../components/PaymentPage/Payment";
+import DeliveryOption from "../components/PaymentPage/DeliveryOption";
 
 function PaymentPage() {
-  const prices = data.commandes;
-
+  const location = useLocation();
+  const { articleData } = location.state;
   const [showModal, setShowModal] = useState(false);
   const [showModalCreditCard, setShowModalCreditCard] = useState(false);
   const [adresse, setAdresse] = useState({
@@ -21,6 +20,7 @@ function PaymentPage() {
     ville: "",
     codePostal: "",
   });
+
   const openModal = () => {
     setShowModal(true);
   };
@@ -28,6 +28,7 @@ function PaymentPage() {
   const closeModal = () => {
     setShowModal(false);
   };
+
   const openModalCreditCard = () => {
     setShowModalCreditCard(true);
   };
@@ -35,126 +36,77 @@ function PaymentPage() {
   const closeModalCreditCard = () => {
     setShowModalCreditCard(false);
   };
+
   const handleAddressChange = (newAddress) => {
     setAdresse(newAddress);
   };
+
   return (
     <div className="container">
-      <div className="navbar-payment">
-        <img src={logo} alt="logo-site" />
-        <h1 className="title-navbar-payment">Commande</h1>
-      </div>
-      <h2>Commande</h2>
       <div className="main-content">
         <div className="left-column">
-          <ul className="order-cards">
-            {prices.map((allData) => (
-              <li key={allData.id} className="card-item">
-                <Order price={allData} />
-              </li>
-            ))}
-          </ul>
-        </div>
-        <div className="right-column">
-          <Payment price={prices[0].price} />
-        </div>
-      </div>
-      <h1>Adresse</h1>
-      <div className="address-container">
-        {adresse.adresse && adresse.ville && adresse.codePostal ? (
-          <div className="address-info">
-            <p>Adresse: {adresse.adresse}</p>
-            <p>Ville: {adresse.ville}</p>
-            <p>Code postal: {adresse.codePostal}</p>
+          <h3>Commande</h3>
+          <div className="order-cards">
+            <Order articleInfo={articleData} />
           </div>
-        ) : (
           <div className="address-container">
-            <p>Ajouter une adresse</p>
+            <h3 className="section-title">Adresse</h3>
+            {adresse.adresse && adresse.ville && adresse.codePostal ? (
+              <div className="address-info">
+                <p>Adresse: {adresse.adresse}</p>
+                <p>Ville: {adresse.ville}</p>
+                <p>Code postal: {adresse.codePostal}</p>
+                <div className="address-actions">
+                  <span className="plus-icon">+</span>
+                  <p className="edit-address-text" onClick={openModal}>
+                    modifie ton adresse
+                  </p>
+                </div>
+              </div>
+            ) : (
+              <div className="add-address" onClick={openModal}>
+                <span className="add-address-text">Ajoute ton adresse</span>
+                <span className="plus-icon">+</span>
+              </div>
+            )}
           </div>
-        )}
-        {adresse.adresse && adresse.ville && adresse.codePostal ? (
-          <div
-            className="cross-icon"
-            onClick={openModal}
-            role="button"
-            onKeyDown={(e) => {
-              if (e.key === "Enter" || e.key === " ") {
-                openModal();
-              }
-            }}
-            tabIndex={0}
-          >
-            <img src={cross} alt="cross" />
-            <p>modifie ton adresse</p>
-          </div>
-        ) : (
-          <div className="cross-icon">
-            <img
-              src={cross}
-              onClick={openModal}
-              aria-hidden
-              alt="cross"
-              type="image"
-            />
-            <p>nouvelle adresse</p>
-          </div>
-        )}
-        {showModal && (
-          <div className="modal">
-            <div className="modal-content">
-              <span
-                className="close"
-                role="button"
-                onClick={closeModal}
-                onKeyDown={(e) => {
-                  if (e.key === "Enter" || e.key === " ") {
-                    closeModal();
-                  }
-                }}
-                tabIndex={0}
-              >
-                &times;
-              </span>
-              <Address
-                handleChange={handleAddressChange}
-                adresse={adresse}
-                updateModal={closeModal}
-              />
+          {showModal && (
+            <div className="modal">
+              <div className="modal-content">
+                <span className="close" onClick={closeModal}>
+                  &times;
+                </span>
+                <Address
+                  handleChange={handleAddressChange}
+                  adresse={adresse}
+                  updateModal={closeModal}
+                />
+              </div>
+            </div>
+          )}
+          <DeliveryOption />
+          <div className="payment-section">
+            <h3>Paiement</h3>
+            <div className="payment-method-add" onClick={openModalCreditCard}>
+              <span>Ajoute une méthode de paiement</span>
+              <span className="plus-icon">+</span>
+            </div>
+            <div className="payment-method-select">
+              <span>Sélectionne le mode paiement</span>
             </div>
           </div>
-        )}
-      </div>
-      <DeliveryOption />
-      <div className="payment-credit-card">
-        <h2>Paiement</h2>
-        <div className="add-payment-card">
-          <p>Ajoute une méthode de paiement</p>
-          <button
-            onClick={openModalCreditCard}
-            aria-label="Close modal"
-            type="button"
-          >
-            <img src={cross} alt="cross" />
-          </button>
+          {showModalCreditCard && (
+            <div className="modal">
+              <div className="modal-content">
+                <CreditCard updateModalCreditCard={closeModalCreditCard} />
+              </div>
+            </div>
+          )}
         </div>
-
-        <p>Sélectionne le mode de paiement</p>
-      </div>
-      {showModalCreditCard && (
-        <div className="modal">
-          <div className="modal-content">
-            <button
-              type="button"
-              className="close"
-              onClick={closeModalCreditCard}
-            >
-              <span className="close">&times;</span>
-            </button>
-
-            <CreditCard updateModalCreditCard={closeModalCreditCard} />
-          </div>
+        <div className="right-column">
+          <Payment price={articleData.price} />
         </div>
-      )}
+      </div>
     </div>
   );
 }

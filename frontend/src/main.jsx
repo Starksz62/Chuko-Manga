@@ -2,9 +2,11 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import React from "react";
 import ReactDOM from "react-dom/client";
 import App from "./App";
+import MangaDetails from "./pages/MangaDetails";
 import Explore from "./pages/Explore";
-import Home from "./pages/home";
+import Home from "./pages/Home";
 import PaymentPage from "./pages/PaymentPage";
+import ProfilUser from "./pages/ProfilUser";
 
 const router = createBrowserRouter([
   {
@@ -23,8 +25,16 @@ const router = createBrowserRouter([
         element: <Explore />,
       },
       {
-        path: "/paymentPage",
+        path: "manga/:id",
+        element: <MangaDetails />,
+      },
+      {
+        path: "/paymentPage/:id",
         element: <PaymentPage />,
+      },
+      {
+        path: "/profilUser/:id",
+        element: <ProfilUser />,
       },
     ],
   },
