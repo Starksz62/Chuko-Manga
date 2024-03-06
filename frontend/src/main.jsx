@@ -3,17 +3,13 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import App from "./App";
 import Explore from "./pages/Explore";
-import Home from "./pages/home";
+import NewAdvert from "./pages/NewAdvert";
 import PaymentPage from "./pages/PaymentPage";
 
 const router = createBrowserRouter([
   {
     element: <App />,
     children: [
-      {
-        path: "/",
-        element: <Home />,
-      },
       {
         path: "/explore",
         element: <Explore />,
@@ -25,6 +21,10 @@ const router = createBrowserRouter([
       {
         path: "/paymentPage",
         element: <PaymentPage />,
+      },
+      {
+        path: "/new-advert",
+        element: <NewAdvert />,
       },
     ],
   },

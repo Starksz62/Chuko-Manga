@@ -79,9 +79,11 @@ function HeaderNav() {
         <button className="incription-login-button" type="button">
           S'incrire | Se connecter
         </button>
-        <button className="vendre-button" type="button">
-          Vends tes Mangas
-        </button>
+        <Link to="/new-advert">
+          <button className="vendre-button" type="button">
+            Vends tes Mangas
+          </button>
+        </Link>
       </div>
     </header>
   );

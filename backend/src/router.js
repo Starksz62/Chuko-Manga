@@ -13,6 +13,7 @@ const advertsControllers = require("./controllers/advertsControllers");
 const itemControllers = require("./controllers/itemControllers");
 const charactersControllers = require("./controllers/charactersControllers");
 const usersControllers = require("./controllers/usersControllers");
+const conditionsControllers = require("./controllers/conditionsControllers");
 // const searchControllers = require("./controllers/searchControllers");
 // const moviesControllers = require("./controllers/moviesControllers");
 
@@ -59,6 +60,9 @@ router.get(
 // ROUTES TO POST ADVERTS
 // Route to add a new advert (page advert creation)
 router.post("/new-advert", advertsControllers.addAdvert);
+
+// // ROUTE TO GET CONDITIONS
+router.get("/conditions", conditionsControllers.getAllConditions);
 
 // Route to get user table
 router.get("/user", usersControllers.getAllUsers);
