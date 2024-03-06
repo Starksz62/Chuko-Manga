@@ -1,13 +1,16 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 
-// eslint-disable-next-line react/prop-types
-function MangaVolume({ mangaId }) {
+import "./MangaVolume.css";
+import { useParams } from "react-router-dom";
+
+function MangaVolume() {
+  const { id } = useParams();
   const [volumes, setVolumes] = useState([]);
 
   useEffect(() => {
     axios
-      .get(`http://localhost:3310/api/volumes?mangaId=${mangaId}`)
+      .get(`http://localhost:3310/api/volumes/${id}`)
       .then((response) => {
         setVolumes(response.data);
       })
@@ -17,18 +20,21 @@ function MangaVolume({ mangaId }) {
           error
         );
       });
-  }, [mangaId]);
+  }, []);
 
   return (
     <div>
       <h2>Volumes du Manga</h2>
-      <ul>
+      <div className="volumes-container">
         {volumes.map((volume) => (
-          <li key={volume.id}>
-            {volume.title} - Date de sortie: {volume.release_date}
-          </li>
+          <div className="volume" key={volume.id}>
+            <img
+              src={`http://localhost:3310${volume.image}`}
+              alt={volume.title}
+            />
+          </div>
         ))}
-      </ul>
+      </div>
     </div>
   );
 }
