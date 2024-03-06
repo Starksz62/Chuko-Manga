@@ -11,7 +11,7 @@ VALUES (
     -- description
     "Naruto is a ninja story that follows the adventures of Naruto Uzumaki, a young, turbulent, and hyperactive ninja who aspires to become the greatest ninja in his village, Konoha. However, Naruto harbors a secret: he is the host of a powerful nine-tailed fox demon, Kyubi, sealed inside him since birth. Rejected by the people of Konoha because of this, Naruto seeks to prove his worth and earn the respect of his peers. Along his journey, Naruto befriends Sasuke Uchiha, a talented ninja with exceptional abilities, and Sakura Haruno, an intelligent and determined kunoichi. Together, they form Team 7 under the leadership of their sensei, Kakashi Hatake. The story follows Naruto's exploits as he trains to become stronger, faces formidable enemies, and undertakes perilous missions. His ultimate goal is to become the Hokage, the leader of his village, to gain the recognition and respect he desires so much. As the story progresses, Naruto discovers the existence of his most dangerous enemies: the criminal organization Akatsuki, which seeks to capture Jinchuriki (demon carriers) like him. He also learns the truth about his past, including his parents and the village of Konoha. The manga explores themes such as friendship, bravery, perseverance, and self-improvement while showcasing spectacular battles and memorable characters. Ultimately, Naruto must confront his inner and outer demons to achieve his dream and protect those dear to him.",
     -- image
-    '../../assets/images/manga/xxxxx.png',
+    '/static/naruto.jpg',
     -- author
     'Masashi Kishimoto',
     -- script_writer
@@ -39,7 +39,7 @@ VALUES (
     -- description
     "Dragon Ball follows the adventures of Son Goku, a young boy with extraordinary abilities and superhuman strength. The story begins when Goku meets Bulma, a girl in search of the Dragon Balls, seven magical spheres that, when gathered, grant the possessor the ability to summon the dragon Shenron and make a wish. Together, Goku and Bulma embark on a journey to find the Dragon Balls, facing powerful adversaries, monsters, and making new friends along the way. Throughout their journey, they encounter other iconic characters such as Master Roshi, Emperor Pilaf, and Yamcha, a desert bandit. The story unfolds through various narrative arcs, with Goku growing stronger through his training with Master Roshi and encounters with other martial arts masters like Master Karin and Master Roshi. They also face increasingly powerful adversaries, such as the Red Ribbon Army led by General Red, and Piccolo Daimao, an evil demon seeking to conquer the world.",
     -- image
-    '../../assets/images/manga/xxxxx.png',
+    '/static/dragonBall_db.jpg',
     -- author
     'Akira Toriyama',
     -- script_writer
@@ -67,7 +67,7 @@ VALUES (
     -- description
     "Monkey D. Luffy, a young boy with a fiery temperament, dreams of becoming the greatest pirate of all time and finding the legendary treasure known as 'One Piece'. To achieve his dream, he decides to assemble a fearless crew and set out on an adventure across the sea. Luffy possesses a unique advantage: after eating a Devil Fruit called the 'Gomu Gomu no Mi', his body gains the ability to stretch his limbs like rubber. Their quest takes them through the treacherous seas of the Grand Line, an ocean filled with deadly dangers, mysteries, and unimaginable treasures. Throughout their journey, they find themselves confronted by the Marines, a powerful military force that hunts pirates, as well as other notorious pirates, criminal groups, and secret organizations, all eager to lay claim to the ultimate treasure, the One Piece.",
     -- image
-    '../../assets/images/manga/xxxxx.png',
+    '/static/OP_db.png',
     -- author
     'Eiichiro Oda',
     -- script_writer
@@ -95,7 +95,7 @@ VALUES (
     -- description
     'Nana follows the lives of two young women, both named Nana, who meet by chance and decide to live together in Tokyo.',
     -- image
-    'https://www.manga-news.com/public/images/series/nana_01.jpg',
+    '/static/nanaTome1.png',
     -- author
     'Ai Yazawa',
     -- script_writer
@@ -116,12 +116,26 @@ VALUES (
    "2002/09/11",
     -- date japan
     "2000/05/15"
-  );
+  )
+  ;
 
 INSERT INTO volume (title, number_volume, publication_year, image, ISBN, manga_id)
-VALUES ('Tome 1', 1, '2002', 'https://bdi.dlpdomain.com/album/9782871294146-couv-M480x680.jpg', '2871294143', 1), 
-('Tome 2', 2, '2002', 'https://bdi.dlpdomain.com/album/9782871294146-couv-M480x680.jpg', '2871294178', 1),
-('Tome 1', 1, '2000', 'https://www.manga-news.com/public/images/series/nana_01.jpg', '9782840559573', 1);
+VALUES ('Tome 1', 1, '2002', '/static/naruto.jpg', '2871294143', 1), 
+('Tome 2', 2, '2002', '/static/narutoTome2.png', '2871294178', 1),
+('Tome 3', 3, '2002', '/static/narutoTome3.png', '2871294275', 1),
+('Tome 4', 4, '2002', '/static/narutoTome4.png', '2871294410', 1),
+('Tome 5', 5, '2003', '/static/narutoTome5.png', '2871294917', 1),
+('Tome 6', 6, '2003', '/static/narutoTome6.png', '2871295115', 1),
+('Tome 7', 7, '2003', '/static/narutoTome7.png', '2871295352', 1),
+('Tome 8', 8, '2003', '/static/narutoTome8.png', '2871295522', 1),
+('Tome 9', 9, '2004', '/static/narutoTome9.png', '2871295999', 1),
+('Tome 10', 10, '2004', '/static/narutoTome10.png', '2871296146', 1),
+('Tome 11', 11, '2004', '/static/narutoTome11.png', '2871296243', 1),
+('Tome 12', 12, '2004', '/static/narutoTome12.png', '2871296359', 1),
+('Tome 13', 13, '2004', '/static/narutoTome13.png', '2871296464', 1),
+('Tome 14', 14, '2004', '/static/narutoTome14.png', '287129657X', 1),
+('Tome 15', 15, '2005', '/static/narutoTome15.png', '2871297045', 1),
+('Tome 1', 1, '2000', '/static/nanaTome1.png', '9782840559573', 4);
 
 INSERT INTO article_condition (name_condition)
 VALUES ('abimé'), ('bon état'), ('comme neuf');

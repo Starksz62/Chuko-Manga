@@ -14,11 +14,14 @@ const itemControllers = require("./controllers/itemControllers");
 const charactersControllers = require("./controllers/charactersControllers");
 const usersControllers = require("./controllers/usersControllers");
 const conditionsControllers = require("./controllers/conditionsControllers");
+const ordersControllers = require("./controllers/ordersControllers");
+const volumesControllers = require("./controllers/volumesControllers");
 // const searchControllers = require("./controllers/searchControllers");
 // const moviesControllers = require("./controllers/moviesControllers");
 
 // Route to get mangas
 router.get("/mangas", mangasControllers.getAllMangas);
+router.get("/mangas/:id", mangasControllers.getMangaById);
 
 // ROUTES TO GET ADVERTS
 // Route to display advert table
@@ -56,6 +59,13 @@ router.get(
   "/display-adverts-byprice/:price",
   advertsControllers.getAdvertsByPrice
 );
+// Route to get all orders by buyer (page Profil/onglet my purchase history)
+router.get(
+  "/display-order-history-bybuyer/:id",
+  ordersControllers.getHistoryOrderByBuyer
+);
+// Route to get all volumes by manag ID (page manga details)
+router.get("/volumes", volumesControllers.getAllVolumes);
 
 // ROUTES TO POST ADVERTS
 // Route to add a new advert (page advert creation)
