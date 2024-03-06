@@ -4,11 +4,11 @@ import DetailsPersonal from "../components/DetailsPersonalAndAdrees/DetailsPerso
 
 function CreerProfil() {
   return (
-    <div>
+    <div style={{ marginLeft: "50px" }}>
       <h1>Créé ton profil</h1>
       <DetailsPersonal />
       <Adresse />
-      <button className="button_creer_profil">CREER</button>
+      <button className="button_creer_profil">Créer</button>
     </div>
   );
 }
