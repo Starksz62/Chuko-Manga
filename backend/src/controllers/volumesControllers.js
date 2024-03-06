@@ -1,23 +1,25 @@
 const models = require("../modelsProviders");
 
-const getAllVolumes = async (req, res) => {
-  const { mangaId } = req.query;
-
-  if (!mangaId) {
-    return res.status(400).send("ID du manga manquant");
-  }
-
+const getVolumesByMangaId = async (req, res) => {
   try {
-    const volumes = await models.volume.findAll({
-      where: { mangaId },
-    });
+    // Supposons que vous passiez l'ID du manga via les paramètres de l'URL, par exemple /api/volumes/:mangaId
+    const { mangaId } = req.params;
+
+    const volumes = await models.volume.getVolumesByMangaId(
+      parseInt(mangaId, 10)
+    );
+    if (!volumes || volumes.length === 0) {
+      return res.sendStatus(404);
+    }
     return res.json(volumes);
   } catch (err) {
-    console.error(err);
-    return res.status(500).send("Erreur interne du serveur");
+    console.error("Erreur lors de la récupération des volumes : ", err);
+    return res
+      .status(500)
+      .send("Internal Server Error - Unable to retrieve volumes");
   }
 };
 
 module.exports = {
-  getAllVolumes,
+  getVolumesByMangaId,
 };

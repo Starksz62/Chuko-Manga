@@ -64,7 +64,7 @@ router.get(
   ordersControllers.getHistoryOrderByBuyer
 );
 // Route to get all volumes by manag ID (page manga details)
-router.get("/volumes", volumesControllers.getAllVolumes);
+router.get("/volumes/:mangaId", volumesControllers.getVolumesByMangaId);
 
 // ROUTES TO POST ADVERTS
 // Route to add a new advert (page advert creation)
