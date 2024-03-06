@@ -120,9 +120,22 @@ VALUES (
   ;
 
 INSERT INTO volume (title, number_volume, publication_year, image, ISBN, manga_id)
-VALUES ('Tome 1', 1, '2002', 'https://bdi.dlpdomain.com/album/9782871294146-couv-M480x680.jpg', '2871294143', 1), 
-('Tome 2', 2, '2002', 'https://bdi.dlpdomain.com/album/9782871294146-couv-M480x680.jpg', '2871294178', 1),
-('Tome 1', 1, '2000', 'https://www.manga-news.com/public/images/series/nana_01.jpg', '9782840559573', 1);
+VALUES ('Tome 1', 1, '2002', '/static/naruto.jpg', '2871294143', 1), 
+('Tome 2', 2, '2002', '/static/narutoTome2.png', '2871294178', 1),
+('Tome 3', 3, '2002', '/static/narutoTome3.png', '2871294275', 1),
+('Tome 4', 4, '2002', '/static/narutoTome4.png', '2871294410', 1),
+('Tome 5', 5, '2003', '/static/narutoTome5.png', '2871294917', 1),
+('Tome 6', 6, '2003', '/static/narutoTome6.png', '2871295115', 1),
+('Tome 7', 7, '2003', '/static/narutoTome7.png', '2871295352', 1),
+('Tome 8', 8, '2003', '/static/narutoTome8.png', '2871295522', 1),
+('Tome 9', 9, '2004', '/static/narutoTome9.png', '2871295999', 1),
+('Tome 10', 10, '2004', '/static/narutoTome10.png', '2871296146', 1),
+('Tome 11', 11, '2004', '/static/narutoTome11.png', '2871296243', 1),
+('Tome 12', 12, '2004', '/static/narutoTome12.png', '2871296359', 1),
+('Tome 13', 13, '2004', '/static/narutoTome13.png', '2871296464', 1),
+('Tome 14', 14, '2004', '/static/narutoTome14.png', '287129657X', 1),
+('Tome 15', 15, '2005', '/static/narutoTome15.png', '2871297045', 1),
+('Tome 1', 1, '2000', '/static/nanaTome1.png', '9782840559573', 4);
 
 INSERT INTO article_condition (name_condition)
 VALUES ('abimé'), ('bon état'), ('comme neuf');
