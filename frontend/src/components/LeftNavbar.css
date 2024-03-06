@@ -1,0 +1,134 @@
+.sidebar {
+  background-color: #f1f1f1;
+  color: #4c6374;
+  height: 100vh;
+  left: 0;
+  top: 0;
+  transition:
+    width 0.5s ease,
+    background-color 0.5s ease;
+  overflow-x: hidden;
+}
+
+.sidebar-logo img {
+  display: block;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.sidebar.collapsed .sidebar-logo img {
+  width: 63%;
+  margin: 5px 0;
+}
+
+.sidebar.collapsed {
+  width: 100px;
+}
+
+.sidebar ul {
+  list-style-type: none;
+  margin: 0;
+  padding-left: 1.8rem;
+}
+
+.sidebar ul ul {
+  margin: 0;
+  padding-left: 0;
+}
+
+.icon-container {
+  margin-top: 50px;
+}
+
+/* Cible uniquement les li de premier niveau dans .icon-container */
+.icon-container > ul > li:hover {
+  background-color: #83aac7;
+  color: white;
+}
+
+.sidebar li {
+  /* display: flex; */
+  align-items: center;
+  align-items: center;
+  padding: 10px;
+}
+
+.sidebar li img {
+  margin-right: 10px;
+}
+
+.isMenuOpen span {
+  display: none;
+}
+
+/* .sidebar li:hover {
+  background-color: #34495e;
+  color: white;
+} */
+
+.filter-category {
+  display: block;
+  align-items: center;
+  justify-content: center;
+  text-align: left;
+  width: 100%;
+  padding-left: 15px;
+  padding: 10px;
+  border: none;
+  color: #4c6374;
+}
+
+.filter-category img {
+  margin-right: 10px;
+}
+
+.filter-category:hover {
+  background-color: #83aac7;
+  color: white;
+}
+
+.showFilter,
+.filter-dropdown button {
+  background: none;
+  border: none;
+  color: inherit;
+  text-align: left;
+  width: 100%;
+  padding: 10px;
+  cursor: pointer;
+}
+
+.filter-dropdown button {
+  display: block;
+  width: 100%;
+  text-align: left;
+  border: 1px solid #ccc;
+  background-color: transparent;
+  padding: 10px;
+  margin: 5px 0;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.showFilter:hover,
+.filter-dropdown button:hover {
+  background-color: #915c95;
+  color: white;
+}
+
+.filter-dropdown button.active {
+  background-color: #915c95;
+  color: white;
+}
+
+.showFilter img {
+  margin-right: 10px;
+}
+
+.collapsed .filter-text {
+  display: none;
+}
+
+.sidebar::-webkit-scrollbar {
+  display: none;
+}

@@ -1,0 +1,21 @@
+:root {
+  /* Colors */
+  --neutral-100: hsla(0, 0%, 100%, 1);
+  --neutral-200: hsla(0, 0%, 95%, 1);
+  --neutral-300: hsla(0, 0%, 90%, 1);
+  --neutral-400: hsla(0, 0%, 85%, 1);
+  --neutral-500: hsla(0, 0%, 80%, 1);
+  --neutral-600: hsla(0, 0%, 75%, 1);
+  --neutral-700: hsla(0, 0%, 70%, 1);
+  --neutral-800: hsla(0, 0%, 0%, 1);
+  --primary-clr: #fa7800;
+  --secondary-clr: #14142b;
+  --tertiary-clr: #7bade4;
+
+  /* Font Sizes */
+  --fs-XS: 0.8125rem;
+  --fs-S: 1rem;
+  --fs-M: 1.25rem;
+  --fs-L: 1.5rem;
+  --fs-XL: 2rem;
+}

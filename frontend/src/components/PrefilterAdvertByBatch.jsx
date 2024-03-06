@@ -1,0 +1,55 @@
+import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
+import AdvertCard from "./AdvertCard";
+import "./PrefilterAdvertByDesc.css";
+import "./PrefilterAdvertByBatch.css";
+
+function FilteredadvertsCard() {
+  const [, setAdverts] = useState([]);
+  const [filteredAdverts, setFilteredAdverts] = useState([]);
+
+  useEffect(() => {
+    fetch("http://localhost:3310/api/batch-adverts-date-desc")
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error(`Erreur HTTP, statut : ${response.status}`);
+        }
+        return response.json();
+      })
+      .then((data) => {
+        setAdverts(data);
+        setFilteredAdverts(data); // Initialisation avec tous les adverts
+      })
+      .catch((error) => {
+        console.error(
+          "Une erreur s'est produite lors de la récupération des données:",
+          error
+        );
+      });
+  }, []);
+
+  return (
+    <div className="App">
+      <h1>Explorer les dernières collections ajoutées :</h1>
+      <div className="FilterByDate">
+        {filteredAdverts.length > 0 ? (
+          filteredAdverts
+            .slice(0, 3)
+            .map((advert) => <AdvertCard key={advert.id} advert={advert} />)
+        ) : (
+          <p>Chargement en cours...</p>
+        )}
+        <Link to="/explore">
+          <button type="button" className="bntSeeAllTomes">
+            <div className="textBtn">
+              {" "}
+              Voir tous <br /> les tomes
+            </div>
+          </button>
+        </Link>
+      </div>
+    </div>
+  );
+}
+
+export default FilteredadvertsCard;

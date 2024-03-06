@@ -1,0 +1,60 @@
+.footer {
+  /* position: absolute; */
+  bottom: 0;
+  width: 100%;
+  text-decoration: none;
+  background-color: antiquewhite;
+}
+
+a {
+  text-decoration: none;
+  color: black;
+}
+
+a:hover {
+  text-decoration: underline;
+  text-underline-offset: 5px;
+  text-decoration-thickness: 1px;
+}
+
+.firstBlock {
+  display: flex;
+  justify-content: space-evenly;
+  block-size: 9rem;
+  writing-mode: horizontal-tb;
+}
+
+.socialMedia {
+  display: flex;
+  justify-content: space-evenly;
+  gap: 1rem;
+  padding: 2%;
+  border-top: 0.1rem #000000 solid;
+  border-bottom: 0.1rem #000000 solid;
+}
+
+.lastBlock {
+  display: flex;
+  justify-content: space-evenly;
+  block-size: 5rem;
+  writing-mode: horizontal-tb;
+}
+
+.title {
+  font-weight: bold;
+}
+
+.copyright {
+  display: flex;
+  justify-content: space-around;
+  padding-bottom: 1rem;
+}
+
+.socialMedia img {
+  filter: grayscale(1);
+  transition: filter 0.3s ease-in-out;
+}
+
+.socialMedia img:hover {
+  filter: grayscale(0);
+}

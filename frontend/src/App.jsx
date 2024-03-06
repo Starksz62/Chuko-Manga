@@ -1,23 +1,43 @@
-// import { useEffect } from "react";
-// import axios from "axios";
-
 import "./App.css";
-// eslint-disable-next-line import/no-named-as-default
-import CreerProfil from "./pages/CreerProfil";
+import "./style/global.css";
+import "./style/variables.css";
+import { Outlet } from "react-router-dom";
+import { useState, useEffect } from "react";
+import axios from "axios";
+import LeftNavbar from "./components/LeftNavbar";
+import HeaderNav from "./components/HeaderNav";
+import Footer from "./components/Footer";
+import PrefilterAdvertByDesc from "./components/PrefilterAdvertByDesc";
+import PrefilterAdvertByBatch from "./components/PrefilterAdvertByBatch";
 
 function App() {
-  // Test to fetch advert cards
-  // const getAdvertCards = () => {
-  //   axios.get("http://localhost:3310/api/display-adverts/1").then((res) => {
-  //     console.info(res.data);
-  //   });
-  // };
+  const [data, setData] = useState([]);
 
-  // useEffect(() => {
-  //   getAdvertCards();
-  // }, []);
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get("http://localhost:3310/api/mangas");
+        // console.info("Response data:", response.data);
+        setData(response.data);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    };
+    fetchData();
+  }, []);
 
-  return <CreerProfil />;
+  return (
+    <div className="mainContainer">
+      <LeftNavbar />
+      <div className="main">
+        <HeaderNav />
+        <Outlet context={[data]} />
+        <PrefilterAdvertByDesc />
+        <PrefilterAdvertByBatch />
+        <Footer />
+      </div>
+    </div>
+  );
 }
 
 export default App;
