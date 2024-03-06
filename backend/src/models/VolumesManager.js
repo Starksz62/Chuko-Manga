@@ -7,13 +7,12 @@ class VolumesManager extends AbstractManager {
 
   async getVolumesByMangaId(mangaId) {
     const [rows] = await this.database.query(
-      `SELECT volumes.id, volumes.title, volumes.release_date, volumes.manga_id
-       FROM volumes
-       WHERE volumes.manga_id = ?
-       ORDER BY volumes.release_date ASC`,
+      `SELECT volume.id, volume.title, volume.number_volume, volume.publication_year, volume.image, volume.ISBN, volume.manga_id
+       FROM volume
+       WHERE volume.manga_id = ?
+       ORDER BY volume.number_volume ASC`,
       [mangaId]
     );
-
     return rows;
   }
 }

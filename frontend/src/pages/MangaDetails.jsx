@@ -4,6 +4,7 @@ import axios from "axios";
 
 import "./MangaDetails.css";
 import { useParams } from "react-router-dom";
+import MangaVolume from "../components/MangaVolume";
 
 function MangaDetails() {
   const [manga, setManga] = useState({});
@@ -92,6 +93,7 @@ function MangaDetails() {
           </div>
         </div>
       </div>
+      <MangaVolume />
     </div>
   );
 }
