@@ -1,9 +1,11 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 
+import "./NewAdvert.css";
+
 function NewAdvert() {
   const [conditions, setConditions] = useState([]);
-  // const [sellTome, setSellTome] = useState(true);
+  const [tabTome, setTabTome] = useState(true);
   const [formData, setFormData] = useState({
     price: "",
     description: "",
@@ -13,7 +15,7 @@ function NewAdvert() {
     view_number: 0,
     publication_date_advert: new Date().toISOString().split("T")[0],
     delete_advert: 0,
-    // user_id:
+    user_id: 1,
     // manga_id:
     // volume_id:
     article_condition_id: "",
@@ -35,9 +37,9 @@ function NewAdvert() {
       });
   }, []);
 
-  // const handleBatchSelection = () => {
-  //   setSellTome(!sellTome);
-  // };
+  const handleTabTome = () => {
+    setTabTome(!tabTome);
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -59,7 +61,7 @@ function NewAdvert() {
   };
 
   return (
-    <>
+    <div className="new-advert">
       <h1>Crée ton annonce</h1>
       <form onSubmit={handleSubmit}>
         <label htmlFor="title">Titre </label>
@@ -102,30 +104,57 @@ function NewAdvert() {
           value={formData.price}
           onChange={handleChange}
         />
-        {/* <div className="section-container">
-          <div>Vends un tome</div>
-          <div onClick={handleBatchSelection} onKeyDown={handleBatchSelection}>Vends un lot</div>
-        </div> */}
+        <div className="section-container">
+          <button type="button" onClick={handleTabTome}>
+            Vends un tome
+          </button>
+          <button type="button" onClick={handleTabTome}>
+            Vends un lot
+          </button>
+        </div>
         <div>Référencement</div>
-        <label htmlFor="manga_id">
-          Associe ton annonce au manga correspondant dans la liste
-        </label>
-        <select
-          id="manga_id"
-          name="manga_id"
-          value={formData.manga_id}
-          onChange={handleChange}
-        >
-          <option value="">Sélectionne ton manga</option>
-          {conditions.map((manga) => (
-            <option key={manga.id} value={manga.id}>
-              {manga.title}
-            </option>
-          ))}
-        </select>
+        {tabTome ? (
+          <>
+            <label htmlFor="manga_id">
+              Tome - Associe ton annonce au manga correspondant dans la liste
+            </label>
+            <select
+              id="manga_id"
+              name="manga_id"
+              value={formData.manga_id}
+              onChange={handleChange}
+            >
+              <option value="">Sélectionne ton manga</option>
+              {conditions.map((manga) => (
+                <option key={manga.id} value={manga.id}>
+                  {manga.title}
+                </option>
+              ))}
+            </select>{" "}
+          </>
+        ) : (
+          <>
+            <label htmlFor="manga_id">
+              Lot - Associe ton annonce au manga correspondant dans la liste
+            </label>
+            <select
+              id="manga_id"
+              name="manga_id"
+              value={formData.manga_id}
+              onChange={handleChange}
+            >
+              <option value="">Sélectionne ton manga</option>
+              {conditions.map((manga) => (
+                <option key={manga.id} value={manga.id}>
+                  {manga.title}
+                </option>
+              ))}
+            </select>{" "}
+          </>
+        )}
         <button type="submit">Ajouter</button>
       </form>
-    </>
+    </div>
   );
 }
 

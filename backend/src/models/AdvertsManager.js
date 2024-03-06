@@ -188,6 +188,8 @@ class AdvertsManager extends AbstractManager {
         advert.article_condition_id,
         advert.manga_id,
       ]
+      // ).then(([result]) => {
+      // }
     );
 
     // Return the ID of the newly inserted item
