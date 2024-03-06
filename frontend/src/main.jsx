@@ -6,6 +6,7 @@ import MangaDetails from "./pages/MangaDetails";
 import Explore from "./pages/Explore";
 import Home from "./pages/Home";
 import PaymentPage from "./pages/PaymentPage";
+import ProfilUser from "./pages/ProfilUser";
 
 const router = createBrowserRouter([
   {
@@ -30,6 +31,10 @@ const router = createBrowserRouter([
       {
         path: "/paymentPage/:id",
         element: <PaymentPage />,
+      },
+      {
+        path: "/profilUser/:id",
+        element: <ProfilUser />,
       },
     ],
   },

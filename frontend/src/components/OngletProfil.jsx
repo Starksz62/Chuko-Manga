@@ -9,7 +9,7 @@ function OngletProfil() {
   const [ongletActif, setongletActif] = useState("Mes annonces");
 
   useEffect(() => {
-    fetch(`http://localhost:3310/api/display-adverts-byseller/2`)
+    fetch(`http://localhost:3310/api/display-adverts-byseller/1`)
       .then((res) => res.json())
       .then((data) => {
         console.info("Mes annonces :", data);
@@ -18,7 +18,7 @@ function OngletProfil() {
   }, []);
 
   useEffect(() => {
-    fetch(`http://localhost:3310/api/user-profil-com/2`)
+    fetch(`http://localhost:3310/api/user-profil-com/1`)
       .then((res) => res.json())
       .then((data) => {
         console.info("commentairesTableau:", data);
@@ -27,7 +27,7 @@ function OngletProfil() {
   }, []);
 
   useEffect(() => {
-    fetch(`http://localhost:3310/api/display-order-history-bybuyer/2`)
+    fetch(`http://localhost:3310/api/display-order-history-bybuyer/1`)
       .then((res) => res.json())
       .then((data) => {
         console.info("Mon historique d'achat:", data);
@@ -123,15 +123,15 @@ function OngletProfil() {
           <div className="containerAnnonces">
             {annonces?.map((annonce) => (
               <div key={annonce.id}>
-                <li className="card">
+                <li className="cardAnnonces">
                   <div>
                     <img
-                      className="image_path"
+                      className="imagePathAnnonces"
                       src={`${annonce.image_path}`}
                       alt="image_article_seller"
                     />
-                    <div className="title_search_manga">{`${annonce.title_search_manga}`}</div>
-                    <div className="price">{`${annonce.price}`} €</div>
+                    <div className="titleSearchMangaAnnonces">{`${annonce.title_search_manga}`}</div>
+                    <div className="priceAnnonces">{`${annonce.price}`} €</div>
                     <div className="name_condition">{`${annonce.name_condition}`}</div>
                   </div>
                 </li>
@@ -185,15 +185,17 @@ function OngletProfil() {
           <div className="containerAnnonces">
             {historyOrders?.map((order) => (
               <div key={order.id}>
-                <li className="card">
+                <li className="cardAnnonces">
                   <div>
                     <img
-                      className="image_path"
+                      className="imagePathAnnonces"
                       src={`${order.image_path}`}
                       alt="image_article_seller"
                     />
-                    <div className="title_search_manga">{`${order.title_search_manga}`}</div>
-                    <div className="price">{`${order.total_price}`} €</div>
+                    <div className="titleSearchMangaAnnonces">{`${order.title_search_manga}`}</div>
+                    <div className="priceAnnonces">
+                      {`${order.total_price}`} €
+                    </div>
                     <div className="name_condition">{`${order.name_condition}`}</div>
                     <div className="orderDate">
                       Acheté le :{" "}
