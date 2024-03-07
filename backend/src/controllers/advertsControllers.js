@@ -106,16 +106,38 @@ const getAdvertsImage = async (req, res) => {
   }
 };
 
-// Ajouter la requete vers images
-const addAdvert = async (req, res) => {
-  const advert = req.body;
+const createAdvert = async (req, res) => {
+  const { advert, image } = req.body;
+  let imageId = null;
+  console.info(req.body);
   try {
-    const insertId = await models.advert.addAdvert(advert);
-    res.status(201).json({ insertId });
+    const advertId = await models.advert.addAdvert(advert);
+    if (advertId !== null) {
+      // console.info("yolo");
+      imageId = await models.advert_image.addImage({
+        ...image,
+        advert_id: advertId,
+      });
+    } else {
+      res.status(500).json({ error: "Failed to create advert" });
+    }
+    if (advertId !== null || imageId !== null) {
+      res.status(201).json({ advertId, imageId });
+    }
   } catch (err) {
     console.error(err);
   }
 };
+
+// const addAdvert = async (req, res) => {
+//   const advert = req.body;
+//   try {
+//     const insertId = await models.advert.addAdvert(advert);
+//     res.status(201).json({ insertId });
+//   } catch (err) {
+//     console.error(err);
+//   }
+// };
 
 const getSearchAdverts = async (req, res) => {
   try {
@@ -148,6 +170,6 @@ module.exports = {
   getAdvertsByGenre,
   getAdvertsByCondition,
   getAdvertsByPrice,
-  addAdvert,
+  createAdvert,
   getAdvertsImage,
 };

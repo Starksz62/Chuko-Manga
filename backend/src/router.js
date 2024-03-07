@@ -59,6 +59,11 @@ router.get(
   "/display-adverts-byprice/:price",
   advertsControllers.getAdvertsByPrice
 );
+
+// ROUTES TO POST ADVERTS
+// Route to add a new advert (page advert creation)
+router.post("/new-advert", advertsControllers.createAdvert);
+
 // Route to get all orders by buyer (page Profil/onglet my purchase history)
 router.get(
   "/display-order-history-bybuyer/:id",
@@ -66,10 +71,6 @@ router.get(
 );
 // Route to get all volumes by manag ID (page manga details)
 router.get("/volumes/:mangaId", volumesControllers.getVolumesByMangaId);
-
-// ROUTES TO POST ADVERTS
-// Route to add a new advert (page advert creation)
-router.post("/new-advert", advertsControllers.addAdvert);
 
 // // ROUTE TO GET CONDITIONS
 router.get("/conditions", conditionsControllers.getAllConditions);
