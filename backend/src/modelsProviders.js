@@ -12,6 +12,7 @@ const MangasManager = require("./models/MangasManager");
 const UsersManager = require("./models/UsersManager");
 const AdvertsManager = require("./models/AdvertsManager");
 const OrdersManager = require("./models/OrdersManager");
+const AddressManager = require("./models/AddressManager");
 const VolumesManager = require("./models/VolumesManager");
 
 const managers = [
@@ -23,6 +24,7 @@ const managers = [
   AdvertsManager,
   UsersManager,
   OrdersManager,
+  AddressManager,
   VolumesManager,
 ];
 
