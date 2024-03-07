@@ -24,7 +24,6 @@ function MangaVolume() {
 
   return (
     <div>
-      <h2>Volumes du Manga</h2>
       <div className="volumes-container">
         {volumes.map((volume) => (
           <div className="volume" key={volume.id}>
