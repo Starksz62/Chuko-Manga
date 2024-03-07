@@ -25,6 +25,15 @@ class MangasManager extends AbstractManager {
       LEFT JOIN genre g ON m.genre_id = g.id;`);
     return rows;
   }
+
+  async getMangaOverview() {
+    const [rows] = await this.database
+      .query(`SELECT manga.id, manga.title, manga.image
+    FROM ${this.table}
+    ORDER BY manga.id;`);
+    console.info("Result of getMangaOverview:", rows);
+    return rows;
+  }
 }
 
 module.exports = MangasManager;

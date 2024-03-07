@@ -20,6 +20,7 @@ const volumesControllers = require("./controllers/volumesControllers");
 
 // Route to get mangas
 router.get("/mangas", mangasControllers.getAllMangas);
+router.get("/manga/catalog", mangasControllers.getCatalogMangas);
 router.get("/mangas/:id", mangasControllers.getMangaById);
 
 // ROUTES TO GET ADVERTS

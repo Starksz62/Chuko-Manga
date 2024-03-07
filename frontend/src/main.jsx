@@ -7,6 +7,7 @@ import Explore from "./pages/Explore";
 import Home from "./pages/Home";
 import PaymentPage from "./pages/PaymentPage";
 import ProfilUser from "./pages/ProfilUser";
+import Catalog from "./pages/Catalog";
 
 const router = createBrowserRouter([
   {
@@ -23,6 +24,10 @@ const router = createBrowserRouter([
       {
         path: "/explore/:searchQuery",
         element: <Explore />,
+      },
+      {
+        path: "/manga/catalog",
+        element: <Catalog />,
       },
       {
         path: "manga/:id",
