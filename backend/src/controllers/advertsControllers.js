@@ -106,8 +106,7 @@ const getAdvertsImage = async (req, res) => {
   }
 };
 
-
-
+// Ajouter la requete vers images
 const addAdvert = async (req, res) => {
   const advert = req.body;
   try {
@@ -150,5 +149,5 @@ module.exports = {
   getAdvertsByCondition,
   getAdvertsByPrice,
   addAdvert,
-  getAdvertsImage
+  getAdvertsImage,
 };

@@ -138,7 +138,7 @@ VALUES ('Tome 1', 1, '2002', '/static/naruto.jpg', '2871294143', 1),
 ('Tome 1', 1, '2000', '/static/nanaTome1.png', '9782840559573', 4);
 
 INSERT INTO article_condition (name_condition)
-VALUES ('abimé'), ('bon état'), ('comme neuf');
+VALUES ('Abimé'), ('Bon état'), ('Comme neuf');
 
 INSERT INTO
 user (firstname, lastname, pseudo, email, password, phone, role, picture)
@@ -193,7 +193,7 @@ VALUES ('1','1'),
 ('4','2');
 
 INSERT INTO 
-advert (price, description, alert, batch, title_search_manga, view_number, publication_date_advert, delete_advert, user_id, volume_id, article_condition_id, manga_id) 
+advert (price, description, alert, batch, title_search_manga, publication_date_advert, user_id, volume_id, article_condition_id, manga_id) 
 VALUES 
   (
     -- price
@@ -206,12 +206,8 @@ VALUES
     0, 
     -- title_search_manga
     'Naruto tome 1 en bon état', 
-    -- View Number entré en dur, mais devrait être relié aux clics
-    3, 
     -- publication_date_advert
     '2024-02-19', 
-    -- delete_advert
-    0, 
     -- user_id
     1, 
     -- volume_id
@@ -232,12 +228,8 @@ VALUES
     0, 
     -- title_search_manga
     'Naruto tome 2 comme neuf', 
-    -- View Number entré en dur, mais devrait être reliée aux clics
-    2, 
     -- publication_date_advert
     '2024-02-20', 
-    -- delete_advert
-    0, 
     -- user_id
     1, 
     -- volume_id
@@ -258,12 +250,8 @@ VALUES
     1, 
     -- title_search_manga
     'Lot Dragon Ball à saisir !', 
-    -- View Number entré en dur, mais devrait être reliée aux clics
-    5, 
     -- publication_date_advert
     '2024-02-12', 
-    -- delete_advert
-    0, 
     -- user_id
     1, 
     -- volume_id
@@ -284,12 +272,8 @@ VALUES
     1, 
     -- title_search_manga
     'Lot One Piece 66 à 70', 
-    -- View Number entré en dur, mais devrait être reliée aux clics
-    5, 
     -- publication_date_advert
     '2024-02-14', 
-    -- delete_advert
-    0, 
     -- user_id
     1, 
     -- volume_id
@@ -310,12 +294,8 @@ VALUES
     1, 
     -- title_search_manga
     'Lot Dragon Ball tomes 1 à 3 !', 
-    -- View Number entré en dur, mais devrait être reliée aux clics
-    4, 
     -- publication_date_advert
     '2024-02-21', 
-    -- delete_advert
-    0, 
     -- user_id
     2, 
     -- volume_id
@@ -336,12 +316,8 @@ VALUES
     0, 
     -- title_search_manga
     'Nana Tome 1', 
-    -- View Number entré en dur, mais devrait être reliée aux clics
-    4, 
     -- publication_date_advert
     '2024-02-20', 
-    -- delete_advert
-    0, 
     -- user_id
     2, 
     -- volume_id

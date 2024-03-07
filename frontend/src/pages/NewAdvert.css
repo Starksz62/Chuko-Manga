@@ -1,3 +1,100 @@
 .new-advert {
   border: 1px solid #8f8e8e;
+  max-width: 80%;
+  margin: auto;
+  padding: 2rem 3rem 6rem 2rem;
+}
+
+.new-advert h1 {
+  font-size: 1.8rem;
+  margin-bottom: 4rem;
+}
+
+.picture-container {
+  display: flex;
+  flex-direction: space-around;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 5rem;
+}
+
+.picture-box {
+  background-color: #d9d9d9;
+  width: 17rem;
+  height: 17rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.picture-box:hover {
+  cursor: pointer;
+}
+
+.new-advert label {
+  font-size: 1.25rem;
+  display: block;
+  margin-bottom: 1.25rem;
+  font-weight: 500;
+}
+
+.new-advert input,
+.new-advert select {
+  width: 100%;
+  margin-bottom: 3.75rem;
+}
+
+.new-advert input {
+  border: none;
+  border-bottom: 1px solid #8f8e8e;
+  padding: 0.3rem 0;
+}
+
+.new-advert .tab-container {
+  display: flex;
+}
+
+.new-advert .tab-container button {
+  width: 50%;
+  font-size: 1.25rem;
+  padding: 1rem;
+  margin-bottom: 2.75rem;
+}
+
+.active-color {
+  color: black;
+}
+
+.inactive-tab {
+  color: #b5b5b5;
+  border-bottom: 1px solid black;
+}
+
+.tome-active {
+  border-top: 1px solid black;
+  border-right: 1px solid black;
+}
+
+.batch-active {
+  border-top: 1px solid black;
+  border-left: 1px solid black;
+}
+
+.new-advert .ref {
+  font-size: 1.25rem;
+  margin-bottom: 0.6rem;
+}
+
+.new-advert .instruction {
+  color: #8f8e8e;
+  font-size: 1rem;
+}
+
+.new-advert .add-button {
+  padding: 0.5rem 3rem;
+  background-color: #dd7a06;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  font-weight: 600;
 }
