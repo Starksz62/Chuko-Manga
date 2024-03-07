@@ -2,6 +2,7 @@ const express = require("express");
 // http://localhost:4242/api/characters
 
 const router = express.Router();
+const multer = require("./middlewares/multer-config");
 
 /* ************************************************************************* */
 // Define Your API Routes Here
@@ -62,7 +63,7 @@ router.get(
 
 // ROUTES TO POST ADVERTS
 // Route to add a new advert (page advert creation)
-router.post("/new-advert", advertsControllers.createAdvert);
+router.post("/new-advert", multer, advertsControllers.createAdvert);
 
 // Route to get all orders by buyer (page Profil/onglet my purchase history)
 router.get(

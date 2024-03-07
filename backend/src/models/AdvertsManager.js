@@ -172,7 +172,7 @@ class AdvertsManager extends AbstractManager {
   }
 
   async addAdvert(advert) {
-    console.info("poulet");
+    // console.info("poulet");
     const [result] = await this.database.query(
       `INSERT INTO ${this.table} (price, description, alert, batch, title_search_manga, publication_date_advert, user_id, volume_id, article_condition_id, manga_id) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
       [
@@ -188,8 +188,6 @@ class AdvertsManager extends AbstractManager {
         advert.manga_id,
       ]
     );
-
-    // Return the ID of the newly inserted item
     return result.insertId;
   }
 }

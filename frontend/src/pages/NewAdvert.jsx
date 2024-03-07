@@ -11,21 +11,63 @@ function NewAdvert() {
   const [volumeList, setVolumeList] = useState([]);
   const [tabTome, setTabTome] = useState(true);
   const [formData, setFormData] = useState({
-    price: "",
-    description: "",
-    alert: 0,
-    batch: !tabTome,
-    title_search_manga: "",
-    publication_date_advert: new Date().toISOString().split("T")[0],
-    user_id: 1,
-    manga_id: "",
-    volume_id: "",
-    article_condition_id: "",
+    advert: {
+      price: 0,
+      description: "",
+      alert: 0,
+      batch: !tabTome,
+      title_search_manga: "",
+      publication_date_advert: new Date().toISOString().split("T")[0],
+      user_id: 1,
+      manga_id: null,
+      volume_id: null,
+      article_condition_id: 1,
+    },
+    image: {
+      image_path: "allo",
+      is_primary: 1,
+    },
   });
 
+  // PREVIOUS formData
+  // price: "",
+  // description: "",
+  // alert: 0,
+  // batch: !tabTome,
+  // title_search_manga: "",
+  // publication_date_advert: new Date().toISOString().split("T")[0],
+  // user_id: 1,
+  // manga_id: "",
+  // volume_id: "",
+  // article_condition_id: "",
+
   const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+    const { name, value } = e.target;
+    // Gestion des mises à jour pour `advert`
+    if (Object.keys(formData.advert).includes(name)) {
+      setFormData({
+        ...formData,
+        advert: {
+          ...formData.advert,
+          [name]: value,
+        },
+      });
+    }
+    // Gestion des mises à jour pour `image` si nécessaire
+    else if (Object.keys(formData.image).includes(name)) {
+      setFormData({
+        ...formData,
+        image: {
+          ...formData.image,
+          [name]: value,
+        },
+      });
+    }
   };
+
+  // const handleChange = (e) => {
+  //   setFormData({ ...formData, [e.target.name]: e.target.value });
+  // };
 
   const handleSelectedManga = (e) => {
     setVolumeList([]);
@@ -39,8 +81,8 @@ function NewAdvert() {
       axios.get("http://localhost:3310/api/mangas"),
     ])
       .then((responses) => {
-        console.info("Condition are", responses[0].data);
-        console.info("Mangas are", responses[1].data);
+        // console.info("Condition are", responses[0].data);
+        // console.info("Mangas are", responses[1].data);
         setConditions(responses[0].data);
         setMangaList(responses[1].data);
       })
@@ -54,7 +96,7 @@ function NewAdvert() {
       axios
         .get(`http://localhost:3310/api/volumes/${selectedManga}`)
         .then((res) => {
-          console.info("Volumes are", res.data);
+          // console.info("Volumes are", res.data);
           setVolumeList(res.data);
         })
         .catch((error) => {
@@ -71,7 +113,11 @@ function NewAdvert() {
   const handleSubmit = (e) => {
     e.preventDefault();
     console.info("Data to be sent:", formData);
-    setFormData({ ...formData, batch: tabTome });
+    setFormData({
+      ...formData,
+      advert: { ...formData.advert, batch: tabTome },
+    });
+    // setFormData({ ...formData, batch: tabTome });
     axios
       .post("http://localhost:3310/api/new-advert", formData)
       .then((res) => {
@@ -86,7 +132,6 @@ function NewAdvert() {
     <div className="new-advert">
       <h1>Crée ton annonce</h1>
       <form onSubmit={handleSubmit}>
-        {/* https://www.geeksforgeeks.org/how-to-upload-image-and-preview-it-using-reactjs/ */}
         <div className="picture-container">
           <div className="picture-box">
             <img src={PlusIcon} alt="Ajouter" />

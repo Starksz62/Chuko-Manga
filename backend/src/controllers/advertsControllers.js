@@ -113,7 +113,7 @@ const createAdvert = async (req, res) => {
   try {
     const advertId = await models.advert.addAdvert(advert);
     if (advertId !== null) {
-      // console.info("yolo");
+      console.info("yolo");
       imageId = await models.advert_image.addImage({
         ...image,
         advert_id: advertId,
