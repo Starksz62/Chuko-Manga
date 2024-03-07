@@ -5,7 +5,6 @@ import { Outlet } from "react-router-dom";
 import HeaderNav from "./components/HeaderNav";
 import Footer from "./components/Footer";
 
-/* eslint-disable import/no-extraneous-dependencies */
 function App() {
   return (
     <div className="mainContainer">

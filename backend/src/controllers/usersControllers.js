@@ -60,10 +60,28 @@ const getUserProfilComById = async (req, res) => {
   }
 };
 
+const updateUser = async (req, res) => {
+  const { id } = req.params;
+  const user = req.body;
+  try {
+    user.id = id;
+    const result = await models.user.updateUser(user);
+    if (result.affectedRows === 0) {
+      res.sendStatus(404);
+    } else {
+      res.sendStatus(204);
+    }
+  } catch (err) {
+    console.error(err);
+    res.sendStatus(500);
+  }
+};
+
 module.exports = {
   getAllUsers,
   add,
   getUserById,
   getUserProfilById,
   getUserProfilComById,
+  updateUser,
 };
