@@ -9,6 +9,7 @@ import "./DetailsPersonal.css";
 
 function DetailsPersonal() {
   const [formData, setFormData] = useState({
+    pseudo: "",
     firstname: "",
     lastname: "",
     email: "",
@@ -82,6 +83,21 @@ function DetailsPersonal() {
             "+"
           )}
         </button>
+      </div>
+      <div className="input_label_profil">
+        <label htmlFor="pseudo" className="label_profil">
+          Ton pseudo:
+        </label>
+        <input
+          type="text"
+          id="pseudo"
+          name="pseudo"
+          value={formData.pseudo}
+          onChange={handleChange}
+          className="input_profil"
+          placeholder=" "
+          required
+        />
       </div>
       <div className="input_label_profil">
         <label htmlFor="firstname" className="label_profil">

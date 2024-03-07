@@ -11,7 +11,8 @@ function Adresse() {
   const [formData, setFormData] = useState({
     country: "",
     zip_code: "",
-    adresse: "",
+    number_street: "",
+    name_adress: "",
   });
   //     const handleSubmit = (e) => {
   //       e.preventDefault();
@@ -19,7 +20,8 @@ function Adresse() {
   //       const data = {
   //         country: formData.country,
   //         zip_code: formData.zip_code,
-  //         city: formData.cit
+  //         number_street: formData.number_street,
+  // name_adress: formData.name_adress,
   //       };
 
   //   axios
@@ -71,14 +73,28 @@ function Adresse() {
         />
       </div>
       <div className="input_label_profil">
-        <label htmlFor="adresse" className="label_profil">
-          Adresse:
+        <label htmlFor="number_street" className="label_profil">
+          Rue:
         </label>
         <input
           type="text"
-          id="adresse"
-          name="adresse"
-          value={formData.adresse}
+          id="number_street"
+          name="number_street"
+          value={formData.number_street}
+          onChange={handleChange}
+          className="input_profil"
+          required
+        />
+      </div>
+      <div className="input_label_profil">
+        <label htmlFor="name_adress" className="label_profil">
+          Nom de l'adresse:
+        </label>
+        <input
+          type="text"
+          id="name_adress"
+          name="name_adress"
+          value={formData.name_adress}
           onChange={handleChange}
           className="input_profil"
           required

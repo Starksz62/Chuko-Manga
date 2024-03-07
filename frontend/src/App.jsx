@@ -7,8 +7,9 @@ import axios from "axios";
 import LeftNavbar from "./components/LeftNavbar";
 import HeaderNav from "./components/HeaderNav";
 import Footer from "./components/Footer";
-import PrefilterAdvertByDesc from "./components/PrefilterAdvertByDesc";
-import PrefilterAdvertByBatch from "./components/PrefilterAdvertByBatch";
+// import PrefilterAdvertByDesc from "./components/PrefilterAdvertByDesc";
+// import PrefilterAdvertByBatch from "./components/PrefilterAdvertByBatch";
+import CreerProfil from "./pages/CreerProfil";
 
 function App() {
   const [data, setData] = useState([]);
@@ -32,8 +33,9 @@ function App() {
       <div className="main">
         <HeaderNav />
         <Outlet context={[data]} />
-        <PrefilterAdvertByDesc />
-        <PrefilterAdvertByBatch />
+        <CreerProfil />
+        {/* <PrefilterAdvertByDesc />
+        <PrefilterAdvertByBatch /> */}
         <Footer />
       </div>
     </div>
