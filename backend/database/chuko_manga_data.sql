@@ -238,7 +238,7 @@ VALUES
     -- price
     40, 
     -- description
-    'Je vens un lot Dragon Ball à bon prix ! Se référer aux photos pour les tomes constituant le lot.', 
+    'Je vends un lot Dragon Ball à bon prix ! Se référer aux photos pour les tomes constituant le lot.', 
     -- alert
     0, 
     -- batch

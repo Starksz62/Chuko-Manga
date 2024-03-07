@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import AdvertCard from "./AdvertCard";
 import "./PrefilterAdvertByDesc.css";
@@ -17,7 +17,10 @@ function FilteredadvertsCard() {
       })
       .then((data) => {
         setAdverts(data);
-        setFilteredAdverts(data); // Initialisation avec tous les adverts
+        setFilteredAdverts(data);
+        console.info(data);
+        console.info(data.map((advert) => advert.id));
+        // Initialisation avec tous les adverts
       })
       .catch((error) => {
         console.error(

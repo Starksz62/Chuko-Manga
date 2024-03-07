@@ -1,15 +1,26 @@
 /* eslint-disable react/prop-types */
-import React from "react";
 import "./AdvertCard.css";
+import { Link, useNavigate } from "react-router-dom";
 import Favorite from "../assets/heartFull.png";
 import Star from "../assets/star.png";
 
 function AdvertCard({ advert }) {
-  // Vérifier si advert est défini avant d'accéder à ses propriétés
+  const navigate = useNavigate();
+  const handleCardClick = () => {
+    navigate(`/display-adverts/${advert.id}`);
+    window.scrollTo(0, 0);
+  };
+
   return (
     <section className="card-content">
-      <img src={advert.image_path} alt={advert.title} className="card-image" />
-      <h2 className="card-title">{advert.title_search_manga}</h2>
+      <Link to={`/display-adverts/${advert.id}`} onClick={handleCardClick}>
+        <img
+          src={advert.image_path}
+          alt={advert.title}
+          className="card-image"
+        />
+        <h2 className="card-title">{advert.title_search_manga}</h2>
+      </Link>
       <div className="card-price-section">
         <p className="card-price">{advert.price}€</p>
         <img src={Favorite} alt="logo favorite" className="card-favorite" />

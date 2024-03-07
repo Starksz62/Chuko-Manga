@@ -1,10 +1,10 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import React from "react";
 import ReactDOM from "react-dom/client";
 import App from "./App";
 import Explore from "./pages/Explore";
 import Home from "./pages/Home";
 import PaymentPage from "./pages/PaymentPage";
+import AnnouncementDetail from "./pages/AnnouncementDetails";
 
 const router = createBrowserRouter([
   {
@@ -25,6 +25,10 @@ const router = createBrowserRouter([
       {
         path: "/paymentPage/:id",
         element: <PaymentPage />,
+      },
+      {
+        path: "/display-adverts/:id",
+        element: <AnnouncementDetail />,
       },
     ],
   },

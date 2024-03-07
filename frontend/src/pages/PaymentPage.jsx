@@ -13,6 +13,7 @@ import DeliveryOption from "../components/PaymentPage/DeliveryOption";
 function PaymentPage() {
   const location = useLocation();
   const { articleData } = location.state;
+  console.info("info paymentPage", articleData);
   const [showModal, setShowModal] = useState(false);
   const [showModalCreditCard, setShowModalCreditCard] = useState(false);
   const [adresse, setAdresse] = useState({
