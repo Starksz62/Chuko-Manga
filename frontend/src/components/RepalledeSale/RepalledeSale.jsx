@@ -1,5 +1,3 @@
-// /* eslint-disable react/button-has-type */
-import React from "react";
 import { Link } from "react-router-dom";
 import "./RepalledeSale.css";
 import plusbutton from "../../assets/plusbutton.svg";
