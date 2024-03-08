@@ -21,9 +21,10 @@ function DetailsPersonal() {
     // Выполнение GET-запроса при монтировании компонента
     axios
       .get(`http://localhost:3310/api/user/${id}`)
-      .then((response) => {
+      .then((response) => response.json())
+      .then((data) => {
         // Обновление состояния formData данными пользователя
-        setFormData(response.data);
+        setFormData(data);
       })
       .catch((error) => {
         console.error("Error fetching user data:", error);
