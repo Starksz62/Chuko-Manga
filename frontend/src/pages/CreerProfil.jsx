@@ -10,6 +10,12 @@ function CreerProfil() {
     setAddAdresseVisible(!addAdresseVisible);
   };
 
+  // const handleKeyDown = (event) => {
+  //   if (event.key === "Enter" || event.key === " ") {
+  //     handleEmailVisibilityToggle();
+  //   }
+  // };
+
   return (
     <div style={{ marginLeft: "50px" }}>
       <h1>Modifier ton profil</h1>
