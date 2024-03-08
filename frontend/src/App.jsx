@@ -9,7 +9,7 @@ import HeaderNav from "./components/HeaderNav";
 import Footer from "./components/Footer";
 // import PrefilterAdvertByDesc from "./components/PrefilterAdvertByDesc";
 // import PrefilterAdvertByBatch from "./components/PrefilterAdvertByBatch";
-import CreerProfil from "./pages/CreerProfil";
+// import CreerProfil from "./pages/CreerProfil";
 
 function App() {
   const [data, setData] = useState([]);
@@ -33,7 +33,7 @@ function App() {
       <div className="main">
         <HeaderNav />
         <Outlet context={[data]} />
-        <CreerProfil />
+        {/* <CreerProfil /> */}
         {/* <PrefilterAdvertByDesc />
         <PrefilterAdvertByBatch /> */}
         <Footer />

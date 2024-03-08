@@ -100,6 +100,7 @@ function Adresse() {
           required
         />
       </div>
+      <button className="button_modifier">Modifier</button>
     </form>
   );
 }
