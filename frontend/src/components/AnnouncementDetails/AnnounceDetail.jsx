@@ -1,9 +1,10 @@
+import PropTypes from "prop-types";
 import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import Stars from "./StarsRating";
 import FilteredadvertsCard from "../PrefilterAdvertByDesc";
 import "./AnnounceDetail.css";
 
-// eslint-disable-next-line react/prop-types
 function AnnouncementDetail({ userId, id }) {
   const [userSells, setUserSells] = useState(null);
   const [sellerInfo, setSellerInfo] = useState({
@@ -12,7 +13,10 @@ function AnnouncementDetail({ userId, id }) {
     average: "",
     feedback_nber: "",
   });
-  console.info(sellerInfo);
+  const handleCardClick = () => {
+    window.scrollTo(0, 0);
+  };
+  console.info("sellerInfo", sellerInfo);
   useEffect(() => {
     fetch(`http://localhost:3310/api/display-adverts-byseller/${userId}`)
       .then((response) => {
@@ -22,6 +26,7 @@ function AnnouncementDetail({ userId, id }) {
         return response.json();
       })
       .then((data) => {
+        console.info("verif data", data);
         setSellerInfo({
           pseudo: data[0].pseudo,
           user_picture: data[0].user_picture,
@@ -71,7 +76,12 @@ function AnnouncementDetail({ userId, id }) {
       <div className="container-other-sell">
         {filteredSells.map((sell) => (
           <div className="image-other-sell" key={sell.advert_id}>
-            <img className="image-other-sell" src={sell.image_path} alt="" />
+            <Link
+              to={`/display-adverts/${sell.advert_id}`}
+              onClick={handleCardClick}
+            >
+              <img className="image-other-sell" src={sell.image_path} alt="" />
+            </Link>
             <h2>{sell.title_search_manga}</h2>
             <p className="price-other-sell">{sell.price} €</p>
             <p className="condition-other-sell">{sell.name_condition}</p>
@@ -79,10 +89,14 @@ function AnnouncementDetail({ userId, id }) {
         ))}
       </div>
       <div>
-        <FilteredadvertsCard />
+        <FilteredadvertsCard titlefromAnnounceDetail="Ces annonces peuvent vous intéresser :" />
       </div>
     </>
   );
 }
+AnnouncementDetail.propTypes = {
+  userId: PropTypes.number.isRequired,
+  id: PropTypes.number.isRequired,
+};
 
 export default AnnouncementDetail;

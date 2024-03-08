@@ -1,11 +1,11 @@
-/* eslint-disable react/prop-types */
 /* eslint-disable import/no-extraneous-dependencies */
+import PropTypes from "prop-types";
 import { useState, useEffect } from "react";
 import { Rating } from "react-simple-star-rating";
-// https://www.npmjs.com/package/react-simple-star-rating
 
 function Stars({ ratingValue }) {
   const [rating, setRating] = useState(0);
+
   useEffect(() => {
     setRating(ratingValue);
   }, [ratingValue]);
@@ -16,5 +16,9 @@ function Stars({ ratingValue }) {
     </div>
   );
 }
+
+Stars.propTypes = {
+  ratingValue: PropTypes.number.isRequired,
+};
 
 export default Stars;

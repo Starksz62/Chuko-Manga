@@ -4,6 +4,7 @@ import "./style/variables.css";
 import { Outlet } from "react-router-dom";
 import HeaderNav from "./components/HeaderNav";
 import Footer from "./components/Footer";
+// import LeftNavbar from "./components/LeftNavbar";
 
 function App() {
   return (
