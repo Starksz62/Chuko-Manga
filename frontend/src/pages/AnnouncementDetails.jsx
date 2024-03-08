@@ -20,7 +20,7 @@ function AnnouncementDetail() {
       .then((data) => {
         const detail = data.length > 0 ? data[0] : null;
 
-        console.info(detail.user_id);
+        console.info("récupération des datas", data);
         setDetailManga(data);
         setUserId(detail.user_id);
       })
@@ -62,8 +62,18 @@ function AnnouncementDetail() {
               </p>
             </div>
             <div className="information-date">
-              <p>Ajouté: Il y a </p>
-              <p>{detailManga[0].time} heure(s)</p>
+              <p>Ajouté le:</p>
+              <p>
+                {detailManga[0].publication_date_advert
+                  ? new Date(detailManga[0].publication_date_advert)
+                      .toLocaleString("fr-FR", {
+                        year: "numeric",
+                        month: "2-digit",
+                        day: "2-digit",
+                      })
+                      .replace(", ", " à ")
+                  : ""}
+              </p>
             </div>
           </div>
         </div>
