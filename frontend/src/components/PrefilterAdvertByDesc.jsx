@@ -28,16 +28,18 @@ function FilteredadvertsCard() {
   }, []);
 
   return (
-    <div className="App">
-      <h1>Explorer les derniers tomes ajoutés :</h1>
+    <div className="prefilter-section">
+      <h2>Explorer les derniers tomes ajoutés :</h2>
       <div className="FilterByDate">
-        {filteredAdverts.length > 0 ? (
-          filteredAdverts
-            .slice(0, 3)
-            .map((advert) => <AdvertCard key={advert.id} advert={advert} />)
-        ) : (
-          <p>Chargement en cours...</p>
-        )}
+        <div className="filteredAdverts">
+          {filteredAdverts.length > 0 ? (
+            filteredAdverts
+              .slice(0, 3)
+              .map((advert) => <AdvertCard key={advert.id} advert={advert} />)
+          ) : (
+            <p>Chargement en cours...</p>
+          )}
+        </div>
         <Link to="/explore">
           <button type="button" className="bntSeeAllTomes">
             <div className="textBtn">

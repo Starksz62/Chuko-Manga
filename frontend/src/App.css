@@ -2,22 +2,25 @@
   padding: 0px;
   margin: 0px;
   box-sizing: border-box;
+  font-family: "Montserrat", sans-serif;
 }
 
 .mainContainer {
-  display: flex;
-  flex-direction: row;
-  background-color: green;
+  display: grid;
+  grid-template-columns: repeat(10, 1fr);
+  grid-template-rows: 1fr;
+  grid-column-gap: 0px;
+  grid-row-gap: 0px;
 }
 
-.main {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  width: 100%;
-  background-color: red;
+.leftNavbar {
+  grid-area: 1 / 1 / 2 / 2;
+}
+
+.mainContent {
+  grid-area: 1 / 2 / 2 / 11;
 }
 
 body {
-  max-width: 400vh;
+  font-family: "Montserrat", sans-serif;
 }
