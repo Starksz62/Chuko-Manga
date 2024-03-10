@@ -2,37 +2,40 @@
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 import React, { useState } from "react";
+import { useParams } from "react-router-dom";
 import "./DetailsPersonal.css";
-// import axios from "axios";
-
-// const url = "http://localhost:3310/api/users/adresse";
+import axios from "axios";
 
 function Adresse() {
+  const { id } = useParams();
+  const url = `http://localhost:3310/api/address/${id}`;
+
   const [formData, setFormData] = useState({
     country: "",
     zip_code: "",
     number_street: "",
     name_adress: "",
   });
-  //     const handleSubmit = (e) => {
-  //       e.preventDefault();
 
-  //       const data = {
-  //         country: formData.country,
-  //         zip_code: formData.zip_code,
-  //         number_street: formData.number_street,
-  // name_adress: formData.name_adress,
-  //       };
+  const handleSubmit = (e) => {
+    e.preventDefault();
 
-  //   axios
-  //     .post(url, data)
-  //     .then((response) => {
-  //       console.warn("Success:", response.data);
-  //     })
-  //     .catch((error) => {
-  //       console.error("Error:", error.response.data);
-  //     });
-  //     };
+    const data = {
+      country: formData.country,
+      zip_code: formData.zip_code,
+      number_street: formData.number_street,
+      name_adress: formData.name_adress,
+    };
+
+    axios
+      .post(url, data)
+      .then((response) => {
+        console.warn("Success:", response.data);
+      })
+      .catch((error) => {
+        console.error("Error:", error.response.data);
+      });
+  };
 
   const handleChange = (e) => {
     setFormData({
@@ -42,7 +45,7 @@ function Adresse() {
   };
 
   return (
-    <form className="ContainerCreation">
+    <form className="ContainerCreation" onSubmit={handleSubmit}>
       <div className="input_label_profil">
         <label htmlFor="country" className="label_profil">
           Pays:
