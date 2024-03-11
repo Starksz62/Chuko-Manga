@@ -5,18 +5,25 @@ import axios from "axios";
 import "./NewAdvert.css";
 
 function NewAdvert() {
+  // States designed to display options for selection
   const [conditions, setConditions] = useState([]);
   const [mangaList, setMangaList] = useState([]);
   const [selectedManga, setSelectedManga] = useState("");
   const [volumeList, setVolumeList] = useState([]);
+
+  // State designed to switch tab : selling a tome or a batch
   const [tabTome, setTabTome] = useState(true);
-  const [file, setFile] = useState("");
+
+  // State designed to transfer images
+  // const [file, setFile] = useState("");
+
+  // State designed to update form input values
   const [formData, setFormData] = useState({
     advert: {
       price: 0,
       description: "",
       alert: 0,
-      batch: 0,
+      batch: tabTome ? 0 : 1,
       title_search_manga: "",
       publication_date_advert: new Date().toISOString().split("T")[0],
       user_id: 1,
@@ -24,10 +31,11 @@ function NewAdvert() {
       volume_id: null,
       article_condition_id: 1,
     },
-    image: {
-      // image_path: "allo",
-      is_primary: 1,
-    },
+    images: [],
+    // image: {
+    //   image_path: "allo",
+    //   is_primary: 1,
+    // },
   });
 
   // PREVIOUS formData
@@ -58,7 +66,7 @@ function NewAdvert() {
     else if (Object.keys(formData.image).includes(name)) {
       setFormData({
         ...formData,
-        image: {
+        images: {
           ...formData.image,
           [name]: value,
         },
@@ -111,19 +119,31 @@ function NewAdvert() {
     console.info("tabTome", tabTome);
   };
 
+  const handleImageChange = (e) => {
+    const files = Array.from(e.target.files);
+    setFormData({
+      ...formData,
+      images: files,
+    });
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
     const formDataToSend = new FormData();
     // Append advert data
-    Object.entries(formData.advert).forEach(([key, value]) => {
-      formDataToSend.append(`advert[${key}]`, value);
-    });
-    // Append image data
-    Object.entries(formData.image).forEach(([key, value]) => {
-      formDataToSend.append(`image[${key}]`, value);
-    });
+    // Object.entries(formData.advert).forEach(([key, value]) => {
+    //   formDataToSend.append(`advert[${key}]`, value);
+    // });
+    // formData.images.forEach((image, index) => {
+    //   formDataToSend.append(`files${index}`, image);
+    // });
     // Append file
-    formDataToSend.append("file", file);
+    // formDataToSend.append("file", file);
+    // Append image data
+    // Object.entries(formData.image).forEach(([key, value]) => {
+    //   formDataToSend.append(`image[${key}]`, value);
+    // });
+
     // V1
     // const updatedFormData = {
     //   ...formData,
@@ -137,7 +157,11 @@ function NewAdvert() {
     // setFormData({ ...formData, batch: tabTome });
     // TEST MUTLER
     axios
-      .post("http://localhost:3310/api/new-advert", formDataToSend)
+      .post("http://localhost:3310/api/new-advert", formDataToSend, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      })
       .then((res) => {
         console.info("Advert created successfully", res.data);
       })
@@ -154,21 +178,24 @@ function NewAdvert() {
           <input
             className="picture-box"
             type="file"
-            name="image_path"
-            onChange={(e) => setFile(e.target.files[0])}
-          />
-          {/* <input
-            className="picture-box"
-            type="file"
-            name="image_path"
-            onChange={(e) => setFile(e.target.files[1])}
+            name="files"
+            accept="image/*"
+            onChange={handleImageChange}
           />
           <input
             className="picture-box"
             type="file"
-            name="image_path"
-            onChange={(e) => setFile(e.target.files[2])}
-          /> */}
+            name="files"
+            accept="image/*"
+            onChange={handleImageChange}
+          />
+          <input
+            className="picture-box"
+            type="file"
+            name="files"
+            accept="image/*"
+            onChange={handleImageChange}
+          />
           {/* <div className="picture-box">
             <img src={PlusIcon} alt="Ajouter" />
           </div>

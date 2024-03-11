@@ -106,20 +106,30 @@ const getAdvertsImage = async (req, res) => {
   }
 };
 
-// ESSAI AVEC MUTLER
+// ESSAI AVEC MULTER - PLUSIEURS FICHIERS
 const createAdvert = async (req, res) => {
   const { advert, image } = req.body;
-  let imageId = null;
-  console.info(req.body);
+  let imageId = [];
+  console.info("req.files is", req.files);
+  console.info("advert is:", advert);
+  console.info("image is", image);
   try {
     const advertId = await models.advert.addAdvert(advert);
     if (advertId !== null) {
-      console.info("yolo");
-      imageId = await models.advert_image.addImage({
-        ...image,
-        advert_id: advertId,
-        image_path: `http://localhost/uploads/${req.file.filename}`,
-      });
+      if (req.files && req.files.length > 0) {
+        const promises = req.files.map(async (files, i) => {
+          console.info("yolo");
+          const isPrimary = i === 0 ? 1 : 0;
+          const singleImageId = await models.advert_image.addImage({
+            ...image,
+            advert_id: advertId,
+            image_path: `/uploads/${req.files[i].filename}`,
+            is_primary: isPrimary,
+          });
+          return singleImageId;
+        });
+        imageId = await Promise.all(promises);
+      }
     } else {
       res.status(500).json({ error: "Failed to create advert" });
     }
@@ -130,6 +140,31 @@ const createAdvert = async (req, res) => {
     console.error(err);
   }
 };
+
+// ESSAI AVEC MUTLER
+// const createAdvert = async (req, res) => {
+//   const { advert, image } = req.body;
+//   let imageId = null;
+//   console.info(req.body);
+//   try {
+//     const advertId = await models.advert.addAdvert(advert);
+//     if (advertId !== null) {
+//       console.info("yolo");
+//       imageId = await models.advert_image.addImage({
+//         ...image,
+//         advert_id: advertId,
+//         image_path: `http://localhost/uploads/${req.file.filename}`,
+//       });
+//     } else {
+//       res.status(500).json({ error: "Failed to create advert" });
+//     }
+//     if (advertId !== null || imageId !== null) {
+//       res.status(201).json({ advertId, imageId });
+//     }
+//   } catch (err) {
+//     console.error(err);
+//   }
+// };
 
 // const createAdvert = async (req, res) => {
 //   const { advert, image } = req.body;
