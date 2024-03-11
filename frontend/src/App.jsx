@@ -4,11 +4,9 @@ import "./style/variables.css";
 import { Outlet } from "react-router-dom";
 import { useState, useEffect } from "react";
 import axios from "axios";
-import LeftNavbar from "./components/LeftNavbar";
+// import LeftNavbar from "./components/LeftNavbar";
 import HeaderNav from "./components/HeaderNav";
 import Footer from "./components/Footer";
-import PrefilterAdvertByDesc from "./components/PrefilterAdvertByDesc";
-import PrefilterAdvertByBatch from "./components/PrefilterAdvertByBatch";
 
 function App() {
   const [data, setData] = useState([]);
@@ -28,12 +26,10 @@ function App() {
 
   return (
     <div className="mainContainer">
-      <LeftNavbar />
+      {/* <LeftNavbar /> */}
       <div className="main">
         <HeaderNav />
         <Outlet context={[data]} />
-        <PrefilterAdvertByDesc />
-        <PrefilterAdvertByBatch />
         <Footer />
       </div>
     </div>
