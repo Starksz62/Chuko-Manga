@@ -1,9 +1,9 @@
 .footer {
-  position: absolute;
+  /* position: absolute; */
   bottom: 0;
   width: 100%;
   text-decoration: none;
-  height: 30%;
+  background-color: antiquewhite;
 }
 
 a {

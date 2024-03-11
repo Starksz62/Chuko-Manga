@@ -1,13 +1,16 @@
-/* eslint-disable react/button-has-type */
-/* eslint-disable jsx-a11y/no-static-element-interactions */
-/* eslint-disable jsx-a11y/click-events-have-key-events */
-/* eslint-disable jsx-a11y/label-has-associated-control */
-import React, { useState } from "react";
+import { useState } from "react";
 
 function CreerProfil() {
   const [isEmailVisible, setIsEmailVisible] = useState(false);
+
   const handleEmailVisibilityToggle = () => {
     setIsEmailVisible(!isEmailVisible);
+  };
+
+  const handleKeyDown = (event) => {
+    if (event.key === "Enter" || event.key === " ") {
+      handleEmailVisibilityToggle();
+    }
   };
 
   return (
@@ -22,25 +25,30 @@ function CreerProfil() {
         </div>
       </div>
       <div>
-        <label>ton prénom:</label>
-        <input type="text" placeholder="Votre prénom" />
+        <label htmlFor="firstNameInput">ton prénom:</label>
+        <input type="text" id="firstNameInput" placeholder="Votre prénom" />
       </div>
       <div>
-        <label>ton nom:</label>
-        <input type="text" placeholder="Votre nom" />
+        <label htmlFor="lastNameInput">ton nom:</label>
+        <input type="text" id="lastNameInput" placeholder="Votre nom" />
       </div>
       <div>
-        <label>email:</label>
-        <input type="email" placeholder="Votre email" />
+        <label htmlFor="emailInput">email:</label>
+        <input type="email" id="emailInput" placeholder="Votre email" />
         <div>
           {/* Квадратик и галочка для видимости email */}
-          <div onClick={handleEmailVisibilityToggle}>
+          <div
+            onClick={handleEmailVisibilityToggle}
+            onKeyDown={handleKeyDown}
+            role="button"
+            tabIndex={0}
+          >
             {isEmailVisible ? "✔️" : "□"}
           </div>
           <p>Rendre visible sur le profil</p>
         </div>
       </div>
-      <button>CREER</button>
+      <button type="button">CREER</button>
     </div>
   );
 }

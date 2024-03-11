@@ -1,0 +1,77 @@
+.naruto-details {
+  margin-left: 13%;
+  display: flex;
+  flex-direction: column;
+}
+
+.top-section {
+  display: flex;
+  margin-bottom: 20px;
+}
+
+.image-container img {
+  width: 285px;
+  height: auto;
+  margin-right: 20px;
+  padding-left: 10px;
+  padding-top: 20px;
+}
+
+.title-manga {
+  padding: 20px 20px 20px 0;
+  font-size: xx-large;
+}
+
+.description-manga {
+  flex-grow: 1;
+}
+
+.bottom-section {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+  flex-wrap: nowrap;
+}
+
+.status-manga {
+  width: 270px;
+  text-align: left;
+  background-color: rgb(226, 111, 3);
+  color: white;
+  padding: 10px;
+}
+
+.genre-value {
+  margin-left: 5px;
+}
+
+.authors-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  flex: 1;
+  background-color: rgb(239, 180, 125);
+  padding-left: 50px;
+}
+
+.title-authors {
+  margin-left: 10px;
+  margin-top: 0;
+  color: rgb(226, 111, 3);
+  font-size: xx-large;
+}
+
+.data-authors {
+  display: flex;
+  gap: 40px;
+}
+
+.data-authors p {
+  margin: 10px;
+  color: black;
+}
+
+.data-authors p span {
+  font-weight: bold;
+}

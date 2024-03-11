@@ -1,7 +1,4 @@
-/* eslint-disable react/self-closing-comp */
-/* eslint-disable jsx-a11y/label-has-associated-control */
-import React, { useState } from "react";
-// eslint-disable-next-line import/no-extraneous-dependencies
+import { useState } from "react";
 import axios from "axios";
 import "./Inscription.css";
 
@@ -50,7 +47,7 @@ function Inscription() {
       <div className="form">
         <h1>Inscription</h1>
         <form className="inForm" onSubmit={handleSubmit}>
-          <label htmlFor="firstname"></label>
+          <label htmlFor="firstname">a</label>
           <input
             type="text"
             id="firstname"
@@ -62,7 +59,7 @@ function Inscription() {
             required
           />
           <br />
-          <label htmlFor="lastname"></label>
+          <label htmlFor="lastname">a</label>
           <input
             type="text"
             id="lastname"
@@ -74,7 +71,7 @@ function Inscription() {
             required
           />
           <br />
-          <label htmlFor="email"></label>
+          <label htmlFor="email">a</label>
           <input
             type="email"
             id="email"
@@ -86,7 +83,7 @@ function Inscription() {
             required
           />
           <br />
-          <label htmlFor="password"></label>
+          <label htmlFor="password">a</label>
           <input
             type="password"
             id="password"

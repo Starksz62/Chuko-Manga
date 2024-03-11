@@ -1,4 +1,3 @@
-import React from "react";
 import Inscription from "./Inscription";
 import "./InscriptionModal.css";
 
