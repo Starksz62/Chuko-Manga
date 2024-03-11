@@ -4,6 +4,7 @@ const express = require("express");
 const router = express.Router();
 
 const validateUser = require("./middlewares/validateUser");
+const validateAddress = require("./middlewares/validateAddress");
 
 /* ************************************************************************* */
 // Define Your API Routes Here
@@ -75,9 +76,8 @@ router.post("/new-advert", advertsControllers.addAdvert);
 
 // --------------------------------ROUTES USERS--------------------------------
 
+// Route to get all users table
 router.get("/users", usersControllers.getAllUsers);
-// Route to get user table
-router.get("/user", usersControllers.getAllUsers);
 // Route to get all users for one specific user
 router.get("/user/:id", usersControllers.getUserById);
 // Route to get profil user for one specific user
@@ -91,7 +91,12 @@ router.put("/user/:id", validateUser, usersControllers.updateUser);
 // --------------------------------ROUTES ADDRESS--------------------------------
 
 router.get("/address/:id", addressControllers.getAddressbyId);
-router.post("/address/:id", addressControllers.addAddressbyId);
+router.post("/address/:id", validateAddress, addressControllers.addAddressbyId);
+router.put(
+  "/address/user/:userId/address/:addressId",
+  validateAddress,
+  addressControllers.updateAddress
+);
 
 // Route to get a list of items
 router.get("/items", itemControllers.browse);
