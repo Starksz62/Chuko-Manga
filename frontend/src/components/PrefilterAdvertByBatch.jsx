@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import AdvertCard from "./AdvertCard";
 import "./PrefilterAdvertByDesc.css";
@@ -29,21 +29,23 @@ function FilteredadvertsCard() {
   }, []);
 
   return (
-    <div className="App">
-      <h1>Explorer les dernières collections ajoutées :</h1>
+    <div className="prefilter-section">
+      <h2>Explorer les dernières collections ajoutées :</h2>
       <div className="FilterByDate">
-        {filteredAdverts.length > 0 ? (
-          filteredAdverts
-            .slice(0, 3)
-            .map((advert) => <AdvertCard key={advert.id} advert={advert} />)
-        ) : (
-          <p>Chargement en cours...</p>
-        )}
+        <div className="filteredAdverts">
+          {filteredAdverts.length > 0 ? (
+            filteredAdverts
+              .slice(0, 3)
+              .map((advert) => <AdvertCard key={advert.id} advert={advert} />)
+          ) : (
+            <p>Chargement en cours...</p>
+          )}
+        </div>
         <Link to="/explore">
           <button type="button" className="bntSeeAllTomes">
             <div className="textBtn">
               {" "}
-              Voir tous <br /> les tomes
+              Voir toutes <br /> les collections
             </div>
           </button>
         </Link>

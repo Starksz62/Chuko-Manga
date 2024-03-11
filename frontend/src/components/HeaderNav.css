@@ -1,0 +1,136 @@
+.navbar-header {
+  z-index: 3;
+  top: 0;
+  position: sticky;
+  background-color: var(--neutral-100);
+  padding: 1rem 4rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* font-family: ; */
+}
+
+.searchbar-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: none; /* Supprime la bordure */
+  outline: none;
+  width: 80%; /* Supprime la mise en évidence de la bordure lorsqu'il est sélectionné */
+}
+
+.searchbar {
+  display: flex;
+  flex-direction: row;
+  background-color: var(--neutral-200);
+  padding: 1rem;
+  gap: 1rem;
+  border: none;
+  border-radius: 0.5rem;
+  min-width: 400px;
+}
+
+.searchbar input {
+  width: 100%;
+  border: initial;
+  background-color: initial;
+  color: initial;
+  outline: initial;
+  box-shadow: initial;
+}
+
+.menu-triangle {
+  visibility: hidden;
+  background-color: #f6f6f6;
+  width: 7rem;
+  height: 100%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 0 0.1rem 0 0;
+}
+
+.menu-button {
+  border: none; /* Supprime la bordure */
+  outline: none; /* Supprime la mise en évidence de la bordure lorsqu'il est sélectionné */
+  background-color: #f6f6f6;
+  color: gray;
+  padding: 0;
+}
+
+/*-------------creation triangle menu-------------*/
+.icone-triangle {
+  width: 0;
+  height: 0;
+  border-right: 8px solid transparent;
+  border-left: 8px solid transparent;
+  border-top: 10px solid gray;
+}
+/*------------------------------------------------*/
+
+.scroll-menu {
+  display: flex;
+  flex-direction: column;
+  list-style-type: none;
+  padding: 0 0 0 0.7rem;
+  margin: 0;
+  background-color: #f6f6f6;
+  color: gray;
+  display: none; /*cache scroll-menu*/
+}
+.menu-triangle:hover + .scroll-menu,
+.scroll-menu:hover {
+  display: flex; /* Affiche scroll-menu lorsque l'on passe sur menu */
+  visibility: visible;
+}
+
+.Explorer {
+  padding: 1rem 0 0.5rem 0;
+}
+.Catalogue {
+  padding: 0.5rem 0 1rem 0;
+}
+
+.line {
+  border-left: 1px solid gray;
+  display: inline-block;
+  height: 2rem;
+  padding-right: 0.5rem;
+}
+
+.icone-loupe {
+  width: 1.5rem;
+  height: 1.5rem;
+  background-image: url(../assets/icone-loupe.png);
+  background-size: cover;
+  background-color: #f6f6f6;
+}
+
+.incription-login-button,
+.vendre-button {
+  display: inline-block; /* Set buttons to display inline */
+  min-width: 220px;
+  max-height: 3.5rem;
+}
+
+.incription-login-button {
+  background-color: white;
+  border: 0.1rem solid #dd7a06;
+  border-radius: 5px;
+  color: #dd7a06;
+}
+
+.vendre-button {
+  padding: 1rem;
+  background-color: #dd7a06;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  width: fit-content;
+}
+
+.buttonHeader-container {
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+}
