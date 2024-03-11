@@ -7,6 +7,7 @@ import Home from "./pages/Home";
 import PaymentPage from "./pages/PaymentPage";
 import AnnouncementDetail from "./pages/AnnouncementDetails";
 import ProfilUser from "./pages/ProfilUser";
+import NotFoundPage from "./pages/NotFoundPage";
 
 const router = createBrowserRouter([
   {
@@ -39,6 +40,14 @@ const router = createBrowserRouter([
       {
         path: "/profilUser/:id",
         element: <ProfilUser />,
+      },
+      {
+        path: "*",
+        element: <NotFoundPage />,
+      },
+      {
+        path: "/404",
+        element: <NotFoundPage />,
       },
     ],
   },
