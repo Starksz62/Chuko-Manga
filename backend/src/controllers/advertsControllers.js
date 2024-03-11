@@ -106,6 +106,7 @@ const getAdvertsImage = async (req, res) => {
   }
 };
 
+// ESSAI AVEC MUTLER
 const createAdvert = async (req, res) => {
   const { advert, image } = req.body;
   let imageId = null;
@@ -117,6 +118,7 @@ const createAdvert = async (req, res) => {
       imageId = await models.advert_image.addImage({
         ...image,
         advert_id: advertId,
+        image_path: `http://localhost/uploads/${req.file.filename}`,
       });
     } else {
       res.status(500).json({ error: "Failed to create advert" });
@@ -128,6 +130,29 @@ const createAdvert = async (req, res) => {
     console.error(err);
   }
 };
+
+// const createAdvert = async (req, res) => {
+//   const { advert, image } = req.body;
+//   let imageId = null;
+//   console.info(req.body);
+//   try {
+//     const advertId = await models.advert.addAdvert(advert);
+//     if (advertId !== null) {
+//       console.info("yolo");
+//       imageId = await models.advert_image.addImage({
+//         ...image,
+//         advert_id: advertId,
+//       });
+//     } else {
+//       res.status(500).json({ error: "Failed to create advert" });
+//     }
+//     if (advertId !== null || imageId !== null) {
+//       res.status(201).json({ advertId, imageId });
+//     }
+//   } catch (err) {
+//     console.error(err);
+//   }
+// };
 
 // const addAdvert = async (req, res) => {
 //   const advert = req.body;

@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
-import PlusIcon from "../assets/Plus_Icon.png";
+// import PlusIcon from "../assets/Plus_Icon.png";
 
 import "./NewAdvert.css";
 
@@ -10,12 +10,13 @@ function NewAdvert() {
   const [selectedManga, setSelectedManga] = useState("");
   const [volumeList, setVolumeList] = useState([]);
   const [tabTome, setTabTome] = useState(true);
+  const [file, setFile] = useState("");
   const [formData, setFormData] = useState({
     advert: {
       price: 0,
       description: "",
       alert: 0,
-      batch: !tabTome,
+      batch: 0,
       title_search_manga: "",
       publication_date_advert: new Date().toISOString().split("T")[0],
       user_id: 1,
@@ -24,7 +25,7 @@ function NewAdvert() {
       article_condition_id: 1,
     },
     image: {
-      image_path: "allo",
+      // image_path: "allo",
       is_primary: 1,
     },
   });
@@ -107,19 +108,36 @@ function NewAdvert() {
 
   const handleTabTome = () => {
     setTabTome(!tabTome);
-    // console.info("tabTome", tabTome);
+    console.info("tabTome", tabTome);
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.info("Data to be sent:", formData);
-    setFormData({
-      ...formData,
-      advert: { ...formData.advert, batch: tabTome },
+    const formDataToSend = new FormData();
+    // Append advert data
+    Object.entries(formData.advert).forEach(([key, value]) => {
+      formDataToSend.append(`advert[${key}]`, value);
     });
+    // Append image data
+    Object.entries(formData.image).forEach(([key, value]) => {
+      formDataToSend.append(`image[${key}]`, value);
+    });
+    // Append file
+    formDataToSend.append("file", file);
+    // V1
+    // const updatedFormData = {
+    //   ...formData,
+    //   advert: {
+    //     ...formData.advert,
+    //     batch: !tabTome,
+    //   },
+    // };
+    // console.info("Data to be sent:", updatedFormData);
+    // V0
     // setFormData({ ...formData, batch: tabTome });
+    // TEST MUTLER
     axios
-      .post("http://localhost:3310/api/new-advert", formData)
+      .post("http://localhost:3310/api/new-advert", formDataToSend)
       .then((res) => {
         console.info("Advert created successfully", res.data);
       })
@@ -133,7 +151,25 @@ function NewAdvert() {
       <h1>Crée ton annonce</h1>
       <form onSubmit={handleSubmit}>
         <div className="picture-container">
-          <div className="picture-box">
+          <input
+            className="picture-box"
+            type="file"
+            name="image_path"
+            onChange={(e) => setFile(e.target.files[0])}
+          />
+          {/* <input
+            className="picture-box"
+            type="file"
+            name="image_path"
+            onChange={(e) => setFile(e.target.files[1])}
+          />
+          <input
+            className="picture-box"
+            type="file"
+            name="image_path"
+            onChange={(e) => setFile(e.target.files[2])}
+          /> */}
+          {/* <div className="picture-box">
             <img src={PlusIcon} alt="Ajouter" />
           </div>
           <div className="picture-box">
@@ -141,7 +177,7 @@ function NewAdvert() {
           </div>
           <div className="picture-box">
             <img src={PlusIcon} alt="Ajouter" />
-          </div>
+          </div> */}
         </div>
         <label htmlFor="title">Titre </label>
         <input
