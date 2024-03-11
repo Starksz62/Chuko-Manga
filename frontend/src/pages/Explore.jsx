@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Link, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import axios from "axios";
 
 // Importer use params de react router dom,
@@ -29,10 +29,6 @@ function Explore() {
   return (
     <>
       {console.info("je suis le search query avant SELECT", dataAdvert)}
-      <div>Explore page</div>
-      <Link to="/">
-        <button type="button">Home</button>
-      </Link>
       <h1>Voici les résultats pour : {searchQuery}</h1>
     </>
   );
