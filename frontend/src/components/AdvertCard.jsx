@@ -1,18 +1,43 @@
-/* eslint-disable react/prop-types */
-import React from "react";
+import { useState } from "react";
+import PropTypes from "prop-types";
 import "./AdvertCard.css";
-import Favorite from "../assets/heartFull.png";
-import Star from "../assets/star.png";
+import { Link, useNavigate } from "react-router-dom";
 
 function AdvertCard({ advert }) {
-  // Vérifier si advert est défini avant d'accéder à ses propriétés
+  const navigate = useNavigate();
+  const handleCardClick = () => {
+    navigate(`/display-adverts/${advert.id}`);
+    window.scrollTo(0, 0);
+  };
+  const [isFavorite, setIsFavorite] = useState(false);
+
+  const handleFavoriteClick = () => {
+    setIsFavorite(!isFavorite);
+  };
+
   return (
     <section className="card-content">
-      <img src={advert.image_path} alt={advert.title} className="card-image" />
-      <h2 className="card-title">{advert.title_search_manga}</h2>
+      <Link to={`/display-adverts/${advert.id}`} onClick={handleCardClick}>
+        <img
+          src={advert.image_path}
+          alt={advert.title_search_manga}
+          className="card-image"
+        />
+        <h2 className="card-title">{advert.title_search_manga}</h2>
+      </Link>
       <div className="card-price-section">
         <p className="card-price">{advert.price}€</p>
-        <img src={Favorite} alt="logo favorite" className="card-favorite" />
+        <button type="button" onClick={handleFavoriteClick}>
+          <img
+            src={
+              isFavorite
+                ? "http://localhost:3310/static/heartFull.png"
+                : "http://localhost:3310/static/heart.png"
+            }
+            alt="logo favorite"
+            className="card-favorite"
+          />
+        </button>
       </div>
       <p className="card-condition">{advert.name_condition}</p>
       <div className="card-user-section">
@@ -25,7 +50,11 @@ function AdvertCard({ advert }) {
           <p className="card-user-name">{advert.pseudo}</p>
         </div>
         <div className="note">
-          <img src={Star} alt="logo star" className="card-star" />
+          <img
+            src="http://localhost:3310/static/star.png"
+            alt="logo star"
+            className="card-star"
+          />
           <div className="note-text">
             <p className="card-evaluation">
               {advert.average}
@@ -39,5 +68,17 @@ function AdvertCard({ advert }) {
     </section>
   );
 }
-
+AdvertCard.propTypes = {
+  advert: PropTypes.shape({
+    id: PropTypes.number.isRequired,
+    title_search_manga: PropTypes.string.isRequired,
+    image_path: PropTypes.string.isRequired,
+    price: PropTypes.number.isRequired,
+    name_condition: PropTypes.string.isRequired,
+    user_picture: PropTypes.string.isRequired,
+    pseudo: PropTypes.string.isRequired,
+    average: PropTypes.number.isRequired,
+    feedback_nber: PropTypes.number.isRequired,
+  }).isRequired,
+};
 export default AdvertCard;

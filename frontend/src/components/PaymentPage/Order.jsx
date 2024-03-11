@@ -6,14 +6,17 @@ function Order({ articleInfo }) {
     <div className="component-card">
       <li key={articleInfo.id}>
         <div className="card">
-          <img src={articleInfo.image} alt={articleInfo.title} />
+          <img
+            src={articleInfo.image_paths?.[0]}
+            alt={articleInfo.title_search_manga}
+          />
           <div className="information-card">
-            <h3>{articleInfo.title}</h3>
+            <h3>{articleInfo.title_search_manga}</h3>
             <div className="user-section">
-              <img src={articleInfo.imageUser} alt="userImage" />
-              <p> {articleInfo.nameUser}</p>
+              <img src={articleInfo.user_picture} alt="userImage" />
+              <p> {articleInfo.pseudo}</p>
             </div>
-            <p>État : {articleInfo.condition}</p>
+            <p>État : {articleInfo.name_condition}</p>
             <p>{articleInfo.price} €</p>
           </div>
         </div>

@@ -1,15 +1,14 @@
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import AdvertCard from "./AdvertCard";
 import "./PrefilterAdvertByDesc.css";
-import "./PrefilterAdvertByBatch.css";
 
 function FilteredadvertsCard() {
   const [, setAdverts] = useState([]);
   const [filteredAdverts, setFilteredAdverts] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:3310/api/batch-adverts-date-desc")
+    fetch("http://localhost:3310/api/unique-adverts-date-desc")
       .then((response) => {
         if (!response.ok) {
           throw new Error(`Erreur HTTP, statut : ${response.status}`);
@@ -30,7 +29,7 @@ function FilteredadvertsCard() {
 
   return (
     <div className="prefilter-section">
-      <h2>Explorer les dernières collections ajoutées :</h2>
+      <h2>Explorer les derniers tomes ajoutés :</h2>
       <div className="FilterByDate">
         <div className="filteredAdverts">
           {filteredAdverts.length > 0 ? (
@@ -45,7 +44,7 @@ function FilteredadvertsCard() {
           <button type="button" className="bntSeeAllTomes">
             <div className="textBtn">
               {" "}
-              Voir toutes <br /> les collections
+              Voir tous <br /> les tomes
             </div>
           </button>
         </Link>

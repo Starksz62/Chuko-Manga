@@ -1,58 +1,31 @@
-import { Link, useNavigate } from "react-router-dom";
-import Cards from "../components/Cards";
+import "./Home.css";
+
+import PrefilterAdvertByDesc from "../components/PrefilterAdvertByDesc";
+import PrefilterAdvertByBatch from "../components/PrefilterAdvertByBatch";
+
+import RepalledeSale from "../components/RepalledeSale/RepalledeSale";
 
 function Home() {
-  const navigate = useNavigate();
-
-  const annonces = [
-    {
-      id: 1,
-      image: "http://localhost:3310/static/NarutoTome13.jpg",
-      title: "Naruto - Tome 13",
-      price: "5,00",
-      condition: "Bon état",
-      imageUser: "http://localhost:3310/static/orange.jpg",
-      nameUser: "Utilisateur",
-      star: "./src/assets/star.png",
-      note: "5",
-      comment: "24",
-    },
-    {
-      id: 2,
-      image: "./src/assets/20centuryboys.jpg",
-      title: "20 century boys - Tome 1",
-      price: "3,5",
-      condition: "Neuf",
-      imageUser: "./src/assets/orange.jpg",
-      nameUser: "Utilisateur2",
-      star: "./src/assets/star.png",
-      note: "4,9",
-      comment: "136",
-    },
-  ];
-  const navigateToPaymentPage = (annonceData) => {
-    navigate(`/PaymentPage/${annonceData.id}`, {
-      state: { articleData: annonceData },
-    });
-  };
-
   return (
-    <>
-      <div>Home page</div>
-      <Link to="/explore">
-        <button type="button">Explorer</button>
-      </Link>
-      <ul className="main">
-        {annonces.map((annonce) => (
-          <li key={annonce.id} className="annonce-item">
-            <Cards
-              data={annonce}
-              onImageClick={() => navigateToPaymentPage(annonce)}
-            />
-          </li>
-        ))}
-      </ul>
-    </>
+    <div className="main">
+      <div className="hero-section">
+        <div className="hero-banner">
+          <img src="src/assets/hero_banner.png" alt="" />
+          <div className="hero-card">
+            <h1> Des tomes que tu ne lis plus ? </h1>
+            <button className="vendre-button" type="button">
+              Vends tes Mangas
+            </button>
+            <a href="https://www.wikihow.com/Main-Page">
+              Découvrir comment ça marche
+            </a>
+          </div>
+        </div>
+      </div>
+      <PrefilterAdvertByDesc />
+      <PrefilterAdvertByBatch />
+      <RepalledeSale />
+    </div>
   );
 }
 
