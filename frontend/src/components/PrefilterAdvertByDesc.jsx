@@ -1,12 +1,22 @@
-import React, { useState, useEffect } from "react";
+import PropTypes from "prop-types";
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import AdvertCard from "./AdvertCard";
 import "./PrefilterAdvertByDesc.css";
 
-function FilteredadvertsCard() {
+function FilteredadvertsCard({ titlefromAnnounceDetail }) {
   const [, setAdverts] = useState([]);
   const [filteredAdverts, setFilteredAdverts] = useState([]);
-
+  // const [favoriteAdverts, setFavoriteAdverts] = useState([]);
+  const defaultTitle = "Explorer les derniers tomes ajoutés :";
+  const titleToShow = titlefromAnnounceDetail || defaultTitle;
+  // const handleFavoriteClick = (advertId) => {
+  //   if (favoriteAdverts.includes(advertId)) {
+  //     setFavoriteAdverts(favoriteAdverts.filter((id) => id !== advertId));
+  //   } else {
+  //     setFavoriteAdverts([...favoriteAdverts, advertId]);
+  //   }
+  // };
   useEffect(() => {
     fetch("http://localhost:3310/api/unique-adverts-date-desc")
       .then((response) => {
@@ -17,7 +27,10 @@ function FilteredadvertsCard() {
       })
       .then((data) => {
         setAdverts(data);
-        setFilteredAdverts(data); // Initialisation avec tous les adverts
+        setFilteredAdverts(data);
+        console.info(data);
+        console.info(data.map((advert) => advert.id));
+        // Initialisation avec tous les adverts
       })
       .catch((error) => {
         console.error(
@@ -28,16 +41,18 @@ function FilteredadvertsCard() {
   }, []);
 
   return (
-    <div className="App">
-      <h1>Explorer les derniers tomes ajoutés :</h1>
+    <div className="prefilter-section">
+      <h2>{titleToShow}</h2>
       <div className="FilterByDate">
-        {filteredAdverts.length > 0 ? (
-          filteredAdverts
-            .slice(0, 3)
-            .map((advert) => <AdvertCard key={advert.id} advert={advert} />)
-        ) : (
-          <p>Chargement en cours...</p>
-        )}
+        <div className="filteredAdverts">
+          {filteredAdverts.length > 0 ? (
+            filteredAdverts
+              .slice(0, 3)
+              .map((advert) => <AdvertCard key={advert.id} advert={advert} />)
+          ) : (
+            <p>Chargement en cours...</p>
+          )}
+        </div>
         <Link to="/explore">
           <button type="button" className="bntSeeAllTomes">
             <div className="textBtn">
@@ -50,5 +65,7 @@ function FilteredadvertsCard() {
     </div>
   );
 }
-
+FilteredadvertsCard.propTypes = {
+  titlefromAnnounceDetail: PropTypes.string.isRequired,
+};
 export default FilteredadvertsCard;

@@ -113,9 +113,65 @@ VALUES (
     -- finish france 
     1,
     -- date france 
-   "2002/09/11",
+    "2002/09/11",
     -- date japan
     "2000/05/15"
+  ),
+   (
+    -- title
+    'Jujutsu Kaisen',
+    -- description
+    "Jujutsu Kaisen follows Yuji Itadori, a high school student who becomes the host of a powerful curse after ingesting a cursed finger. Joining an exorcism school, he teams up with fellow apprentice exorcists to fight malevolent entities and collect the parts of an ancient curse. Amid supernatural battles and personal quests, Yuji navigates a world where magic and monsters shape destiny.",
+    -- image
+    '/static/jujutsuKaisenTome0.png',
+    -- author
+    'Gege Akutami',
+    -- script_writer
+    'Gege Akutami',
+    -- illustrator
+    'Gege Akutami',
+    -- release_date
+    '2018',
+    -- publishing_house_id
+    1,
+    -- genre_id
+    1,
+    -- finish japan
+    0,
+    -- finish france 
+    0,
+    -- date france 
+    "2020/10/01",
+    -- date japan
+    "2018/04/12"
+  ),
+   (
+    -- title
+    'Hunter X Hunter',
+    -- description
+    "Gon Freecss, a young boy who discovers that his father, whom he thought was dead, is actually a legendary Hunter, alive and embarked on a quest in search of treasures, unexplored places, and mysterious creatures. Determined to find his father, Gon decides to take the Hunter Exam, a perilous contest reserved for the elite of adventurers. Throughout his journey, Gon befriends other candidates: Leorio, Kurapika, and Killua. Together, they will face numerous challenges, uncover the vast and dangerous world of Hunters and its dark secrets.",
+    -- image
+    '/static/hunterXHunterTome1.png',
+    -- author
+    'Yoshihiro Togashi',
+    -- script_writer
+    'Yoshihiro Togashi',
+    -- illustrator
+    'Yoshihiro Togashi',
+    -- release_date
+    '1998',
+    -- publishing_house_id
+    1,
+    -- genre_id
+    1,
+    -- finish japan
+    0,
+    -- finish france 
+    0,
+    -- date france 
+   "2020/10/01",
+    -- date japan
+    "1998/03/16"
   )
   ;
 
@@ -150,7 +206,25 @@ VALUES ('Tome 1', 1, '2002', '/static/naruto.jpg', '2871294143', 1),
 ('Tome 28', 28, '2007', '/static/narutoTome28.png', '2505000921', 1),
 ('Tome 29', 29, '2007', '/static/narutoTome29.png', '2505000972', 1),
 ('Tome 30', 30, '2007', '/static/narutoTome30.png', '2505001529', 1),
-('Tome 1', 1, '2007', '/static/onePieceTome1.png', '2505001529', 3),
+('Tome 1', 1, '1993', '/static/DragonBall_db.jpg', '287695205X', 2),
+('Tome 2', 2, '1993', '/static/dragonBallTome2.png', '2876952068', 2),
+('Tome 3', 3, '1993', '/static/dragonBallTome3.png', '2876952076', 2),
+('Tome 4', 4, '1993', '/static/dragonBallTome4.png', '2876952106', 2),
+('Tome 6', 6, '1994', '/static/dragonBallTome6.png', '2876952122', 2),
+('Tome 7', 7, '1994', '/static/dragonBallTome7.png', '2876952173', 2),
+('Tome 8', 8, '1994', '/static/dragonBallTome8.png', '2876952181', 2),
+('Tome 9', 9, '1994', '/static/dragonBallTome9.png', '287695219X', 2),
+('Tome 10', 10, '1994', '/static/dragonBallTome10.png', '2876952203', 2),
+('Tome 13', 13, '1995', '/static/dragonBallTome13.png', '2723418561', 2),
+('Tome 15', 15, '1995', '/static/dragonBallTome15.png', '2723418588', 2),
+('Tome 17', 17, '1995', '/static/dragonBallTome17.png', '272341860X', 2),
+('Tome 18', 18, '1995', '/static/dragonBallTome18.png', '2723418618', 2),
+('Tome 19', 19, '1996', '/static/dragonBallTome19.png', '2723419029', 2),
+('Tome 20', 20, '1996', '/static/dragonBallTome20.png', '2723419231', 2),
+('Tome 25', 25, '1997', '/static/dragonBallTome25.png', '2723422240', 2),
+('Tome 26', 26, '1997', '/static/dragonBallTome26.png', '2723422259', 2),
+('Tome 29', 29, '1997', '/static/dragonBallTome29.png', '2723423476', 2),
+('Tome 1', 1, '2007', '/static/onePieceTome1.jpg', '2505001529', 3),
 ('Tome 2', 2, '2007', '/static/onePieceTome2.png', '2505001529', 3),
 ('Tome 3', 3, '2007', '/static/onePieceTome3.png', '2505001529', 3),
 ('Tome 4', 4, '2007', '/static/onePieceTome4.png', '2505001529', 3),
@@ -165,7 +239,18 @@ VALUES ('Tome 1', 1, '2002', '/static/naruto.jpg', '2871294143', 1),
 ('Tome 13', 13, '2007', '/static/onePieceTome13.png', '2505001529', 3),
 ('Tome 14', 14, '2007', '/static/onePieceTome14.png', '2505001529', 3),
 ('Tome 15', 15, '2007', '/static/onePieceTome15.png', '2505001529', 3),
-('Tome 1', 1, '2000', '/static/nanaTome1.png', '9782840559573', 4);
+('Tome 1', 1, '2000', '/static/nanaTome1.png', '9782840559573', 4),
+('Tome 0', 0, '2020', '/static/jujutsuKaisenTom0.png', '1974720144', 5),
+('Tome 1', 1, '2020', '/static/jujutsuKaisenTom1.png', '1974710025', 5),
+('Tome 2', 2, '2020', '/static/jujutsuKaisenTom2.png', '1974710033', 5),
+('Tome 3', 3, '2020', '/static/jujutsuKaisenTom3.png', '1974710041', 5),
+('Tome 4', 4, '2020', '/static/jujutsuKaisenTom4.png', '1974714802', 5),
+('Tome 5', 5, '2020', '/static/jujutsuKaisenTom5.png', '1974714810', 5),
+('Tome 6', 6, '2020', '/static/jujutsuKaisenTom6.png', '1974714829', 5),
+('Tome 7', 7, '2020', '/static/jujutsuKaisenTom7.png', '1974717119', 5),
+('Tome 8', 8, '2021', '/static/jujutsuKaisenTom8.png', '1974718719', 5),
+('Tome 9', 9, '2021', '/static/jujutsuKaisenTom9.png', '1974718727', 5),
+('Tome 10', 10, '2021', '/static/jujutsuKaisenTom10.png', '1974720756', 5);
 
 INSERT INTO article_condition (name_condition)
 VALUES ('abimé'), ('bon état'), ('comme neuf');
@@ -281,7 +366,7 @@ VALUES
     -- price
     40, 
     -- description
-    'Je vens un lot Dragon Ball à bon prix ! Se référer aux photos pour les tomes constituant le lot.', 
+    'Je vends un lot Dragon Ball à bon prix ! Se référer aux photos pour les tomes constituant le lot.', 
     -- alert
     0, 
     -- batch

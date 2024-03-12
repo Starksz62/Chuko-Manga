@@ -1,7 +1,6 @@
 import { useState } from "react";
 
 import logo from "../assets/logo.png";
-import logoReduced from "../assets/navBar.png";
 import ProfileIcon from "../assets/profile.png";
 import AdsIcon from "../assets/ads.png";
 import FavoritesIcon from "../assets/favorites.png";
@@ -12,21 +11,11 @@ import FilterIcon from "../assets/filter.png";
 import "./LeftNavbar.css";
 
 function LeftNavbar() {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [setIsMenuOpen] = useState(false);
   const [showFilters, setShowFilters] = useState(false);
   const [currentFilter, setCurrentFilter] = useState(null);
 
   // Étend la sidebar lors du survol
-  const handleMouseEnter = () => {
-    setIsMenuOpen(true);
-  };
-
-  const handleMouseLeave = () => {
-    if (!showFilters) {
-      setIsMenuOpen(false);
-    }
-    setIsMenuOpen(false);
-  };
 
   // const toggleFilters = () => {
   //   setShowFilters(!showFilters);
@@ -58,39 +47,31 @@ function LeftNavbar() {
   ];
 
   return (
-    <div
-      className={`sidebar ${isMenuOpen ? "" : "collapsed"}`}
-      onMouseEnter={handleMouseEnter}
-      onMouseLeave={handleMouseLeave}
-    >
+    <div className="sidebar">
       <div className="sidebar-logo">
-        {isMenuOpen ? (
-          <img src={logo} alt="Logo" />
-        ) : (
-          <img src={logoReduced} alt="Logo Réduit" />
-        )}
+        <img src={logo} alt="Logo" />
       </div>
       <div className="icon-container">
         <ul>
           <li>
             <img src={ProfileIcon} alt="Profile" />
-            <span>{isMenuOpen && "Profile"}</span>
+            <span>Profile</span>
           </li>
           <li>
             <img src={AdsIcon} alt="Mes annonces" />
-            <span>{isMenuOpen && "Mes annonces"}</span>
+            <span>Mes annonces</span>
           </li>
           <li>
             <img src={FavoritesIcon} alt="Favoris" />
-            <span>{isMenuOpen && "Favoris"}</span>
+            <span>Favoris</span>
           </li>
           <li>
             <img src={SettingsIcon} alt="Paramètres" />
-            <span>{isMenuOpen && "Paramètres"}</span>
+            <span>Paramètres</span>
           </li>
           <li>
             <img src={SortIcon} alt="Tri" />
-            <span>{isMenuOpen && "Tri"}</span>
+            <span>Tri</span>
           </li>
           <button
             type="button"
