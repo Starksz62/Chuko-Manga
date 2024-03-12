@@ -115,4 +115,9 @@ router.get("/mangas", mangasControllers.getAllMangas);
 router.get("/explore", advertsControllers.getAllAdverts);
 router.get("/explore/:query", advertsControllers.getSearchAdverts);
 
+// Import authControllers module for handling auth-related operations
+const authControllers = require("./controllers/authControllers");
+
+router.post("/login", authControllers.login);
+
 module.exports = router;

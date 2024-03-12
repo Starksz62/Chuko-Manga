@@ -48,6 +48,28 @@ class UsersManager extends AbstractManager {
     );
     return result;
   }
+
+  async create(user) {
+    // Execute the SQL INSERT query to add a new user to the "user" table
+    const [result] = await this.database.query(
+      `insert into user (pseudo, email, password) values (?, ?, ?)`,
+      [user.pseudo, user.email, user.password]
+    );
+
+    // Return the ID of the newly inserted user
+    return result.insertId;
+  }
+
+  async readByEmail(email) {
+    // Execute the SQL SELECT query to retrieve a specific user by its email
+    const [rows] = await this.database.query(
+      `select * from user where email = ?`,
+      [email]
+    );
+
+    // Return the first row of the result, which represents the user
+    return rows[0];
+  }
 }
 
 module.exports = UsersManager;
