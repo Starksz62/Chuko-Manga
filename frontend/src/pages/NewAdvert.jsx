@@ -6,77 +6,30 @@ import "./NewAdvert.css";
 
 function NewAdvert() {
   // States designed to display options for selection
-  const [conditions, setConditions] = useState([]);
+  const [conditionList, setConditionList] = useState([]);
   const [mangaList, setMangaList] = useState([]);
   const [selectedManga, setSelectedManga] = useState("");
   const [volumeList, setVolumeList] = useState([]);
 
   // State designed to switch tab : selling a tome or a batch
-  const [tabTome, setTabTome] = useState(true);
+  const [batch, setBatch] = useState(0);
+
+  // States designed to handle values provided by user
+  const [advertTitle, setAdvertTitle] = useState("");
+  const [description, setDescription] = useState("");
+  const [conditionId, setConditionId] = useState(null);
+  const [price, setPrice] = useState(null);
+  const [volumeId, setVolumeId] = useState(null);
+  const alert = 0;
+  const userId = 1;
+  const publicationDate = new Date().toISOString().split("T")[0];
 
   // State designed to transfer images
-  // const [file, setFile] = useState("");
-
-  // State designed to update form input values
-  const [formData, setFormData] = useState({
-    advert: {
-      price: 0,
-      description: "",
-      alert: 0,
-      batch: tabTome ? 0 : 1,
-      title_search_manga: "",
-      publication_date_advert: new Date().toISOString().split("T")[0],
-      user_id: 1,
-      manga_id: null,
-      volume_id: null,
-      article_condition_id: 1,
-    },
-    images: [],
-    // image: {
-    //   image_path: "allo",
-    //   is_primary: 1,
-    // },
+  const [files, setFiles] = useState({
+    image1: null,
+    image2: null,
+    image3: null,
   });
-
-  // PREVIOUS formData
-  // price: "",
-  // description: "",
-  // alert: 0,
-  // batch: !tabTome,
-  // title_search_manga: "",
-  // publication_date_advert: new Date().toISOString().split("T")[0],
-  // user_id: 1,
-  // manga_id: "",
-  // volume_id: "",
-  // article_condition_id: "",
-
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    // Gestion des mises à jour pour `advert`
-    if (Object.keys(formData.advert).includes(name)) {
-      setFormData({
-        ...formData,
-        advert: {
-          ...formData.advert,
-          [name]: value,
-        },
-      });
-    }
-    // Gestion des mises à jour pour `image` si nécessaire
-    else if (Object.keys(formData.image).includes(name)) {
-      setFormData({
-        ...formData,
-        images: {
-          ...formData.image,
-          [name]: value,
-        },
-      });
-    }
-  };
-
-  // const handleChange = (e) => {
-  //   setFormData({ ...formData, [e.target.name]: e.target.value });
-  // };
 
   const handleSelectedManga = (e) => {
     setVolumeList([]);
@@ -92,7 +45,7 @@ function NewAdvert() {
       .then((responses) => {
         // console.info("Condition are", responses[0].data);
         // console.info("Mangas are", responses[1].data);
-        setConditions(responses[0].data);
+        setConditionList(responses[0].data);
         setMangaList(responses[1].data);
       })
       .catch((error) => {
@@ -114,54 +67,32 @@ function NewAdvert() {
     }
   }, [selectedManga]);
 
-  const handleTabTome = () => {
-    setTabTome(!tabTome);
-    console.info("tabTome", tabTome);
-  };
-
   const handleImageChange = (e) => {
-    const files = Array.from(e.target.files);
-    setFormData({
-      ...formData,
-      images: files,
-    });
+    setFiles({ ...files, [e.target.name]: e.target.value });
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const formDataToSend = new FormData();
-    // Append advert data
-    // Object.entries(formData.advert).forEach(([key, value]) => {
-    //   formDataToSend.append(`advert[${key}]`, value);
-    // });
-    // formData.images.forEach((image, index) => {
-    //   formDataToSend.append(`files${index}`, image);
-    // });
-    // Append file
-    // formDataToSend.append("file", file);
-    // Append image data
-    // Object.entries(formData.image).forEach(([key, value]) => {
-    //   formDataToSend.append(`image[${key}]`, value);
-    // });
-
-    // V1
-    // const updatedFormData = {
-    //   ...formData,
-    //   advert: {
-    //     ...formData.advert,
-    //     batch: !tabTome,
-    //   },
-    // };
-    // console.info("Data to be sent:", updatedFormData);
-    // V0
-    // setFormData({ ...formData, batch: tabTome });
-    // TEST MUTLER
+    const formData = new FormData();
+    formData.append("advertTitle", advertTitle);
+    formData.append("description", description);
+    formData.append("conditionId", conditionId);
+    formData.append("price", price);
+    formData.append("selectedManga", selectedManga);
+    formData.append("volumeId", volumeId);
+    formData.append("batch", batch);
+    formData.append("alert", alert);
+    formData.append("userId", userId);
+    formData.append("publicationDate", publicationDate);
+    for (const key in files) {
+      if (files[key]) {
+        console.info(key, files[key]);
+        formData.append(key, files[key]);
+      }
+    }
+    console.info("Data to send:", formData);
     axios
-      .post("http://localhost:3310/api/new-advert", formDataToSend, {
-        headers: {
-          "Content-Type": "multipart/form-data",
-        },
-      })
+      .post("http://localhost:3310/api/new-advert", formData)
       .then((res) => {
         console.info("Advert created successfully", res.data);
       })
@@ -178,22 +109,19 @@ function NewAdvert() {
           <input
             className="picture-box"
             type="file"
-            name="files"
-            accept="image/*"
+            name="image1"
             onChange={handleImageChange}
           />
           <input
             className="picture-box"
             type="file"
-            name="files"
-            accept="image/*"
+            name="image2"
             onChange={handleImageChange}
           />
           <input
             className="picture-box"
             type="file"
-            name="files"
-            accept="image/*"
+            name="image3"
             onChange={handleImageChange}
           />
           {/* <div className="picture-box">
@@ -211,8 +139,7 @@ function NewAdvert() {
           type="text"
           id="title"
           name="title_search_manga"
-          value={formData.title_search_manga}
-          onChange={handleChange}
+          onChange={(e) => setAdvertTitle(e.target.value)}
           placeholder="ex: Naruto, tome 44"
         />
         <label htmlFor="description">Description</label>
@@ -220,21 +147,19 @@ function NewAdvert() {
           type="text"
           id="description"
           name="description"
-          value={formData.description}
-          onChange={handleChange}
+          onChange={(e) => setDescription(e.target.value)}
           placeholder="ex: Pages intactes, mais couverture légèrement usée"
         />
         <label htmlFor="condition">Etat</label>
         <select
           id="condition"
           name="article_condition_id"
-          value={formData.article_condition_id}
-          onChange={handleChange}
+          onChange={(e) => setConditionId(e.target.value)}
         >
           <option value="">Sélectionne l'état de ton article</option>
-          {conditions.map((condition) => (
-            <option key={condition.id} value={condition.id}>
-              {condition.name_condition}
+          {conditionList.map((conditionItem) => (
+            <option key={conditionItem.id} value={conditionItem.id}>
+              {conditionItem.name_condition}
             </option>
           ))}
         </select>
@@ -243,30 +168,33 @@ function NewAdvert() {
           type="text"
           id="price"
           name="price"
-          value={formData.price}
-          onChange={handleChange}
+          onChange={(e) => setPrice(e.target.value)}
           placeholder="0.00€"
         />
         <div className="tab-container">
           <button
             type="button"
             id="button-tome"
-            onClick={handleTabTome}
-            className={tabTome ? "active-color tome-active" : "inactive-tab"}
+            onClick={() => setBatch(0)}
+            className={
+              batch === 0 ? "active-color tome-active" : "inactive-tab"
+            }
           >
             Vends un tome
           </button>
           <button
             type="button"
             id="button-batch"
-            onClick={handleTabTome}
-            className={!tabTome ? "active-color batch-active" : "inactive-tab"}
+            onClick={() => setBatch(1)}
+            className={
+              batch === 1 ? "active-color batch-active" : "inactive-tab"
+            }
           >
             Vends un lot
           </button>
         </div>
         <div className="ref">Référencement</div>
-        {tabTome ? (
+        {batch === 0 ? (
           <>
             <label htmlFor="manga" className="instruction">
               Tome - Associe ton annonce au manga correspondant dans la liste
@@ -274,9 +202,7 @@ function NewAdvert() {
             <select
               id="manga"
               name="manga_id"
-              value={formData.manga_id}
               onChange={(e) => {
-                handleChange(e);
                 handleSelectedManga(e);
               }}
             >
@@ -293,13 +219,12 @@ function NewAdvert() {
             <select
               id="volume"
               name="volume_id"
-              value={formData.volume_id}
-              onChange={handleChange}
+              onChange={(e) => setVolumeId(e.target.value)}
             >
               <option value="">Sélectionne le volume</option>
-              {volumeList.map((volume) => (
-                <option key={volume.id} value={volume.id}>
-                  {volume.title}
+              {volumeList.map((volumeItem) => (
+                <option key={volumeItem.id} value={volumeItem.id}>
+                  {volumeItem.title}
                 </option>
               ))}
             </select>
@@ -312,9 +237,7 @@ function NewAdvert() {
             <select
               id="manga"
               name="manga_id"
-              value={formData.manga_id}
               onChange={(e) => {
-                handleChange(e);
                 handleSelectedManga(e);
               }}
             >
