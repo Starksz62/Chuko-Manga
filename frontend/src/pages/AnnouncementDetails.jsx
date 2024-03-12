@@ -2,6 +2,7 @@ import "./AnnouncementDetails.css";
 import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import AnnounceDetail from "../components/AnnouncementDetails/AnnounceDetail";
+import MangaDetails from "./MangaDetails";
 
 function AnnouncementDetail() {
   const navigate = useNavigate();
@@ -123,8 +124,12 @@ function AnnouncementDetail() {
           )}
           {activeTab === "manga" && (
             <div>
-              {/* rajout de la partie de Loraine */}
-              <p>Contenu pour Détails manga</p>
+              {detailManga[0] && (
+                <MangaDetails
+                  id={detailManga[0].manga_id}
+                  showVolumes={false}
+                />
+              )}
             </div>
           )}
         </div>

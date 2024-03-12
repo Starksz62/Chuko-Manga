@@ -1,5 +1,5 @@
 import { useState, useContext } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
 import UserContext from "../context/UserContext";
@@ -43,7 +43,7 @@ function HeaderNav() {
   return (
     <header className="navbar-header">
       <div className="searchbar-container">
-        <div>
+        {/* <div>
           <div className="menu-triangle">
             <button className="menu-button" type="button">
               Menu
@@ -54,12 +54,10 @@ function HeaderNav() {
             <Link to="/explore">
               <li className="Explorer">Explorer</li>
             </Link>
-            {/* <Link to={`/Catalogue/`}> */}
             <li className="Catalogue">Catalogue</li>
-            {/* </Link> */}
           </ul>
         </div>
-        <div className="icone-loupe" />
+        <div className="icone-loupe" /> */}
         <input
           className="searchbar"
           type="text"

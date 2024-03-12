@@ -7,16 +7,16 @@ import "./PrefilterAdvertByDesc.css";
 function FilteredadvertsCard({ titlefromAnnounceDetail }) {
   const [, setAdverts] = useState([]);
   const [filteredAdverts, setFilteredAdverts] = useState([]);
-  const [favoriteAdverts, setFavoriteAdverts] = useState([]);
+  // const [favoriteAdverts, setFavoriteAdverts] = useState([]);
   const defaultTitle = "Explorer les derniers tomes ajoutés :";
   const titleToShow = titlefromAnnounceDetail || defaultTitle;
-  const handleFavoriteClick = (advertId) => {
-    if (favoriteAdverts.includes(advertId)) {
-      setFavoriteAdverts(favoriteAdverts.filter((id) => id !== advertId));
-    } else {
-      setFavoriteAdverts([...favoriteAdverts, advertId]);
-    }
-  };
+  // const handleFavoriteClick = (advertId) => {
+  //   if (favoriteAdverts.includes(advertId)) {
+  //     setFavoriteAdverts(favoriteAdverts.filter((id) => id !== advertId));
+  //   } else {
+  //     setFavoriteAdverts([...favoriteAdverts, advertId]);
+  //   }
+  // };
   useEffect(() => {
     fetch("http://localhost:3310/api/unique-adverts-date-desc")
       .then((response) => {
@@ -41,22 +41,18 @@ function FilteredadvertsCard({ titlefromAnnounceDetail }) {
   }, []);
 
   return (
-    <div className="App">
-      <h1>{titleToShow}</h1>
+    <div className="prefilter-section">
+      <h2>{titleToShow}</h2>
       <div className="FilterByDate">
-        {filteredAdverts.length > 0 ? (
-          filteredAdverts
-            .slice(0, 3)
-            .map((advert) => (
-              <AdvertCard
-                key={advert.id}
-                advert={advert}
-                onFavoriteClick={() => handleFavoriteClick(advert.id)}
-              />
-            ))
-        ) : (
-          <p>Chargement en cours...</p>
-        )}
+        <div className="filteredAdverts">
+          {filteredAdverts.length > 0 ? (
+            filteredAdverts
+              .slice(0, 3)
+              .map((advert) => <AdvertCard key={advert.id} advert={advert} />)
+          ) : (
+            <p>Chargement en cours...</p>
+          )}
+        </div>
         <Link to="/explore">
           <button type="button" className="bntSeeAllTomes">
             <div className="textBtn">
