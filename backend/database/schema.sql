@@ -24,9 +24,9 @@ CREATE TABLE IF NOT EXISTS `chuko_manga_db`.`user` (
   `firstname` VARCHAR(45) NULL,
   `lastname` VARCHAR(45) NULL,
   `email` VARCHAR(150) NOT NULL,
-  `password` VARCHAR(150) NOT NULL,
+  `hashed_password` VARCHAR(255) NOT NULL,
   `phone` INT NULL,
-  `role` ENUM('admin', 'user') NULL,
+  `role` ENUM('admin', 'user') NOT NULL DEFAULT 'user',
   `picture` VARCHAR(255) NULL,
   PRIMARY KEY (`id`))
 ENGINE = InnoDB

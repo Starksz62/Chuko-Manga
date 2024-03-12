@@ -3,6 +3,8 @@ const express = require("express");
 
 const router = express.Router();
 
+const { hashPassword } = require("./services/auth");
+
 const validateUser = require("./middlewares/validateUser");
 
 /* ************************************************************************* */
@@ -84,7 +86,7 @@ router.get("/user/:id", usersControllers.getUserById);
 router.get("/user-profil/:id", usersControllers.getUserProfilById);
 // Route to get comment profil user for one specific user
 router.get("/user-profil-com/:id", usersControllers.getUserProfilComById);
-router.post("/users", usersControllers.add);
+router.post("/users", hashPassword, usersControllers.add);
 // route post Update Profil User
 router.put("/user/:id", validateUser, usersControllers.updateUser);
 
