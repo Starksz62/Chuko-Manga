@@ -6,7 +6,7 @@ import Explore from "./pages/Explore";
 import PaymentPage from "./pages/PaymentPage";
 import AnnouncementDetail from "./pages/AnnouncementDetails";
 import ProfilUser from "./pages/ProfilUser";
-import Home from "./pages/home";
+import Home from "./pages/Home";
 
 const router = createBrowserRouter([
   {
