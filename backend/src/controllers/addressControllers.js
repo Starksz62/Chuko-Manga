@@ -26,20 +26,17 @@ const addAddressbyId = async (req, res) => {
 
 const updateAddress = async (req, res) => {
   try {
+    // Récupère l'id de l'user et l'id de l'adresse
     const { userId } = req.params;
-    const { addressId } = req.params; // Récupère l'id de l'user et l'id de l'adresse
-    const address = req.body; // Nouvelles données de l'adresse à mettre à jour
-    const result = await models.address.updateAddress(
-      address,
-      userId,
-      addressId
-    );
+    const { addressId } = req.params;
+    // Nouvelles données de l'adresse à mettre à jour
+    const address = req.body;
+    const result = await models.address.updateAddress(address, addressId);
     if (result.affectedRows === 0) {
-      // Aucune ligne n'a été mise
       res.status(404).json({ message: "Aucune adresse n'a été mise à jour." });
     } else {
       const result2 = await models.address.updateAddressUser(userId, addressId);
-      res.sendStatus(204).json({ result, result2 });
+      res.status(204).json({ result, result2 });
     }
   } catch (error) {
     console.error(error);
