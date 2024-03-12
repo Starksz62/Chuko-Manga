@@ -1,11 +1,29 @@
-import { useState } from "react";
+import React, { useState } from "react";
+import "./NotificationCenter.css";
+import NotificationBellIcon from "../assets/notificationBell.png";
 
-function notificationCenter() {
+function NotificationCenter() {
   const [notifications, setNotifications] = useState([]);
+  const [isVisible, setIsVisible] = useState(false);
+  const [isPopupVisible, setIsPopupVisible] = useState(false);
+  const [visibleNotifications, setVisibleNotifications] = useState(3); // Gère le nombre de notifications visibles
+
+  const handleDeleteAll = () => {
+    setNotifications([]);
+    setIsPopupVisible(false);
+  };
+
+  const handleCancel = () => {
+    setIsPopupVisible(false);
+  };
+
+  const togglePopup = () => {
+    setIsPopupVisible(!isPopupVisible);
+  };
 
   const addNotification = (message) => {
     const id = new Date().getTime();
-    setNotifications((prev) => [...prev, { id, message }]);
+    setNotifications((prev) => [{ id, message }, ...prev]);
   };
 
   const removeNotification = (id) => {
@@ -14,52 +32,111 @@ function notificationCenter() {
     );
   };
 
+  const handleViewAll = () => {
+    setVisibleNotifications(10);
+  };
+
   return (
-    <div>
+    <div className="notification-wrapper">
       <div
-        style={{
-          position: "relative",
-          maxHeight: "400px",
-          overflowY: "auto",
-          border: "1px solid black",
-          padding: "10px",
-          marginTop: "20px",
+        className="notification-icon-wrapper"
+        onClick={() => setIsVisible(!isVisible)}
+        onKeyDown={(e) => {
+          if (e.key === "Enter" || e.key === " ") {
+            setIsVisible(!isVisible);
+          }
         }}
+        role="button"
+        tabIndex="0"
+        aria-label="Notifications"
       >
-        <h4>Centre de Notifications</h4>
-        {notifications.length === 0 ? (
-          <p>Aucune notification pour le moment.</p>
-        ) : (
-          notifications.map(({ id, message }) => (
-            <div
-              key={id}
-              style={{
-                background: "#f0f0f0",
-                marginBottom: "10px",
-                padding: "10px",
-                borderRadius: "5px",
-              }}
-            >
-              {message}
-              {/* Bouton pour supprimer une notification */}
-              <button
-                type="button"
-                onClick={() => removeNotification(id)}
-                style={{ marginLeft: "10px" }}
-              >
-                Supprimer
-              </button>
-            </div>
-          ))
+        <img
+          src={NotificationBellIcon}
+          alt="notificationBell"
+          className="notification-bell"
+        />
+        {notifications.length > 0 && (
+          <span className="notification-count">{notifications.length}</span>
         )}
       </div>
-      {/* Boutons pour simuler l'ajout de notifications */}
+
+      {isVisible && (
+        <>
+          <div
+            role="button"
+            tabIndex="0"
+            className="overlay"
+            onClick={() => setIsVisible(false)}
+            onKeyDown={(e) => {
+              if (e.key === "Enter" || e.key === " ") {
+                setIsVisible(false);
+              }
+            }}
+            aria-label="Fermer le centre de notifications"
+          />
+          <div className="notification-center">
+            <button type="button" className="edit-link" onClick={togglePopup}>
+              Modifier
+            </button>
+
+            {isPopupVisible && (
+              <div className="popup">
+                <button
+                  type="button"
+                  className="popup-option"
+                  onClick={handleDeleteAll}
+                >
+                  Tout supprimer
+                </button>
+                <hr />
+                <button
+                  type="button"
+                  className="popup-option"
+                  onClick={handleCancel}
+                >
+                  Annuler
+                </button>
+              </div>
+            )}
+
+            <div
+              className={`notifications-list ${isPopupVisible ? "blurred" : ""}`}
+            >
+              <h4>Centre de Notifications</h4>
+              {notifications
+                .slice(0, visibleNotifications)
+                .map(({ id, message }) => (
+                  <div key={id} className="notification-item">
+                    {message}
+                    <button
+                      className="button-supp"
+                      type="button"
+                      onClick={() => removeNotification(id)}
+                    >
+                      ✖
+                    </button>
+                  </div>
+                ))}
+            </div>
+
+            {notifications.length > 3 && visibleNotifications < 10 && (
+              <button
+                type="button"
+                className="view-all-button"
+                onClick={handleViewAll}
+              >
+                Voir tout
+              </button>
+            )}
+          </div>
+        </>
+      )}
+
       <button
         type="button"
         onClick={() =>
           addNotification("Quelqu'un a mis votre article en favori")
         }
-        style={{ marginTop: "20px", marginRight: "5px" }}
       >
         Simuler Favori
       </button>
@@ -68,7 +145,6 @@ function notificationCenter() {
         onClick={() =>
           addNotification("Un de vos articles favoris a été vendu")
         }
-        style={{ marginTop: "20px" }}
       >
         Simuler Vente
       </button>
@@ -76,4 +152,4 @@ function notificationCenter() {
   );
 }
 
-export default notificationCenter;
+export default NotificationCenter;
