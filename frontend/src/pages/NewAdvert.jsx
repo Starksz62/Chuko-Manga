@@ -31,6 +31,10 @@ function NewAdvert() {
     image3: null,
   });
 
+  const handleImageChange = (e) => {
+    setFiles({ ...files, [e.target.name]: e.target.files[0] });
+  };
+
   const handleSelectedManga = (e) => {
     setVolumeList([]);
     setSelectedManga(e.target.value);
@@ -67,23 +71,20 @@ function NewAdvert() {
     }
   }, [selectedManga]);
 
-  const handleImageChange = (e) => {
-    setFiles({ ...files, [e.target.name]: e.target.value });
-  };
-
   const handleSubmit = (e) => {
     e.preventDefault();
+    console.info("upload files01 ", files);
     const formData = new FormData();
-    formData.append("advertTitle", advertTitle);
+    formData.append("title_search_manga", advertTitle);
     formData.append("description", description);
-    formData.append("conditionId", conditionId);
+    formData.append("article_condition_id", conditionId);
     formData.append("price", price);
-    formData.append("selectedManga", selectedManga);
-    formData.append("volumeId", volumeId);
+    formData.append("manga_id", selectedManga);
+    formData.append("volume_id", volumeId);
     formData.append("batch", batch);
     formData.append("alert", alert);
-    formData.append("userId", userId);
-    formData.append("publicationDate", publicationDate);
+    formData.append("user_id", userId);
+    formData.append("publication_date_advert", publicationDate);
     for (const key in files) {
       if (files[key]) {
         console.info(key, files[key]);
@@ -91,6 +92,7 @@ function NewAdvert() {
       }
     }
     console.info("Data to send:", formData);
+    // console.info("image1 tadaaa", formData.files["image1"][0]);
     axios
       .post("http://localhost:3310/api/new-advert", formData)
       .then((res) => {

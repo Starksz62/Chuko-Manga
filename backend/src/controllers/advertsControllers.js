@@ -106,29 +106,43 @@ const getAdvertsImage = async (req, res) => {
   }
 };
 
-// ESSAI AVEC MULTER - PLUSIEURS FICHIERS
+// NOUVEL ESSAI
 const createAdvert = async (req, res) => {
-  const { advert, image } = req.body;
-  let imageId = [];
-  console.info("req.files is", req.files);
-  console.info("advert is:", advert);
-  console.info("image is", image);
+  // console.info("image1 uploaded:", req.files["image1"][0]);
+  // console.info("image2 uploaded:", req.files["image2"][0]);
+  // console.info("image3 uploaded:", req.files["image3"][0]);
+  const advert = req.body;
+  // console.info("this is advert", advert);
+  const imageId = [];
+  let imageId1 = null;
+  let imageId2 = null;
+  let imageId3 = null;
   try {
     const advertId = await models.advert.addAdvert(advert);
     if (advertId !== null) {
-      if (req.files && req.files.length > 0) {
-        const promises = req.files.map(async (files, i) => {
-          console.info("yolo");
-          const isPrimary = i === 0 ? 1 : 0;
-          const singleImageId = await models.advert_image.addImage({
-            ...image,
-            advert_id: advertId,
-            image_path: `/uploads/${req.files[i].filename}`,
-            is_primary: isPrimary,
-          });
-          return singleImageId;
+      if (req.files.image1) {
+        imageId1 = await models.advert_image.addImage({
+          advert_id: advertId,
+          image_path: `http://localhost/public/uploads/${req.files.image1[0].filename}`,
+          is_primary: 1,
         });
-        imageId = await Promise.all(promises);
+        imageId.push(imageId1);
+      }
+      if (req.files.image2) {
+        imageId2 = await models.advert_image.addImage({
+          advert_id: advertId,
+          image_path: `http://localhost/public/uploads/${req.files.image2[0].filename}`,
+          is_primary: 0,
+        });
+        imageId.push(imageId2);
+      }
+      if (req.files.image3) {
+        imageId3 = await models.advert_image.addImage({
+          advert_id: advertId,
+          image_path: `http://localhost/public/uploads/${req.files.image3[0].filename}`,
+          is_primary: 0,
+        });
+        imageId.push(imageId3);
       }
     } else {
       res.status(500).json({ error: "Failed to create advert" });
@@ -140,64 +154,6 @@ const createAdvert = async (req, res) => {
     console.error(err);
   }
 };
-
-// ESSAI AVEC MUTLER
-// const createAdvert = async (req, res) => {
-//   const { advert, image } = req.body;
-//   let imageId = null;
-//   console.info(req.body);
-//   try {
-//     const advertId = await models.advert.addAdvert(advert);
-//     if (advertId !== null) {
-//       console.info("yolo");
-//       imageId = await models.advert_image.addImage({
-//         ...image,
-//         advert_id: advertId,
-//         image_path: `http://localhost/uploads/${req.file.filename}`,
-//       });
-//     } else {
-//       res.status(500).json({ error: "Failed to create advert" });
-//     }
-//     if (advertId !== null || imageId !== null) {
-//       res.status(201).json({ advertId, imageId });
-//     }
-//   } catch (err) {
-//     console.error(err);
-//   }
-// };
-
-// const createAdvert = async (req, res) => {
-//   const { advert, image } = req.body;
-//   let imageId = null;
-//   console.info(req.body);
-//   try {
-//     const advertId = await models.advert.addAdvert(advert);
-//     if (advertId !== null) {
-//       console.info("yolo");
-//       imageId = await models.advert_image.addImage({
-//         ...image,
-//         advert_id: advertId,
-//       });
-//     } else {
-//       res.status(500).json({ error: "Failed to create advert" });
-//     }
-//     if (advertId !== null || imageId !== null) {
-//       res.status(201).json({ advertId, imageId });
-//     }
-//   } catch (err) {
-//     console.error(err);
-//   }
-// };
-
-// const addAdvert = async (req, res) => {
-//   const advert = req.body;
-//   try {
-//     const insertId = await models.advert.addAdvert(advert);
-//     res.status(201).json({ insertId });
-//   } catch (err) {
-//     console.error(err);
-//   }
-// };
 
 const getSearchAdverts = async (req, res) => {
   try {
