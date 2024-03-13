@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
-// import PlusIcon from "../assets/Plus_Icon.png";
+import PlusIcon from "../assets/Plus_Icon.png";
+import DeleteIcon from "../assets/Delete_Icon.png";
 
 import "./NewAdvert.css";
 
@@ -24,8 +25,13 @@ function NewAdvert() {
   const userId = 1;
   const publicationDate = new Date().toISOString().split("T")[0];
 
-  // State designed to transfer images
+  // State designed to preview and transfer images
   const [files, setFiles] = useState({
+    image1: null,
+    image2: null,
+    image3: null,
+  });
+  const [previewUrls, setPreviewUrls] = useState({
     image1: null,
     image2: null,
     image3: null,
@@ -34,6 +40,23 @@ function NewAdvert() {
   const handleImageChange = (e) => {
     setFiles({ ...files, [e.target.name]: e.target.files[0] });
   };
+
+  useEffect(() => {
+    for (const key in files) {
+      if (files[key]) {
+        const url = URL.createObjectURL(files[key]);
+        setPreviewUrls((prevUrls) => ({ ...prevUrls, [key]: url }));
+      }
+    }
+    // Clean up the URLs when component unmounts or files change
+    return () => {
+      for (const key in files) {
+        if (files[key]) {
+          URL.revokeObjectURL(previewUrls[key]);
+        }
+      }
+    };
+  }, [files]);
 
   const handleSelectedManga = (e) => {
     setVolumeList([]);
@@ -71,6 +94,17 @@ function NewAdvert() {
     }
   }, [selectedManga]);
 
+  const deleteFile = (key) => {
+    const updatedFiles = { ...files };
+    updatedFiles[key] = null;
+    setFiles(updatedFiles);
+    if (previewUrls[key]) {
+      const updatedPreviewUrls = { ...previewUrls };
+      updatedPreviewUrls[key] = null;
+      setPreviewUrls(updatedPreviewUrls);
+    }
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
     console.info("upload files01 ", files);
@@ -107,33 +141,35 @@ function NewAdvert() {
       <h1>Crée ton annonce</h1>
       <form onSubmit={handleSubmit}>
         <div className="picture-container">
-          <input
-            className="picture-box"
-            type="file"
-            name="image1"
-            onChange={handleImageChange}
-          />
-          <input
-            className="picture-box"
-            type="file"
-            name="image2"
-            onChange={handleImageChange}
-          />
-          <input
-            className="picture-box"
-            type="file"
-            name="image3"
-            onChange={handleImageChange}
-          />
-          {/* <div className="picture-box">
-            <img src={PlusIcon} alt="Ajouter" />
-          </div>
-          <div className="picture-box">
-            <img src={PlusIcon} alt="Ajouter" />
-          </div>
-          <div className="picture-box">
-            <img src={PlusIcon} alt="Ajouter" />
-          </div> */}
+          {["image1", "image2", "image3"].map((key) => (
+            <div key={key} className="picture-box">
+              <label className="label-picture" htmlFor="file">
+                <img src={PlusIcon} alt="Ajouter" />
+              </label>
+              <input
+                id="file"
+                type="file"
+                name={key}
+                onChange={handleImageChange}
+              />
+              {previewUrls[key] && (
+                <div className="preview-container">
+                  <img
+                    className="preview-image"
+                    src={previewUrls[key]}
+                    alt="Preview"
+                  />
+                  <button
+                    className="delete-preview"
+                    type="button"
+                    onClick={() => deleteFile(key)}
+                  >
+                    <img src={DeleteIcon} alt="delete" />
+                  </button>
+                </div>
+              )}
+            </div>
+          ))}
         </div>
         <label htmlFor="title">Titre </label>
         <input
@@ -198,7 +234,7 @@ function NewAdvert() {
         {batch === 0 ? (
           <>
             <label htmlFor="manga" className="instruction">
-              Tome - Associe ton annonce au manga correspondant dans la liste
+              Associe ton annonce au manga correspondant dans la liste
             </label>
             <select
               id="manga"
@@ -215,7 +251,7 @@ function NewAdvert() {
               ))}
             </select>
             <label htmlFor="volume" className="instruction">
-              Tome - Associe ton annonce au volume correspondant dans la liste
+              Associe ton annonce au volume correspondant dans la liste
             </label>
             <select
               id="volume"
@@ -233,7 +269,7 @@ function NewAdvert() {
         ) : (
           <>
             <label htmlFor="manga" className="instruction">
-              Lot - Associe ton annonce au manga correspondant dans la liste
+              Associe ton annonce au manga correspondant dans la liste
             </label>
             <select
               id="manga"
