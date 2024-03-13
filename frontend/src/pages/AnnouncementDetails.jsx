@@ -46,8 +46,14 @@ function AnnouncementDetail() {
     <div>
       <div className="container-Details">
         <div className="image-manga-sell">
-          <img src={detailManga[0].image_paths[0]} alt="" />
-          <img src={detailManga[0].image_paths[1]} alt="" />
+          <img
+            src={`http://localhost:3310${detailManga[0].image_paths[0]}`}
+            alt=""
+          />
+          <img
+            src={`http://localhost:3310${detailManga[0].image_paths[1]}`}
+            alt=""
+          />
 
           <div className="information-manga-sell">
             <p className="information-price">{detailManga[0].price} €</p>

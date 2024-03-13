@@ -447,8 +447,8 @@ INSERT INTO
 advert_image (image_path, is_primary, advert_id)
 VALUES ('/static/Advert1_Picture1.jpeg', 1, 1), 
 ('/static/Advert1_Picture2.jpeg', 0, 1),
-('/static/Advert2_Picture1.jpeg', 1, 2),
-('/static/Advert2_Picture2.jpeg', 0, 2),
+('/static/Advert2_Picture1.png', 1, 2),
+('/static/Advert2_Picture2.png', 0, 2),
 ('/static/Advert3_Picture1.jpeg', 1, 3),
 ('/static/Advert4_Picture1.jpeg', 1, 4),
 ('/static/Advert4_Picture2.jpeg', 0, 4),

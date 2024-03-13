@@ -123,7 +123,7 @@ const createAdvert = async (req, res) => {
       if (req.files.image1) {
         imageId1 = await models.advert_image.addImage({
           advert_id: advertId,
-          image_path: `http://localhost/public/uploads/${req.files.image1[0].filename}`,
+          image_path: `/static/${req.files.image1[0].filename}`,
           is_primary: 1,
         });
         imageId.push(imageId1);
@@ -131,7 +131,7 @@ const createAdvert = async (req, res) => {
       if (req.files.image2) {
         imageId2 = await models.advert_image.addImage({
           advert_id: advertId,
-          image_path: `http://localhost/public/uploads/${req.files.image2[0].filename}`,
+          image_path: `/static/${req.files.image2[0].filename}`,
           is_primary: 0,
         });
         imageId.push(imageId2);
@@ -139,7 +139,7 @@ const createAdvert = async (req, res) => {
       if (req.files.image3) {
         imageId3 = await models.advert_image.addImage({
           advert_id: advertId,
-          image_path: `http://localhost/public/uploads/${req.files.image3[0].filename}`,
+          image_path: `/static/${req.files.image3[0].filename}`,
           is_primary: 0,
         });
         imageId.push(imageId3);

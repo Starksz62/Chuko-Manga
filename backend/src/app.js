@@ -17,9 +17,11 @@ const app = express();
 
 app.use(cors());
 app.use("/static", express.static(`${__dirname}/assets`));
+app.use("/static", express.static("public/uploads"));
 
-app.use("/static", express.static(`${__dirname}/src/assets`));
-app.use("/uploads", express.static(`${__dirname}/src/uploads`));
+// app.use("/uploads", express.static(`${__dirname}/uploads`));
+
+// app.use("/static", express.static(`${__dirname}/src/assets`));
 
 // You should NOT do that: such code uses the `cors` module to allow all origins, which can pose security issues.
 // For this pedagogical template, the CORS code is commented out to show the need for defining specific allowed origins.
