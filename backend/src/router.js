@@ -3,6 +3,8 @@ const express = require("express");
 
 const router = express.Router();
 
+const { hashPassword } = require("./services/auth");
+
 const validateUser = require("./middlewares/validateUser");
 
 /* ************************************************************************* */
@@ -85,7 +87,7 @@ router.get("/user/:id", usersControllers.getUserById);
 router.get("/user-profil/:id", usersControllers.getUserProfilById);
 // Route to get comment profil user for one specific user
 router.get("/user-profil-com/:id", usersControllers.getUserProfilComById);
-router.post("/users", usersControllers.add);
+router.post("/users", hashPassword, usersControllers.add);
 // route post Update Profil User
 router.put("/user/:id", validateUser, usersControllers.updateUser);
 
@@ -115,5 +117,10 @@ router.get("/mangas", mangasControllers.getAllMangas);
 // Post ma query du front au back
 router.get("/explore", advertsControllers.getAllAdverts);
 router.get("/explore/:query", advertsControllers.getSearchAdverts);
+
+// Import authControllers module for handling auth-related operations
+const authControllers = require("./controllers/authControllers");
+
+router.post("/login", authControllers.login);
 
 module.exports = router;
