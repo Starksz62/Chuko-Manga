@@ -12,7 +12,7 @@ function Connexion({ handleContentModal, handleClickOpen }) {
   const emailRef = useRef();
   const passwordRef = useRef();
 
-  const { setUser } = useContext(UserContext);
+  const { setAuth } = useContext(UserContext);
 
   // Gestionnaire de soumission du formulaire
   const handleSubmit = async (event) => {
@@ -34,9 +34,9 @@ function Connexion({ handleContentModal, handleClickOpen }) {
 
       // Redirection vers la page de connexion si la création réussit
       if (response.status === 200) {
-        const user = await response.json();
+        const auth = await response.json();
 
-        setUser(user);
+        setAuth(auth);
 
         handleClickOpen();
       } else {
