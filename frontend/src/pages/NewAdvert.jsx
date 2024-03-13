@@ -92,7 +92,6 @@ function NewAdvert() {
       }
     }
     console.info("Data to send:", formData);
-    // console.info("image1 tadaaa", formData.files["image1"][0]);
     axios
       .post("http://localhost:3310/api/new-advert", formData)
       .then((res) => {
