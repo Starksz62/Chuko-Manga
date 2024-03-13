@@ -137,10 +137,31 @@ const getSearchAdverts = async (req, res) => {
     console.error(err);
   }
 };
+const recentAdverts = async (req, res) => {
+  const { batch, genreId, conditionName, maxPrice } = req.query;
+  const isBatch = batch === 'true';
+  try {
+    const adverts = await models.advert.findAdverts({
+      batch: isBatch,
+      genreId,
+      conditionName,
+      maxPrice
+    });
 
+    if (adverts.length === 0) {
+      return res.status(404).json({ message: "Aucune annonce trouvée." });
+    }
+
+    return res.json(adverts);
+  } catch (error) {
+    console.error("Erreur lors de la récupération des annonces récentes:", error);
+    return res.status(500).json({ error: "Erreur interne du serveur" });
+  }
+};
 module.exports = {
   getAllAdverts,
   getAllCards,
+  recentAdverts,
   getRecentUniqueAdverts,
   getRecentBatch,
   getSearchAdverts,

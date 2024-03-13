@@ -1,22 +1,16 @@
 import PropTypes from "prop-types";
 import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import AdvertCard from "./AdvertCard";
 import "./PrefilterAdvertByDesc.css";
 
 function FilteredadvertsCard({ titlefromAnnounceDetail }) {
   const [, setAdverts] = useState([]);
   const [filteredAdverts, setFilteredAdverts] = useState([]);
-  // const [favoriteAdverts, setFavoriteAdverts] = useState([]);
+  const navigate = useNavigate();
   const defaultTitle = "Explorer les derniers tomes ajoutés :";
   const titleToShow = titlefromAnnounceDetail || defaultTitle;
-  // const handleFavoriteClick = (advertId) => {
-  //   if (favoriteAdverts.includes(advertId)) {
-  //     setFavoriteAdverts(favoriteAdverts.filter((id) => id !== advertId));
-  //   } else {
-  //     setFavoriteAdverts([...favoriteAdverts, advertId]);
-  //   }
-  // };
+
   useEffect(() => {
     fetch("http://localhost:3310/api/unique-adverts-date-desc")
       .then((response) => {
@@ -40,6 +34,10 @@ function FilteredadvertsCard({ titlefromAnnounceDetail }) {
       });
   }, []);
 
+  const handleViewAllClick = () => {
+    navigate("/explore?type=Desc");
+  };
+
   return (
     <div className="prefilter-section">
       <h2>{titleToShow}</h2>
@@ -53,14 +51,17 @@ function FilteredadvertsCard({ titlefromAnnounceDetail }) {
             <p>Chargement en cours...</p>
           )}
         </div>
-        <Link to="/explore">
-          <button type="button" className="bntSeeAllTomes">
-            <div className="textBtn">
-              {" "}
-              Voir tous <br /> les tomes
-            </div>
-          </button>
-        </Link>
+
+        <button
+          onClick={handleViewAllClick}
+          type="button"
+          className="bntSeeAllTomes"
+        >
+          <div className="textBtn">
+            {" "}
+            Voir tous <br /> les tomes
+          </div>
+        </button>
       </div>
     </div>
   );

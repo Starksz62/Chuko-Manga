@@ -38,6 +38,7 @@ router.get(
   "/unique-adverts-date-desc",
   advertsControllers.getRecentUniqueAdverts
 );
+router.get("/find-recent-adverts", advertsControllers.recentAdverts);
 // Route to get only adverts for batch, ordered by date of publication (homepage)
 router.get("/batch-adverts-date-desc", advertsControllers.getRecentBatch);
 // Route to get detailed information for one specific advert (page on detail advert)

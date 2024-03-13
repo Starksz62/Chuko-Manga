@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import AdvertCard from "./AdvertCard";
 import "./PrefilterAdvertByDesc.css";
 import "./PrefilterAdvertByBatch.css";
@@ -7,7 +7,7 @@ import "./PrefilterAdvertByBatch.css";
 function FilteredadvertsCard() {
   const [, setAdverts] = useState([]);
   const [filteredAdverts, setFilteredAdverts] = useState([]);
-
+  const navigate = useNavigate();
   useEffect(() => {
     fetch("http://localhost:3310/api/batch-adverts-date-desc")
       .then((response) => {
@@ -28,6 +28,10 @@ function FilteredadvertsCard() {
       });
   }, []);
 
+  const handleViewAllClick = () => {
+    navigate("/explore?type=Batch");
+  };
+
   return (
     <div className="prefilter-section">
       <h2>Explorer les dernières collections ajoutées :</h2>
@@ -41,14 +45,17 @@ function FilteredadvertsCard() {
             <p>Chargement en cours...</p>
           )}
         </div>
-        <Link to="/explore">
-          <button type="button" className="bntSeeAllTomes">
-            <div className="textBtn">
-              {" "}
-              Voir toutes <br /> les collections
-            </div>
-          </button>
-        </Link>
+
+        <button
+          onClick={handleViewAllClick}
+          type="button"
+          className="bntSeeAllTomes"
+        >
+          <div className="textBtn">
+            {" "}
+            Voir toutes <br /> les collections
+          </div>
+        </button>
       </div>
     </div>
   );

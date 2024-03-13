@@ -11,7 +11,7 @@ import FilterIcon from "../assets/filter.png";
 import "./LeftNavbar.css";
 
 function LeftNavbar() {
-  const [setIsMenuOpen] = useState(false);
+  const setIsMenuOpen = false;
   const [showFilters, setShowFilters] = useState(false);
   const [currentFilter, setCurrentFilter] = useState(null);
 
