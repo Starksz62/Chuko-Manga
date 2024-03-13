@@ -14,34 +14,25 @@ function DetailsPersonal() {
     lastname: "",
     email: "",
     phone: "",
-    picture: null,
+    picture: "",
   });
 
   useEffect(() => {
-    // Выполнение GET-запроса при монтировании компонента
-    axios
-      .get(`http://localhost:3310/api/user/${id}`)
-      .then((response) => response.json())
+    fetch(`http://localhost:3310/api/user/${id}`)
+      .then((res) => {
+        if (!res.ok) {
+          throw new Error("Network response was not ok");
+        }
+        return res.json();
+      })
       .then((data) => {
-        // Обновление состояния formData данными пользователя
+        console.info("Mes donnees user :", data);
         setFormData(data);
       })
       .catch((error) => {
         console.error("Error fetching user data:", error);
       });
-  }, []);
-  // Перезапустить эффект только при монтировании компонента
-  const handleUpdateUser = () => {
-    // Выполнение PUT-запроса при обновлении данных пользователя
-    axios
-      .put(`http://localhost:3310/api/user/${id}`, formData)
-      .then((response) => {
-        console.warn("Success updating user:", response.data);
-      })
-      .catch((error) => {
-        console.error("Error updating user:", error);
-      });
-  };
+  }, [id]);
 
   const [isEmailVisible, setIsEmailVisible] = useState(false);
   const handleEmailVisibilityToggle = () => {
@@ -51,6 +42,7 @@ function DetailsPersonal() {
   const handlePhoneVisibilityToggle = () => {
     setIsPhoneVisible(!isPhoneVisible);
   };
+
   const handleChange = (e) => {
     setFormData({
       ...formData,
@@ -58,9 +50,65 @@ function DetailsPersonal() {
     });
   };
 
+  const handleFileChange = (event) => {
+    const file = event.target.files[0];
+    const reader = new FileReader();
+    reader.onload = (e) => {
+      const imageDataUrl = e.target.result;
+      setFormData({
+        ...formData,
+        picture: imageDataUrl,
+      });
+    };
+    reader.readAsDataURL(file);
+  };
+
+  const handleUpdateUser = () => {
+    axios
+      .put(`http://localhost:3310/api/user/${id}`, formData)
+      .then((response) => {
+        console.warn("Success updating user:", response.data);
+      })
+      .catch((error) => {
+        console.error("Error updating user:", error);
+      });
+  };
+  // const [files, setFiles] = useState();
+  // const handleUpdateUser = () => {
+  //   formData.append("file", files);
+  //   axios
+  //     .put(`http://localhost:3310/api/user/${id}`, formData)
+  //     .then((response) => {
+  //       console.warn("Success updating user:", response.data);
+  //     })
+  //     .catch((error) => {
+  //       console.error("Error updating user:", error);
+  //     });
+  // };
+
   return (
     <form className="ContainerCreation" onSubmit={handleUpdateUser}>
-      <div className="input_label_profil">
+      <div>
+        <label htmlFor="picture" className="label_profil">
+          Choisi ta photo:
+        </label>
+        <input
+          type="file"
+          id="picture_input"
+          name="picture"
+          accept="image/*"
+          onChange={handleFileChange}
+        />
+        {formData.picture && (
+          <img
+            src={formData.picture}
+            alt="Selected"
+            style={{ maxWidth: "100px" }}
+          />
+        )}
+      </div>
+
+      {/* <div className="input_label_profil">
         <label htmlFor="picture" className="label_profil">
           Choisi ta photo:
         </label>
@@ -88,7 +136,7 @@ function DetailsPersonal() {
             "+"
           )}
         </button>
-      </div>
+      </div> */}
       <div className="input_label_profil">
         <label htmlFor="pseudo" className="label_profil">
           Ton pseudo:
@@ -101,7 +149,6 @@ function DetailsPersonal() {
           onChange={handleChange}
           className="input_profil"
           placeholder=" "
-          required
         />
       </div>
       <div className="input_label_profil">
@@ -144,7 +191,6 @@ function DetailsPersonal() {
           value={formData.email}
           onChange={handleChange}
           className="input_profil"
-          required
         />
       </div>
       <div onClick={handleEmailVisibilityToggle} className="checkbox_container">
@@ -177,55 +223,3 @@ function DetailsPersonal() {
 }
 
 export default DetailsPersonal;
-
-// import React, { useState } from "react";
-
-// const inputFields = [
-//   { label: "Ton pseudo:", id: "pseudo", name: "pseudo", placeholder: " ", required: true },
-//   { label: "Ton prénom:", id: "firstname", name: "firstname", placeholder: " ", required: true },
-//   { label: "Ton nom:", id: "lastname", name: "lastname", required: true },
-//   { label: "Email:", id: "email_input", name: "email", required: true },
-//   // Добавьте другие поля ввода, если необходимо
-// ];
-
-// function DetailsPersonal() {
-//   const [formData, setFormData] = useState({
-//     pseudo: "",
-//     firstname: "",
-//     lastname: "",
-//     email: "",
-//     // Добавьте другие поля ввода, если необходимо
-//   });
-
-//   const handleChange = (e) => {
-//     setFormData({
-//       ...formData,
-//       [e.target.name]: e.target.value,
-//     });
-//   };
-
-//   return (
-//     <form className="ContainerCreation">
-//       {inputFields.map((field) => (
-//         <div className="input_label_profil" key={field.id}>
-//           <label htmlFor={field.id} className="label_profil">
-//             {field.label}
-//           </label>
-//           <input
-//             type="text"
-//             id={field.id}
-//             name={field.name}
-//             value={formData[field.name]}
-//             onChange={handleChange}
-//             className="input_profil"
-//             placeholder={field.placeholder}
-//             required={field.required}
-//           />
-//         </div>
-//       ))}
-//       <button className="button_modifier">Modifier</button>
-//     </form>
-//   );
-// }
-
-// export default DetailsPersonal;

@@ -30,6 +30,7 @@ function Adresse() {
     axios
       .post(url, data)
       .then((response) => {
+        console.info("Mes donnees user :", data);
         console.warn("Success:", response.data);
       })
       .catch((error) => {
