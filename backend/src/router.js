@@ -3,7 +3,7 @@ const express = require("express");
 
 const router = express.Router();
 
-const { hashPassword } = require("./services/auth");
+const { hashPassword, verifyToken } = require("./services/auth");
 
 const validateUser = require("./middlewares/validateUser");
 const validateAddress = require("./middlewares/validateAddress");
@@ -131,5 +131,9 @@ router.get("/explore/:query", advertsControllers.getSearchAdverts);
 const authControllers = require("./controllers/authControllers");
 
 router.post("/login", authControllers.login);
+
+router.use(verifyToken);
+
+// Thoses routes are protected
 
 module.exports = router;

@@ -12,7 +12,7 @@ function HeaderNav() {
   const [searchQuery, setSearchQuery] = useState("");
   const navigate = useNavigate();
 
-  const { user, setUser } = useContext(UserContext);
+  const { auth, setAuth } = useContext(UserContext);
 
   const [open, setOpen] = useState(false);
 
@@ -61,7 +61,7 @@ function HeaderNav() {
         />
       </div>
       <div className="buttonHeader-container">
-        {user == null ? (
+        {auth == null ? (
           <button
             className="incription-login-button"
             type="button"
@@ -74,7 +74,7 @@ function HeaderNav() {
             className="incription-login-button"
             type="button"
             onClick={() => {
-              setUser(null);
+              setAuth(null);
             }}
           >
             Se déconnecter
