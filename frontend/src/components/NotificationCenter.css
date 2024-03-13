@@ -28,6 +28,7 @@
 .edit-link {
   cursor: pointer;
   color: rgb(9, 9, 9);
+  margin-bottom: 15px;
 }
 
 .popup {
@@ -75,17 +76,26 @@
   height: auto;
 }
 
+.notification-center h4 {
+  margin-bottom: 20px;
+}
+
 .notifications-list.blurred {
   filter: blur(0.5px);
 }
 
 .button-supp {
-  display: inline;
-  padding-left: 10px;
+  display: flex;
+  padding-left: 14vh;
+}
+
+.view-all-container {
+  text-align: center;
+  margin-top: 20px;
 }
 
 .view-all-button {
-  background-color: orange;
+  background-color: #dd7a07;
   color: white;
   border: none;
   padding: 10px 20px;
@@ -93,4 +103,41 @@
   border-radius: 5px;
   margin-top: 10px;
   font-weight: bold;
+}
+
+.notification-time {
+  display: flex;
+  align-items: center;
+  font-size: x-small;
+}
+
+.notification-item {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  gap: 5px;
+  margin-bottom: 10px;
+  border-bottom: 1px solid #ccc;
+  padding-bottom: 10px;
+}
+
+.notification-time-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.notification-item:first-child {
+  margin-top: 20px;
+}
+
+.notification-item:last-child {
+  border-bottom: none;
+}
+
+hr {
+  border: none;
+  border-top: 1px solid #ccc;
+  margin: 10px 0;
 }

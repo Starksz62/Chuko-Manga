@@ -1,4 +1,8 @@
 import React, { useState } from "react";
+
+// eslint-disable-next-line import/no-extraneous-dependencies
+import { formatDistanceToNow } from "date-fns";
+
 import "./NotificationCenter.css";
 import NotificationBellIcon from "../assets/notificationBell.png";
 
@@ -22,8 +26,12 @@ function NotificationCenter() {
   };
 
   const addNotification = (message) => {
-    const id = new Date().getTime();
-    setNotifications((prev) => [{ id, message }, ...prev]);
+    const notification = {
+      id: new Date().getTime(),
+      message,
+      timestamp: new Date(),
+    };
+    setNotifications((prev) => [...prev, notification]);
   };
 
   const removeNotification = (id) => {
@@ -74,7 +82,10 @@ function NotificationCenter() {
             }}
             aria-label="Fermer le centre de notifications"
           />
-          <div className="notification-center">
+          <div
+            className={`notification-center ${isPopupVisible ? "blurred" : ""}`}
+            onMouseLeave={() => setVisibleNotifications(3)}
+          >
             <button type="button" className="edit-link" onClick={togglePopup}>
               Modifier
             </button>
@@ -105,28 +116,38 @@ function NotificationCenter() {
               <h4>Centre de Notifications</h4>
               {notifications
                 .slice(0, visibleNotifications)
-                .map(({ id, message }) => (
+                .map(({ id, message, timestamp }) => (
                   <div key={id} className="notification-item">
                     {message}
-                    <button
-                      className="button-supp"
-                      type="button"
-                      onClick={() => removeNotification(id)}
-                    >
-                      ✖
-                    </button>
+                    <div className="notification-time-wrapper">
+                      <span className="notification-time">
+                        {formatDistanceToNow(new Date(timestamp), {
+                          addSuffix: true,
+                        })}
+                      </span>
+                      <hr />
+                      <button
+                        className="button-supp"
+                        type="button"
+                        onClick={() => removeNotification(id)}
+                      >
+                        ✖
+                      </button>
+                    </div>
                   </div>
                 ))}
             </div>
 
             {notifications.length > 3 && visibleNotifications < 10 && (
-              <button
-                type="button"
-                className="view-all-button"
-                onClick={handleViewAll}
-              >
-                Voir tout
-              </button>
+              <div className="view-all-container">
+                <button
+                  type="button"
+                  className="view-all-button"
+                  onClick={handleViewAll}
+                >
+                  Voir tout
+                </button>
+              </div>
             )}
           </div>
         </>
@@ -138,7 +159,7 @@ function NotificationCenter() {
           addNotification("Quelqu'un a mis votre article en favori")
         }
       >
-        Simuler Favori
+        Favori
       </button>
       <button
         type="button"
@@ -146,7 +167,7 @@ function NotificationCenter() {
           addNotification("Un de vos articles favoris a été vendu")
         }
       >
-        Simuler Vente
+        Vente
       </button>
     </div>
   );
