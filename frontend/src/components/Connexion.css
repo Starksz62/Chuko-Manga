@@ -23,14 +23,13 @@ input {
   border-radius: 3px;
 }
 
-.text-inscription {
+.text-connexion {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
 .Button-type {
-  margin-top: 1rem;
   color: white;
   background-color: orange;
   padding: 0.5rem 2.2rem;

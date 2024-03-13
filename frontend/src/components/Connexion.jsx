@@ -1,42 +1,44 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable jsx-a11y/no-static-element-interactions */
-/* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
-import { useState, useRef } from "react";
-import "./Inscription.css";
+import { useRef, useState, useContext } from "react";
 
-function Inscription({ handleContentModal }) {
-  // Référence pour le champ pseudo
-  const pseudoRef = useRef();
+import UserContext from "../context/UserContext";
 
-  // Référence pour le champ email
+import "./Connexion.css";
+
+function Connexion({ handleContentModal, handleClickOpen }) {
+  // Références pour les champs email et mot de passe
   const emailRef = useRef();
+  const passwordRef = useRef();
 
-  // États pour le mot de passe et la confirmation du mot de passe
-  const [password, setPassword] = useState("Mot de passe");
+  const { setUser } = useContext(UserContext);
 
   // Gestionnaire de soumission du formulaire
   const handleSubmit = async (event) => {
     event.preventDefault();
 
     try {
-      // Appel à l'API pour créer un nouvel utilisateur
+      // Appel à l'API pour demander une connexion
       const response = await fetch(
-        `${import.meta.env.VITE_BACKEND_URL}/api/users`,
+        `${import.meta.env.VITE_BACKEND_URL}/api/login`,
         {
           method: "post",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
-            pseudo: pseudoRef.current.value,
             email: emailRef.current.value,
-            password,
+            password: passwordRef.current.value,
           }),
         }
       );
 
       // Redirection vers la page de connexion si la création réussit
-      if (response.status === 201) {
-        handleContentModal();
+      if (response.status === 200) {
+        const user = await response.json();
+
+        setUser(user);
+
+        handleClickOpen();
       } else {
         // Log des détails de la réponse en cas d'échec
         console.info(response);
@@ -45,14 +47,6 @@ function Inscription({ handleContentModal }) {
       // Log des erreurs possibles
       console.error(err);
     }
-  };
-
-  // Gestionnaire évènement Pseudo
-  const [inputPseudo, setInputPseudo] = useState("Entrez votre pseudo");
-
-  const handleChangeInputPseudo = (event) => {
-    const targetValue = event.target.value;
-    setInputPseudo(targetValue);
   };
 
   // Gestionnaire évènement Email
@@ -64,24 +58,18 @@ function Inscription({ handleContentModal }) {
   };
 
   // Gestionnaire évènement Password
+  const [inputPassword, setInputPassword] = useState("Mot de passe");
+
   const handleChangeInputPassword = (event) => {
     const targetValue = event.target.value;
-    setPassword(targetValue);
+    setInputPassword(targetValue);
   };
 
+  // Rendu du composant formulaire
   return (
     <div className="form">
-      <h1>Inscription</h1>
+      <h1>Connexion</h1>
       <form className="inForm" onSubmit={handleSubmit}>
-        {/* Champ pour le pseudo */}
-        <input
-          ref={pseudoRef}
-          type="pseudo"
-          id="pseudo"
-          value={inputPseudo}
-          onChange={handleChangeInputPseudo}
-        />
-        <br />
         {/* Champ pour l'email */}
         <input
           ref={emailRef}
@@ -95,7 +83,8 @@ function Inscription({ handleContentModal }) {
         <input
           type="password"
           id="password"
-          value={password}
+          ref={passwordRef}
+          value={inputPassword}
           onChange={handleChangeInputPassword}
         />
         {/* Bouton de soumission du formulaire */}
@@ -103,15 +92,27 @@ function Inscription({ handleContentModal }) {
           Continuer
         </button>
       </form>
-      <div className="text-inscription">
-        {/* Paragraphe pour le lien de connexion */}
-        <p style={{ color: "orange" }}>
-          Vous avez déjà un compte?{" "}
+      <div className="text-connexion">
+        <p
+          style={{
+            color: "orange",
+            cursor: "pointer",
+            textDecoration: "underline",
+          }}
+        >
+          Mot de passe oublié ?
+        </p>
+        <p style={{ color: "grey" }}>
+          Tu n'as pas de compte ?{" "}
           <span
-            style={{ cursor: "pointer", textDecoration: "underline" }}
+            style={{
+              color: "orange",
+              cursor: "pointer",
+              textDecoration: "underline",
+            }}
             onClick={handleContentModal}
           >
-            Connectez-vous
+            Inscris-toi
           </span>
         </p>
       </div>
@@ -119,4 +120,4 @@ function Inscription({ handleContentModal }) {
   );
 }
 
-export default Inscription;
+export default Connexion;
