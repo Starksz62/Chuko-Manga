@@ -16,15 +16,7 @@ function HeaderNav() {
 
   const [open, setOpen] = useState(false);
 
-  const handleClickOpen = (event) => {
-    if (event.target.classList.contains("isOnline-button")) {
-      setOpen(!open);
-    } else if (event.target.classList.contains("modal-connexion")) {
-      setOpen(!open);
-    }
-  };
-
-  const handleClickLogin = () => {
+  const handleClickOpen = () => {
     setOpen(!open);
   };
 
@@ -71,7 +63,7 @@ function HeaderNav() {
       <div className="buttonHeader-container">
         {user == null ? (
           <button
-            className="incription-login-button isOnline-button"
+            className="incription-login-button"
             type="button"
             onClick={handleClickOpen}
           >
@@ -88,12 +80,7 @@ function HeaderNav() {
             Se déconnecter
           </button>
         )}
-        {open && (
-          <ConnexionModal
-            handleClickOpen={handleClickOpen}
-            handleClickLogin={handleClickLogin}
-          />
-        )}
+        {open && <ConnexionModal handleClickOpen={handleClickOpen} />}
         <button className="vendre-button" type="button">
           Vends tes Mangas
         </button>

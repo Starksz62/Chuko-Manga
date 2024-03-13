@@ -7,7 +7,7 @@ import UserContext from "../context/UserContext";
 
 import "./Connexion.css";
 
-function Connexion({ handleContentModal, handleClickLogin }) {
+function Connexion({ handleContentModal, handleClickOpen }) {
   // Références pour les champs email et mot de passe
   const emailRef = useRef();
   const passwordRef = useRef();
@@ -38,7 +38,7 @@ function Connexion({ handleContentModal, handleClickLogin }) {
 
         setUser(user);
 
-        handleClickLogin();
+        handleClickOpen();
       } else {
         // Log des détails de la réponse en cas d'échec
         console.info(response);

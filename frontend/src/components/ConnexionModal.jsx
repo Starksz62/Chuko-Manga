@@ -9,7 +9,7 @@ import Inscription from "./Inscription";
 
 import imgSub from "../assets/image-inscription.png";
 
-function ConnexionModal({ handleClickOpen, handleClickLogin }) {
+function ConnexionModal({ handleClickOpen }) {
   const [showConnexion, setShowConnexion] = useState(true);
 
   const handleContentModal = () => {
@@ -17,12 +17,12 @@ function ConnexionModal({ handleClickOpen, handleClickLogin }) {
   };
 
   return (
-    <div className="modal-connexion" onClick={handleClickOpen}>
+    <div className="modal-connexion">
       <div className="modal-content-connexion">
         {showConnexion === true ? (
           <Connexion
             handleContentModal={handleContentModal}
-            handleClickLogin={handleClickLogin}
+            handleClickOpen={handleClickOpen}
           />
         ) : (
           <Inscription handleContentModal={handleContentModal} />
