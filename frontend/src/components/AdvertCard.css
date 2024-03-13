@@ -103,3 +103,8 @@
   width: 20px;
   height: 20px;
 }
+
+.AdvertCard {
+  width: 290px; /* Ajoute une largeur fixe pour chaque annonce */
+  margin-right: 10px;
+}

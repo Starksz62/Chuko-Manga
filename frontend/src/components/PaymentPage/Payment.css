@@ -11,12 +11,24 @@
 }
 .resume-payment {
   background: #f8f8f8;
+  margin-top: 27px;
+  height: 397px;
   padding: 0px 5px;
+  border-radius: 4px;
+  padding: 10px;
+  box-shadow:
+    rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
+    rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
 }
 .resume-payment p {
   padding: 0px 5px 0px 5px;
   margin-bottom: 16px;
 }
+
+.paraCrypteSecurise {
+  font-size: small;
+}
+
 .confirmation-payment button {
   width: 100%;
   margin-top: 25px;
