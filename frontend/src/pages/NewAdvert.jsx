@@ -114,7 +114,9 @@ function NewAdvert() {
     formData.append("article_condition_id", conditionId);
     formData.append("price", price);
     formData.append("manga_id", selectedManga);
-    formData.append("volume_id", volumeId);
+    if (volumeId !== null) {
+      formData.append("volume_id", volumeId);
+    }
     formData.append("batch", batch);
     formData.append("alert", alert);
     formData.append("user_id", userId);
