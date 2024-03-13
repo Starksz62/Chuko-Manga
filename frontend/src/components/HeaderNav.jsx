@@ -48,7 +48,7 @@ function HeaderNav() {
   return (
     <header className="navbar-header">
       <div className="searchbar-container">
-        <div>
+        {/* <div>
           <div className="menu-triangle">
             <button className="menu-button" type="button">
               Menu
@@ -59,12 +59,10 @@ function HeaderNav() {
             <Link to="/explore">
               <li className="Explorer">Explorer</li>
             </Link>
-            {/* <Link to={`/Catalogue/`}> */}
             <li className="Catalogue">Catalogue</li>
-            {/* </Link> */}
           </ul>
         </div>
-        <div className="icone-loupe" />
+        <div className="icone-loupe" /> */}
         <input
           className="searchbar"
           type="text"
@@ -77,7 +75,7 @@ function HeaderNav() {
       </div>
       <div className="buttonHeader-container">
         <button className="incription-login-button" type="button">
-          S'incrire | Se connecter
+          S'inscrire | Se connecter
         </button>
         <Link to="/new-advert">
           <button className="vendre-button" type="button">

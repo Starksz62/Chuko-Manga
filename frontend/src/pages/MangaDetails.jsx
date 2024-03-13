@@ -1,4 +1,6 @@
-import React, { useEffect, useState } from "react";
+import PropTypes from "prop-types";
+
+import { useEffect, useState } from "react";
 
 import axios from "axios";
 
@@ -6,15 +8,16 @@ import "./MangaDetails.css";
 import { useParams } from "react-router-dom";
 import MangaVolume from "../components/MangaVolume";
 
-function MangaDetails() {
+function MangaDetails({ id: propId, showVolumes = true }) {
   const [manga, setManga] = useState({});
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState("");
-  const { id } = useParams();
+  const { id: paramId } = useParams();
+  const mangaId = propId || paramId;
 
   useEffect(() => {
     axios
-      .get(`http://localhost:3310/api/mangas/${id}`)
+      .get(`http://localhost:3310/api/mangas/${mangaId}`)
       .then((response) => {
         console.info("Réponse de l'API:", response.data);
         setManga(response.data[0]);
@@ -26,7 +29,7 @@ function MangaDetails() {
         setError(error.toString());
         setIsLoading(false);
       });
-  }, [id]);
+  }, [mangaId]);
 
   if (isLoading) return <div>Chargement...</div>;
   if (error) return <div>Erreur : {error}</div>;
@@ -93,9 +96,12 @@ function MangaDetails() {
           </div>
         </div>
       </div>
-      <MangaVolume />
+      {showVolumes && <MangaVolume />}
     </div>
   );
 }
-
+MangaDetails.propTypes = {
+  id: PropTypes.string.isRequired, // Utilisez PropTypes.number si l'ID est un nombre
+  showVolumes: PropTypes.bool.isRequired,
+};
 export default MangaDetails;

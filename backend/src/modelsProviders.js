@@ -13,6 +13,7 @@ const UsersManager = require("./models/UsersManager");
 const AdvertsManager = require("./models/AdvertsManager");
 const ConditionsManager = require("./models/ConditionsManager");
 const OrdersManager = require("./models/OrdersManager");
+const AddressManager = require("./models/AddressManager");
 const VolumesManager = require("./models/VolumesManager");
 const AdvertImagesManager = require("./models/advertImagesManager");
 
@@ -26,6 +27,7 @@ const managers = [
   UsersManager,
   ConditionsManager,
   OrdersManager,
+  AddressManager,
   VolumesManager,
   AdvertImagesManager,
 ];

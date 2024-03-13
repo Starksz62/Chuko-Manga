@@ -4,6 +4,8 @@ const express = require("express");
 const router = express.Router();
 const multer = require("./middlewares/multer-config");
 
+const validateUser = require("./middlewares/validateUser");
+
 /* ************************************************************************* */
 // Define Your API Routes Here
 /* ************************************************************************* */
@@ -16,12 +18,14 @@ const charactersControllers = require("./controllers/charactersControllers");
 const usersControllers = require("./controllers/usersControllers");
 const conditionsControllers = require("./controllers/conditionsControllers");
 const ordersControllers = require("./controllers/ordersControllers");
+const addressControllers = require("./controllers/addressControllers");
 const volumesControllers = require("./controllers/volumesControllers");
 // const searchControllers = require("./controllers/searchControllers");
 // const moviesControllers = require("./controllers/moviesControllers");
 
 // Route to get mangas
 router.get("/mangas", mangasControllers.getAllMangas);
+router.get("/manga/catalog", mangasControllers.getCatalogMangas);
 router.get("/mangas/:id", mangasControllers.getMangaById);
 
 // ROUTES TO GET ADVERTS
@@ -76,6 +80,9 @@ router.get("/volumes/:mangaId", volumesControllers.getVolumesByMangaId);
 // // ROUTE TO GET CONDITIONS
 router.get("/conditions", conditionsControllers.getAllConditions);
 
+// --------------------------------ROUTES USERS--------------------------------
+
+router.get("/users", usersControllers.getAllUsers);
 // Route to get user table
 router.get("/user", usersControllers.getAllUsers);
 // Route to get all users for one specific user
@@ -84,6 +91,14 @@ router.get("/user/:id", usersControllers.getUserById);
 router.get("/user-profil/:id", usersControllers.getUserProfilById);
 // Route to get comment profil user for one specific user
 router.get("/user-profil-com/:id", usersControllers.getUserProfilComById);
+router.post("/users", usersControllers.add);
+// route post Update Profil User
+router.put("/user/:id", validateUser, usersControllers.updateUser);
+
+// --------------------------------ROUTES ADDRESS--------------------------------
+
+router.get("/address/:id", addressControllers.getAddressbyId);
+router.post("/address/:id", addressControllers.addAddressbyId);
 
 // Route to get a list of items
 router.get("/items", itemControllers.browse);
@@ -99,9 +114,6 @@ router.get("/characters", charactersControllers.browse);
 
 router.get("/mangas", mangasControllers.getAllMangas);
 
-router.get("/users", usersControllers.getAllUsers);
-
-router.post("/users", usersControllers.add);
 // Search route, post and retrieve search queries for advert
 // router.get("/search", searchControllers.getSearchQuery);
 // router.post("/explore", searchControllers.postSearchQuery);

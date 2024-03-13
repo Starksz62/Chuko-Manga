@@ -1,38 +1,50 @@
-/* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
-/* eslint-disable jsx-a11y/click-events-have-key-events */
-/* eslint-disable react/prop-types */
+/* eslint-disable jsx-a11y/no-noninteractive-element-to-interactive-role */
+import PropTypes from "prop-types";
 import "./Cards.css";
 import { useState } from "react";
-import heart from "../assets/heart.png";
-import heartFull from "../assets/heartFull.png";
 
 function Cards({ data, onImageClick }) {
-  const [favorite, setFavorite] = useState(heart);
+  const [isFavorite, setIsFavorite] = useState(false);
 
   const handleClickFavorite = () => {
-    if (favorite === heart) {
-      setFavorite(heartFull);
-    } else {
-      setFavorite(heart);
-    }
+    setIsFavorite(!isFavorite);
   };
 
+  const favoriteSrc = isFavorite
+    ? "http://localhost:3310/static/heartFull.png"
+    : "http://localhost:3310/static/heart.png";
+
   return (
-    <section className="card-content">
+    <section key={data.id} className="card-content">
       <img
         src={data.image}
         alt={data.title}
         className="card-image"
+        role="button"
+        tabIndex={0}
         onClick={onImageClick}
+        onKeyDown={(e) => {
+          if (e.key === "Enter" || e.key === " ") {
+            e.preventDefault();
+            onImageClick();
+          }
+        }}
       />
       <h2 className="card-title">{data.title}</h2>
       <div className="card-price-section">
         <p className="card-price">{data.price}€</p>
         <img
-          src={favorite}
+          src={favoriteSrc}
           alt="logo favorite"
           className="card-favorite"
+          role="button"
+          tabIndex={0}
           onClick={handleClickFavorite}
+          onKeyDown={(e) => {
+            if (e.key === "Enter" || e.key === " ") {
+              handleClickFavorite();
+            }
+          }}
         />
       </div>
       <p className="card-condition">{data.condition}</p>
@@ -54,5 +66,36 @@ function Cards({ data, onImageClick }) {
     </section>
   );
 }
+
+Cards.propTypes = {
+  data: PropTypes.shape({
+    id: PropTypes.number.isRequired,
+    image: PropTypes.string.isRequired,
+    title: PropTypes.string.isRequired,
+    price: PropTypes.number.isRequired,
+    condition: PropTypes.string.isRequired,
+    imageUser: PropTypes.string.isRequired,
+    nameUser: PropTypes.string.isRequired,
+    star: PropTypes.string.isRequired,
+    note: PropTypes.number.isRequired,
+    comment: PropTypes.number.isRequired,
+  }),
+  onImageClick: PropTypes.func.isRequired,
+};
+
+Cards.defaultProps = {
+  data: {
+    id: 0,
+    image: "",
+    title: "",
+    price: 0,
+    condition: "",
+    imageUser: "",
+    nameUser: "",
+    star: "",
+    note: 0,
+    comment: 0,
+  },
+};
 
 export default Cards;
