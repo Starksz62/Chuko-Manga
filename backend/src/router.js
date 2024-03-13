@@ -6,6 +6,7 @@ const router = express.Router();
 const { hashPassword } = require("./services/auth");
 
 const validateUser = require("./middlewares/validateUser");
+const validateAddress = require("./middlewares/validateAddress");
 
 /* ************************************************************************* */
 // Define Your API Routes Here
@@ -76,11 +77,12 @@ router.get("/volumes/:mangaId", volumesControllers.getVolumesByMangaId);
 // Route to add a new advert (page advert creation)
 router.post("/new-advert", advertsControllers.addAdvert);
 
-// --------------------------------ROUTES USERS--------------------------------
+/* ************************************************************************* */
+// ROUTES USERS
+/* ************************************************************************* */
 
+// Route to get all users table
 router.get("/users", usersControllers.getAllUsers);
-// Route to get user table
-router.get("/user", usersControllers.getAllUsers);
 // Route to get all users for one specific user
 router.get("/user/:id", usersControllers.getUserById);
 // Route to get profil user for one specific user
@@ -91,10 +93,17 @@ router.post("/users", hashPassword, usersControllers.add);
 // route post Update Profil User
 router.put("/user/:id", validateUser, usersControllers.updateUser);
 
-// --------------------------------ROUTES ADDRESS--------------------------------
+/* ************************************************************************* */
+// ROUTES ADDRESS
+/* ************************************************************************* */
 
 router.get("/address/:id", addressControllers.getAddressbyId);
-router.post("/address/:id", addressControllers.addAddressbyId);
+router.post("/address/:id", validateAddress, addressControllers.addAddressbyId);
+router.put(
+  "/address/user/:userId/address/:addressId",
+  validateAddress,
+  addressControllers.updateAddress
+);
 
 // Route to get a list of items
 router.get("/items", itemControllers.browse);
