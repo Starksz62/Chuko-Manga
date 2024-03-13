@@ -50,6 +50,14 @@ function CreditCard({ updateModalCreditCard }) {
           onFocus={handleInputFocus}
         />
         <input
+          type="number"
+          name="number"
+          placeholder="Card Number"
+          value={state.number}
+          onChange={handleInputChange}
+          onFocus={handleInputFocus}
+        />
+        <input
           type="text"
           name="expiry"
           placeholder="Valide jusqu'à"

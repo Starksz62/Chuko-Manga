@@ -6,6 +6,10 @@
   margin-bottom: 1rem;
   background: #f8f8f8;
   border-radius: 4px;
+  gap: 6px;
+  box-shadow:
+    rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
+    rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
 }
 
 .delivery-option-container h3 {
@@ -18,7 +22,16 @@
   justify-content: space-between;
   align-items: center;
   border: 1px solid #ccc;
-  padding-bottom: 40px;
+  border-radius: 4px;
+  padding: 10px;
+}
+
+.delivery-option:hover {
+  border: solid 0.1px var(--primary-clr);
+}
+
+.delivery-option:hover {
+  transform: scale(1.02);
 }
 
 .option-content {
@@ -63,8 +76,10 @@
 
 input[type="radio"] {
   margin-right: 1rem;
+  accent-color: var(--primary-clr);
 }
 
 input[type="radio"]:checked + .option-content .text-content h3 {
   font-weight: bold;
+  color: var(--primary-clr);
 }
