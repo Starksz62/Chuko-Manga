@@ -75,7 +75,9 @@ router.get("/volumes/:mangaId", volumesControllers.getVolumesByMangaId);
 // Route to add a new advert (page advert creation)
 router.post("/new-advert", advertsControllers.addAdvert);
 
-// --------------------------------ROUTES USERS--------------------------------
+/* ************************************************************************* */
+// ROUTES USERS
+/* ************************************************************************* */
 
 // Route to get all users table
 router.get("/users", usersControllers.getAllUsers);
@@ -89,7 +91,9 @@ router.post("/users", usersControllers.add);
 // route post Update Profil User
 router.put("/user/:id", validateUser, usersControllers.updateUser);
 
-// --------------------------------ROUTES ADDRESS--------------------------------
+/* ************************************************************************* */
+// ROUTES ADDRESS
+/* ************************************************************************* */
 
 router.get("/address/:id", addressControllers.getAddressbyId);
 router.post("/address/:id", validateAddress, addressControllers.addAddressbyId);
