@@ -1,19 +1,22 @@
 .card {
   display: flex;
   border-radius: 8px;
-  margin-bottom: 20px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   list-style: none;
-  width: 50%;
+  width: 70%;
 }
 
 .card img {
-  width: 35%;
+  width: 40%;
 }
 
 .information-card {
   margin-top: 5px;
   margin-left: 25px;
+  width: 100%;
+}
+.titleOrder {
+  font-size: 1.5em;
+  padding-bottom: 20px;
 }
 
 .user-section {
@@ -21,9 +24,19 @@
   flex-direction: row;
   gap: 10px;
   align-items: center;
-  margin-bottom: 10px;
+  margin-bottom: 20px;
+  font-size: 1.3em;
 }
 
+.conditionOrder {
+  font-size: 1.3em;
+}
+
+.priceOrder {
+  margin-top: 150px;
+  font-size: 1.3em;
+  font-weight: bold;
+}
 .user-section img {
   clip-path: circle(50%);
   width: 24px;
