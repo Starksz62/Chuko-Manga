@@ -5,10 +5,6 @@
   padding: 0;
 }
 
-.filter {
-  width: 100vh;
-}
-
 .card-content {
   width: 250px;
   display: flex;
@@ -18,7 +14,7 @@
   font-family: "Monserrat", sans-serif;
 }
 
-.imgAdvert {
+.card-image {
   width: 100%;
   height: 350px;
   object-fit: cover;
@@ -106,4 +102,9 @@
 .card-star {
   width: 20px;
   height: 20px;
+}
+
+.AdvertCard {
+  width: 290px; /* Ajoute une largeur fixe pour chaque annonce */
+  margin-right: 10px;
 }

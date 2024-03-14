@@ -1,43 +1,23 @@
-import { useState, useRef, useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useState, useContext } from "react";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import InscriptionModal from "./InscriptionModal";
+
+import UserContext from "../context/UserContext";
+
+import ConnexionModal from "./ConnexionModal";
 
 import "./HeaderNav.css";
 
 function HeaderNav() {
   const [searchQuery, setSearchQuery] = useState("");
   const navigate = useNavigate();
-  // const [searchResults, setSearchResults] = useState([]);
 
-  // const handleSearch = () => {
-  //   axios
-  //     .get("http://localhost:3310/api/mangas")
-  //     .then((response) => response.json())
-  //     .then((response) => {
-  //       if (response.results) {
-  //         setSearchResults(response.results);
-  //         console.info("Search Results:", response.results);
-  //       } else {
-  //         setSearchResults([]);
-  //         console.error("No results found.");
-  //       }
-  //     })
-  //     .catch((err) => console.error(err));
-  // };
+  const { auth, setAuth } = useContext(UserContext);
 
-  // useEffect(() => {
-  //   const delaySearch = setTimeout(() => {
-  //     handleSearch();
-  //   }, 100);
-  //   return () => clearTimeout(delaySearch);
-  // }, [searchQuery]);
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [open, setOpen] = useState(false);
 
-  const modalBackgroundRef = useRef(null);
-
-  const handleButtonClick = () => {
-    setIsModalOpen(!isModalOpen);
+  const handleClickOpen = () => {
+    setOpen(!open);
   };
 
   const handleKeyPress = async (e) => {
@@ -52,26 +32,10 @@ function HeaderNav() {
       navigate(`/explore/${searchQuery}`, { replace: true });
     }
   };
-
-  const handleClickOutsideModal = (e) => {
-    if (
-      modalBackgroundRef.current &&
-      !modalBackgroundRef.current.contains(e.target)
-    ) {
-      setIsModalOpen(false);
-    }
-  };
-
-  useEffect(() => {
-    document.addEventListener("mousedown", handleClickOutsideModal);
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutsideModal);
-    };
-  }, []);
   return (
     <header className="navbar-header">
       <div className="searchbar-container">
-        <div>
+        {/* <div>
           <div className="menu-triangle">
             <button className="menu-button" type="button">
               Menu
@@ -85,7 +49,7 @@ function HeaderNav() {
             <li className="Catalogue">Catalogue</li>
           </ul>
         </div>
-        <div className="icone-loupe" />
+        <div className="icone-loupe" /> */}
         <input
           className="searchbar"
           type="text"
@@ -97,22 +61,30 @@ function HeaderNav() {
         />
       </div>
       <div className="buttonHeader-container">
-        <button
-          className="incription-login-button"
-          type="button"
-          onClick={handleButtonClick}
-        >
-          S'incrire | Se connecter
-        </button>
+        {auth == null ? (
+          <button
+            className="incription-login-button"
+            type="button"
+            onClick={handleClickOpen}
+          >
+            S'incrire | Se connecter
+          </button>
+        ) : (
+          <button
+            className="incription-login-button"
+            type="button"
+            onClick={() => {
+              setAuth(null);
+            }}
+          >
+            Se déconnecter
+          </button>
+        )}
+        {open && <ConnexionModal handleClickOpen={handleClickOpen} />}
         <button className="vendre-button" type="button">
           Vends tes Mangas
         </button>
       </div>
-      {isModalOpen && (
-        <div ref={modalBackgroundRef} className="modal-background">
-          <InscriptionModal onClose={() => setIsModalOpen(false)} />
-        </div>
-      )}
     </header>
   );
 }

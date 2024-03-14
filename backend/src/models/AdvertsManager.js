@@ -84,7 +84,7 @@ class AdvertsManager extends AbstractManager {
     const [rows] = await this.database.query(
       `SELECT advert.price, advert.title_search_manga, advert.description, 
       article_condition.name_condition, advert.view_number, advert.publication_date_advert, 
-      manga.title as manga_title, volume.title as volume_title, volume.ISBN, 
+      manga.id as manga_id, manga.title as manga_title, volume.title as volume_title, volume.ISBN, 
       user.pseudo, user.id as user_id, user.picture as user_picture, 
       joint_table.average, joint_table.feedback_nber, 
       JSON_ARRAYAGG(advert_image.image_path) as image_paths
@@ -102,7 +102,7 @@ class AdvertsManager extends AbstractManager {
       [id]
     );
     return rows;
-  }
+}
 
   async getAdvertsBySeller(id) {
     const [rows] = await this.database.query(
