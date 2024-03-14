@@ -97,7 +97,7 @@ function HeaderNav() {
             type="button"
             onClick={handleClickOpen}
           >
-            S'incrire | Se connecter
+            S'inscrire | Se connecter
           </button>
         ) : (
           <button
@@ -111,9 +111,6 @@ function HeaderNav() {
           </button>
         )}
         {open && <ConnexionModal handleClickOpen={handleClickOpen} />}
-        <button className="vendre-button" type="button">
-          Vends tes Mangas
-        </button>
         <Link to="/new-advert">
           <button className="vendre-button" type="button">
             Vends tes Mangas
