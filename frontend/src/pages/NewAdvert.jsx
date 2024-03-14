@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import PlusIcon from "../assets/Plus_Icon.png";
 import DeleteIcon from "../assets/Delete_Icon.png";
@@ -6,6 +7,7 @@ import DeleteIcon from "../assets/Delete_Icon.png";
 import "./NewAdvert.css";
 
 function NewAdvert() {
+  const navigate = useNavigate();
   // States designed to display options for selection
   const [conditionList, setConditionList] = useState([]);
   const [mangaList, setMangaList] = useState([]);
@@ -136,6 +138,7 @@ function NewAdvert() {
       .catch((error) => {
         console.error("Error creating advert", error);
       });
+    navigate(`/profilUser/${userId}`);
   };
 
   return (

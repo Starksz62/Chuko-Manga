@@ -127,7 +127,7 @@ function OngletProfil() {
                   <div>
                     <img
                       className="imagePathAnnonces"
-                      src={`${annonce.image_path}`}
+                      src={`http://localhost:3310${annonce.image_path}`}
                       alt="image_article_seller"
                     />
                     <div className="titleSearchMangaAnnonces">{`${annonce.title_search_manga}`}</div>
@@ -189,7 +189,7 @@ function OngletProfil() {
                   <div>
                     <img
                       className="imagePathAnnonces"
-                      src={`${order.image_path}`}
+                      src={`http://localhost:3310${order.image_path}`}
                       alt="image_article_seller"
                     />
                     <div className="titleSearchMangaAnnonces">{`${order.title_search_manga}`}</div>

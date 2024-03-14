@@ -80,6 +80,14 @@
   padding: 0.3rem 0;
 }
 
+.new-advert select {
+  padding: 0.3rem 0.3rem;
+}
+
+.new-advert #price {
+  margin-bottom: 5rem;
+}
+
 .new-advert .tab-container {
   display: flex;
 }
