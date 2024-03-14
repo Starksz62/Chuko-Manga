@@ -3,10 +3,11 @@ import ReactDOM from "react-dom/client";
 import App from "./App";
 import MangaDetails from "./pages/MangaDetails";
 import Explore from "./pages/Explore";
-import Home from "./pages/Home";
 import PaymentPage from "./pages/PaymentPage";
 import AnnouncementDetail from "./pages/AnnouncementDetails";
 import ProfilUser from "./pages/ProfilUser";
+import Catalog from "./pages/Catalog";
+import Home from "./pages/Home";
 
 const router = createBrowserRouter([
   {
@@ -23,6 +24,10 @@ const router = createBrowserRouter([
       {
         path: "/explore/:searchQuery",
         element: <Explore />,
+      },
+      {
+        path: "/manga/catalog",
+        element: <Catalog />,
       },
       {
         path: "manga/:id",

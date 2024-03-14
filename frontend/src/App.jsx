@@ -1,23 +1,34 @@
+/* eslint-disable import/no-named-as-default-member */
+/* eslint-disable import/no-named-as-default */
+/* eslint-disable object-shorthand */
+/* eslint-disable react/jsx-no-constructed-context-values */
+import { useState } from "react";
+import { Outlet } from "react-router-dom";
+
+import UserContext from "./context/UserContext";
+
+import LeftNavbar from "./components/LeftNavbar";
+import HeaderNav from "./components/HeaderNav";
+import Footer from "./components/Footer";
+
 import "./App.css";
 import "./style/global.css";
 import "./style/variables.css";
-import { Outlet } from "react-router-dom";
-import HeaderNav from "./components/HeaderNav";
-import Footer from "./components/Footer";
-// import LeftNavbar from "./components/LeftNavbar";
 
 function App() {
+  const [auth, setAuth] = useState();
+
   return (
-    <div className="mainContainer">
-      {/* <LeftNavbar /> */}
-      <div className="main">
-        <HeaderNav />
-        <Outlet />
-        {/* <PrefilterAdvertByDesc />
-        <PrefilterAdvertByBatch /> */}
-        <Footer />
+    <UserContext.Provider value={{ auth: auth, setAuth: setAuth }}>
+      <div className="mainContainer">
+        <LeftNavbar className="leftNavbar" />
+        <div className="mainContent">
+          <HeaderNav />
+          <Outlet />
+          <Footer />
+        </div>
       </div>
-    </div>
+    </UserContext.Provider>
   );
 }
 

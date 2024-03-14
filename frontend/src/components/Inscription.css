@@ -1,61 +1,38 @@
 .form {
   display: flex;
-  background-color: white;
-  width: 40rem;
-  height: 25rem;
-  align-items: center;
   flex-direction: column;
   justify-content: center;
+  align-items: center;
+  gap: 2rem;
+  margin: 1rem 1rem 1rem 4rem;
+  padding: 1rem;
 }
 
 .inForm {
   display: flex;
-  align-items: center;
-  justify-content: center;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+input {
+  width: 230px;
+  height: 35px;
+  padding-left: 0.2rem;
+  font-size: 1rem;
+  border-radius: 3px;
+}
+
+.text-inscription {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .Button-type {
+  margin-top: 1rem;
+  color: white;
   background-color: orange;
-  width: 100%;
-  height: fit-content;
-}
-
-.transparent-input {
-  background-color: transparent;
-  border: 1px solid #ccc;
-  /* Adjust border color as needed */
-  border-radius: 4px;
-  padding: 4px 12px;
-  color: black;
-  /* Text color for transparency */
-}
-
-.transparent-input::placeholder {
-  color: #ccc;
-  /* Adjust color as needed */
-  opacity: 0.5;
-  /* Adjust opacity as needed */
-  transition: opacity 0.2s ease-in-out;
-}
-
-.transparent-input:focus::placeholder {
-  opacity: 0;
-  /* Placeholder disappears on focus */
-}
-
-.inscription {
-  position: relative;
-  display: flex;
-  background-color: red;
-}
-
-.imgIns {
-  position: absolute;
-  width: 15rem;
-  right: 0;
-}
-
-.help {
-  color: orange;
+  padding: 0.5rem 2.2rem;
+  border-radius: 5px;
 }
