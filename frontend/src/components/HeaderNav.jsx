@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 import axios from "axios";
@@ -7,6 +7,7 @@ import "./HeaderNav.css";
 
 function HeaderNav() {
   const [searchQuery, setSearchQuery] = useState("");
+  const [queryResult, setQueryResult] = useState([]);
   const navigate = useNavigate();
   // const [searchResults, setSearchResults] = useState([]);
 
@@ -33,6 +34,32 @@ function HeaderNav() {
   //   return () => clearTimeout(delaySearch);
   // }, [searchQuery]);
 
+  const handleQueryChange = (e) => {
+    setSearchQuery(e.target.value);
+  };
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get(
+          `http://localhost:3310/api/mangas?q=${searchQuery}`
+        );
+        setQueryResult(response.data);
+        console.info("Response from backend:", response.data);
+      } catch (err) {
+        console.error("Error while fetching search results:", err);
+      }
+    };
+
+    // Only make the request if searchQuery is not empty
+    if (searchQuery.trim() !== "") {
+      fetchData();
+    } else {
+      // Clear query result if searchQuery is empty
+      setQueryResult([]);
+    }
+  }, [searchQuery]);
+
   const handleKeyPress = async (e) => {
     // contrsuire le lien /explore/'${searchQuery}', et faire un redirection (use navigate) vers ce lien
     if (e.key === "Enter") {
@@ -48,31 +75,24 @@ function HeaderNav() {
   return (
     <header className="navbar-header">
       <div className="searchbar-container">
-        {/* <div>
-          <div className="menu-triangle">
-            <button className="menu-button" type="button">
-              Menu
-            </button>
-            <div className="icone-triangle" />
-          </div>
-          <ul className="scroll-menu">
-            <Link to="/explore">
-              <li className="Explorer">Explorer</li>
-            </Link>
-            <li className="Catalogue">Catalogue</li>
-          </ul>
-        </div>
-        <div className="icone-loupe" /> */}
         <input
           className="searchbar"
           type="text"
           placeholder="Recherche"
           value={searchQuery}
-          onChange={(e) => setSearchQuery(e.target.value)}
+          onChange={handleQueryChange}
           autoComplete="on"
           onKeyPress={handleKeyPress}
         />
+        <div className="result-tab">
+          {queryResult.map((manga) => (
+            <div key={manga.id} className="search-result">
+              <p>{manga.title}</p>
+            </div>
+          ))}
+        </div>
       </div>
+
       <div className="buttonHeader-container">
         <button className="incription-login-button" type="button">
           S'incrire | Se connecter

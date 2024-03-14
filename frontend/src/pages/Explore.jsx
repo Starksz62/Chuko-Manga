@@ -12,7 +12,7 @@ function Explore() {
 
   useEffect(() => {
     const sendQuery = async () => {
-      console.info("========", searchQuery);
+      console.info("use effect search query:", searchQuery);
       try {
         const response = await axios.get(
           `http://localhost:3310/api/explore/${searchQuery}`
@@ -28,7 +28,7 @@ function Explore() {
 
   return (
     <>
-      {console.info("je suis le search query avant SELECT", dataAdvert)}
+      {console.info("return search query:", dataAdvert)}
       <h1>Voici les résultats pour : {searchQuery}</h1>
     </>
   );
