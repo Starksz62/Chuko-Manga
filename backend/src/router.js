@@ -22,7 +22,7 @@ const volumesControllers = require("./controllers/volumesControllers");
 // const moviesControllers = require("./controllers/moviesControllers");
 
 // Route to get mangas
-router.get("/mangas", mangasControllers.getAllMangas);
+router.get("/mangas", mangasControllers.getMangas);
 router.get("/manga/catalog", mangasControllers.getCatalogMangas);
 router.get("/mangas/:id", mangasControllers.getMangaById);
 
@@ -106,13 +106,12 @@ router.post("/items", itemControllers.add);
 /* ************************************************************************* */
 router.get("/characters", charactersControllers.browse);
 
-router.get("/mangas", mangasControllers.getAllMangas);
-
 // Search route, post and retrieve search queries for advert
 // router.get("/search", searchControllers.getSearchQuery);
 // router.post("/explore", searchControllers.postSearchQuery);
 
-// Post ma query du front au back
+// --------------------------------ROUTES SEARCH--------------------------------
+
 router.get("/explore", advertsControllers.getAllAdverts);
 router.get("/explore/:query", advertsControllers.getSearchAdverts);
 
