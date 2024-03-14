@@ -13,7 +13,7 @@ function Inscription({ handleContentModal }) {
   const emailRef = useRef();
 
   // États pour le mot de passe et la confirmation du mot de passe
-  const [password, setPassword] = useState("Mot de passe");
+  const [password, setPassword] = useState("");
 
   // Gestionnaire de soumission du formulaire
   const handleSubmit = async (event) => {
@@ -48,7 +48,7 @@ function Inscription({ handleContentModal }) {
   };
 
   // Gestionnaire évènement Pseudo
-  const [inputPseudo, setInputPseudo] = useState("Entrez votre pseudo");
+  const [inputPseudo, setInputPseudo] = useState("");
 
   const handleChangeInputPseudo = (event) => {
     const targetValue = event.target.value;
@@ -56,7 +56,7 @@ function Inscription({ handleContentModal }) {
   };
 
   // Gestionnaire évènement Email
-  const [inputEmail, setInputEmail] = useState("Entrez votre email");
+  const [inputEmail, setInputEmail] = useState("");
 
   const handleChangeInputEmail = (event) => {
     const targetValue = event.target.value;
@@ -78,6 +78,7 @@ function Inscription({ handleContentModal }) {
           ref={pseudoRef}
           type="pseudo"
           id="pseudo"
+          placeholder="Entrez un pseudo"
           value={inputPseudo}
           onChange={handleChangeInputPseudo}
         />
@@ -87,6 +88,7 @@ function Inscription({ handleContentModal }) {
           ref={emailRef}
           type="email"
           id="email"
+          placeholder="Entrez un email"
           value={inputEmail}
           onChange={handleChangeInputEmail}
         />
@@ -95,6 +97,7 @@ function Inscription({ handleContentModal }) {
         <input
           type="password"
           id="password"
+          placeholder="Entrez un mot de passe"
           value={password}
           onChange={handleChangeInputPassword}
         />

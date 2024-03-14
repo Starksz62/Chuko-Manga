@@ -12,7 +12,7 @@ function Connexion({ handleContentModal, handleClickOpen }) {
   const emailRef = useRef();
   const passwordRef = useRef();
 
-  const { setUser } = useContext(UserContext);
+  const { setAuth } = useContext(UserContext);
 
   // Gestionnaire de soumission du formulaire
   const handleSubmit = async (event) => {
@@ -34,9 +34,9 @@ function Connexion({ handleContentModal, handleClickOpen }) {
 
       // Redirection vers la page de connexion si la création réussit
       if (response.status === 200) {
-        const user = await response.json();
+        const auth = await response.json();
 
-        setUser(user);
+        setAuth(auth);
 
         handleClickOpen();
       } else {
@@ -50,7 +50,7 @@ function Connexion({ handleContentModal, handleClickOpen }) {
   };
 
   // Gestionnaire évènement Email
-  const [inputEmail, setInputEmail] = useState("Entrez votre email");
+  const [inputEmail, setInputEmail] = useState("");
 
   const handleChangeInputEmail = (event) => {
     const targetValue = event.target.value;
@@ -58,7 +58,7 @@ function Connexion({ handleContentModal, handleClickOpen }) {
   };
 
   // Gestionnaire évènement Password
-  const [inputPassword, setInputPassword] = useState("Mot de passe");
+  const [inputPassword, setInputPassword] = useState("");
 
   const handleChangeInputPassword = (event) => {
     const targetValue = event.target.value;
@@ -75,6 +75,7 @@ function Connexion({ handleContentModal, handleClickOpen }) {
           ref={emailRef}
           type="email"
           id="email"
+          placeholder="Entrez votre email"
           value={inputEmail}
           onChange={handleChangeInputEmail}
         />
@@ -83,6 +84,7 @@ function Connexion({ handleContentModal, handleClickOpen }) {
         <input
           type="password"
           id="password"
+          placeholder="Entrez votre mot de passe"
           ref={passwordRef}
           value={inputPassword}
           onChange={handleChangeInputPassword}
