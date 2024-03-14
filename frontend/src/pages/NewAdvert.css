@@ -1,12 +1,12 @@
 .new-advert {
-  border: 1px solid #8f8e8e;
+  border: 1px solid var(--neutral-700);
   max-width: 80%;
   margin: auto;
   padding: 2rem 3rem 6rem 2rem;
 }
 
 .new-advert h1 {
-  font-size: 1.8rem;
+  font-size: var(--fs-XL);
   margin-bottom: 4rem;
 }
 
@@ -19,7 +19,7 @@
 }
 
 .picture-box {
-  background-color: #d9d9d9;
+  background-color: var(--neutral-400);
   width: 17rem;
   height: 17rem;
   display: flex;
@@ -62,7 +62,7 @@
 }
 
 .new-advert label {
-  font-size: 1.25rem;
+  font-size: var(--fs-M);
   display: block;
   margin-bottom: 1.25rem;
   font-weight: 500;
@@ -76,7 +76,7 @@
 
 .new-advert input {
   border: none;
-  border-bottom: 1px solid #8f8e8e;
+  border-bottom: 1px solid var(--neutral-700);
   padding: 0.3rem 0;
 }
 
@@ -86,45 +86,47 @@
 
 .new-advert .tab-container button {
   width: 50%;
-  font-size: 1.25rem;
+  font-size: var(--fs-M);
   padding: 1rem;
   margin-bottom: 2.75rem;
+  font-weight: 500;
 }
 
 .active-color {
-  color: black;
+  color: var(--neutral-800);
 }
 
 .inactive-tab {
-  color: #b5b5b5;
-  border-bottom: 1px solid black;
+  color: var(--neutral-700);
+  border-bottom: 1px solid var(--neutral-800);
 }
 
 .tome-active {
-  border-top: 1px solid black;
-  border-right: 1px solid black;
+  border-top: 1px solid var(--neutral-800);
+  border-right: 1px solid var(--neutral-800);
 }
 
 .batch-active {
-  border-top: 1px solid black;
-  border-left: 1px solid black;
+  border-top: 1px solid var(--neutral-800);
+  border-left: 1px solid var(--neutral-800);
 }
 
 .new-advert .ref {
-  font-size: 1.25rem;
+  font-size: var(--fs-M);
   margin-bottom: 0.6rem;
+  font-weight: 500;
 }
 
 .new-advert .instruction {
-  color: #8f8e8e;
-  font-size: 1rem;
+  color: var(--neutral-700);
+  font-size: var(--fs-XS);
 }
 
 .new-advert .add-button {
   padding: 0.5rem 3rem;
-  background-color: #dd7a06;
+  background-color: var(--primary-clr);
   border: none;
   border-radius: 5px;
-  color: white;
+  color: var(--neutral-100);
   font-weight: 600;
 }
