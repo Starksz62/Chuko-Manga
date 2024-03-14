@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import InscriptionModal from "./InscriptionModal";
@@ -32,7 +32,9 @@ function HeaderNav() {
   //   }, 100);
   //   return () => clearTimeout(delaySearch);
   // }, [searchQuery]);
-  const [isModalOpen, setIsModalOpen] = useState(true);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const modalBackgroundRef = useRef(null);
 
   const handleButtonClick = () => {
     setIsModalOpen(!isModalOpen);
@@ -50,6 +52,22 @@ function HeaderNav() {
       navigate(`/explore/${searchQuery}`, { replace: true });
     }
   };
+
+  const handleClickOutsideModal = (e) => {
+    if (
+      modalBackgroundRef.current &&
+      !modalBackgroundRef.current.contains(e.target)
+    ) {
+      setIsModalOpen(false);
+    }
+  };
+
+  useEffect(() => {
+    document.addEventListener("mousedown", handleClickOutsideModal);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutsideModal);
+    };
+  }, []);
   return (
     <header className="navbar-header">
       <div className="searchbar-container">
@@ -91,7 +109,9 @@ function HeaderNav() {
         </button>
       </div>
       {isModalOpen && (
-        <InscriptionModal onClose={() => setIsModalOpen(false)} />
+        <div ref={modalBackgroundRef} className="modal-background">
+          <InscriptionModal onClose={() => setIsModalOpen(false)} />
+        </div>
       )}
     </header>
   );

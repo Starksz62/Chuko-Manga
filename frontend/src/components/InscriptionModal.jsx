@@ -3,8 +3,8 @@ import "./InscriptionModal.css";
 
 function InscriptionModal() {
   return (
-    <div>
-      <div className="modal">
+    <div className="modal-inscription">
+      <div className="modal-background">
         <div className="modal-content">
           <Inscription />
         </div>
@@ -12,4 +12,5 @@ function InscriptionModal() {
     </div>
   );
 }
+
 export default InscriptionModal;

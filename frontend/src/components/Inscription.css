@@ -47,11 +47,11 @@
 .inscription {
   position: relative;
   display: flex;
-  background-color: red;
 }
 
 .imgIns {
-  position: absolute;
+  padding-left: 1rem;
+  position: relative;
   width: 15rem;
   right: 0;
 }
