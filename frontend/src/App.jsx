@@ -1,22 +1,34 @@
-import "./App.css";
-import "./style/global.css";
-import "./style/variables.css";
+/* eslint-disable import/no-named-as-default-member */
+/* eslint-disable import/no-named-as-default */
+/* eslint-disable object-shorthand */
+/* eslint-disable react/jsx-no-constructed-context-values */
+import { useState } from "react";
 import { Outlet } from "react-router-dom";
+
+import UserContext from "./context/UserContext";
+
 import LeftNavbar from "./components/LeftNavbar";
 import HeaderNav from "./components/HeaderNav";
 import Footer from "./components/Footer";
 
+import "./App.css";
+import "./style/global.css";
+import "./style/variables.css";
+
 function App() {
+  const [auth, setAuth] = useState();
+
   return (
-    <div className="mainContainer">
-      <LeftNavbar className="leftNavbar" />
-      <div className="mainContent">
-        <HeaderNav />
-        {/* Ne pas ajouter des éléments dans l'app jsx mais dans leurs components ou page pour garder l'app jsx uniquement avec du contenu statique */}
-        <Outlet />
-        <Footer />
+    <UserContext.Provider value={{ auth: auth, setAuth: setAuth }}>
+      <div className="mainContainer">
+        <LeftNavbar className="leftNavbar" />
+        <div className="mainContent">
+          <HeaderNav />
+          <Outlet />
+          <Footer />
+        </div>
       </div>
-    </div>
+    </UserContext.Provider>
   );
 }
 

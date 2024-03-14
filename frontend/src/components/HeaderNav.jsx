@@ -1,7 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
-
 import axios from "axios";
+
+import UserContext from "../context/UserContext";
+
+import ConnexionModal from "./ConnexionModal";
 
 import "./HeaderNav.css";
 
@@ -9,30 +12,14 @@ function HeaderNav() {
   const [searchQuery, setSearchQuery] = useState("");
   const [queryResult, setQueryResult] = useState([]);
   const navigate = useNavigate();
-  // const [searchResults, setSearchResults] = useState([]);
 
-  // const handleSearch = () => {
-  //   axios
-  //     .get("http://localhost:3310/api/mangas")
-  //     .then((response) => response.json())
-  //     .then((response) => {
-  //       if (response.results) {
-  //         setSearchResults(response.results);
-  //         console.info("Search Results:", response.results);
-  //       } else {
-  //         setSearchResults([]);
-  //         console.error("No results found.");
-  //       }
-  //     })
-  //     .catch((err) => console.error(err));
-  // };
+  const { auth, setAuth } = useContext(UserContext);
 
-  // useEffect(() => {
-  //   const delaySearch = setTimeout(() => {
-  //     handleSearch();
-  //   }, 100);
-  //   return () => clearTimeout(delaySearch);
-  // }, [searchQuery]);
+  const [open, setOpen] = useState(false);
+
+  const handleClickOpen = () => {
+    setOpen(!open);
+  };
 
   useEffect(() => {
     const fetchData = async () => {
@@ -104,9 +91,26 @@ function HeaderNav() {
       </div>
 
       <div className="buttonHeader-container">
-        <button className="incription-login-button" type="button">
-          S'incrire | Se connecter
-        </button>
+        {auth == null ? (
+          <button
+            className="incription-login-button"
+            type="button"
+            onClick={handleClickOpen}
+          >
+            S'incrire | Se connecter
+          </button>
+        ) : (
+          <button
+            className="incription-login-button"
+            type="button"
+            onClick={() => {
+              setAuth(null);
+            }}
+          >
+            Se déconnecter
+          </button>
+        )}
+        {open && <ConnexionModal handleClickOpen={handleClickOpen} />}
         <button className="vendre-button" type="button">
           Vends tes Mangas
         </button>
