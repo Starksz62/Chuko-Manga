@@ -81,18 +81,7 @@ const getAdvertsByCondition = async (req, res) => {
   }
 };
 
-const getAdvertsByPrice = async (req, res) => {
-  try {
-    const adverts = await models.advert.getAdvertsByPrice(req.params.price);
-    if (adverts == null) {
-      res.sendStatus(404);
-    } else {
-      res.json(adverts);
-    }
-  } catch (err) {
-    console.error(err);
-  }
-};
+
 const getAdvertsImage = async (req, res) => {
   try {
     const adverts = await models.advert.getAdvertsImage(req.params.image_path);
@@ -138,23 +127,37 @@ const getSearchAdverts = async (req, res) => {
   }
 };
 const recentAdverts = async (req, res) => {
-  const { batch, genreId, conditionName, maxPrice } = req.query;
+  const { batch, genreId, conditionName, minPrice, maxPrice } = req.query;
   const isBatch = batch === 'true';
+
   try {
     const adverts = await models.advert.findAdverts({
       batch: isBatch,
       genreId,
       conditionName,
+      minPrice,
       maxPrice
     });
-
-    if (adverts.length === 0) {
-      return res.status(404).json({ message: "Aucune annonce trouvée." });
-    }
 
     return res.json(adverts);
   } catch (error) {
     console.error("Erreur lors de la récupération des annonces récentes:", error);
+    return res.status(500).json({ error: "Erreur interne du serveur" });
+  }
+};
+const getAdvertsByPrice = async (req, res) => {
+  const { batch } = req.query; 
+  const isBatch = batch === 'true';
+  try {
+    const priceRange = await models.advert.getMinMaxPrice(isBatch);
+
+    if (priceRange.length > 0) {
+      return res.json(priceRange[0]);
+    } 
+      return res.status(404).json({ message: "Aucune annonce trouvée." });
+    
+  } catch (error) {
+    console.error("Erreur lors de la récupération des prix min et max:", error);
     return res.status(500).json({ error: "Erreur interne du serveur" });
   }
 };

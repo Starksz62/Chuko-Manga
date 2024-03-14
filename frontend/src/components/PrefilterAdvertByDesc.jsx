@@ -12,7 +12,7 @@ function FilteredadvertsCard({ titlefromAnnounceDetail }) {
   const titleToShow = titlefromAnnounceDetail || defaultTitle;
 
   useEffect(() => {
-    fetch("http://localhost:3310/api/unique-adverts-date-desc")
+    fetch("http://localhost:3310/api/find-recent-adverts?batch=false")
       .then((response) => {
         if (!response.ok) {
           throw new Error(`Erreur HTTP, statut : ${response.status}`);
@@ -35,7 +35,7 @@ function FilteredadvertsCard({ titlefromAnnounceDetail }) {
   }, []);
 
   const handleViewAllClick = () => {
-    navigate("/explore?type=Desc");
+    navigate("/explore?batch=false");
   };
 
   return (

@@ -14,9 +14,9 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border: none; /* Supprime la bordure */
+  border: none;
   outline: none;
-  width: 80%; /* Supprime la mise en évidence de la bordure lorsqu'il est sélectionné */
+  width: 80%;
 }
 
 .searchbar {

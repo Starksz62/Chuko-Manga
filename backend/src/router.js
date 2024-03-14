@@ -59,10 +59,7 @@ router.get(
   advertsControllers.getAdvertsByCondition
 );
 // Route to filter adverts by max price (page explorer)
-router.get(
-  "/display-adverts-byprice/:price",
-  advertsControllers.getAdvertsByPrice
-);
+router.get("/display-adverts-byprice", advertsControllers.getAdvertsByPrice);
 // Route to get all orders by buyer (page Profil/onglet my purchase history)
 router.get(
   "/display-order-history-bybuyer/:id",

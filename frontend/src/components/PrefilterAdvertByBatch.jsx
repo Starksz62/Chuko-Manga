@@ -9,7 +9,7 @@ function FilteredadvertsCard() {
   const [filteredAdverts, setFilteredAdverts] = useState([]);
   const navigate = useNavigate();
   useEffect(() => {
-    fetch("http://localhost:3310/api/batch-adverts-date-desc")
+    fetch("http://localhost:3310/api/find-recent-adverts?batch=true")
       .then((response) => {
         if (!response.ok) {
           throw new Error(`Erreur HTTP, statut : ${response.status}`);
@@ -29,7 +29,7 @@ function FilteredadvertsCard() {
   }, []);
 
   const handleViewAllClick = () => {
-    navigate("/explore?type=Batch");
+    navigate("/explore?batch=true");
   };
 
   return (
@@ -52,7 +52,6 @@ function FilteredadvertsCard() {
           className="bntSeeAllTomes"
         >
           <div className="textBtn">
-            {" "}
             Voir toutes <br /> les collections
           </div>
         </button>
