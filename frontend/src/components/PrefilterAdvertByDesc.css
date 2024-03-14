@@ -1,39 +1,61 @@
 .prefilter-section {
   display: flex;
   flex-direction: column;
+  align-items: flex-start;
   gap: 1rem;
   padding: 4rem;
   width: 100%;
-  text-align: center;
 }
 
-.FilterByDate {
+.FilterByDateDescWrapper {
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  align-items: center;
+  gap: 1rem;
+  width: 100%;
+}
+
+.FilterByDateDesc {
   display: flex;
   flex-direction: row;
   gap: 1rem;
-  justify-content: center;
+  overflow-x: auto; /* Activer le défilement horizontal */
+  overflow: hidden; /* Masquer la barre de défilement */
+  width: calc(300px * 4 + 0 * 1rem); /* Largeur pour 4 annonces + 3 marges */
+  flex-shrink: 0;
+}
+
+.FilterByDateDescInner {
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+  width: auto;
+  flex-shrink: 0;
 }
 
 .filteredAdverts {
   display: flex;
   flex-direction: row;
+  width: auto;
 }
 
-.bntSeeAllTomes {
-  background-color: var(--neutral-300);
-  width: 16rem;
-  height: 100%;
-  padding: 1rem 4rem;
+.seeAllTomesButtonWrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--neutral-200);
+  transition: 0.5s ease;
+  cursor: pointer;
   box-shadow:
     rgba(50, 50, 93, 0.25) 0px 6px 12px -2px,
     rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
   border: 0;
-  text-align: center;
+  height: 480px;
+  width: 200px;
 }
 
-.textBtn {
-  display: flex;
-  justify-content: center;
+.textBtnDesc {
   font-size: 1.2em;
   color: var(--neutral-700);
 }

@@ -34,6 +34,22 @@ class MangasManager extends AbstractManager {
     console.info("Result of getMangaOverview:", rows);
     return rows;
   }
+
+  async getMangaQuery(searchQuery) {
+    console.info(`Manager Manga query: ${searchQuery}`);
+
+    // Constructing the SQL query dynamically
+    const queryTerms = searchQuery.split(" "); // Split the search query into individual terms
+    const titleLike = queryTerms.map(() => `(title LIKE ?)`); // Construct LIKE conditions for each term
+    const sqlQuery = `SELECT id, title FROM manga WHERE ${titleLike}`; // Join LIKE conditions with OR operator
+    const queryParams = queryTerms.flatMap((term) => [
+      `%${term}%`,
+      `%${term}%`,
+    ]); // Construct parameter array for each term
+
+    const [rows] = await this.database.query(sqlQuery, queryParams);
+    return rows;
+  }
 }
 
 module.exports = MangasManager;

@@ -1,0 +1,10 @@
+.favorite-adverts-container {
+  display: grid;
+  grid-template-columns: repeat(
+    auto-fill,
+    minmax(250px, 1fr)
+  ); /* 4 cartes par ligne */
+  gap: 20px; /* Espacement entre les cartes */
+  max-width: 1200px; /* Largeur maximale du conteneur */
+  margin: 0 auto;
+}

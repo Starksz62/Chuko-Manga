@@ -1,18 +1,39 @@
-import { useState } from "react";
+import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import "./AdvertCard.css";
 import { Link, useNavigate } from "react-router-dom";
 
 function AdvertCard({ advert }) {
   const navigate = useNavigate();
+  const [isFavorite, setIsFavorite] = useState(false);
+
+  useEffect(() => {
+    const storedFavorites = localStorage.getItem("favoriteAdverts");
+    if (storedFavorites) {
+      const favorites = JSON.parse(storedFavorites);
+      const isFavorited =
+        favorites.findIndex((favAdvert) => favAdvert.id === advert.id) !== -1;
+      setIsFavorite(isFavorited);
+    }
+  }, [advert.id]);
+
   const handleCardClick = () => {
     navigate(`/display-adverts/${advert.id}`);
     window.scrollTo(0, 0);
   };
-  const [isFavorite, setIsFavorite] = useState(false);
 
   const handleFavoriteClick = () => {
     setIsFavorite(!isFavorite);
+    const storedFavorites = localStorage.getItem("favoriteAdverts");
+    if (storedFavorites) {
+      const favorites = JSON.parse(storedFavorites);
+      const updatedFavorites = isFavorite
+        ? favorites.filter((favAdvert) => favAdvert.id !== advert.id)
+        : [...favorites, advert];
+      localStorage.setItem("favoriteAdverts", JSON.stringify(updatedFavorites));
+    } else {
+      localStorage.setItem("favoriteAdverts", JSON.stringify([advert]));
+    }
   };
 
   const average = parseFloat(advert.average);
@@ -69,6 +90,7 @@ function AdvertCard({ advert }) {
     </section>
   );
 }
+
 AdvertCard.propTypes = {
   advert: PropTypes.shape({
     id: PropTypes.number.isRequired,
@@ -83,4 +105,5 @@ AdvertCard.propTypes = {
     feedback_nber: PropTypes.number.isRequired,
   }).isRequired,
 };
+
 export default AdvertCard;
