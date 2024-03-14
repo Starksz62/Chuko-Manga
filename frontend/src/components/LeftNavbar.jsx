@@ -67,7 +67,9 @@ function LeftNavbar() {
           </li>
           <li>
             <img src={FavoritesIcon} alt="Favoris" />
-            <span>Favoris</span>
+            <span>
+              <a href="/favorites">Favoris</a>
+            </span>
           </li>
           <li>
             <img src={SettingsIcon} alt="Paramètres" />
