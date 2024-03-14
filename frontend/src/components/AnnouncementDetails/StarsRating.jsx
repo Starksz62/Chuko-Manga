@@ -1,6 +1,7 @@
 /* eslint-disable import/no-extraneous-dependencies */
 import PropTypes from "prop-types";
 import { useState, useEffect } from "react";
+// eslint-disable-next-line import/no-unresolved
 import { Rating } from "react-simple-star-rating";
 
 function Stars({ ratingValue }) {

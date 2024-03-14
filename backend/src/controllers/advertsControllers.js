@@ -159,15 +159,15 @@ const getSearchAdverts = async (req, res) => {
   try {
     // Extract ID from the request
     const userQuery = req.params.query;
-    console.info("je suis le controller", userQuery);
+    console.info(`Controller Search query: ${userQuery}`);
     // Check if the item exists based on the ID
     const advert = await models.advert.findAdvertQuery(userQuery);
     // If the advert is not found, respond with HTTP 404 (Not Found)
-    if (advert == null) {
-      res.sendStatus(404);
-    } else {
+    if (advert != null) {
       res.json(advert);
       console.info(advert);
+    } else {
+      res.sendStatus(404);
     }
   } catch (err) {
     // Pass any errors to the error-handling middleware

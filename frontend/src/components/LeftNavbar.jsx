@@ -49,11 +49,11 @@ function LeftNavbar() {
 
   return (
     <div className="sidebar">
-      <div className="sidebar-logo">
-        <Link to="/">
+      <Link to="/">
+        <div className="sidebar-logo">
           <img src={logo} alt="Logo" />
-        </Link>
-      </div>
+        </div>
+      </Link>
       <div className="icon-container">
         <ul>
           <li>
@@ -66,7 +66,9 @@ function LeftNavbar() {
           </li>
           <li>
             <img src={FavoritesIcon} alt="Favoris" />
-            <span>Favoris</span>
+            <span>
+              <a href="/favorites">Favoris</a>
+            </span>
           </li>
           <li>
             <img src={SettingsIcon} alt="Paramètres" />
