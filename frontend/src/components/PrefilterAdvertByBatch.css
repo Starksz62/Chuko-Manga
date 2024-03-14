@@ -1,0 +1,64 @@
+.prefilter-sectionBatch {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1rem;
+  padding: 4rem;
+  width: 100%;
+}
+
+.FilterByDateBatchrapper {
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  align-items: center;
+  gap: 1rem;
+  width: 100%;
+}
+
+.FilterByDateBatch {
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+  overflow-x: auto; /* Activer le défilement horizontal */
+  overflow: hidden; /* Masquer la barre de défilement */
+  width: calc(300px * 4 + 0 * 1rem); /* Largeur pour 4 annonces + 3 marges */
+  flex-shrink: 0;
+}
+
+.FilterByDateBatchInner {
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+  width: auto;
+  flex-shrink: 0;
+}
+
+.filteredAdvertsBatch {
+  display: flex;
+  flex-direction: row;
+  width: auto;
+}
+
+.seeAllTomesButtonWrapperBatch {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--neutral-300);
+  box-shadow:
+    rgba(50, 50, 93, 0.25) 0px 6px 12px -2px,
+    rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+  border: 0;
+  height: 480px;
+  width: 200px;
+}
+
+.textBtnBatch {
+  font-size: 1.2em;
+  color: var(--neutral-700);
+}
+
+.bntSeeAllTomes:hover {
+  background-color: var(--neutral-200);
+  transition: 0.5s ease;
+}

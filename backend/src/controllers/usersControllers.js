@@ -7,7 +7,7 @@ const getAllUsers = (req, res) => {
     .catch((err) => console.error(err));
 };
 
-const add = async (req, res) => {
+const add = async (req, res, next) => {
   // Extract the item data from the request body
   const user = req.body;
 
@@ -19,8 +19,10 @@ const add = async (req, res) => {
     res.status(201).json({ insertId });
   } catch (err) {
     // Pass any errors to the error-handling middleware
+    next(err);
   }
 };
+
 const getUserById = async (req, res) => {
   try {
     const user = await models.user.getUserById(req.params.id);

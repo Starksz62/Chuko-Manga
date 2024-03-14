@@ -256,7 +256,7 @@ INSERT INTO article_condition (name_condition)
 VALUES ('abimé'), ('bon état'), ('comme neuf');
 
 INSERT INTO
-user (firstname, lastname, pseudo, email, password, phone, role, picture)
+user (firstname, lastname, pseudo, email, hashed_password, phone, role, picture)
 VALUES
 (
   -- firstname
