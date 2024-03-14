@@ -6,6 +6,7 @@ import Explore from "./pages/Explore";
 import PaymentPage from "./pages/PaymentPage";
 import AnnouncementDetail from "./pages/AnnouncementDetails";
 import ProfilUser from "./pages/ProfilUser";
+import Favorites from "./pages/Favorites";
 import Catalog from "./pages/Catalog";
 import Home from "./pages/Home";
 
@@ -44,6 +45,10 @@ const router = createBrowserRouter([
       {
         path: "/profilUser/:id",
         element: <ProfilUser />,
+      },
+      {
+        path: "/favorites",
+        element: <Favorites />,
       },
     ],
   },

@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 import logo from "../assets/logo.png";
 import ProfileIcon from "../assets/profile.png";
@@ -48,9 +49,12 @@ function LeftNavbar() {
 
   return (
     <div className="sidebar">
-      <div className="sidebar-logo">
-        <img src={logo} alt="Logo" />
-      </div>
+      <Link to="/">
+        <div className="sidebar-logo">
+          <img src={logo} alt="Logo" />
+        </div>
+      </Link>
+
       <div className="icon-container">
         <ul>
           <li>
@@ -63,7 +67,9 @@ function LeftNavbar() {
           </li>
           <li>
             <img src={FavoritesIcon} alt="Favoris" />
-            <span>Favoris</span>
+            <span>
+              <a href="/favorites">Favoris</a>
+            </span>
           </li>
           <li>
             <img src={SettingsIcon} alt="Paramètres" />

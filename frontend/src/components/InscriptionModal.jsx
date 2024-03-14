@@ -1,27 +1,16 @@
-import { useState } from "react";
 import Inscription from "./Inscription";
 import "./InscriptionModal.css";
 
 function InscriptionModal() {
-  const [open, setOpen] = useState(false);
-
-  const handleClickOpen = () => {
-    setOpen(!open);
-  };
-
   return (
-    <>
-      <button type="button" onClick={handleClickOpen} className="btn-modal">
-        Ouvrir
-      </button>
-      {open && (
-        <div className="modal">
-          <div className="modal-content">
-            <Inscription />
-          </div>
+    <div className="modal-inscription">
+      <div className="modal-background">
+        <div className="modal-content">
+          <Inscription />
         </div>
-      )}
-    </>
+      </div>
+    </div>
   );
 }
+
 export default InscriptionModal;

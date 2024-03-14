@@ -61,7 +61,7 @@ class AdvertsManager extends AbstractManager {
   }
 
   async findAdvertQuery(searchQuery) {
-    console.info("je suis dans le manager", searchQuery);
+    console.info(`Manager Search query: ${searchQuery}`);
 
     // Constructing the SQL query dynamically
     const searchTerms = searchQuery.split(" "); // Split the search query into individual terms
