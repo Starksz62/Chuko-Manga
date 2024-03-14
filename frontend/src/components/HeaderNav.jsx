@@ -34,10 +34,6 @@ function HeaderNav() {
   //   return () => clearTimeout(delaySearch);
   // }, [searchQuery]);
 
-  const handleQueryChange = (e) => {
-    setSearchQuery(e.target.value);
-  };
-
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -50,15 +46,22 @@ function HeaderNav() {
         console.error("Error while fetching search results:", err);
       }
     };
-
-    // Only make the request if searchQuery is not empty
     if (searchQuery.trim() !== "") {
       fetchData();
     } else {
-      // Clear query result if searchQuery is empty
       setQueryResult([]);
     }
   }, [searchQuery]);
+
+  const handleQueryChange = (e) => {
+    setSearchQuery(e.target.value);
+  };
+
+  const handleSuggestion = async (selectedManga) => {
+    // Here you can use the selectedManga to perform any action you want
+    console.info("Selected Manga:", selectedManga);
+    navigate(`/explore/${selectedManga.title}`, { replace: true });
+  };
 
   const handleKeyPress = async (e) => {
     // contrsuire le lien /explore/'${searchQuery}', et faire un redirection (use navigate) vers ce lien
@@ -86,7 +89,14 @@ function HeaderNav() {
         />
         <div className="result-tab">
           {queryResult.map((manga) => (
-            <div key={manga.id} className="search-result">
+            <div
+              role="button"
+              key={manga.id}
+              tabIndex="0"
+              className="search-result"
+              onClick={() => handleSuggestion(manga)}
+              onKeyPress={handleKeyPress}
+            >
               <p>{manga.title}</p>
             </div>
           ))}
