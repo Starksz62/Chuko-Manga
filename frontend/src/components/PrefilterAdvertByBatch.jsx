@@ -1,16 +1,16 @@
 import { useState, useEffect, useRef } from "react";
-import { Link } from "react-router-dom";
-
+import { useNavigate } from "react-router-dom";
 import AdvertCard from "./AdvertCard";
 import "./PrefilterAdvertByBatch.css";
 
 function FilteredadvertsCard() {
   const [, setAdverts] = useState([]);
   const [filteredAdverts, setFilteredAdverts] = useState([]);
+  const navigate = useNavigate();
   const containerRef = useRef(null);
 
   useEffect(() => {
-    fetch("http://localhost:3310/api/batch-adverts-date-desc")
+    fetch("http://localhost:3310/api/find-recent-adverts?batch=true")
       .then((response) => {
         if (!response.ok) {
           throw new Error(`Erreur HTTP, statut : ${response.status}`);
@@ -46,6 +46,10 @@ function FilteredadvertsCard() {
     };
   }, []);
 
+  const handleViewAllClick = () => {
+    navigate("/explore?batch=true");
+  };
+
   return (
     <div className="prefilter-sectionBatch">
       <h1>Explorer les derniers lots ajoutés :</h1>
@@ -64,14 +68,15 @@ function FilteredadvertsCard() {
           </div>
         </div>
         <div className="seeAllTomesButtonWrapperBatch">
-          <Link to="/explore">
-            <button type="button" className="bntSeeAllTomesBatch">
-              <div className="textBtnBatch">
-                {" "}
-                Voir tous <br /> les tomes
-              </div>
-            </button>
-          </Link>
+          <button
+            type="button"
+            className="bntSeeAllTomes"
+            onClick={handleViewAllClick}
+          >
+            <div className="textBtn">
+              Voir tous <br /> les tomes
+            </div>
+          </button>
         </div>
       </div>
     </div>

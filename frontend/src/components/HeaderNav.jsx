@@ -1,9 +1,7 @@
 import React, { useEffect, useState, useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
-
 import UserContext from "../context/UserContext";
-
 import ConnexionModal from "./ConnexionModal";
 
 import "./HeaderNav.css";
@@ -12,7 +10,6 @@ function HeaderNav() {
   const [searchQuery, setSearchQuery] = useState("");
   const [queryResult, setQueryResult] = useState([]);
   const navigate = useNavigate();
-
   const { auth, setAuth } = useContext(UserContext);
 
   const [open, setOpen] = useState(false);
@@ -46,14 +43,12 @@ function HeaderNav() {
   };
 
   const handleSuggestion = async (selectedManga) => {
-    // Here you can use the selectedManga to perform any action you want
     console.info("Selected Manga:", selectedManga);
     setSearchQuery("");
     navigate(`/explore/${selectedManga.title}`, { replace: true });
   };
 
   const handleKeyPress = async (e) => {
-    // contrsuire le lien /explore/'${searchQuery}', et faire un redirection (use navigate) vers ce lien
     if (e.key === "Enter") {
       const searchUrl = `http://localhost:3310/api/explore/${searchQuery}`;
       try {

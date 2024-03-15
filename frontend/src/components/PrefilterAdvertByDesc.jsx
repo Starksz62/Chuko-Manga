@@ -1,16 +1,19 @@
-import React, { useState, useEffect, useRef } from "react";
-import { Link } from "react-router-dom";
-
+import { useState, useEffect, useRef } from "react";
+import { useNavigate } from "react-router-dom";
+import PropTypes from "prop-types";
 import AdvertCard from "./AdvertCard";
 import "./PrefilterAdvertByDesc.css";
 
-function PrefilterAdvertByDesc() {
+function PrefilterAdvertByDesc({ titlefromAnnounceDetail }) {
   const [, setAdverts] = useState([]);
   const [filteredAdverts, setFilteredAdverts] = useState([]);
+  const navigate = useNavigate();
+  const defaultTitle = "Explorer les derniers tomes ajoutés :";
+  const titleToShow = titlefromAnnounceDetail || defaultTitle;
   const containerRef = useRef(null);
 
   useEffect(() => {
-    fetch("http://localhost:3310/api/unique-adverts-date-desc")
+    fetch("http://localhost:3310/api/find-recent-adverts?batch=false")
       .then((response) => {
         if (!response.ok) {
           throw new Error(`Erreur HTTP, statut : ${response.status}`);
@@ -46,9 +49,13 @@ function PrefilterAdvertByDesc() {
     };
   }, []);
 
+  const handleViewAllClick = () => {
+    navigate("/explore?batch=false");
+  };
+
   return (
     <div className="prefilter-section">
-      <h1>Explorer les derniers tomes ajoutés :</h1>
+      <h1>{titleToShow}</h1>
       <div className="FilterByDateDescWrapper">
         <div className="FilterByDateDesc" ref={containerRef}>
           <div className="filteredAdverts">
@@ -64,14 +71,15 @@ function PrefilterAdvertByDesc() {
           </div>
         </div>
         <div className="seeAllTomesButtonWrapper">
-          <Link to="/explore">
-            <button type="button" className="bntSeeAllTomesDesc">
-              <div className="textBtnDesc">
-                {" "}
-                Voir tous <br /> les tomes
-              </div>
-            </button>
-          </Link>
+          <button
+            type="button"
+            className="bntSeeAllTomes"
+            onClick={handleViewAllClick}
+          >
+            <div className="textBtn">
+              Voir tous <br /> les tomes
+            </div>
+          </button>
         </div>
       </div>
     </div>
@@ -79,3 +87,7 @@ function PrefilterAdvertByDesc() {
 }
 
 export default PrefilterAdvertByDesc;
+
+PrefilterAdvertByDesc.propTypes = {
+  titlefromAnnounceDetail: PropTypes.string.isRequired,
+};
