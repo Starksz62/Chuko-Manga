@@ -10,14 +10,14 @@ import axios from "axios";
 
 function DetailsPersonal() {
   const { id } = useParams();
-  // const [files , setFiles] = useState("");
+  const [file, setFile] = useState("");
   const [formData, setFormData] = useState({
     pseudo: "",
     firstname: "",
     lastname: "",
     email: "",
     phone: "",
-    picture: "",
+    // picture: "",
   });
 
   useEffect(() => {
@@ -53,23 +53,29 @@ function DetailsPersonal() {
     });
   };
 
-  const handleFileChange = () => {
-    console.log(files);
-    const fromData = new FormData();
-    fromData.append("file", files);
-    // files.forEach((file) => {
-    //   fromData.append("file", file);
-    // });
+  const handleFileChange = (e) => {
+    setFile(e.target.file);
+    console.info("my file is:", file);
   };
+
+  // const handleFileChange = () => {
+  //   console.log(files);
+  //   const fromData = new FormData();
+  //   fromData.append("file", files);
+  // files.forEach((file) => {
+  //   fromData.append("file", file);
+  // });
+  // };
 
   const handleUpdateUser = () => {
     const data = new FormData();
+    console.log("poulet", data);
     data.append("pseudo", formData.pseudo);
     data.append("firstname", formData.firstname);
     data.append("lastname", formData.lastname);
     data.append("email", formData.email);
     data.append("phone", formData.phone);
-    data.append("picture", formData.picture);
+    data.append("picture", file);
     axios
       .put(`http://localhost:3310/api/user/${id}`, data)
       .then((response) => {
@@ -105,12 +111,8 @@ function DetailsPersonal() {
           accept="image/*"
           onChange={handleFileChange}
         />
-        {formData.picture && (
-          <img
-            src={formData.picture}
-            alt="Selected"
-            style={{ maxWidth: "100px" }}
-          />
+        {file && (
+          <img src={file} alt="Selected" style={{ maxWidth: "100px" }} />
         )}
       </div>
 
