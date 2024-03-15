@@ -7,7 +7,7 @@ class AddressManager extends AbstractManager {
 
   async getAddressbyId(id) {
     const [rows] = await this.database.query(
-      `SELECT address.country, address.name_adress, address.number_street, address.zip_code, address.city 
+      `SELECT address.id, address.country, address.name_adress, address.number_street, address.zip_code, address.city 
       FROM ${this.table}
       JOIN address_has_user ON address.id = address_has_user.address_id
       JOIN user ON address_has_user.user_id = user.id

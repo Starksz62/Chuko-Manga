@@ -1,3 +1,5 @@
+/* eslint-disable no-undef */
+/* eslint-disable no-restricted-syntax */
 /* eslint-disable react/button-has-type */
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
@@ -8,6 +10,7 @@ import axios from "axios";
 
 function DetailsPersonal() {
   const { id } = useParams();
+  // const [files , setFiles] = useState("");
   const [formData, setFormData] = useState({
     pseudo: "",
     firstname: "",
@@ -50,22 +53,25 @@ function DetailsPersonal() {
     });
   };
 
-  const handleFileChange = (event) => {
-    const file = event.target.files[0];
-    const reader = new FileReader();
-    reader.onload = (e) => {
-      const imageDataUrl = e.target.result;
-      setFormData({
-        ...formData,
-        picture: imageDataUrl,
-      });
-    };
-    reader.readAsDataURL(file);
+  const handleFileChange = () => {
+    console.log(files);
+    const fromData = new FormData();
+    fromData.append("file", files);
+    // files.forEach((file) => {
+    //   fromData.append("file", file);
+    // });
   };
 
   const handleUpdateUser = () => {
+    const data = new FormData();
+    data.append("pseudo", formData.pseudo);
+    data.append("firstname", formData.firstname);
+    data.append("lastname", formData.lastname);
+    data.append("email", formData.email);
+    data.append("phone", formData.phone);
+    data.append("picture", formData.picture);
     axios
-      .put(`http://localhost:3310/api/user/${id}`, formData)
+      .put(`http://localhost:3310/api/user/${id}`, data)
       .then((response) => {
         console.warn("Success updating user:", response.data);
       })

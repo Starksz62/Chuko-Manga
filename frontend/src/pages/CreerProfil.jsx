@@ -5,23 +5,21 @@ import DetailsPersonal from "../components/DetailsPersonalAndAdrees/DetailsPerso
 
 function CreerProfil() {
   const [addAdresseVisible, setAddAdresseVisible] = useState(false);
+  const [buttonText, setButtonText] = useState("Ajoute ton adresse +");
 
   const toggleAddAdresse = () => {
     setAddAdresseVisible(!addAdresseVisible);
+    setButtonText(
+      addAdresseVisible ? "Ajoute ton adresse +" : "Ajoute ton adresse -"
+    );
   };
-
-  // const handleKeyDown = (event) => {
-  //   if (event.key === "Enter" || event.key === " ") {
-  //     handleEmailVisibilityToggle();
-  //   }
-  // };
 
   return (
     <div style={{ marginLeft: "50px" }}>
       <h1>Modifier ton profil</h1>
       <DetailsPersonal />
       <button onClick={toggleAddAdresse} style={{ fontSize: "20px" }}>
-        Ajoute ton adresse +
+        {buttonText}
       </button>
       {addAdresseVisible ? <Adresse /> : null}
     </div>

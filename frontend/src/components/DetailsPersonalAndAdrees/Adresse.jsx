@@ -1,41 +1,71 @@
+/* eslint-disable spaced-comment */
 /* eslint-disable react/button-has-type */
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
+
 import "./DetailsPersonal.css";
 import axios from "axios";
 
 function Adresse() {
   const { id } = useParams();
-  const url = `http://localhost:3310/api/address/${id}`;
-
   const [formData, setFormData] = useState({
+    city: "",
     country: "",
-    zip_code: "",
-    number_street: "",
-    name_adress: "",
+    zipCode: "",
+    numberStreet: "",
+    nameAdress: "",
   });
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-
-    const data = {
-      country: formData.country,
-      zip_code: formData.zip_code,
-      number_street: formData.number_street,
-      name_adress: formData.name_adress,
-    };
-
-    axios
-      .post(url, data)
-      .then((response) => {
-        console.info("Mes donnees user :", data);
-        console.warn("Success:", response.data);
+  useEffect(() => {
+    fetch(`http://localhost:3310/api/address/${id}`)
+      .then((res) => {
+        if (!res.ok) {
+          throw new Error("Network response was not ok");
+        }
+        return res.json();
+      })
+      .then((data) => {
+        console.info("Mes adresse user :", data);
+        setFormData({
+          id: data[0].id,
+          city: data[0].city,
+          country: data[0].country,
+          zipCode: data[0].zip_code,
+          numberStreet: data[0].number_street,
+          nameAdress: data[0].name_adress,
+        });
       })
       .catch((error) => {
-        console.error("Error:", error.response.data);
+        console.error("Error fetching user data:", error);
       });
+  }, [id]);
+
+  const handleUpdateAdresseUser = (e) => {
+    e.preventDefault();
+    if (formData.id) {
+      // Si l'adresse existe déjà, effectuer une requête PUT pour la mettre à jour
+      axios
+        .put(
+          `http://localhost:3310/api/address/user/${id}/address/${formData.id}`,
+          formData
+        )
+        .then((response) => {
+          console.warn("Success updating user:", response.data);
+        })
+        .catch((error) => {
+          console.error("Error updating user:", error);
+        });
+    } else {
+      axios /*id ou formData.id*/
+        .post(`http://localhost:3310/api/address/${id}`, formData)
+        .then((response) => {
+          console.warn("Success creating user:", response.data);
+        })
+        .catch((error) => {
+          console.error("Error creating user:", error);
+        });
+    }
   };
 
   const handleChange = (e) => {
@@ -46,7 +76,7 @@ function Adresse() {
   };
 
   return (
-    <form className="ContainerCreation" onSubmit={handleSubmit}>
+    <form className="ContainerCreation" onSubmit={handleUpdateAdresseUser}>
       <div className="input_label_profil">
         <label htmlFor="country" className="label_profil">
           Pays:
@@ -58,47 +88,60 @@ function Adresse() {
           value={formData.country}
           onChange={handleChange}
           className="input_profil"
-          placeholder=" "
           required
         />
       </div>
       <div className="input_label_profil">
-        <label htmlFor="zip_code" className="label_profil">
+        <label htmlFor="city" className="label_profil">
+          Ville:
+        </label>
+        <input
+          type="text"
+          id="city"
+          name="city"
+          value={formData.city}
+          onChange={handleChange}
+          className="input_profil"
+          required
+        />
+      </div>
+      <div className="input_label_profil">
+        <label htmlFor="zipCode" className="label_profil">
           Code postal:
         </label>
         <input
           type="text"
-          id="zip_code"
-          name="zip_code"
-          value={formData.zip_code}
+          id="zipCode"
+          name="zipCode"
+          value={formData.zipCode}
           onChange={handleChange}
           className="input_profil"
           required
         />
       </div>
       <div className="input_label_profil">
-        <label htmlFor="number_street" className="label_profil">
+        <label htmlFor="numberStreet" className="label_profil">
           Rue:
         </label>
         <input
           type="text"
-          id="number_street"
-          name="number_street"
-          value={formData.number_street}
+          id="numberStreet"
+          name="numberStreet"
+          value={formData.numberStreet}
           onChange={handleChange}
           className="input_profil"
           required
         />
       </div>
       <div className="input_label_profil">
-        <label htmlFor="name_adress" className="label_profil">
+        <label htmlFor="nameAdress" className="label_profil">
           Nom de l'adresse:
         </label>
         <input
           type="text"
-          id="name_adress"
-          name="name_adress"
-          value={formData.name_adress}
+          id="nameAdress"
+          name="nameAdress"
+          value={formData.nameAdress}
           onChange={handleChange}
           className="input_profil"
           required

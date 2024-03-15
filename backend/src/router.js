@@ -4,8 +4,9 @@ const express = require("express");
 const router = express.Router();
 
 const { hashPassword } = require("./services/auth");
+const multerSingle = require("./middlewares/multerConfigSingle");
 
-const validateUser = require("./middlewares/validateUser");
+// const validateUser = require("./middlewares/validateUser");
 const validateAddress = require("./middlewares/validateAddress");
 
 /* ************************************************************************* */
@@ -91,7 +92,12 @@ router.get("/user-profil/:id", usersControllers.getUserProfilById);
 router.get("/user-profil-com/:id", usersControllers.getUserProfilComById);
 router.post("/users", hashPassword, usersControllers.add);
 // route post Update Profil User
-router.put("/user/:id", validateUser, usersControllers.updateUser);
+router.put(
+  "/user/:id",
+  // validateUser,
+  multerSingle,
+  usersControllers.updateUser
+);
 
 /* ************************************************************************* */
 // ROUTES ADDRESS
