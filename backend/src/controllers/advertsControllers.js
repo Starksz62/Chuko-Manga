@@ -106,13 +106,50 @@ const getAdvertsImage = async (req, res) => {
   }
 };
 
-
-
-const addAdvert = async (req, res) => {
+// NOUVEL ESSAI
+const createAdvert = async (req, res) => {
+  // console.info("image1 uploaded:", req.files["image1"][0]);
+  // console.info("image2 uploaded:", req.files["image2"][0]);
+  // console.info("image3 uploaded:", req.files["image3"][0]);
   const advert = req.body;
+  // console.info("this is advert", advert);
+  const imageId = [];
+  let imageId1 = null;
+  let imageId2 = null;
+  let imageId3 = null;
   try {
-    const insertId = await models.advert.addAdvert(advert);
-    res.status(201).json({ insertId });
+    const advertId = await models.advert.addAdvert(advert);
+    if (advertId !== null) {
+      if (req.files.image1) {
+        imageId1 = await models.advert_image.addImage({
+          advert_id: advertId,
+          image_path: `/static/${req.files.image1[0].filename}`,
+          is_primary: 1,
+        });
+        imageId.push(imageId1);
+      }
+      if (req.files.image2) {
+        imageId2 = await models.advert_image.addImage({
+          advert_id: advertId,
+          image_path: `/static/${req.files.image2[0].filename}`,
+          is_primary: 0,
+        });
+        imageId.push(imageId2);
+      }
+      if (req.files.image3) {
+        imageId3 = await models.advert_image.addImage({
+          advert_id: advertId,
+          image_path: `/static/${req.files.image3[0].filename}`,
+          is_primary: 0,
+        });
+        imageId.push(imageId3);
+      }
+    } else {
+      res.status(500).json({ error: "Failed to create advert" });
+    }
+    if (advertId !== null || imageId !== null) {
+      res.status(201).json({ advertId, imageId });
+    }
   } catch (err) {
     console.error(err);
   }
@@ -122,15 +159,15 @@ const getSearchAdverts = async (req, res) => {
   try {
     // Extract ID from the request
     const userQuery = req.params.query;
-    console.info("je suis le controller", userQuery);
+    console.info(`Controller Search query: ${userQuery}`);
     // Check if the item exists based on the ID
     const advert = await models.advert.findAdvertQuery(userQuery);
     // If the advert is not found, respond with HTTP 404 (Not Found)
-    if (advert == null) {
-      res.sendStatus(404);
-    } else {
+    if (advert != null) {
       res.json(advert);
       console.info(advert);
+    } else {
+      res.sendStatus(404);
     }
   } catch (err) {
     // Pass any errors to the error-handling middleware
@@ -149,6 +186,6 @@ module.exports = {
   getAdvertsByGenre,
   getAdvertsByCondition,
   getAdvertsByPrice,
-  addAdvert,
-  getAdvertsImage
+  createAdvert,
+  getAdvertsImage,
 };

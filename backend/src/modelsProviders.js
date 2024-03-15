@@ -11,9 +11,11 @@ const CharactersManager = require("./models/CharactersManager");
 const MangasManager = require("./models/MangasManager");
 const UsersManager = require("./models/UsersManager");
 const AdvertsManager = require("./models/AdvertsManager");
+const ConditionsManager = require("./models/ConditionsManager");
 const OrdersManager = require("./models/OrdersManager");
 const AddressManager = require("./models/AddressManager");
 const VolumesManager = require("./models/VolumesManager");
+const AdvertImagesManager = require("./models/advertImagesManager");
 
 const managers = [
   ItemManager,
@@ -23,9 +25,11 @@ const managers = [
   MangasManager,
   AdvertsManager,
   UsersManager,
+  ConditionsManager,
   OrdersManager,
   AddressManager,
   VolumesManager,
+  AdvertImagesManager,
 ];
 
 // Create an empty object to hold data managers for different tables
@@ -34,7 +38,6 @@ const models = {};
 // Register each manager as data access point for its table
 managers.forEach((ManagerClass) => {
   const manager = new ManagerClass();
-
   models[manager.table] = manager;
 });
 
