@@ -11,6 +11,7 @@ import ProfilUser from "./pages/ProfilUser";
 import NotFoundPage from "./pages/NotFoundPage";
 import Favorites from "./pages/Favorites";
 import Catalog from "./pages/Catalog";
+import MyAnounces from "./pages/MyAnounces";
 
 const router = createBrowserRouter([
   {
@@ -59,6 +60,10 @@ const router = createBrowserRouter([
       {
         path: "/404",
         element: <NotFoundPage />,
+      },
+      {
+        path: "/myAnounces/:id",
+        element: <MyAnounces />,
       },
       {
         path: "/favorites",
