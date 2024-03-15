@@ -28,6 +28,7 @@ function HeaderNav() {
           `http://localhost:3310/api/mangas?q=${searchQuery}`
         );
         setQueryResult(response.data);
+        console.info("Vous ecrivez:", searchQuery);
         console.info("Response from backend:", response.data);
       } catch (err) {
         console.error("Error while fetching search results:", err);
@@ -47,6 +48,7 @@ function HeaderNav() {
   const handleSuggestion = async (selectedManga) => {
     // Here you can use the selectedManga to perform any action you want
     console.info("Selected Manga:", selectedManga);
+    setSearchQuery("");
     navigate(`/explore/${selectedManga.title}`, { replace: true });
   };
 
@@ -59,6 +61,7 @@ function HeaderNav() {
       } catch (error) {
         console.error("Error while posting search query:", error);
       }
+      setSearchQuery("");
       navigate(`/explore/${searchQuery}`, { replace: true });
     }
   };
@@ -84,6 +87,11 @@ function HeaderNav() {
               onClick={() => handleSuggestion(manga)}
               onKeyPress={handleKeyPress}
             >
+              <img
+                src={`http://localhost:3310${manga.image}`}
+                alt=""
+                className="result-image"
+              />
               <p>{manga.title}</p>
             </div>
           ))}
