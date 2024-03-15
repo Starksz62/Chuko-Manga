@@ -10,6 +10,7 @@ import AnnouncementDetail from "./pages/AnnouncementDetails";
 import ProfilUser from "./pages/ProfilUser";
 import Favorites from "./pages/Favorites";
 import Catalog from "./pages/Catalog";
+import MyAnounces from "./pages/MyAnounces";
 
 const router = createBrowserRouter([
   {
@@ -50,6 +51,10 @@ const router = createBrowserRouter([
       {
         path: "/profilUser/:id",
         element: <ProfilUser />,
+      },
+      {
+        path: "/myAnounces/:id",
+        element: <MyAnounces />,
       },
       {
         path: "/favorites",
