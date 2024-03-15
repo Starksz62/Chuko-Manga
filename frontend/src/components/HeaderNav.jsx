@@ -42,13 +42,11 @@ function HeaderNav() {
   };
 
   const handleSuggestion = async (selectedManga) => {
-    // Here you can use the selectedManga to perform any action you want
     console.info("Selected Manga:", selectedManga);
     navigate(`/explore/${selectedManga.title}`, { replace: true });
   };
 
   const handleKeyPress = async (e) => {
-    // contrsuire le lien /explore/'${searchQuery}', et faire un redirection (use navigate) vers ce lien
     if (e.key === "Enter") {
       navigate(`/explore/${searchQuery}`, { replace: true });
     }
