@@ -7,7 +7,7 @@ class UsersManager extends AbstractManager {
 
   async getUserById(id) {
     const [rows] = await this.database.query(
-      `SELECT firstname , lastname, pseudo, email, phone, picture FROM ${this.table} WHERE id = ?`,
+      `SELECT firstname, lastname, pseudo, email, phone, picture FROM ${this.table} WHERE id = ?`,
       [id]
     );
     return rows[0];

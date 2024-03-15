@@ -16,10 +16,10 @@ import "./style/global.css";
 import "./style/variables.css";
 
 function App() {
-  const [user, setUser] = useState();
+  const [auth, setAuth] = useState();
 
   return (
-    <UserContext.Provider value={{ user: user, setUser: setUser }}>
+    <UserContext.Provider value={{ auth: auth, setAuth: setAuth }}>
       <div className="mainContainer">
         <LeftNavbar className="leftNavbar" />
         <div className="mainContent">

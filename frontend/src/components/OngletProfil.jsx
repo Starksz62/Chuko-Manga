@@ -1,15 +1,17 @@
 import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 
 import "./OngletProfil.css";
 
 function OngletProfil() {
+  const { id } = useParams();
   const [annonces, setAnnonces] = useState();
   const [evaluations, setEvaluations] = useState([]);
   const [historyOrders, setHistoryOrders] = useState([]);
   const [ongletActif, setongletActif] = useState("Mes annonces");
 
   useEffect(() => {
-    fetch(`http://localhost:3310/api/display-adverts-byseller/1`)
+    fetch(`http://localhost:3310/api/display-adverts-byseller/${id}`)
       .then((res) => res.json())
       .then((data) => {
         console.info("Mes annonces :", data);
@@ -18,7 +20,7 @@ function OngletProfil() {
   }, []);
 
   useEffect(() => {
-    fetch(`http://localhost:3310/api/user-profil-com/1`)
+    fetch(`http://localhost:3310/api/user-profil-com/${id}`)
       .then((res) => res.json())
       .then((data) => {
         console.info("commentairesTableau:", data);
@@ -27,7 +29,7 @@ function OngletProfil() {
   }, []);
 
   useEffect(() => {
-    fetch(`http://localhost:3310/api/display-order-history-bybuyer/1`)
+    fetch(`http://localhost:3310/api/display-order-history-bybuyer/${id}`)
       .then((res) => res.json())
       .then((data) => {
         console.info("Mon historique d'achat:", data);
@@ -127,7 +129,7 @@ function OngletProfil() {
                   <div>
                     <img
                       className="imagePathAnnonces"
-                      src={`${annonce.image_path}`}
+                      src={`http://localhost:3310${annonce.image_path}`}
                       alt="image_article_seller"
                     />
                     <div className="titleSearchMangaAnnonces">{`${annonce.title_search_manga}`}</div>
@@ -189,7 +191,7 @@ function OngletProfil() {
                   <div>
                     <img
                       className="imagePathAnnonces"
-                      src={`${order.image_path}`}
+                      src={`http://localhost:3310${order.image_path}`}
                       alt="image_article_seller"
                     />
                     <div className="titleSearchMangaAnnonces">{`${order.title_search_manga}`}</div>

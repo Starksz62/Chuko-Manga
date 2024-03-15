@@ -2,9 +2,11 @@ const express = require("express");
 // http://localhost:4242/api/characters
 
 const router = express.Router();
+const multer = require("./middlewares/multer-config");
 
-const { hashPassword } = require("./services/auth");
+// const { hashPassword } = require("./services/auth");
 const multerSingle = require("./middlewares/multerConfigSingle");
+const { hashPassword, verifyToken } = require("./services/auth");
 
 // const validateUser = require("./middlewares/validateUser");
 const validateAddress = require("./middlewares/validateAddress");
@@ -19,6 +21,7 @@ const advertsControllers = require("./controllers/advertsControllers");
 const itemControllers = require("./controllers/itemControllers");
 const charactersControllers = require("./controllers/charactersControllers");
 const usersControllers = require("./controllers/usersControllers");
+const conditionsControllers = require("./controllers/conditionsControllers");
 const ordersControllers = require("./controllers/ordersControllers");
 const addressControllers = require("./controllers/addressControllers");
 const volumesControllers = require("./controllers/volumesControllers");
@@ -26,7 +29,7 @@ const volumesControllers = require("./controllers/volumesControllers");
 // const moviesControllers = require("./controllers/moviesControllers");
 
 // Route to get mangas
-router.get("/mangas", mangasControllers.getAllMangas);
+router.get("/mangas", mangasControllers.getMangas);
 router.get("/manga/catalog", mangasControllers.getCatalogMangas);
 router.get("/mangas/:id", mangasControllers.getMangaById);
 
@@ -66,6 +69,11 @@ router.get(
   "/display-adverts-byprice/:price",
   advertsControllers.getAdvertsByPrice
 );
+
+// ROUTES TO POST ADVERTS
+// Route to add a new advert (page advert creation)
+router.post("/new-advert", multer, advertsControllers.createAdvert);
+
 // Route to get all orders by buyer (page Profil/onglet my purchase history)
 router.get(
   "/display-order-history-bybuyer/:id",
@@ -74,9 +82,8 @@ router.get(
 // Route to get all volumes by manag ID (page manga details)
 router.get("/volumes/:mangaId", volumesControllers.getVolumesByMangaId);
 
-// ROUTES TO POST ADVERTS
-// Route to add a new advert (page advert creation)
-router.post("/new-advert", advertsControllers.addAdvert);
+// // ROUTE TO GET CONDITIONS
+router.get("/conditions", conditionsControllers.getAllConditions);
 
 /* ************************************************************************* */
 // ROUTES USERS
@@ -111,6 +118,8 @@ router.put(
   addressControllers.updateAddress
 );
 
+/* ************************************************************************* */
+
 // Route to get a list of items
 router.get("/items", itemControllers.browse);
 
@@ -120,16 +129,14 @@ router.get("/items/:id", itemControllers.read);
 // Route to add a new item
 router.post("/items", itemControllers.add);
 
-/* ************************************************************************* */
 router.get("/characters", charactersControllers.browse);
-
-router.get("/mangas", mangasControllers.getAllMangas);
 
 // Search route, post and retrieve search queries for advert
 // router.get("/search", searchControllers.getSearchQuery);
 // router.post("/explore", searchControllers.postSearchQuery);
 
-// Post ma query du front au back
+// --------------------------------ROUTES SEARCH--------------------------------
+
 router.get("/explore", advertsControllers.getAllAdverts);
 router.get("/explore/:query", advertsControllers.getSearchAdverts);
 
@@ -137,5 +144,9 @@ router.get("/explore/:query", advertsControllers.getSearchAdverts);
 const authControllers = require("./controllers/authControllers");
 
 router.post("/login", authControllers.login);
+
+router.use(verifyToken);
+
+// Thoses routes are protected
 
 module.exports = router;

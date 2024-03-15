@@ -253,7 +253,7 @@ VALUES ('Tome 1', 1, '2002', '/static/naruto.jpg', '2871294143', 1),
 ('Tome 10', 10, '2021', '/static/jujutsuKaisenTom10.png', '1974720756', 5);
 
 INSERT INTO article_condition (name_condition)
-VALUES ('abimé'), ('bon état'), ('comme neuf');
+VALUES ('Abimé'), ('Bon état'), ('Comme neuf');
 
 INSERT INTO
 user (firstname, lastname, pseudo, email, hashed_password, phone, role, picture)
@@ -308,7 +308,7 @@ VALUES ('1','1'),
 ('4','2');
 
 INSERT INTO 
-advert (price, description, alert, batch, title_search_manga, view_number, publication_date_advert, delete_advert, user_id, volume_id, article_condition_id, manga_id) 
+advert (price, description, alert, batch, title_search_manga, publication_date_advert, user_id, volume_id, article_condition_id, manga_id) 
 VALUES 
   (
     -- price
@@ -321,12 +321,8 @@ VALUES
     0, 
     -- title_search_manga
     'Naruto tome 1 en bon état', 
-    -- View Number entré en dur, mais devrait être relié aux clics
-    3, 
     -- publication_date_advert
     '2024-02-19', 
-    -- delete_advert
-    0, 
     -- user_id
     1, 
     -- volume_id
@@ -347,12 +343,8 @@ VALUES
     0, 
     -- title_search_manga
     'Naruto tome 2 comme neuf', 
-    -- View Number entré en dur, mais devrait être reliée aux clics
-    2, 
     -- publication_date_advert
     '2024-02-20', 
-    -- delete_advert
-    0, 
     -- user_id
     1, 
     -- volume_id
@@ -373,12 +365,8 @@ VALUES
     1, 
     -- title_search_manga
     'Lot Dragon Ball à saisir !', 
-    -- View Number entré en dur, mais devrait être reliée aux clics
-    5, 
     -- publication_date_advert
     '2024-02-12', 
-    -- delete_advert
-    0, 
     -- user_id
     1, 
     -- volume_id
@@ -392,19 +380,15 @@ VALUES
     -- price
     20, 
     -- description
-    'One Piece 66 67 68 69 70. Je reste disponible si vous voulez plus de photos. Je vends également d''autres livres n''hésitez pas à faire un tour sur mon profil.', 
+    'One Piece 1 à 6. Je reste disponible si vous voulez plus de photos. Je vends également d''autres livres n''hésitez pas à faire un tour sur mon profil.', 
     -- alert
     0, 
     -- batch
     1, 
     -- title_search_manga
-    'Lot One Piece 66 à 70', 
-    -- View Number entré en dur, mais devrait être reliée aux clics
-    5, 
+    'Lot One Piece 1 à 6', 
     -- publication_date_advert
     '2024-02-14', 
-    -- delete_advert
-    0, 
     -- user_id
     1, 
     -- volume_id
@@ -425,12 +409,8 @@ VALUES
     1, 
     -- title_search_manga
     'Lot Dragon Ball tomes 1 à 3 !', 
-    -- View Number entré en dur, mais devrait être reliée aux clics
-    4, 
     -- publication_date_advert
     '2024-02-21', 
-    -- delete_advert
-    0, 
     -- user_id
     2, 
     -- volume_id
@@ -451,12 +431,8 @@ VALUES
     0, 
     -- title_search_manga
     'Nana Tome 1', 
-    -- View Number entré en dur, mais devrait être reliée aux clics
-    4, 
     -- publication_date_advert
     '2024-02-20', 
-    -- delete_advert
-    0, 
     -- user_id
     2, 
     -- volume_id
@@ -469,17 +445,17 @@ VALUES
 
 INSERT INTO 
 advert_image (image_path, is_primary, advert_id)
-VALUES ('https://images1.vinted.net/t/01_01827_QnAYhyGADWncsoxqVv4js6Mh/f800/1708184899.jpeg?s=fbe64ea0a877c53c42b87282922cb295617cd44e', 1, 1), 
-('https://images1.vinted.net/t/01_0017a_cKAn9GExwyPFFj4fZZqcVMoU/f800/1708184899.jpeg?s=461e8f7628bcb5421a8751a11ca13f763ce86971', 0, 1),
-('https://images1.vinted.net/t/02_00936_va4rY9rWwT3HbU2ThLRULkU7/f800/1708376632.jpeg?s=1412896b180252dd463c6e8981b2e83726ed8294', 1, 2),
-('https://images1.vinted.net/t/03_021d1_FNvSHX9kxBzHei8GBnGDbbL2/f800/1708376632.jpeg?s=c202bf962b04c720d1b69c5397df9e7909e5758b', 0, 2),
-('https://images1.vinted.net/t/01_0091d_7AbN4FEoTkVpFHcTevqmssPj/f800/1708301885.jpeg?s=a35767a3203f7cf7b0967c3bac29231976117099', 1, 3),
-('https://images1.vinted.net/t/03_01d33_yhvKkq3bfzfmTqnsk2VA72ZF/f800/1708437469.jpeg?s=6e1c5dff10d9f8202989a695f7ac0dedac76ea3e', 1, 4),
-('https://images1.vinted.net/t/02_015e6_gyPVAkxkXVQxfAmnUjYUECyc/f800/1708414740.jpeg?s=14d6cae4a9ede4a2f9824ef8208b87a186e13d82', 0, 4),
-('https://images1.vinted.net/t/03_00a44_Ao9k6K9g9dyZ8a6oFGS241Az/f800/1708523145.jpeg?s=9c69bf4c8085bb90c02b5a90720c44a77bf226a6', 1, 5),
-('https://images1.vinted.net/t/01_0069d_8rBzBXNiBnK7Kn94k5hmPLVr/f800/1708523145.jpeg?s=b6119bc3ae9905e339202eb71806650a85ba261c', 0, 5),
-('https://images1.vinted.net/t/03_01d33_yhvKkq3bfzfmTqnsk2VA72ZF/f800/1708437469.jpeg?s=6e1c5dff10d9f8202989a695f7ac0dedac76ea3e', 1, 6),
-('https://images1.vinted.net/t/03_01b81_81gVNq3szf7EA94eupaDVkXG/f800/1708437469.jpeg?s=1de325fb4055aff0395218fe38e932fa328d94cb', 0, 6);
+VALUES ('/static/Advert1_Picture1.jpeg', 1, 1), 
+('/static/Advert1_Picture2.jpeg', 0, 1),
+('/static/Advert2_Picture1.png', 1, 2),
+('/static/Advert2_Picture2.png', 0, 2),
+('/static/Advert3_Picture1.jpeg', 1, 3),
+('/static/Advert4_Picture1.jpeg', 1, 4),
+('/static/Advert4_Picture2.jpeg', 0, 4),
+('/static/Advert5_Picture1.jpeg', 1, 5),
+('/static/Advert5_Picture1.jpeg', 0, 5),
+('/static/Advert6_Picture1.jpeg', 1, 6),
+('/static/Advert6_Picture2.jpeg', 0, 6);
 
 INSERT INTO `order` (id_user_buy, total_price, order_date, status_order, feedback_order, advert_id, user_id)
 VALUES ('2','3.80', '2024/02/20', 'completed', 0, '1', '1'),
