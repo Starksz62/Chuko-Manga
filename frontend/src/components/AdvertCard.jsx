@@ -41,7 +41,7 @@ function AdvertCard({ advert }) {
     <section className="card-content">
       <Link to={`/display-adverts/${advert.id}`} onClick={handleCardClick}>
         <img
-          src={advert.image_path}
+          src={`http://localhost:3310${advert.image_path}`}
           alt={advert.title_search_manga}
           className="card-image"
         />

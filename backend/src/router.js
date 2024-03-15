@@ -2,6 +2,7 @@ const express = require("express");
 // http://localhost:4242/api/characters
 
 const router = express.Router();
+const multer = require("./middlewares/multer-config");
 
 const { hashPassword, verifyToken } = require("./services/auth");
 
@@ -18,6 +19,7 @@ const advertsControllers = require("./controllers/advertsControllers");
 const itemControllers = require("./controllers/itemControllers");
 const charactersControllers = require("./controllers/charactersControllers");
 const usersControllers = require("./controllers/usersControllers");
+const conditionsControllers = require("./controllers/conditionsControllers");
 const ordersControllers = require("./controllers/ordersControllers");
 const addressControllers = require("./controllers/addressControllers");
 const volumesControllers = require("./controllers/volumesControllers");
@@ -63,6 +65,15 @@ router.get(
 );
 // Route to filter adverts by max price (page explorer)
 router.get("/display-adverts-byprice", advertsControllers.getAdvertsByPrice);
+router.get(
+  "/display-adverts-byprice/:price",
+  advertsControllers.getAdvertsByPrice
+);
+
+// ROUTES TO POST ADVERTS
+// Route to add a new advert (page advert creation)
+router.post("/new-advert", multer, advertsControllers.createAdvert);
+
 // Route to get all orders by buyer (page Profil/onglet my purchase history)
 router.get(
   "/display-order-history-bybuyer/:id",
@@ -71,9 +82,8 @@ router.get(
 // Route to get all volumes by manag ID (page manga details)
 router.get("/volumes/:mangaId", volumesControllers.getVolumesByMangaId);
 
-// ROUTES TO POST ADVERTS
-// Route to add a new advert (page advert creation)
-router.post("/new-advert", advertsControllers.addAdvert);
+// // ROUTE TO GET CONDITIONS
+router.get("/conditions", conditionsControllers.getAllConditions);
 
 /* ************************************************************************* */
 // ROUTES USERS

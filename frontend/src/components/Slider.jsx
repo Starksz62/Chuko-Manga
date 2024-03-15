@@ -9,15 +9,16 @@ function PriceSlider() {
   const [max, setMax] = useState(100);
   const [value, setValue] = useState([min, max]);
   useEffect(() => {
-    // Construit l'URL avec le paramètre batch
     const url = `http://localhost:3310/api/display-adverts-byprice?batch=${batch}`;
     fetch(url)
       .then((response) => response.json())
       .then((data) => {
         if (data.minPrice && data.maxPrice) {
-          setMin(data.minPrice);
-          setMax(data.maxPrice);
-          setValue([data.minPrice, data.maxPrice]);
+          const minPrice = parseFloat(data.minPrice);
+          const maxPrice = parseFloat(data.maxPrice);
+          setMin(minPrice);
+          setMax(maxPrice);
+          setValue([minPrice, maxPrice]);
         }
       })
       .catch((error) =>
@@ -44,13 +45,12 @@ function PriceSlider() {
 
     if (newLowerValue >= min && newUpperValue <= max) {
       setValue([newLowerValue, newUpperValue]);
+      updateFilters({ priceMin: newLowerValue, priceMax: newUpperValue });
     }
 
     console.info("Nouvelles valeurs :", [newLowerValue, newUpperValue]);
-    updateFilters({ priceMin: newValue[0], priceMax: newValue[1] });
+    updateFilters({ priceMin: newLowerValue, priceMax: newUpperValue });
   };
-
-  console.info("Valeur de batch dans PriceSlider :", batch);
 
   return (
     <div className="price-slider-container">

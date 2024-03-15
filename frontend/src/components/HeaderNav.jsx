@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useContext } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import UserContext from "../Context/UserContext";
 import ConnexionModal from "./ConnexionModal";
@@ -88,7 +88,7 @@ function HeaderNav() {
             type="button"
             onClick={handleClickOpen}
           >
-            S'incrire | Se connecter
+            S'inscrire | Se connecter
           </button>
         ) : (
           <button
@@ -102,9 +102,11 @@ function HeaderNav() {
           </button>
         )}
         {open && <ConnexionModal handleClickOpen={handleClickOpen} />}
-        <button className="vendre-button" type="button">
-          Vends tes Mangas
-        </button>
+        <Link to="/new-advert">
+          <button className="vendre-button" type="button">
+            Vends tes Mangas
+          </button>
+        </Link>
       </div>
     </header>
   );

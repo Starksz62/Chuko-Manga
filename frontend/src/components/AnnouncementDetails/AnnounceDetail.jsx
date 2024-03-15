@@ -80,7 +80,11 @@ function AnnouncementDetail({ userId, id }) {
               to={`/display-adverts/${sell.advert_id}`}
               onClick={handleCardClick}
             >
-              <img className="image-other-sell" src={sell.image_path} alt="" />
+              <img
+                className="image-other-sell"
+                src={`http://localhost:3310${sell.image_path}`}
+                alt=""
+              />
             </Link>
             <h2>{sell.title_search_manga}</h2>
             <p className="price-other-sell">{sell.price} €</p>
