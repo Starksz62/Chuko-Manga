@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
-import UserContext from "../Context/UserContext";
+import UserContext from "../context/UserContext";
 import ConnexionModal from "./ConnexionModal";
 
 import "./HeaderNav.css";
@@ -25,6 +25,7 @@ function HeaderNav() {
           `http://localhost:3310/api/mangas?q=${searchQuery}`
         );
         setQueryResult(response.data);
+        console.info("Vous ecrivez:", searchQuery);
         console.info("Response from backend:", response.data);
       } catch (err) {
         console.error("Error while fetching search results:", err);
@@ -43,11 +44,19 @@ function HeaderNav() {
 
   const handleSuggestion = async (selectedManga) => {
     console.info("Selected Manga:", selectedManga);
+    setSearchQuery("");
     navigate(`/explore/${selectedManga.title}`, { replace: true });
   };
 
   const handleKeyPress = async (e) => {
     if (e.key === "Enter") {
+      const searchUrl = `http://localhost:3310/api/explore/${searchQuery}`;
+      try {
+        await axios.get(searchUrl);
+      } catch (error) {
+        console.error("Error while posting search query:", error);
+      }
+      setSearchQuery("");
       navigate(`/explore/${searchQuery}`, { replace: true });
     }
   };
@@ -73,6 +82,11 @@ function HeaderNav() {
               onClick={() => handleSuggestion(manga)}
               onKeyPress={handleKeyPress}
             >
+              <img
+                src={`http://localhost:3310${manga.image}`}
+                alt=""
+                className="result-image"
+              />
               <p>{manga.title}</p>
             </div>
           ))}

@@ -1,7 +1,8 @@
+/* eslint-disable import/no-extraneous-dependencies */
 import { useState, useEffect } from "react";
 import RangeSlider from "react-range-slider-input";
 import "react-range-slider-input/dist/style.css";
-import { useFilters } from "../Context/FilterContext";
+import { useFilters } from "../context/FilterContext";
 
 function PriceSlider() {
   const { updateFilters, batch } = useFilters();

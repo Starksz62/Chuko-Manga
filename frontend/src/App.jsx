@@ -1,12 +1,12 @@
 import { useState, useMemo } from "react";
 import { Outlet } from "react-router-dom";
 
-import UserContext from "./Context/UserContext";
+import UserContext from "./context/UserContext";
 
 import LeftNavbar from "./components/LeftNavbar";
 import HeaderNav from "./components/HeaderNav";
 import Footer from "./components/Footer";
-import { FiltersProvider } from "./Context/FilterContext";
+import { FiltersProvider } from "./context/FilterContext";
 
 import "./App.css";
 import "./style/global.css";

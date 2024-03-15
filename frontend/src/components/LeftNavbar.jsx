@@ -7,7 +7,7 @@ import FavoritesIcon from "../assets/favorites.png";
 import SettingsIcon from "../assets/settings.png";
 import SortIcon from "../assets/sort.png";
 import FilterIcon from "../assets/filter.png";
-import { useFilters } from "../Context/FilterContext";
+import { useFilters } from "../context/FilterContext";
 import "./LeftNavbar.css";
 import PriceSlider from "./Slider";
 

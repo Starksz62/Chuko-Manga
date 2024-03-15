@@ -8,7 +8,8 @@
   --neutral-600: hsla(0, 0%, 75%, 1);
   --neutral-700: hsla(0, 0%, 70%, 1);
   --neutral-800: hsla(0, 0%, 0%, 1);
-  --primary-clr: #fa7800;
+  --primary-clr: hsla(29, 92%, 51%, 1);
+  --primary-clr-accent: hsla(29, 92%, 40%, 1);
   --secondary-clr: #14142b;
   --tertiary-clr: #7bade4;
 
