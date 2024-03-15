@@ -8,6 +8,7 @@ import AnnouncementDetail from "./pages/AnnouncementDetails";
 import ProfilUser from "./pages/ProfilUser";
 import Catalog from "./pages/Catalog";
 import Home from "./pages/Home";
+import MyAnounces from "./pages/MyAnounces";
 
 const router = createBrowserRouter([
   {
@@ -44,6 +45,10 @@ const router = createBrowserRouter([
       {
         path: "/profilUser/:id",
         element: <ProfilUser />,
+      },
+      {
+        path: "/myAnounces/:id",
+        element: <MyAnounces />,
       },
     ],
   },
