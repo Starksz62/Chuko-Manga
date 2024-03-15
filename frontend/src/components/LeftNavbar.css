@@ -160,7 +160,6 @@
 
 .notification-icon-wrapper {
   position: relative;
-  padding-top: 10px;
   display: inline-block;
   cursor: pointer;
   z-index: 12;

@@ -2,8 +2,6 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 
-import NotificationCenter from "../components/NotificationCenter";
-
 import "./Catalog.css";
 
 function Catalog() {
@@ -26,7 +24,6 @@ function Catalog() {
 
   return (
     <div>
-      <NotificationCenter />
       <h1>Parcourez notre catalogue</h1>
       <div className="catalog-container">
         <ul>
