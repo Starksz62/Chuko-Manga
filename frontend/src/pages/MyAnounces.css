@@ -1,0 +1,116 @@
+.containerAnounce {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: center;
+  margin: 5% 5% 0 5%;
+  flex-wrap: wrap;
+}
+
+.ContainerImage {
+  display: flex;
+  flex-direction: row;
+  width: 40%;
+  flex-wrap: wrap;
+}
+
+.imageSecond {
+  display: flex;
+  flex-direction: column;
+}
+
+.imageSell1 {
+  width: auto;
+  height: 30rem;
+  margin-right: 1rem;
+  box-shadow: rgba(0, 0, 0, 0.15) 0px 3px 3px 0px;
+}
+
+.imageSell2 {
+  width: auto;
+  height: 14.5rem;
+  margin-bottom: 0.5rem;
+  box-shadow: rgba(0, 0, 0, 0.15) 0px 3px 3px 0px;
+}
+.imageSell3 {
+  width: auto;
+  height: 14.5rem;
+  margin-top: 0.5rem;
+  box-shadow: rgba(0, 0, 0, 0.15) 0px 3px 3px 0px;
+}
+
+.ContainerInformationSell {
+  width: 30rem;
+  height: 30rem;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  box-shadow: rgba(0, 0, 0, 0.15) 0px 3px 3px 0px;
+  margin-left: 2%;
+}
+
+.informationPrice {
+  font-weight: bold;
+  font-size: 1.5rem;
+  border-bottom: solid 0.1rem #b5b5b5;
+}
+
+.informationTitle {
+  display: flex;
+  color: #b5b5b5;
+  margin-top: 1%;
+}
+
+.informationDesciption {
+  display: flex;
+  color: #b5b5b5;
+  margin: 5% 0 5% 0;
+}
+
+.informationISBN {
+  display: flex;
+  color: #b5b5b5;
+  margin-top: 1%;
+  margin-bottom: 5%;
+}
+
+.informationEtat,
+.informationVues,
+.informationDate {
+  display: flex;
+  color: #b5b5b5;
+  margin-top: 1%;
+}
+
+.informationTitle p:first-child,
+.informationDesciption p:first-child,
+.informationEtat p:first-child,
+.informationISBN p:first-child,
+.informationVues p:first-child,
+.informationDate p:first-child {
+  width: 50%;
+}
+
+.buttonContainer {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  width: 100%;
+  gap: 75px;
+  padding: 20px 0;
+}
+
+.btnModSup {
+  padding: 10px 20px;
+  margin: 0 5px;
+  border: 1px solid #dd7a06;
+  background-color: #fff;
+  color: #dd7a06;
+  transition: all 0.3s ease;
+  width: 20rem;
+}
+
+.btnModSup:hover {
+  background-color: #dd7a06;
+  color: #fff;
+}
