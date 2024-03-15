@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 
 import logo from "../assets/logo.png";
@@ -13,6 +13,7 @@ import NotificationBell from "../assets/notificationBell.png";
 import NotificationCenter from "./NotificationCenter";
 
 import "./LeftNavbar.css";
+import UserContext from "../context/UserContext";
 
 function LeftNavbar() {
   const [setIsMenuOpen] = useState(false);
@@ -21,6 +22,7 @@ function LeftNavbar() {
   const [notificationCenterVisible, setNotificationCenterVisible] =
     useState(false);
   const [notifications, setNotifications] = useState([]);
+  const { auth } = useContext(UserContext);
 
   // Étend la sidebar lors du survol
 
@@ -84,40 +86,42 @@ function LeftNavbar() {
             <img src={SortIcon} alt="Tri" />
             <span>Tri</span>
           </li>
-          <li className="notification-li">
-            <div
-              className="notification-icon-wrapper"
-              role="button"
-              tabIndex={0}
-              onClick={() =>
-                setNotificationCenterVisible(!notificationCenterVisible)
-              }
-              onKeyDown={(e) => {
-                if (e.key === "Enter" || e.key === " ") {
-                  setNotificationCenterVisible(!notificationCenterVisible);
+          {auth && (
+            <li className="notification-li">
+              <div
+                className="notification-icon-wrapper"
+                role="button"
+                tabIndex={0}
+                onClick={() =>
+                  setNotificationCenterVisible(!notificationCenterVisible)
                 }
-              }}
-            >
-              <img
-                src={NotificationBell}
-                alt="Notification"
-                className="notification-bell"
-              />
-              {notifications.length > 0 && (
-                <span className="notification-count">
-                  {notifications.length}
-                </span>
+                onKeyDown={(e) => {
+                  if (e.key === "Enter" || e.key === " ") {
+                    setNotificationCenterVisible(!notificationCenterVisible);
+                  }
+                }}
+              >
+                <img
+                  src={NotificationBell}
+                  alt="Notification"
+                  className="notification-bell"
+                />
+                {notifications.length > 0 && (
+                  <span className="notification-count">
+                    {notifications.length}
+                  </span>
+                )}
+                <span>Notifications</span>
+              </div>
+              {notificationCenterVisible && (
+                <NotificationCenter
+                  setIsVisible={setNotificationCenterVisible}
+                  notifications={notifications}
+                  setNotifications={setNotifications}
+                />
               )}
-              <span>Notifications</span>
-            </div>
-            {notificationCenterVisible && (
-              <NotificationCenter
-                setIsVisible={setNotificationCenterVisible}
-                notifications={notifications}
-                setNotifications={setNotifications}
-              />
-            )}
-          </li>
+            </li>
+          )}
 
           <button
             type="button"
