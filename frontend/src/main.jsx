@@ -3,11 +3,13 @@ import ReactDOM from "react-dom/client";
 import App from "./App";
 import MangaDetails from "./pages/MangaDetails";
 import Explore from "./pages/Explore";
+import NewAdvert from "./pages/NewAdvert";
+import Home from "./pages/Home";
 import PaymentPage from "./pages/PaymentPage";
 import AnnouncementDetail from "./pages/AnnouncementDetails";
 import ProfilUser from "./pages/ProfilUser";
+import Favorites from "./pages/Favorites";
 import Catalog from "./pages/Catalog";
-import Home from "./pages/Home";
 import MyAnounces from "./pages/MyAnounces";
 
 const router = createBrowserRouter([
@@ -39,6 +41,10 @@ const router = createBrowserRouter([
         element: <PaymentPage />,
       },
       {
+        path: "/new-advert",
+        element: <NewAdvert />,
+      },
+      {
         path: "/display-adverts/:id",
         element: <AnnouncementDetail />,
       },
@@ -49,6 +55,10 @@ const router = createBrowserRouter([
       {
         path: "/myAnounces/:id",
         element: <MyAnounces />,
+      },
+      {
+        path: "/favorites",
+        element: <Favorites />,
       },
     ],
   },

@@ -19,7 +19,7 @@ class MangasManager extends AbstractManager {
 
   async getMangaData() {
     const [rows] = await this.database
-      .query(`SELECT m.title, m.description, m.image, p.name_publishing_house, g.genre, m.author, m.script_writer, m. illustrator, m.release_date, m.date_japan, m.date_france
+      .query(`SELECT m.title, m.description, m.id, m.image, p.name_publishing_house, g.genre, m.author, m.script_writer, m. illustrator, m.release_date, m.date_japan, m.date_france 
       FROM manga m
       LEFT JOIN publishing_house p ON m.publishing_house_id = p.id
       LEFT JOIN genre g ON m.genre_id = g.id;`);
@@ -32,6 +32,22 @@ class MangasManager extends AbstractManager {
     FROM ${this.table}
     ORDER BY manga.id;`);
     console.info("Result of getMangaOverview:", rows);
+    return rows;
+  }
+
+  async getMangaQuery(searchQuery) {
+    console.info(`Manager Manga query: ${searchQuery}`);
+
+    // Constructing the SQL query dynamically
+    const queryTerms = searchQuery.split(" "); // Split the search query into individual terms
+    const titleLike = queryTerms.map(() => `(title LIKE ?)`); // Construct LIKE conditions for each term
+    const sqlQuery = `SELECT id, title FROM manga WHERE ${titleLike}`; // Join LIKE conditions with OR operator
+    const queryParams = queryTerms.flatMap((term) => [
+      `%${term}%`,
+      `%${term}%`,
+    ]); // Construct parameter array for each term
+
+    const [rows] = await this.database.query(sqlQuery, queryParams);
     return rows;
   }
 }
