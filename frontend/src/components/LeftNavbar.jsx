@@ -54,7 +54,6 @@ function LeftNavbar() {
           <img src={logo} alt="Logo" />
         </div>
       </Link>
-
       <div className="icon-container">
         <ul>
           <li>
