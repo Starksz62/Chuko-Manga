@@ -61,7 +61,7 @@ class AdvertsManager extends AbstractManager {
   }
 
   async findAdvertQuery(searchQuery) {
-    console.info("je suis dans le manager", searchQuery);
+    console.info(`Manager Search query: ${searchQuery}`);
 
     // Constructing the SQL query dynamically
     const searchTerms = searchQuery.split(" "); // Split the search query into individual terms
@@ -84,7 +84,7 @@ class AdvertsManager extends AbstractManager {
     const [rows] = await this.database.query(
       `SELECT advert.price, advert.title_search_manga, advert.description, 
       article_condition.name_condition, advert.view_number, advert.publication_date_advert, 
-      manga.title as manga_title, volume.title as volume_title, volume.ISBN, 
+      manga.id as manga_id, manga.title as manga_title, volume.title as volume_title, volume.ISBN, 
       user.pseudo, user.id as user_id, user.picture as user_picture, 
       joint_table.average, joint_table.feedback_nber, 
       JSON_ARRAYAGG(advert_image.image_path) as image_paths
@@ -102,7 +102,7 @@ class AdvertsManager extends AbstractManager {
       [id]
     );
     return rows;
-  }
+}
 
   async getAdvertsBySeller(id) {
     const [rows] = await this.database.query(
@@ -177,25 +177,22 @@ class AdvertsManager extends AbstractManager {
   }
 
   async addAdvert(advert) {
+    // console.info("poulet");
     const [result] = await this.database.query(
-      `INSERT INTO ${this.table} (price, description, alert, batch, title_search_manga, view_number, publication_date_advert, delete_advert, user_id, volume_id, article_condition_id, manga_id) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+      `INSERT INTO ${this.table} (price, description, alert, batch, title_search_manga, publication_date_advert, user_id, volume_id, article_condition_id, manga_id) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
       [
         advert.price,
         advert.description,
         advert.alert,
         advert.batch,
         advert.title_search_manga,
-        advert.view_number,
         advert.publication_date_advert,
-        advert.delete_advert,
         advert.user_id,
         advert.volume_id,
         advert.article_condition_id,
         advert.manga_id,
       ]
     );
-
-    // Return the ID of the newly inserted item
     return result.insertId;
   }
 }

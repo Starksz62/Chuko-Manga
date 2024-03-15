@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Link, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import axios from "axios";
 
 // Importer use params de react router dom,
@@ -12,7 +12,7 @@ function Explore() {
 
   useEffect(() => {
     const sendQuery = async () => {
-      console.info("========", searchQuery);
+      console.info("explore query result:", searchQuery);
       try {
         const response = await axios.get(
           `http://localhost:3310/api/explore/${searchQuery}`
@@ -28,11 +28,7 @@ function Explore() {
 
   return (
     <>
-      {console.info("je suis le search query avant SELECT", dataAdvert)}
-      <div>Explore page</div>
-      <Link to="/">
-        <button type="button">Home</button>
-      </Link>
+      {console.info("explore advert result:", dataAdvert)}
       <h1>Voici les résultats pour : {searchQuery}</h1>
     </>
   );

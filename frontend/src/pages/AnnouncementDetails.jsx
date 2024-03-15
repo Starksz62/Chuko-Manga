@@ -2,6 +2,7 @@ import "./AnnouncementDetails.css";
 import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import AnnounceDetail from "../components/AnnouncementDetails/AnnounceDetail";
+import MangaDetails from "./MangaDetails";
 
 function AnnouncementDetail() {
   const navigate = useNavigate();
@@ -45,8 +46,14 @@ function AnnouncementDetail() {
     <div>
       <div className="container-Details">
         <div className="image-manga-sell">
-          <img src={detailManga[0].image_paths[0]} alt="" />
-          <img src={detailManga[0].image_paths[1]} alt="" />
+          <img
+            src={`http://localhost:3310${detailManga[0].image_paths[0]}`}
+            alt=""
+          />
+          <img
+            src={`http://localhost:3310${detailManga[0].image_paths[1]}`}
+            alt=""
+          />
 
           <div className="information-manga-sell">
             <p className="information-price">{detailManga[0].price} €</p>
@@ -123,8 +130,12 @@ function AnnouncementDetail() {
           )}
           {activeTab === "manga" && (
             <div>
-              {/* rajout de la partie de Loraine */}
-              <p>Contenu pour Détails manga</p>
+              {detailManga[0] && (
+                <MangaDetails
+                  id={detailManga[0].manga_id}
+                  showVolumes={false}
+                />
+              )}
             </div>
           )}
         </div>

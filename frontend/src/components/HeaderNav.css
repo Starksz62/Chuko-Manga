@@ -1,29 +1,58 @@
 .navbar-header {
-  z-index: 5;
-  padding: 1rem;
-  background-color: pink;
+  z-index: 3;
+  top: 0;
+  position: sticky;
+  background-color: var(--neutral-100);
+  padding: 1rem 4rem;
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
+  align-items: center;
   /* font-family: ; */
 }
 
 .searchbar-container {
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  justify-content: space-between;
   align-items: center;
-  height: 2rem;
-  background-color: grey;
-  gap: 2px;
-  border: none; /* Supprime la bordure */
-  outline: none; /* Supprime la mise en évidence de la bordure lorsqu'il est sélectionné */
+  border: none;
+  outline: none;
+  width: 80%;
+}
+
+.result-tab {
+  display: flex;
+  flex-direction: column;
+}
+
+.search-result {
+  background-color: lightgrey;
+  color: black;
+  padding: 2rem;
 }
 
 .searchbar {
-  padding: 0.5rem;
+  display: flex;
+  flex-direction: row;
+  background-color: var(--neutral-200);
+  padding: 1rem;
+  gap: 1rem;
   border: none;
+  border-radius: 0.5rem;
+  min-width: 400px;
+}
+
+.searchbar input {
+  width: 100%;
+  border: initial;
+  background-color: initial;
+  color: initial;
+  outline: initial;
+  box-shadow: initial;
 }
 
 .menu-triangle {
+  visibility: hidden;
   background-color: #f6f6f6;
   width: 7rem;
   height: 100%;
@@ -89,21 +118,31 @@
   background-color: #f6f6f6;
 }
 
+.incription-login-button,
+.vendre-button {
+  display: inline-block; /* Set buttons to display inline */
+  min-width: 220px;
+  max-height: 3.5rem;
+}
+
 .incription-login-button {
-  padding: 0.5rem;
   background-color: white;
-  height: 2rem;
   border: 0.1rem solid #dd7a06;
   border-radius: 5px;
   color: #dd7a06;
 }
 
 .vendre-button {
-  padding: 0.5rem;
+  padding: 1rem;
   background-color: #dd7a06;
-  height: 2rem;
   border: none;
   border-radius: 5px;
   color: white;
-  margin-left: 1rem;
+  width: fit-content;
+}
+
+.buttonHeader-container {
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
 }

@@ -113,9 +113,65 @@ VALUES (
     -- finish france 
     1,
     -- date france 
-   "2002/09/11",
+    "2002/09/11",
     -- date japan
     "2000/05/15"
+  ),
+   (
+    -- title
+    'Jujutsu Kaisen',
+    -- description
+    "Jujutsu Kaisen follows Yuji Itadori, a high school student who becomes the host of a powerful curse after ingesting a cursed finger. Joining an exorcism school, he teams up with fellow apprentice exorcists to fight malevolent entities and collect the parts of an ancient curse. Amid supernatural battles and personal quests, Yuji navigates a world where magic and monsters shape destiny.",
+    -- image
+    '/static/jujutsuKaisenTome0.png',
+    -- author
+    'Gege Akutami',
+    -- script_writer
+    'Gege Akutami',
+    -- illustrator
+    'Gege Akutami',
+    -- release_date
+    '2018',
+    -- publishing_house_id
+    1,
+    -- genre_id
+    1,
+    -- finish japan
+    0,
+    -- finish france 
+    0,
+    -- date france 
+    "2020/10/01",
+    -- date japan
+    "2018/04/12"
+  ),
+   (
+    -- title
+    'Hunter X Hunter',
+    -- description
+    "Gon Freecss, a young boy who discovers that his father, whom he thought was dead, is actually a legendary Hunter, alive and embarked on a quest in search of treasures, unexplored places, and mysterious creatures. Determined to find his father, Gon decides to take the Hunter Exam, a perilous contest reserved for the elite of adventurers. Throughout his journey, Gon befriends other candidates: Leorio, Kurapika, and Killua. Together, they will face numerous challenges, uncover the vast and dangerous world of Hunters and its dark secrets.",
+    -- image
+    '/static/hunterXHunterTome1.png',
+    -- author
+    'Yoshihiro Togashi',
+    -- script_writer
+    'Yoshihiro Togashi',
+    -- illustrator
+    'Yoshihiro Togashi',
+    -- release_date
+    '1998',
+    -- publishing_house_id
+    1,
+    -- genre_id
+    1,
+    -- finish japan
+    0,
+    -- finish france 
+    0,
+    -- date france 
+   "2020/10/01",
+    -- date japan
+    "1998/03/16"
   )
   ;
 
@@ -150,7 +206,25 @@ VALUES ('Tome 1', 1, '2002', '/static/naruto.jpg', '2871294143', 1),
 ('Tome 28', 28, '2007', '/static/narutoTome28.png', '2505000921', 1),
 ('Tome 29', 29, '2007', '/static/narutoTome29.png', '2505000972', 1),
 ('Tome 30', 30, '2007', '/static/narutoTome30.png', '2505001529', 1),
-('Tome 1', 1, '2007', '/static/onePieceTome1.png', '2505001529', 3),
+('Tome 1', 1, '1993', '/static/DragonBall_db.jpg', '287695205X', 2),
+('Tome 2', 2, '1993', '/static/dragonBallTome2.png', '2876952068', 2),
+('Tome 3', 3, '1993', '/static/dragonBallTome3.png', '2876952076', 2),
+('Tome 4', 4, '1993', '/static/dragonBallTome4.png', '2876952106', 2),
+('Tome 6', 6, '1994', '/static/dragonBallTome6.png', '2876952122', 2),
+('Tome 7', 7, '1994', '/static/dragonBallTome7.png', '2876952173', 2),
+('Tome 8', 8, '1994', '/static/dragonBallTome8.png', '2876952181', 2),
+('Tome 9', 9, '1994', '/static/dragonBallTome9.png', '287695219X', 2),
+('Tome 10', 10, '1994', '/static/dragonBallTome10.png', '2876952203', 2),
+('Tome 13', 13, '1995', '/static/dragonBallTome13.png', '2723418561', 2),
+('Tome 15', 15, '1995', '/static/dragonBallTome15.png', '2723418588', 2),
+('Tome 17', 17, '1995', '/static/dragonBallTome17.png', '272341860X', 2),
+('Tome 18', 18, '1995', '/static/dragonBallTome18.png', '2723418618', 2),
+('Tome 19', 19, '1996', '/static/dragonBallTome19.png', '2723419029', 2),
+('Tome 20', 20, '1996', '/static/dragonBallTome20.png', '2723419231', 2),
+('Tome 25', 25, '1997', '/static/dragonBallTome25.png', '2723422240', 2),
+('Tome 26', 26, '1997', '/static/dragonBallTome26.png', '2723422259', 2),
+('Tome 29', 29, '1997', '/static/dragonBallTome29.png', '2723423476', 2),
+('Tome 1', 1, '2007', '/static/onePieceTome1.jpg', '2505001529', 3),
 ('Tome 2', 2, '2007', '/static/onePieceTome2.png', '2505001529', 3),
 ('Tome 3', 3, '2007', '/static/onePieceTome3.png', '2505001529', 3),
 ('Tome 4', 4, '2007', '/static/onePieceTome4.png', '2505001529', 3),
@@ -165,13 +239,24 @@ VALUES ('Tome 1', 1, '2002', '/static/naruto.jpg', '2871294143', 1),
 ('Tome 13', 13, '2007', '/static/onePieceTome13.png', '2505001529', 3),
 ('Tome 14', 14, '2007', '/static/onePieceTome14.png', '2505001529', 3),
 ('Tome 15', 15, '2007', '/static/onePieceTome15.png', '2505001529', 3),
-('Tome 1', 1, '2000', '/static/nanaTome1.png', '9782840559573', 4);
+('Tome 1', 1, '2000', '/static/nanaTome1.png', '9782840559573', 4),
+('Tome 0', 0, '2020', '/static/jujutsuKaisenTom0.png', '1974720144', 5),
+('Tome 1', 1, '2020', '/static/jujutsuKaisenTom1.png', '1974710025', 5),
+('Tome 2', 2, '2020', '/static/jujutsuKaisenTom2.png', '1974710033', 5),
+('Tome 3', 3, '2020', '/static/jujutsuKaisenTom3.png', '1974710041', 5),
+('Tome 4', 4, '2020', '/static/jujutsuKaisenTom4.png', '1974714802', 5),
+('Tome 5', 5, '2020', '/static/jujutsuKaisenTom5.png', '1974714810', 5),
+('Tome 6', 6, '2020', '/static/jujutsuKaisenTom6.png', '1974714829', 5),
+('Tome 7', 7, '2020', '/static/jujutsuKaisenTom7.png', '1974717119', 5),
+('Tome 8', 8, '2021', '/static/jujutsuKaisenTom8.png', '1974718719', 5),
+('Tome 9', 9, '2021', '/static/jujutsuKaisenTom9.png', '1974718727', 5),
+('Tome 10', 10, '2021', '/static/jujutsuKaisenTom10.png', '1974720756', 5);
 
 INSERT INTO article_condition (name_condition)
-VALUES ('abimé'), ('bon état'), ('comme neuf');
+VALUES ('Abimé'), ('Bon état'), ('Comme neuf');
 
 INSERT INTO
-user (firstname, lastname, pseudo, email, password, phone, role, picture)
+user (firstname, lastname, pseudo, email, hashed_password, phone, role, picture)
 VALUES
 (
   -- firstname
@@ -223,7 +308,7 @@ VALUES ('1','1'),
 ('4','2');
 
 INSERT INTO 
-advert (price, description, alert, batch, title_search_manga, view_number, publication_date_advert, delete_advert, user_id, volume_id, article_condition_id, manga_id) 
+advert (price, description, alert, batch, title_search_manga, publication_date_advert, user_id, volume_id, article_condition_id, manga_id) 
 VALUES 
   (
     -- price
@@ -236,12 +321,8 @@ VALUES
     0, 
     -- title_search_manga
     'Naruto tome 1 en bon état', 
-    -- View Number entré en dur, mais devrait être relié aux clics
-    3, 
     -- publication_date_advert
     '2024-02-19', 
-    -- delete_advert
-    0, 
     -- user_id
     1, 
     -- volume_id
@@ -262,12 +343,8 @@ VALUES
     0, 
     -- title_search_manga
     'Naruto tome 2 comme neuf', 
-    -- View Number entré en dur, mais devrait être reliée aux clics
-    2, 
     -- publication_date_advert
     '2024-02-20', 
-    -- delete_advert
-    0, 
     -- user_id
     1, 
     -- volume_id
@@ -288,12 +365,8 @@ VALUES
     1, 
     -- title_search_manga
     'Lot Dragon Ball à saisir !', 
-    -- View Number entré en dur, mais devrait être reliée aux clics
-    5, 
     -- publication_date_advert
     '2024-02-12', 
-    -- delete_advert
-    0, 
     -- user_id
     1, 
     -- volume_id
@@ -307,19 +380,15 @@ VALUES
     -- price
     20, 
     -- description
-    'One Piece 66 67 68 69 70. Je reste disponible si vous voulez plus de photos. Je vends également d''autres livres n''hésitez pas à faire un tour sur mon profil.', 
+    'One Piece 1 à 6. Je reste disponible si vous voulez plus de photos. Je vends également d''autres livres n''hésitez pas à faire un tour sur mon profil.', 
     -- alert
     0, 
     -- batch
     1, 
     -- title_search_manga
-    'Lot One Piece 66 à 70', 
-    -- View Number entré en dur, mais devrait être reliée aux clics
-    5, 
+    'Lot One Piece 1 à 6', 
     -- publication_date_advert
     '2024-02-14', 
-    -- delete_advert
-    0, 
     -- user_id
     1, 
     -- volume_id
@@ -340,12 +409,8 @@ VALUES
     1, 
     -- title_search_manga
     'Lot Dragon Ball tomes 1 à 3 !', 
-    -- View Number entré en dur, mais devrait être reliée aux clics
-    4, 
     -- publication_date_advert
     '2024-02-21', 
-    -- delete_advert
-    0, 
     -- user_id
     2, 
     -- volume_id
@@ -366,12 +431,8 @@ VALUES
     0, 
     -- title_search_manga
     'Nana Tome 1', 
-    -- View Number entré en dur, mais devrait être reliée aux clics
-    4, 
     -- publication_date_advert
     '2024-02-20', 
-    -- delete_advert
-    0, 
     -- user_id
     2, 
     -- volume_id
@@ -384,17 +445,17 @@ VALUES
 
 INSERT INTO 
 advert_image (image_path, is_primary, advert_id)
-VALUES ('https://images1.vinted.net/t/01_01827_QnAYhyGADWncsoxqVv4js6Mh/f800/1708184899.jpeg?s=fbe64ea0a877c53c42b87282922cb295617cd44e', 1, 1), 
-('https://images1.vinted.net/t/01_0017a_cKAn9GExwyPFFj4fZZqcVMoU/f800/1708184899.jpeg?s=461e8f7628bcb5421a8751a11ca13f763ce86971', 0, 1),
-('https://images1.vinted.net/t/02_00936_va4rY9rWwT3HbU2ThLRULkU7/f800/1708376632.jpeg?s=1412896b180252dd463c6e8981b2e83726ed8294', 1, 2),
-('https://images1.vinted.net/t/03_021d1_FNvSHX9kxBzHei8GBnGDbbL2/f800/1708376632.jpeg?s=c202bf962b04c720d1b69c5397df9e7909e5758b', 0, 2),
-('https://images1.vinted.net/t/01_0091d_7AbN4FEoTkVpFHcTevqmssPj/f800/1708301885.jpeg?s=a35767a3203f7cf7b0967c3bac29231976117099', 1, 3),
-('https://images1.vinted.net/t/03_01d33_yhvKkq3bfzfmTqnsk2VA72ZF/f800/1708437469.jpeg?s=6e1c5dff10d9f8202989a695f7ac0dedac76ea3e', 1, 4),
-('https://images1.vinted.net/t/02_015e6_gyPVAkxkXVQxfAmnUjYUECyc/f800/1708414740.jpeg?s=14d6cae4a9ede4a2f9824ef8208b87a186e13d82', 0, 4),
-('https://images1.vinted.net/t/03_00a44_Ao9k6K9g9dyZ8a6oFGS241Az/f800/1708523145.jpeg?s=9c69bf4c8085bb90c02b5a90720c44a77bf226a6', 1, 5),
-('https://images1.vinted.net/t/01_0069d_8rBzBXNiBnK7Kn94k5hmPLVr/f800/1708523145.jpeg?s=b6119bc3ae9905e339202eb71806650a85ba261c', 0, 5),
-('https://images1.vinted.net/t/03_01d33_yhvKkq3bfzfmTqnsk2VA72ZF/f800/1708437469.jpeg?s=6e1c5dff10d9f8202989a695f7ac0dedac76ea3e', 1, 6),
-('https://images1.vinted.net/t/03_01b81_81gVNq3szf7EA94eupaDVkXG/f800/1708437469.jpeg?s=1de325fb4055aff0395218fe38e932fa328d94cb', 0, 6);
+VALUES ('/static/Advert1_Picture1.jpeg', 1, 1), 
+('/static/Advert1_Picture2.jpeg', 0, 1),
+('/static/Advert2_Picture1.png', 1, 2),
+('/static/Advert2_Picture2.png', 0, 2),
+('/static/Advert3_Picture1.jpeg', 1, 3),
+('/static/Advert4_Picture1.jpeg', 1, 4),
+('/static/Advert4_Picture2.jpeg', 0, 4),
+('/static/Advert5_Picture1.jpeg', 1, 5),
+('/static/Advert5_Picture1.jpeg', 0, 5),
+('/static/Advert6_Picture1.jpeg', 1, 6),
+('/static/Advert6_Picture2.jpeg', 0, 6);
 
 INSERT INTO `order` (id_user_buy, total_price, order_date, status_order, feedback_order, advert_id, user_id)
 VALUES ('2','3.80', '2024/02/20', 'completed', 0, '1', '1'),

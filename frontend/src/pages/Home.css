@@ -1,0 +1,47 @@
+.main {
+  background-color: var(--neutral-100);
+}
+
+.advert-section {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+
+.hero-section {
+  padding: 4rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.hero-banner {
+  position: relative;
+  width: clamp(600px, 100%, 100%);
+  height: 600px;
+  border-radius: 1rem;
+  background-color: orange;
+  overflow: hidden;
+}
+
+.hero-banner img {
+  position: absolute;
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+}
+
+.hero-card {
+  position: absolute;
+  bottom: 2rem;
+  left: 2rem;
+  background-color: var(--neutral-200);
+  width: fit-content;
+  padding: 2rem;
+  border-radius: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}

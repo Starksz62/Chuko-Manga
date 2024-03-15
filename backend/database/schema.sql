@@ -21,12 +21,12 @@ USE `chuko_manga_db` ;
 CREATE TABLE IF NOT EXISTS `chuko_manga_db`.`user` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `pseudo` VARCHAR(45) NOT NULL,
-  `firstname` VARCHAR(45) NOT NULL,
-  `lastname` VARCHAR(45) NOT NULL,
+  `firstname` VARCHAR(45) NULL,
+  `lastname` VARCHAR(45) NULL,
   `email` VARCHAR(150) NOT NULL,
-  `password` BINARY(50) NOT NULL,
+  `hashed_password` VARCHAR(255) NOT NULL,
   `phone` INT NULL,
-  `role` ENUM('admin', 'user') NOT NULL,
+  `role` ENUM('admin', 'user') NOT NULL DEFAULT 'user',
   `picture` VARCHAR(255) NULL,
   PRIMARY KEY (`id`))
 ENGINE = InnoDB
@@ -129,14 +129,14 @@ AUTO_INCREMENT = 1;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `chuko_manga_db`.`advert` (
   `id` INT NOT NULL AUTO_INCREMENT,
-  `price` INT NOT NULL,
+  `price` DECIMAL(10,2) NOT NULL,
   `description` VARCHAR(255) NOT NULL,
   `alert` TINYINT NOT NULL,
   `batch` TINYINT NOT NULL,
   `title_search_manga` VARCHAR(255) NULL,
-  `view_number` INT NOT NULL,
+  `view_number` INT NOT NULL DEFAULT 0,
   `publication_date_advert` DATE NOT NULL,
-  `delete_advert` TINYINT NOT NULL,
+  `delete_advert` TINYINT NOT NULL DEFAULT 0,
   `user_id` INT NOT NULL,
   `volume_id` INT NULL,
   `article_condition_id` INT NOT NULL,
