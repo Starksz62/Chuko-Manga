@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
-import { useFilters } from "../Context/FilterContext";
+import { useFilters } from "../context/FilterContext";
 import AdvertCard from "../components/AdvertCard";
 
 function Explore() {
