@@ -101,7 +101,12 @@ function MangaDetails({ id: propId, showVolumes = true }) {
   );
 }
 MangaDetails.propTypes = {
-  id: PropTypes.string.isRequired, // Utilisez PropTypes.number si l'ID est un nombre
-  showVolumes: PropTypes.bool.isRequired,
+  id: PropTypes.number,
+  showVolumes: PropTypes.bool,
+};
+
+MangaDetails.defaultProps = {
+  id: undefined,
+  showVolumes: true,
 };
 export default MangaDetails;

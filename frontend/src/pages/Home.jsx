@@ -1,10 +1,8 @@
+import "./Home.css";
 import { Link } from "react-router-dom";
-
 import PrefilterAdvertByDesc from "../components/PrefilterAdvertByDesc";
 import PrefilterAdvertByBatch from "../components/PrefilterAdvertByBatch";
 import RepalledeSale from "../components/RepalledeSale/RepalledeSale";
-
-import "./Home.css";
 
 function Home() {
   return (
@@ -13,15 +11,12 @@ function Home() {
         <div className="hero-banner">
           <img src="src/assets/hero_banner.png" alt="" />
           <div className="hero-card">
-            <h1> Des tomes que tu ne lis plus ? </h1>
-            <Link to="/new-advert">
+            <h1> Explorez nos annonces </h1>
+            <Link to="/explore">
               <button className="vendre-button" type="button">
-                Vends tes Mangas
+                Explorer
               </button>
             </Link>
-            <a href="https://www.wikihow.com/Main-Page">
-              Découvrir comment ça marche
-            </a>
           </div>
         </div>
       </div>
