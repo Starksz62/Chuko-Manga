@@ -5,7 +5,7 @@
 import { useState } from "react";
 import { Outlet } from "react-router-dom";
 
-import UserContext from "./context/UserContext";
+import UserContext from "./Context/UserContext";
 
 import LeftNavbar from "./components/LeftNavbar";
 import HeaderNav from "./components/HeaderNav";

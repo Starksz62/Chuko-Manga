@@ -3,7 +3,7 @@
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 import { useRef, useState, useContext } from "react";
 
-import UserContext from "../context/UserContext";
+import UserContext from "../Context/UserContext";
 
 import "./Connexion.css";
 
