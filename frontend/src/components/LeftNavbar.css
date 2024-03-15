@@ -8,12 +8,18 @@
   transition:
     width 0.5s ease,
     background-color 0.5s ease;
+  z-index: 10;
 }
 
 .sidebar-logo img {
   display: block;
   margin: 0 auto;
   padding: 20px;
+}
+
+.notification-bell {
+  width: 16px;
+  height: auto;
 }
 
 .sidebar.collapsed .sidebar-logo img {
@@ -44,6 +50,10 @@
 .icon-container > ul > li:hover {
   background-color: #83aac7;
   color: white;
+}
+
+.icon-container > ul > li:not(.notification-li):hover {
+  background-color: #83aac7;
 }
 
 .sidebar li {
@@ -131,4 +141,27 @@
 
 .sidebar::-webkit-scrollbar {
   display: none;
+}
+
+.notification-count {
+  background-color: #ff0000;
+  border-radius: 50%;
+  color: #ffffff;
+  display: inline-block;
+  font-size: 10px;
+  position: absolute;
+  right: 10px;
+  text-align: center;
+  top: 0;
+  left: 4%;
+  width: 15px;
+  height: 15px;
+}
+
+.notification-icon-wrapper {
+  position: relative;
+  padding-top: 10px;
+  display: inline-block;
+  cursor: pointer;
+  z-index: 12;
 }

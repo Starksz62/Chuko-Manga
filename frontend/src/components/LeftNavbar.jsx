@@ -7,6 +7,9 @@ import FavoritesIcon from "../assets/favorites.png";
 import SettingsIcon from "../assets/settings.png";
 import SortIcon from "../assets/sort.png";
 import FilterIcon from "../assets/filter.png";
+import NotificationBell from "../assets/notificationBell.png";
+
+import NotificationCenter from "./NotificationCenter";
 
 import "./LeftNavbar.css";
 
@@ -14,6 +17,9 @@ function LeftNavbar() {
   const [setIsMenuOpen] = useState(false);
   const [showFilters, setShowFilters] = useState(false);
   const [currentFilter, setCurrentFilter] = useState(null);
+  const [notificationCenterVisible, setNotificationCenterVisible] =
+    useState(false);
+  const [notifications, setNotifications] = useState([]);
 
   // Étend la sidebar lors du survol
 
@@ -73,6 +79,41 @@ function LeftNavbar() {
             <img src={SortIcon} alt="Tri" />
             <span>Tri</span>
           </li>
+          <li className="notification-li">
+            <div
+              className="notification-icon-wrapper"
+              role="button"
+              tabIndex={0}
+              onClick={() =>
+                setNotificationCenterVisible(!notificationCenterVisible)
+              }
+              onKeyDown={(e) => {
+                if (e.key === "Enter" || e.key === " ") {
+                  setNotificationCenterVisible(!notificationCenterVisible);
+                }
+              }}
+            >
+              <img
+                src={NotificationBell}
+                alt="Notification"
+                className="notification-bell"
+              />
+              {notifications.length > 0 && (
+                <span className="notification-count">
+                  {notifications.length}
+                </span>
+              )}
+              <span>Notifications</span>
+            </div>
+            {notificationCenterVisible && (
+              <NotificationCenter
+                setIsVisible={setNotificationCenterVisible}
+                notifications={notifications}
+                setNotifications={setNotifications}
+              />
+            )}
+          </li>
+
           <button
             type="button"
             onClick={toggleFilters}
