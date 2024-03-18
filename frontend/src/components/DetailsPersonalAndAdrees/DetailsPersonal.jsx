@@ -10,14 +10,15 @@ import axios from "axios";
 
 function DetailsPersonal() {
   const { id } = useParams();
-  const [file, setFile] = useState("");
+  const [file, setFile] = useState(null);
+  const [success, setSuccess] = useState(false);
   const [formData, setFormData] = useState({
     pseudo: "",
     firstname: "",
     lastname: "",
     email: "",
     phone: "",
-    // picture: "",
+    picture: "",
   });
 
   useEffect(() => {
@@ -30,12 +31,19 @@ function DetailsPersonal() {
       })
       .then((data) => {
         console.info("Mes donnees user :", data);
-        setFormData(data);
+        setFormData({
+          pseudo: data.pseudo,
+          firstname: data.firstname,
+          lastname: data.lastname,
+          email: data.email,
+          phone: data.phone,
+          picture: data.picture,
+        });
       })
       .catch((error) => {
         console.error("Error fetching user data:", error);
       });
-  }, [id]);
+  }, [id, success]);
 
   const [isEmailVisible, setIsEmailVisible] = useState(false);
   const handleEmailVisibilityToggle = () => {
@@ -54,20 +62,12 @@ function DetailsPersonal() {
   };
 
   const handleFileChange = (e) => {
-    setFile(e.target.file);
+    setFile(e.target.files[0]);
     console.info("my file is:", file);
   };
 
-  // const handleFileChange = () => {
-  //   console.log(files);
-  //   const fromData = new FormData();
-  //   fromData.append("file", files);
-  // files.forEach((file) => {
-  //   fromData.append("file", file);
-  // });
-  // };
-
-  const handleUpdateUser = () => {
+  const handleUpdateUser = (e) => {
+    e.preventDefault();
     const data = new FormData();
     console.log("poulet", data);
     data.append("pseudo", formData.pseudo);
@@ -75,35 +75,22 @@ function DetailsPersonal() {
     data.append("lastname", formData.lastname);
     data.append("email", formData.email);
     data.append("phone", formData.phone);
-    data.append("picture", file);
+    data.append("file", file);
     axios
       .put(`http://localhost:3310/api/user/${id}`, data)
       .then((response) => {
+        setSuccess(!success);
         console.warn("Success updating user:", response.data);
       })
       .catch((error) => {
         console.error("Error updating user:", error);
       });
   };
-  // const [files, setFiles] = useState();
-  // const handleUpdateUser = () => {
-  //   formData.append("file", files);
-  //   axios
-  //     .put(`http://localhost:3310/api/user/${id}`, formData)
-  //     .then((response) => {
-  //       console.warn("Success updating user:", response.data);
-  //     })
-  //     .catch((error) => {
-  //       console.error("Error updating user:", error);
-  //     });
-  // };
 
   return (
     <form className="ContainerCreation" onSubmit={handleUpdateUser}>
-      <div>
-        <label htmlFor="picture" className="label_profil">
-          Choisi ta photo:
-        </label>
+      {console.info("my file is:", file)}
+      {/* <div>
         <input
           type="file"
           id="picture_input"
@@ -111,12 +98,16 @@ function DetailsPersonal() {
           accept="image/*"
           onChange={handleFileChange}
         />
-        {file && (
-          <img src={file} alt="Selected" style={{ maxWidth: "100px" }} />
+        {formData.picture && (
+          <img
+            src={`http://localhost:3310${formData.picture}`}
+            alt="Selected"
+            style={{ borderRadius: "50%", width: "100%", height: "100%" }}
+          />
         )}
-      </div>
+      </div> */}
 
-      {/* <div className="input_label_profil">
+      <div className="input_label_profil">
         <label htmlFor="picture" className="label_profil">
           Choisi ta photo:
         </label>
@@ -125,8 +116,7 @@ function DetailsPersonal() {
           accept="image/*"
           id="picture_input"
           name="picture"
-          value={formData.picture}
-          onChange={handleChange}
+          onChange={handleFileChange}
           className="input_profil"
           style={{ display: "none" }}
         />
@@ -136,15 +126,15 @@ function DetailsPersonal() {
         >
           {formData.picture ? (
             <img
-              src={formData.picture}
+              src={`http://localhost:3310${formData.picture}`}
               alt="Chosen"
               style={{ borderRadius: "50%", width: "100%", height: "100%" }}
             />
           ) : (
-            "+"
+            <p style={{ color: "white", fontSize: "40px" }}>+</p>
           )}
         </button>
-      </div> */}
+      </div>
       <div className="input_label_profil">
         <label htmlFor="pseudo" className="label_profil">
           Ton pseudo:

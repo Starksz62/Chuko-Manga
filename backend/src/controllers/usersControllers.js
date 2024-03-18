@@ -73,6 +73,9 @@ const updateUser = async (req, res) => {
   console.log("file", req.file);
   const { id } = req.params;
   const user = req.body;
+  user.picture = `/static/${req.file.filename}`;
+  console.log("user : --- ", user);
+
   try {
     user.id = id;
     const result = await models.user.updateUser(user);
