@@ -1,10 +1,8 @@
+import "./Home.css";
 import { Link } from "react-router-dom";
-
 import PrefilterAdvertByDesc from "../components/PrefilterAdvertByDesc";
 import PrefilterAdvertByBatch from "../components/PrefilterAdvertByBatch";
 import RepalledeSale from "../components/RepalledeSale/RepalledeSale";
-
-import "./Home.css";
 
 function Home() {
   return (
