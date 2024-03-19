@@ -20,7 +20,7 @@ function PrefilterAdvertByDesc() {
   const [showRightButton, setShowRightButton] = useState(true);
 
   useEffect(() => {
-    fetch("http://localhost:3310/api/find-recent-adverts?batch=true")
+    fetch("http://localhost:3310/api/batch-adverts-date-desc")
       .then((response) => {
         if (!response.ok) {
           throw new Error(`Error HTTP, status: ${response.status}`);

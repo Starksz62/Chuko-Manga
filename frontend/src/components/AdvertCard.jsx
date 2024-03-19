@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import "./AdvertCard.css";
 import { Link, useNavigate } from "react-router-dom";
+import collectorLogo from "../assets/CollectorLogo.png";
 
 function AdvertCard({ advert }) {
   const navigate = useNavigate();
@@ -37,9 +38,24 @@ function AdvertCard({ advert }) {
   };
 
   const average = parseFloat(advert.average);
+
+  // Déterminez la classe CSS à utiliser
+  const cardClass =
+    advert.is_collector === 0
+      ? "card-content-no-collector"
+      : "card-content-collector";
+
   return (
-    <section className="card-content">
+    <section className={cardClass}>
       <Link to={`/display-adverts/${advert.id}`} onClick={handleCardClick}>
+        {/* Conditionnellement afficher l'image */}
+        {cardClass === "card-content-collector" && (
+          <img
+            src={collectorLogo}
+            alt="Collector Logo"
+            className="collector-logo"
+          />
+        )}
         <img
           src={`http://localhost:3310${advert.image_path}`}
           alt={advert.title_search_manga}
@@ -97,6 +113,7 @@ AdvertCard.propTypes = {
     title_search_manga: PropTypes.string.isRequired,
     image_path: PropTypes.string.isRequired,
     price: PropTypes.number.isRequired,
+    is_collector: PropTypes.bool.isRequired,
     name_condition: PropTypes.string.isRequired,
     user_picture: PropTypes.string.isRequired,
     pseudo: PropTypes.string.isRequired,
