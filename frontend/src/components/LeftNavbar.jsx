@@ -1,5 +1,6 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
+
 import logo from "../assets/logo.png";
 import ProfileIcon from "../assets/profile.png";
 import AdsIcon from "../assets/ads.png";
@@ -12,6 +13,8 @@ import "./LeftNavbar.css";
 import PriceSlider from "./Slider";
 
 function LeftNavbar() {
+  const { id } = useParams();
+  // const [setIsMenuOpen] = useState(false);
   const [showFilters, setShowFilters] = useState(false);
   const [currentFilter, setCurrentFilter] = useState(null);
   const [selectedGenreId, setSelectedGenreId] = useState(null);
@@ -72,10 +75,12 @@ function LeftNavbar() {
       </Link>
       <div className="icon-container">
         <ul>
-          <li>
-            <img src={ProfileIcon} alt="Profile" />
-            <span>Profile</span>
-          </li>
+          <Link to={`/profilUser/${id}`}>
+            <li>
+              <img src={ProfileIcon} alt="Profile" />
+              <span>Profile</span>
+            </li>
+          </Link>
           <li>
             <img src={AdsIcon} alt="Mes annonces" />
             <span>Mes annonces</span>
