@@ -126,7 +126,7 @@ function OngletProfil() {
             {annonces?.map((annonce) => (
               <div key={advertId}>
                 <li className="cardAnnonces">
-                  <Link key={advertId} to={`/myAnounces/${id}`}>
+                  <Link key={advertId} to={`/myAnounces/${annonce.advert_id}`}>
                     <div>
                       <img
                         className="imagePathAnnonces"

@@ -1,11 +1,13 @@
-import "./MyAnounces.css";
 import { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
+import axios from "axios";
+
+import "./MyAnounces.css";
 
 import NoImage from "../assets/navBar.png";
 
 function MyAnounces() {
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
   const { id } = useParams();
   const [anounces, setAnounces] = useState([]);
   const [modal, setModal] = useState(false);
@@ -28,18 +30,38 @@ function MyAnounces() {
   if (!anounces) {
     return <p>Chargement des anonces...</p>;
   }
-  // ajuster l'url pour la redirection lorsqu'on clique sur modifier l'annonce
-  // const navigateToModifyPageAnounce = (mangaId) => {
-  //   navigate(`/ModifyPageAnounce/${mangaId}`);
-  // };
+
+  const navigateToProfilUser = () => {
+    if (anounces && anounces.length > 0) {
+      const userId = anounces[0].user_id;
+      navigate(`/profilUser/${userId}`);
+    }
+  };
 
   const toggleModal = () => {
     setModal(!modal);
   };
 
-  const handleKeyPress = (event) => {
-    if (event.key === "Enter") {
+  const handleKeyPress = (e) => {
+    if (e.key === "Enter") {
       toggleModal();
+    }
+  };
+
+  const handleDeleteAdvert = (advertId) => {
+    if (advertId) {
+      axios
+        .delete(`http://localhost:3310/api/advert/${advertId}`)
+        .then((response) => {
+          console.warn("Success delete advert:", response.data);
+          toggleModal();
+          navigateToProfilUser();
+        })
+        .catch((error) => {
+          console.error("Error delete advert:", error);
+        });
+    } else {
+      console.error("Invalid advert ID:", advertId);
     }
   };
 
@@ -117,7 +139,7 @@ function MyAnounces() {
             <button
               className="btnModSup"
               type="button"
-              // onClick={navigateToModifyPageAnounce(manga.id)}
+              // onClick={navigateToModifyPageAnounce(advert.id)}
             >
               Modifier l'annonce
             </button>
@@ -149,7 +171,7 @@ function MyAnounces() {
                       <button
                         className="confirmModal"
                         type="button"
-                        onClick={toggleModal}
+                        onClick={() => handleDeleteAdvert(anounce.advert_id)}
                       >
                         Confirmer
                       </button>
