@@ -36,6 +36,7 @@ function AdvertCard({ advert }) {
     }
   };
 
+  const average = parseFloat(advert.average);
   return (
     <section className="card-content">
       <Link to={`/display-adverts/${advert.id}`} onClick={handleCardClick}>
@@ -78,7 +79,7 @@ function AdvertCard({ advert }) {
           />
           <div className="note-text">
             <p className="card-evaluation">
-              {advert.average}
+              {average}
               <span className="card-number-feedback">
                 ({advert.feedback_nber})
               </span>
@@ -99,7 +100,8 @@ AdvertCard.propTypes = {
     name_condition: PropTypes.string.isRequired,
     user_picture: PropTypes.string.isRequired,
     pseudo: PropTypes.string.isRequired,
-    average: PropTypes.number.isRequired,
+    average: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
+      .isRequired,
     feedback_nber: PropTypes.number.isRequired,
   }).isRequired,
 };
