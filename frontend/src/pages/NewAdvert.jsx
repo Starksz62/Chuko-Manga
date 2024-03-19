@@ -218,7 +218,7 @@ function NewAdvert() {
         </div>
         <label htmlFor="title">Titre *</label>
         <input
-          className={maxTitleReached ? "length-max-reached" : "length-ok"}
+          className={maxTitleReached && "wrong-input"}
           type="text"
           id="title"
           name="title_search_manga"
@@ -232,6 +232,7 @@ function NewAdvert() {
         </div>
         <label htmlFor="description">Description *</label>
         <textarea
+          className={maxDescReached && "wrong-input"}
           type="text"
           id="description"
           name="description"
@@ -258,6 +259,7 @@ function NewAdvert() {
         </select>
         <label htmlFor="price">Prix hors frais de port *</label>
         <input
+          className={priceErr && "wrong-input"}
           type="text"
           id="price"
           name="price"

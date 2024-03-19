@@ -82,7 +82,7 @@
   padding: 0.3rem 0;
 }
 
-.new-advert .length-max-reached {
+.new-advert .wrong-input {
   border: 1px solid red;
 }
 
