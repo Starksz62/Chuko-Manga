@@ -3,45 +3,23 @@ import PropTypes from "prop-types";
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { formatDistanceToNow } from "date-fns";
 import "./NotificationCenter.css";
+import { useNotifications } from "../context/NotificationContext";
 
 // eslint-disable-next-line no-unused-vars
-function NotificationCenter({ setIsVisible, notifications, setNotifications }) {
+function NotificationCenter({ setIsVisible }) {
+  const { notifications, removeNotification } = useNotifications();
   const [isPopupVisible, setIsPopupVisible] = useState(false);
   const [visibleNotifications, setVisibleNotifications] = useState(3);
 
-  const addNotification = (message) => {
-    const newNotification = {
-      id: Date.now(),
-      message,
-      timestamp: new Date(),
-    };
-    setNotifications((prevNotifications) => [
-      ...prevNotifications,
-      newNotification,
-    ]);
-  };
-
-  const removeNotification = (id) => {
-    setNotifications((prevNotifications) =>
-      prevNotifications.filter((notification) => notification.id !== id)
-    );
-  };
-
   const handleDeleteAll = () => {
-    setNotifications([]);
+    notifications.forEach((notification) =>
+      removeNotification(notification.id)
+    );
     setIsPopupVisible(false);
   };
 
   const handleViewAll = () => {
     setVisibleNotifications(notifications.length);
-  };
-
-  const handleAddFavori = () => {
-    addNotification("Quelqu'un a mis votre article en favori");
-  };
-
-  const handleAddVente = () => {
-    addNotification("Un de vos articles favoris a été vendu");
   };
 
   return (
@@ -79,15 +57,24 @@ function NotificationCenter({ setIsVisible, notifications, setNotifications }) {
         >
           {notifications
             .slice(0, visibleNotifications)
-            .map(({ id, message, timestamp }) => (
-              <div key={id} className="notification-item">
-                {message}
+            .map(({ id, message, timestamp, image }) => (
+              <article key={id} className="notification-item">
+                <div className="content-row">
+                  {image && (
+                    <img
+                      src={image}
+                      alt="Notification"
+                      className="notification-image"
+                    />
+                  )}
+                  <p className="notification-text">{message}</p>
+                </div>
                 <div className="notification-time-wrapper">
-                  <span className="notification-time">
+                  <time className="notification-time">
                     {formatDistanceToNow(new Date(timestamp), {
                       addSuffix: true,
                     })}
-                  </span>
+                  </time>
                   <button
                     className="button-supp"
                     type="button"
@@ -96,7 +83,7 @@ function NotificationCenter({ setIsVisible, notifications, setNotifications }) {
                     ✖
                   </button>
                 </div>
-              </div>
+              </article>
             ))}
         </div>
 
@@ -113,27 +100,12 @@ function NotificationCenter({ setIsVisible, notifications, setNotifications }) {
             </div>
           )}
       </div>
-
-      <button type="button" onClick={handleAddFavori}>
-        Ajouter Favori
-      </button>
-      <button type="button" onClick={handleAddVente}>
-        Ajouter Vente
-      </button>
     </div>
   );
 }
 
 NotificationCenter.propTypes = {
   setIsVisible: PropTypes.func.isRequired,
-  notifications: PropTypes.arrayOf(
-    PropTypes.shape({
-      id: PropTypes.number.isRequired,
-      message: PropTypes.string.isRequired,
-      timestamp: PropTypes.instanceOf(Date).isRequired,
-    })
-  ).isRequired,
-  setNotifications: PropTypes.func.isRequired,
 };
 
 export default NotificationCenter;

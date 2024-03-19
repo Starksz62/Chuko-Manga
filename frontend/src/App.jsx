@@ -6,6 +6,7 @@ import { useState } from "react";
 import { Outlet } from "react-router-dom";
 
 import UserContext from "./context/UserContext";
+import NotificationProvider from "./context/NotificationContext";
 
 import LeftNavbar from "./components/LeftNavbar";
 import HeaderNav from "./components/HeaderNav";
@@ -20,14 +21,16 @@ function App() {
 
   return (
     <UserContext.Provider value={{ auth: auth, setAuth: setAuth }}>
-      <div className="mainContainer">
-        <LeftNavbar className="leftNavbar" />
-        <div className="mainContent">
-          <HeaderNav />
-          <Outlet />
-          <Footer />
+      <NotificationProvider>
+        <div className="mainContainer">
+          <LeftNavbar className="leftNavbar" />
+          <div className="mainContent">
+            <HeaderNav />
+            <Outlet />
+            <Footer />
+          </div>
         </div>
-      </div>
+      </NotificationProvider>
     </UserContext.Provider>
   );
 }
