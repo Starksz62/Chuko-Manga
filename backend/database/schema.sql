@@ -133,7 +133,7 @@ CREATE TABLE IF NOT EXISTS `chuko_manga_db`.`advert` (
   `description` VARCHAR(255) NOT NULL,
   `alert` TINYINT NOT NULL,
   `batch` TINYINT NOT NULL,
-  `title_search_manga` VARCHAR(255) NULL,
+  `title_search_manga` VARCHAR(40) NULL,
   `view_number` INT NOT NULL DEFAULT 0,
   `publication_date_advert` DATE NOT NULL,
   `delete_advert` TINYINT NOT NULL DEFAULT 0,
