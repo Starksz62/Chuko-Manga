@@ -22,6 +22,7 @@
 .imageSell1 {
   width: auto;
   height: 30rem;
+  object-fit: cover;
   margin-right: 1rem;
   box-shadow: rgba(0, 0, 0, 0.15) 0px 3px 3px 0px;
 }
@@ -29,14 +30,29 @@
 .imageSell2 {
   width: auto;
   height: 14.5rem;
+  object-fit: cover;
   margin-bottom: 0.5rem;
   box-shadow: rgba(0, 0, 0, 0.15) 0px 3px 3px 0px;
 }
 .imageSell3 {
   width: auto;
   height: 14.5rem;
+  object-fit: cover;
   margin-top: 0.5rem;
   box-shadow: rgba(0, 0, 0, 0.15) 0px 3px 3px 0px;
+}
+
+.NoImage1 {
+  width: auto;
+  height: 30rem;
+  object-fit: cover;
+  margin-right: 1rem;
+}
+
+.NoImage {
+  width: auto;
+  height: 14.5rem;
+  object-fit: contain;
 }
 
 .ContainerInformationSell {
@@ -113,4 +129,64 @@
 .btnModSup:hover {
   background-color: #dd7a06;
   color: #fff;
+}
+
+/* ********************************************** */
+/* CSS for Modal */
+
+body.active-modal {
+  overflow-y: hidden;
+}
+
+.modal,
+.overlay {
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+}
+
+.overlay {
+  background: rgba(49, 49, 49, 0.8);
+}
+
+.modal-content {
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  line-height: 1.4;
+  background: #f1f1f1;
+  padding: 14px 28 px;
+  border-radius: 0.5rem;
+  max-width: 20rem;
+  min-width: 40rem;
+  height: 10rem;
+}
+
+.MessageModal {
+  color: #dd7a06;
+  text-align: center;
+  padding: 2% 5% 6% 5%;
+}
+
+.closeConfirm {
+  display: flex;
+  justify-content: center;
+}
+
+.closeModal {
+  border-right: solid 0.1rem #b5b5b5;
+  padding-right: 20%;
+}
+
+.closeModal:hover {
+  color: #dd7a06;
+}
+
+.confirmModal {
+  padding-left: 20%;
+}
+
+.confirmModal:hover {
+  color: #dd7a06;
 }
