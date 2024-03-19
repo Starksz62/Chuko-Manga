@@ -20,7 +20,7 @@ function PrefilterAdvertByDesc() {
   const [showRightButton, setShowRightButton] = useState(true);
 
   useEffect(() => {
-    fetch("http://localhost:3310/api/find-recent-adverts?batch=true")
+    fetch("http://localhost:3310/api/batch-adverts-date-desc")
       .then((response) => {
         if (!response.ok) {
           throw new Error(`Error HTTP, status: ${response.status}`);
@@ -67,9 +67,9 @@ function PrefilterAdvertByDesc() {
 
   return (
     <>
-      <h1 className="titlePrefiltreDesc">
+      <h2 className="titlePrefiltreDesc">
         Explorer les derniers lots ajoutés :
-      </h1>
+      </h2>
       <div className="FilterByDateDescWrapper">
         <div className="FilterByDateDesc" ref={containerRef}>
           {showLeftButton && (

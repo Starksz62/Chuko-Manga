@@ -9,7 +9,7 @@ function RepalledeSale() {
       <Link to="/new-advert" type="button" className="repalledeBoutton">
         <div className="repalledecontenu">
           <img src={plusbutton} alt="plusbutton" className="repalledeImg" />
-          Déposer une annonce
+          <p>Déposer une annonce</p>
         </div>
       </Link>
     </div>

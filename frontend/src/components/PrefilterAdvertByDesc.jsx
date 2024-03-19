@@ -67,9 +67,9 @@ function PrefilterAdvertByDesc() {
 
   return (
     <>
-      <h1 className="titlePrefiltreDesc">
+      <h2 className="titlePrefiltreDesc">
         Explorer les derniers tomes ajoutés :
-      </h1>
+      </h2>
       <div className="FilterByDateDescWrapper">
         <div className="FilterByDateDesc" ref={containerRef}>
           {showLeftButton && (
