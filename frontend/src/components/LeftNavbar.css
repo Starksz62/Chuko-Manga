@@ -50,7 +50,7 @@
   background-color: #83aac7;
 }
 
-.icon-container > ul > li:not(.notification-li):hover {
+.header-icon li:hover {
   background-color: #83aac7;
   color: white;
 }
@@ -70,21 +70,21 @@
   display: none;
 }
 
-/* .sidebar li:hover {
-  background-color: #34495e;
-  color: white;
-} */
-
 .filter-category {
-  display: block;
+  display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: start;
   text-align: left;
   width: 100%;
-  padding-left: 15px;
-  padding: 10px;
   border: none;
   color: #4c6374;
+}
+
+.filter-category:hover {
+  background-color: #83aac7;
+  color: white;
+  padding: 10px;
+  margin: -10px;
 }
 
 .filter-category img {
