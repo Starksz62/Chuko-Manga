@@ -38,13 +38,13 @@ class AdvertsManager extends AbstractManager {
       WHERE advert.batch=0
       ORDER BY advert.publication_date_advert DESC;`
     );
-  
+
     return rows;
   }
 
   async findRecentBatch() {
     const [rows] = await this.database.query(
-    `SELECT advert.id, advert.title_search_manga, advert.price, article_condition.name_condition, advert_image.image_path, user.id as user_id, user.pseudo, user.picture as user_picture, joint_table.average, joint_table.feedback_nber, advert.publication_date_advert
+      `SELECT advert.id, advert.title_search_manga, advert.price, article_condition.name_condition, advert_image.image_path, user.id as user_id, user.pseudo, user.picture as user_picture, joint_table.average, joint_table.feedback_nber, advert.publication_date_advert
     FROM ${this.table}
     LEFT JOIN advert_image ON advert.id=advert_image.advert_id AND advert_image.is_primary=1
     JOIN article_condition ON advert.article_condition_id=article_condition.id
@@ -55,7 +55,7 @@ class AdvertsManager extends AbstractManager {
         GROUP BY user.pseudo) as joint_table ON user.pseudo=joint_table.rated_pseudo
     WHERE advert.batch=1
     ORDER BY advert.publication_date_advert DESC;`
-  );
+    );
 
     return rows;
   }
@@ -102,11 +102,11 @@ class AdvertsManager extends AbstractManager {
       [id]
     );
     return rows;
-}
+  }
 
   async getAdvertsBySeller(id) {
     const [rows] = await this.database.query(
-      `SELECT advert.id as advert_id, advert.title_search_manga, advert.price, article_condition.name_condition, advert_image.image_path, user.id as user_id, user.pseudo, user.picture as user_picture, joint_table.average, joint_table.feedback_nber, user.id as user_id
+      `SELECT advert.id as advert_id, advert.title_search_manga, advert.price, advert.publication_date_advert, article_condition.name_condition, advert_image.image_path, user.id as user_id, user.pseudo, user.picture as user_picture, joint_table.average, joint_table.feedback_nber, user.id as user_id
       FROM ${this.table}
       LEFT JOIN advert_image ON advert.id=advert_image.advert_id AND advert_image.is_primary=1
       JOIN article_condition ON advert.article_condition_id=article_condition.id
@@ -115,7 +115,8 @@ class AdvertsManager extends AbstractManager {
             FROM user
             JOIN feedback ON user.id = feedback.user_id
             GROUP BY user.pseudo) as joint_table ON user.pseudo=joint_table.rated_pseudo
-      WHERE advert.user_id = ?`,
+      WHERE advert.user_id = ?
+      ORDER BY advert.publication_date_advert DESC`,
       [id]
     );
     return rows;

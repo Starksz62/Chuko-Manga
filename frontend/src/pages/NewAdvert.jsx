@@ -11,7 +11,7 @@ function NewAdvert() {
   // States designed to display options for selection
   const [conditionList, setConditionList] = useState([]);
   const [mangaList, setMangaList] = useState([]);
-  const [selectedManga, setSelectedManga] = useState("");
+  const [selectedManga, setSelectedManga] = useState(null);
   const [volumeList, setVolumeList] = useState([]);
 
   // State designed to switch tab : selling a tome or a batch
@@ -153,7 +153,9 @@ function NewAdvert() {
     formData.append("description", description);
     formData.append("article_condition_id", conditionId);
     formData.append("price", price);
-    formData.append("manga_id", selectedManga);
+    if (selectedManga !== null) {
+      formData.append("manga_id", selectedManga);
+    }
     if (volumeId !== null) {
       formData.append("volume_id", volumeId);
     }
