@@ -106,7 +106,6 @@ const getAdvertsImage = async (req, res) => {
   }
 };
 
-// NOUVEL ESSAI
 const createAdvert = async (req, res) => {
   // console.info("image1 uploaded:", req.files["image1"][0]);
   // console.info("image2 uploaded:", req.files["image2"][0]);

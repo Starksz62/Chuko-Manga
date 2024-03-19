@@ -182,7 +182,7 @@ function NewAdvert() {
   };
 
   return (
-    <div className="new-advert">
+    <section className="new-advert">
       <h1>Crée ton annonce</h1>
       <form onSubmit={handleSubmit}>
         <div className="picture-container">
@@ -216,7 +216,7 @@ function NewAdvert() {
             </div>
           ))}
         </div>
-        <label htmlFor="title">Titre </label>
+        <label htmlFor="title">Titre *</label>
         <input
           className={maxTitleReached ? "length-max-reached" : "length-ok"}
           type="text"
@@ -230,7 +230,7 @@ function NewAdvert() {
         <div className={maxTitleReached ? "warning" : "warning hide-warning"}>
           40 caractères maximum
         </div>
-        <label htmlFor="description">Description</label>
+        <label htmlFor="description">Description *</label>
         <textarea
           type="text"
           id="description"
@@ -243,7 +243,7 @@ function NewAdvert() {
         <div className={maxDescReached ? "warning" : "warning hide-warning"}>
           255 caractères maximum
         </div>
-        <label htmlFor="condition">Etat</label>
+        <label htmlFor="condition">Etat *</label>
         <select
           id="condition"
           name="article_condition_id"
@@ -256,7 +256,7 @@ function NewAdvert() {
             </option>
           ))}
         </select>
-        <label htmlFor="price">Prix hors frais de port </label>
+        <label htmlFor="price">Prix hors frais de port *</label>
         <input
           type="text"
           id="price"
@@ -267,7 +267,7 @@ function NewAdvert() {
           required="required"
         />
         <div className={priceErr ? "warning" : "warning hide-warning"}>
-          Format incorrect
+          Format attendu - exemple : 5.50
         </div>
         <div className="tab-container">
           <button
@@ -352,7 +352,7 @@ function NewAdvert() {
           Ajouter
         </button>
       </form>
-    </div>
+    </section>
   );
 }
 
