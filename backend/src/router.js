@@ -81,6 +81,8 @@ router.get(
 );
 // Route to get all volumes by manag ID (page manga details)
 router.get("/volumes/:mangaId", volumesControllers.getVolumesByMangaId);
+// Route to delete advert by user
+router.delete("/advert/:id", advertsControllers.deleteAdvert);
 
 // // ROUTE TO GET CONDITIONS
 router.get("/conditions", conditionsControllers.getAllConditions);

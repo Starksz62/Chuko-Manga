@@ -121,7 +121,6 @@ class AdvertsManager extends AbstractManager {
     return rows;
   }
 
-
   async getMinMaxPrice(batch) {
     const whereConditions = batch ? "WHERE batch=1" : "WHERE batch=0";
     const query = `
@@ -130,7 +129,8 @@ class AdvertsManager extends AbstractManager {
       ${whereConditions};
     `;
     const [rows] = await this.database.query(query);
-    return rows; }
+    return rows;
+  }
 
   async addAdvert(advert) {
     // console.info("poulet");
@@ -153,31 +153,33 @@ class AdvertsManager extends AbstractManager {
   }
 
   async findAdverts({ batch, genreId, conditionName, minPrice, maxPrice }) {
-    let whereConditions = batch ? "WHERE advert.batch=1" : "WHERE advert.batch=0";
+    let whereConditions = batch
+      ? "WHERE advert.batch=1"
+      : "WHERE advert.batch=0";
     const queryParams = [];
-  
+
     if (genreId) {
       whereConditions += " AND manga.genre_id = ?";
       queryParams.push(genreId);
     }
-  
+
     if (conditionName) {
       whereConditions += " AND article_condition.name_condition = ?";
       queryParams.push(conditionName);
     }
-  
+
     // Ajouter la condition pour minPrice si elle est spécifiée
     if (minPrice !== undefined && minPrice !== null) {
       whereConditions += " AND advert.price >= ?";
       queryParams.push(minPrice);
     }
-  
+
     // Modifier la condition pour maxPrice pour prendre en compte le cas où seulement minPrice est spécifié
     if (maxPrice !== undefined && maxPrice !== null) {
       whereConditions += " AND advert.price <= ?";
       queryParams.push(maxPrice);
     }
-  
+
     const query = `
       SELECT advert.id, advert.title_search_manga, advert.price, article_condition.name_condition,
       advert_image.image_path, user.pseudo, user.picture as user_picture, manga.genre_id,
@@ -194,13 +196,26 @@ class AdvertsManager extends AbstractManager {
       ${whereConditions}
       ORDER BY advert.publication_date_advert DESC;
     `;
-  
+
     const [rows] = await this.database.query(query, queryParams);
     return rows;
   }
 
+  async deleteAdvert(id) {
+    await this.database.query(
+      `DELETE advert_image FROM advert
+        LEFT JOIN advert_image ON advert.id = advert_image.advert_id
+        WHERE advert.id = ?`,
+      [id]
+    );
 
+    const [result] = await this.database.query(
+      `DELETE FROM ${this.table} 
+      WHERE id = ?`,
+      [id]
+    );
+    return result.affectedRows > 0 ? id : null;
+  }
 }
-
 
 module.exports = AdvertsManager;
