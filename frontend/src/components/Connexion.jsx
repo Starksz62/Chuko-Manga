@@ -97,7 +97,7 @@ function Connexion({ handleContentModal, handleClickOpen }) {
       <div className="text-connexion">
         <p
           style={{
-            color: "orange",
+            color: "var(--primary-clr)",
             cursor: "pointer",
             textDecoration: "underline",
           }}
@@ -108,7 +108,7 @@ function Connexion({ handleContentModal, handleClickOpen }) {
           Tu n'as pas de compte ?{" "}
           <span
             style={{
-              color: "orange",
+              color: "var(--primary-clr)",
               cursor: "pointer",
               textDecoration: "underline",
             }}

@@ -32,7 +32,7 @@ input {
 .Button-type {
   margin-top: 1rem;
   color: white;
-  background-color: orange;
+  background-color: var(--primary-clr);
   padding: 0.5rem 2.2rem;
   border-radius: 5px;
 }

@@ -108,10 +108,14 @@ function Inscription({ handleContentModal }) {
       </form>
       <div className="text-inscription">
         {/* Paragraphe pour le lien de connexion */}
-        <p style={{ color: "orange" }}>
-          Vous avez déjà un compte?{" "}
+        <p style={{ color: "var(--neutral-700)" }}>
+          Vous avez déjà un compte ?{" "}
           <span
-            style={{ cursor: "pointer", textDecoration: "underline" }}
+            style={{
+              cursor: "pointer",
+              textDecoration: "underline",
+              color: "var(--primary-clr)",
+            }}
             onClick={handleContentModal}
           >
             Connectez-vous
