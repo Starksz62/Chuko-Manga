@@ -70,7 +70,7 @@ function Inscription({ handleContentModal }) {
   };
 
   return (
-    <div className="form">
+    <div className="inscription-form">
       <h1>Inscription</h1>
       <form className="inForm" onSubmit={handleSubmit}>
         {/* Champ pour le pseudo */}
@@ -108,7 +108,7 @@ function Inscription({ handleContentModal }) {
       </form>
       <div className="text-inscription">
         {/* Paragraphe pour le lien de connexion */}
-        <p style={{ color: "var(--neutral-700)" }}>
+        <p style={{ color: "var(--neutral-700)", textAlign: "center" }}>
           Vous avez déjà un compte ?{" "}
           <span
             style={{

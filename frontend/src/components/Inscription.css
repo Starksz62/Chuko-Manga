@@ -1,37 +1,38 @@
-.form {
+.inscription-form {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   gap: 2rem;
-  margin: 1rem 1rem 1rem 4rem;
+  margin: 1rem 7rem 1rem 7rem;
   padding: 1rem;
 }
 
-.inForm {
+.inscription-form .inForm {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 }
 
-input {
+.inscription-form input {
   width: 230px;
   height: 35px;
   padding-left: 0.2rem;
   font-size: 1rem;
   border-radius: 3px;
+  margin-top: 1rem;
 }
 
-.text-inscription {
+.inscription-form .text-inscription {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-.Button-type {
-  margin-top: 1rem;
-  color: white;
+.inscription-form .Button-type {
+  margin-top: 1.5rem;
+  color: var(--neutral-100);
   background-color: var(--primary-clr);
   padding: 0.5rem 2.2rem;
   border-radius: 5px;

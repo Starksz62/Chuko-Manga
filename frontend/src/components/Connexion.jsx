@@ -67,7 +67,7 @@ function Connexion({ handleContentModal, handleClickOpen }) {
 
   // Rendu du composant formulaire
   return (
-    <div className="form">
+    <div className="connexion-form">
       <h1>Connexion</h1>
       <form className="inForm" onSubmit={handleSubmit}>
         {/* Champ pour l'email */}
@@ -104,7 +104,7 @@ function Connexion({ handleContentModal, handleClickOpen }) {
         >
           Mot de passe oublié ?
         </p>
-        <p style={{ color: "grey" }}>
+        <p style={{ color: "grey", textAlign: "center" }}>
           Tu n'as pas de compte ?{" "}
           <span
             style={{
