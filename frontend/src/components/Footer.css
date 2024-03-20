@@ -1,6 +1,5 @@
 .footer {
   margin: 0 auto;
-  width: 100%;
   text-decoration: none;
   background-color: var(--neutral-300);
   display: flex;
@@ -10,7 +9,7 @@
 }
 
 .footer-links-container {
-  padding: 2rem 0;
+  padding: 1.2rem 0;
   display: flex;
   justify-content: space-evenly;
   background-color: var(--neutral-100);
@@ -25,28 +24,25 @@
 
 .footer-links-block h3 {
   font-size: var(--fs-S);
-  font-weight: var(--fw-L);
+  font-weight: bold;
 }
 
 .footer-links-block a {
-  font-size: var(--fs-XS);
+  font-size: var(--fs-S);
 }
 
 .socialMedia {
   display: flex;
-  justify-content: space-evenly;
+  justify-content: center;
+  align-items: center;
+  gap: 9rem;
   background-color: var(--neutral-100);
-  padding: 2rem 0;
-}
-
-.socialMedia a {
-  width: 3rem;
-  height: 3rem;
+  padding: 1.2rem 0;
 }
 
 .socialMediaIcon {
-  width: 100%;
-  height: 100%;
+  width: 32px;
+  height: 32px;
   filter: grayscale(1);
   transition: filter 0.3s ease-in-out;
 }
@@ -55,7 +51,6 @@
 }
 
 .lastBlock-link {
-  padding: 2rem 0;
   background-color: var(--neutral-100);
 
   display: flex;
@@ -65,14 +60,19 @@
   writing-mode: horizontal-tb;
 }
 
+.lastBlock {
+  padding: 1.2rem 0;
+  background-color: white;
+}
+
 .lastBlock a {
   text-align: center;
-  max-width: 200px;
+  width: 130px;
   word-wrap: break-word;
 }
 
 .copyright {
-  padding: 2rem 0;
+  padding: 1.2rem 0 0 0;
   background-color: var(--neutral-100);
   display: flex;
   justify-content: space-around;

@@ -66,10 +66,10 @@ function PrefilterAdvertByDesc() {
   }
 
   return (
-    <>
-      <h1 className="titlePrefiltreDesc">
+    <section className="prefiltre-unique">
+      <h2 className="titlePrefiltreDesc">
         Explorer les derniers tomes ajoutés :
-      </h1>
+      </h2>
       <div className="FilterByDateDescWrapper">
         <div className="FilterByDateDesc" ref={containerRef}>
           {showLeftButton && (
@@ -108,7 +108,7 @@ function PrefilterAdvertByDesc() {
           </div>
         </div>
       </div>
-    </>
+    </section>
   );
 }
 

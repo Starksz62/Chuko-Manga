@@ -1,3 +1,4 @@
+/* eslint-disable import/no-unresolved */
 const Joi = require("joi");
 
 const advertSchema = Joi.object({

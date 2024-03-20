@@ -1,0 +1,22 @@
+.section-coup-de-coeur {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 90%;
+  margin: 3rem 0;
+  padding: 2rem;
+}
+
+.section-logo {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem 4rem;
+}
+
+.logo {
+  width: 200px;
+}

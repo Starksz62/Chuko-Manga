@@ -4,12 +4,12 @@ import React, { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 
 import AdvertCard from "./AdvertCard";
-import "./PrefilterAdvertByDesc.css";
+import "./PrefilterAdvertByBatch.css";
 
 import Left from "../assets/leftlogo.png";
 import Right from "../assets/rightlogo.png";
 
-function PrefilterAdvertByDesc() {
+function PrefilterAdvertByBatch() {
   // eslint-disable-next-line no-unused-vars
   const [adverts, setAdverts] = useState([]);
   const [filteredAdverts, setFilteredAdverts] = useState([]);
@@ -66,10 +66,10 @@ function PrefilterAdvertByDesc() {
   }
 
   return (
-    <>
-      <h1 className="titlePrefiltreDesc">
+    <section className="prefiltre-lot">
+      <h2 className="titlePrefiltreDesc">
         Explorer les derniers lots ajoutés :
-      </h1>
+      </h2>
       <div className="FilterByDateDescWrapper">
         <div className="FilterByDateDesc" ref={containerRef}>
           {showLeftButton && (
@@ -108,8 +108,8 @@ function PrefilterAdvertByDesc() {
           </div>
         </div>
       </div>
-    </>
+    </section>
   );
 }
 
-export default PrefilterAdvertByDesc;
+export default PrefilterAdvertByBatch;
