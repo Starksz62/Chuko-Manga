@@ -6,8 +6,9 @@ const multer = require("./middlewares/multer-config");
 
 const { hashPassword, verifyToken } = require("./services/auth");
 
-const validateUser = require("./middlewares/validateUser");
 const validateAddress = require("./middlewares/validateAddress");
+const validateAdvert = require("./middlewares/validateAdvert");
+const validateUser = require("./middlewares/validateUser");
 
 /* ************************************************************************* */
 // Define Your API Routes Here
@@ -72,7 +73,12 @@ router.get(
 
 // ROUTES TO POST ADVERTS
 // Route to add a new advert (page advert creation)
-router.post("/new-advert", multer, advertsControllers.createAdvert);
+router.post(
+  "/new-advert",
+  multer,
+  validateAdvert,
+  advertsControllers.createAdvert
+);
 
 // Route to get all orders by buyer (page Profil/onglet my purchase history)
 router.get(
@@ -81,6 +87,8 @@ router.get(
 );
 // Route to get all volumes by manag ID (page manga details)
 router.get("/volumes/:mangaId", volumesControllers.getVolumesByMangaId);
+// Route to delete advert by user
+router.delete("/advert/:id", advertsControllers.deleteAdvert);
 
 // // ROUTE TO GET CONDITIONS
 router.get("/conditions", conditionsControllers.getAllConditions);
