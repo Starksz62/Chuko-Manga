@@ -1,5 +1,4 @@
 .new-advert {
-  border: 1px solid var(--neutral-700);
   max-width: 80%;
   margin: auto;
   padding: 2rem 3rem 6rem 2rem;
@@ -156,4 +155,10 @@
   border-radius: 5px;
   color: var(--neutral-100);
   font-weight: 600;
+}
+
+@media screen and (max-width: 768px) {
+  .new-advert {
+    justify-content: center;
+  }
 }
