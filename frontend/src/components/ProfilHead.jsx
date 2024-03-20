@@ -1,8 +1,13 @@
+/* eslint-disable react/prop-types */
+/* eslint-disable react/button-has-type */
 /* eslint-disable no-plusplus */
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
+import Stars from "./AnnouncementDetails/StarsRating";
+import "./ProfilHead.css";
+// import ButtonProfilUser from "./ButtonProfilUser";
 
-function ProfilHead() {
+function ProfilHead({ children }) {
   const { id } = useParams();
   const [formData, setFormData] = useState({
     pseudo: "",
@@ -10,7 +15,7 @@ function ProfilHead() {
     picture: "",
     phone: "",
     email: "",
-    rating: "",
+    rating: 0,
   });
 
   useEffect(() => {
@@ -23,76 +28,44 @@ function ProfilHead() {
         return res.json();
       })
       .then((data) => {
-        console.info("Mes donnees user asdasdasd :", data);
-
-        setFormData(data[0]);
+        console.info("Mes donnees user :", data);
+        const rating = parseFloat(data[0].average_rating);
+        setFormData({ ...data[0], rating });
       })
       .catch((error) => {
         console.error("Error fetching user data:", error);
       });
   }, [id]);
-  // function renderStars(averageRating) {
-  //   const fullStars = Math.floor(averageRating); // Nombre d'étoiles pleines
-  //   const decimalPart = averageRating - fullStars; // Partie décimale de la note
-  //   let partialStar = ""; // Classe pour l'étoile partielle
-  //   // Déterminer la classe de l'étoile partielle en fonction de la partie décimale
-  //   if (decimalPart >= 0.75) {
-  //     partialStar = "half-star";
-  //   } else if (decimalPart >= 0.25) {
-  //     partialStar = "half-star";
-  //   } else {
-  //     partialStar = "empty-star";
-  //   }
-  //   // Création des étoiles en fonction du nombre d'étoiles pleines et de l'étoile partielle
-  //   const stars = [];
-  //   for (let i = 0; i < 5; i += 1) {
-  //     if (i < fullStars) {
-  //       stars.push(
-  //         <div key={i} className="star full-star">
-  //           ★
-  //         </div>
-  //       );
-  //     } else if (i === fullStars && partialStar === "half-star") {
-  //       stars.push(
-  //         <div key={i} className={`star ${partialStar}`}>
-  //           ★
-  //         </div>
-  //       );
-  //     } else {
-  //       stars.push(
-  //         <div key={i} className="star empty-star">
-  //           ★
-  //         </div>
-  //       );
-  //     }
-  //   }
-  //   return <div className="starcontainer">{stars}</div>;
-  // }
-
-  // const averageRating =
-  //   evaluations.reduce(
-  //     (total, evaluation) => total + parseFloat(evaluation.average_rating),
-  //     0
-  //   ) / evaluations.length;
 
   return (
-    <div>
-      <div className="picture_user_profil">
-        <img
-          className="picture_user_profil_img"
-          src={formData.picture}
-          alt="picture_user"
-        />
-      </div>
-      <div className="user_profil_info">
-        <h1 className="user_profil_info_name">{formData.pseudo}</h1>
-        <h1 className="user_profil_info_country">{formData.country}</h1>
-        <div className="user_profil_info_verification">
-          <p className="">Information verifié:</p>
-          <p className="user-profil-mail">{formData.email}</p>
-          <p className="user-profil-phone">{formData.phone}</p>
+    <div className="main_container_user_profilhead">
+      <div className="container_user_profilhead">
+        <div className="picture_user_profilhead">
+          <img
+            className="picture_user_profilhead_img"
+            src={`http://localhost:3310${formData.picture}`}
+            alt="picture_user"
+          />
+        </div>
+        <div className="user_profilhead_info">
+          <h1 className="user_profilhead_info_name">{formData.pseudo}</h1>
+          <Stars ratingValue={formData.rating} />
+          <h1 className="user_profilhead_info_country">{formData.country}</h1>
+          <div className="user_profilhead_info_verification">
+            <p className="user_profilhead_info_title">
+              Informations verifiées:
+            </p>
+            <p className="user-profilhead_mail">
+              <span style={{ fontWeight: 600 }}>Mail: </span>
+              {formData.email}
+            </p>
+            <p className="user-profilhead_phone">
+              <span style={{ fontWeight: 600 }}>Phone:</span> {formData.phone}
+            </p>
+          </div>
         </div>
       </div>
+      {children}
     </div>
   );
 }
