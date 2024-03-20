@@ -10,8 +10,8 @@ export function FiltersProvider({ children }) {
   const [batch, setBatch] = useState("");
   const [priceRange, setPriceRange] = useState({ minPrice: 0, maxPrice: 0 });
   const [dynamicPriceFilter, setDynamicPriceFilter] = useState({
-    minPrice: null,
-    maxPrice: null,
+    // minPrice: null,
+    // maxPrice: null,
   });
 
   const applyDynamicPriceFilter = (minPrice, maxPrice) => {

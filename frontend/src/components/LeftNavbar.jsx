@@ -1,5 +1,5 @@
 import { useContext, useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, useParams, useLocation } from "react-router-dom";
 import { useNotifications } from "../context/NotificationContext";
 import { useFilters } from "../context/FilterContext";
 import UserContext from "../context/UserContext";
@@ -20,6 +20,7 @@ import "./LeftNavbar.css";
 
 function LeftNavbar() {
   const { id } = useParams();
+  const location = useLocation();
   const [showFilters, setShowFilters] = useState(false);
   const [currentFilter, setCurrentFilter] = useState(null);
   const { auth } = useContext(UserContext);
@@ -153,14 +154,16 @@ function LeftNavbar() {
               </li>
             )}
             <li>
-              <button
-                type="button"
-                onClick={toggleFilters}
-                className="filter-category"
-              >
-                <img src={FilterIcon} alt="Filtre" />
-                <span className="filter-text">Filtre</span>
-              </button>
+              {location.pathname === "/explore/" && (
+                <button
+                  type="button"
+                  onClick={toggleFilters}
+                  className="filter-category"
+                >
+                  <img src={FilterIcon} alt="Filtre" />
+                  <span className="filter-text">Filtre</span>
+                </button>
+              )}
             </li>
             {showFilters && (
               <li className="filter-dropdown">
