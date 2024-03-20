@@ -137,6 +137,7 @@ CREATE TABLE IF NOT EXISTS `chuko_manga_db`.`advert` (
   `view_number` INT NOT NULL DEFAULT 0,
   `publication_date_advert` DATE NOT NULL,
   `delete_advert` TINYINT NOT NULL DEFAULT 0,
+  `is_collector` TINYINT NOT NULL DEFAULT 0, 
   `user_id` INT NOT NULL,
   `volume_id` INT NULL,
   `article_condition_id` INT NOT NULL,

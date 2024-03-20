@@ -11,7 +11,7 @@ function NewAdvert() {
   // States designed to display options for selection
   const [conditionList, setConditionList] = useState([]);
   const [mangaList, setMangaList] = useState([]);
-  const [selectedManga, setSelectedManga] = useState("");
+  const [selectedManga, setSelectedManga] = useState(null);
   const [volumeList, setVolumeList] = useState([]);
 
   // State designed to switch tab : selling a tome or a batch
@@ -23,11 +23,18 @@ function NewAdvert() {
   const [conditionId, setConditionId] = useState(null);
   const [price, setPrice] = useState(null);
   const [volumeId, setVolumeId] = useState(null);
+  const [priceErr, setPriceErr] = useState(false);
   const alert = 0;
   const userId = 1;
   const publicationDate = new Date().toISOString().split("T")[0];
 
-  // State designed to preview and transfer images
+  // Variables designed to control user's input
+  const MAX_LENGTH_TITLE = 40;
+  const MAX_LENGTH_DESC = 255;
+  const maxTitleReached = advertTitle.length >= MAX_LENGTH_TITLE;
+  const maxDescReached = description.length >= MAX_LENGTH_DESC;
+
+  // States designed to preview and transfer images
   const [files, setFiles] = useState({
     image1: null,
     image2: null,
@@ -39,6 +46,7 @@ function NewAdvert() {
     image3: null,
   });
 
+  // Handle image selection and create image preview
   const handleImageChange = (e) => {
     setFiles({ ...files, [e.target.name]: e.target.files[0] });
   };
@@ -50,7 +58,6 @@ function NewAdvert() {
         setPreviewUrls((prevUrls) => ({ ...prevUrls, [key]: url }));
       }
     }
-    // Clean up the URLs when component unmounts or files change
     return () => {
       for (const key in files) {
         if (files[key]) {
@@ -60,12 +67,14 @@ function NewAdvert() {
     };
   }, [files]);
 
+  // Set manga selection
   const handleSelectedManga = (e) => {
     setVolumeList([]);
     setSelectedManga(e.target.value);
     // console.info("Manga selected:", selectedManga);
   };
 
+  // Fetch condition's list, manga's list and volume's list
   useEffect(() => {
     Promise.all([
       axios.get("http://localhost:3310/api/conditions"),
@@ -96,6 +105,7 @@ function NewAdvert() {
     }
   }, [selectedManga]);
 
+  // Delete selected image and corresponding preview
   const deleteFile = (key) => {
     const updatedFiles = { ...files };
     updatedFiles[key] = null;
@@ -107,6 +117,34 @@ function NewAdvert() {
     }
   };
 
+  // Manage and control user's inputs
+  const handleTitleChange = (e) => {
+    if (e.target.value.length <= MAX_LENGTH_TITLE) {
+      setAdvertTitle(e.target.value);
+    }
+  };
+
+  const handleDescChange = (e) => {
+    if (e.target.value.length <= MAX_LENGTH_DESC) {
+      setDescription(e.target.value);
+    }
+  };
+
+  const handlePriceChange = (e) => {
+    setPriceErr(false);
+    const inputValue = e.target.value;
+    const regex = /^\d*\.?\d{0,2}$/;
+    if (regex.test(inputValue)) {
+      setPrice(inputValue);
+      console.info("regex.test:", regex.test(inputValue));
+    }
+    if (!regex.test(inputValue)) {
+      setPriceErr(true);
+      console.info("regex.test:", regex.test(inputValue));
+    }
+  };
+
+  // Submit form and redirect to user's profile
   const handleSubmit = (e) => {
     e.preventDefault();
     console.info("upload files01 ", files);
@@ -115,7 +153,9 @@ function NewAdvert() {
     formData.append("description", description);
     formData.append("article_condition_id", conditionId);
     formData.append("price", price);
-    formData.append("manga_id", selectedManga);
+    if (selectedManga !== null) {
+      formData.append("manga_id", selectedManga);
+    }
     if (volumeId !== null) {
       formData.append("volume_id", volumeId);
     }
@@ -134,15 +174,15 @@ function NewAdvert() {
       .post("http://localhost:3310/api/new-advert", formData)
       .then((res) => {
         console.info("Advert created successfully", res.data);
+        navigate(`/profilUser/${userId}`);
       })
       .catch((error) => {
         console.error("Error creating advert", error);
       });
-    navigate(`/profilUser/${userId}`);
   };
 
   return (
-    <div className="new-advert">
+    <section className="new-advert">
       <h1>Crée ton annonce</h1>
       <form onSubmit={handleSubmit}>
         <div className="picture-container">
@@ -176,23 +216,35 @@ function NewAdvert() {
             </div>
           ))}
         </div>
-        <label htmlFor="title">Titre </label>
+        <label htmlFor="title">Titre *</label>
         <input
+          className={maxTitleReached && "wrong-input"}
           type="text"
           id="title"
           name="title_search_manga"
-          onChange={(e) => setAdvertTitle(e.target.value)}
+          value={advertTitle}
+          onChange={handleTitleChange}
           placeholder="ex: Naruto, tome 44"
+          required="required"
         />
-        <label htmlFor="description">Description</label>
-        <input
+        <div className={maxTitleReached ? "warning" : "warning hide-warning"}>
+          40 caractères maximum
+        </div>
+        <label htmlFor="description">Description *</label>
+        <textarea
+          className={maxDescReached && "wrong-input"}
           type="text"
           id="description"
           name="description"
-          onChange={(e) => setDescription(e.target.value)}
+          value={description}
+          onChange={handleDescChange}
           placeholder="ex: Pages intactes, mais couverture légèrement usée"
+          required="required"
         />
-        <label htmlFor="condition">Etat</label>
+        <div className={maxDescReached ? "warning" : "warning hide-warning"}>
+          255 caractères maximum
+        </div>
+        <label htmlFor="condition">Etat *</label>
         <select
           id="condition"
           name="article_condition_id"
@@ -205,14 +257,20 @@ function NewAdvert() {
             </option>
           ))}
         </select>
-        <label htmlFor="price">Prix hors frais de port </label>
+        <label htmlFor="price">Prix hors frais de port *</label>
         <input
+          className={priceErr && "wrong-input"}
           type="text"
           id="price"
           name="price"
-          onChange={(e) => setPrice(e.target.value)}
+          value={price}
+          onChange={handlePriceChange}
           placeholder="0.00€"
+          required="required"
         />
+        <div className={priceErr ? "warning" : "warning hide-warning"}>
+          Format attendu - exemple : 5.50
+        </div>
         <div className="tab-container">
           <button
             type="button"
@@ -296,7 +354,7 @@ function NewAdvert() {
           Ajouter
         </button>
       </form>
-    </div>
+    </section>
   );
 }
 
