@@ -1,3 +1,6 @@
 node_modules
 coverage
 .env
+public/upload/*.png
+public/upload/*.jpeg
+public/upload/*.jpg

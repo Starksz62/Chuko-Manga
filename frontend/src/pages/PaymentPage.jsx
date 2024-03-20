@@ -40,7 +40,7 @@ function PaymentPage() {
   };
 
   return (
-    <div className="container">
+    <container className="container">
       <div className="main-content">
         <div className="left-column">
           <h3>Commande</h3>
@@ -134,7 +134,7 @@ function PaymentPage() {
           <Payment price={articleData.price} />
         </div>
       </div>
-    </div>
+    </container>
   );
 }
 

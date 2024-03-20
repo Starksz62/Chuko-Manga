@@ -145,12 +145,11 @@ const createAdvert = async (req, res) => {
 
 const getSearchAdverts = async (req, res) => {
   try {
-    // Extract ID from the request
     const userQuery = req.params.query;
     console.info(`Controller Search query: ${userQuery}`);
-    // Check if the item exists based on the ID
+
     const advert = await models.advert.findAdvertQuery(userQuery);
-    // If the advert is not found, respond with HTTP 404 (Not Found)
+
     if (advert != null) {
       res.json(advert);
       console.info(advert);
@@ -158,14 +157,12 @@ const getSearchAdverts = async (req, res) => {
       res.sendStatus(404);
     }
   } catch (err) {
-    // Pass any errors to the error-handling middleware
     console.error(err);
   }
 };
 const recentAdverts = async (req, res) => {
-  const { batch, genreId, conditionName, minPrice, maxPrice } = req.query;
-  const isBatch = batch === "true";
-
+  const { batch, genreId, conditionName, minPrice, maxPrice, searchQuery } = req.query;
+const isBatch = batch === 'true';
   try {
     const adverts = await models.advert.findAdverts({
       batch: isBatch,
@@ -173,6 +170,7 @@ const recentAdverts = async (req, res) => {
       conditionName,
       minPrice,
       maxPrice,
+      searchQuery
     });
 
     return res.json(adverts);

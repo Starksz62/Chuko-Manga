@@ -5,29 +5,37 @@ import AdvertCard from "../components/AdvertCard";
 
 function Explore() {
   const [dataAdverts, setDataAdverts] = useState([]);
+  const [filteredAdverts, setFilteredAdverts] = useState([]);
   const location = useLocation();
+  const searchQuery = decodeURIComponent(
+    location.pathname.split("/explore/")[1] || ""
+  );
   const queryParams = new URLSearchParams(location.search);
   const batchFromUrl = queryParams.get("batch");
-  const { filters, setBatch } = useFilters();
-  console.info("Valeur de batch récupérée de l'URL :", batchFromUrl);
+  const { filters, setBatch, setMinMaxPrices, dynamicPriceFilter } =
+    useFilters();
 
   useEffect(() => {
     setBatch(batchFromUrl);
     const fetchData = async () => {
       try {
         let url = "http://localhost:3310/api/find-recent-adverts?";
-        url += batchFromUrl === "true" ? "batch=true" : "batch=false";
+        if (searchQuery) {
+          url += `searchQuery=${encodeURIComponent(searchQuery)}`;
+        } else if (batchFromUrl !== undefined) {
+          url += `batch=${encodeURIComponent(batchFromUrl)}`;
+        }
         if (filters.genreId) {
-          url += `&genreId=${filters.genreId}`;
+          url += `&genreId=${encodeURIComponent(filters.genreId)}`;
         }
         if (filters.condition) {
-          url += `&conditionName=${filters.condition}`;
+          url += `&conditionName=${encodeURIComponent(filters.condition)}`;
         }
         if (filters.priceMin) {
-          url += `&minPrice=${filters.priceMin}`;
+          url += `&minPrice=${encodeURIComponent(filters.priceMin)}`;
         }
         if (filters.priceMax) {
-          url += `&maxPrice=${filters.priceMax}`;
+          url += `&maxPrice=${encodeURIComponent(filters.priceMax)}`;
         }
 
         console.info("URL de la requête fetch :", url);
@@ -37,6 +45,14 @@ function Explore() {
         }
         const data = await response.json();
         setDataAdverts(data);
+        if (data.length > 0) {
+          const prices = data.map((advert) => advert.price);
+          const calculatedMinPrice = Math.min(...prices);
+          const calculatedMaxPrice = Math.max(...prices);
+          setMinMaxPrices(calculatedMinPrice, calculatedMaxPrice);
+          setFilteredAdverts(data);
+          console.info("resulat annonce dans explore", data);
+        }
       } catch (error) {
         console.error(
           "Une erreur s'est produite lors de la récupération des données:",
@@ -47,17 +63,28 @@ function Explore() {
 
     fetchData();
   }, [
+    searchQuery,
     batchFromUrl,
     filters.genreId,
     filters.condition,
     filters.priceMin,
     filters.priceMax,
   ]);
+  useEffect(() => {
+    console.info("Mise à jour du filtrage dynamique", dynamicPriceFilter);
+    const filtered = dataAdverts.filter((advert) =>
+      dynamicPriceFilter.minPrice != null && dynamicPriceFilter.maxPrice != null
+        ? parseFloat(advert.price) >= dynamicPriceFilter.minPrice &&
+          parseFloat(advert.price) <= dynamicPriceFilter.maxPrice
+        : true
+    );
+    setFilteredAdverts(filtered);
+  }, [dynamicPriceFilter, dataAdverts]);
 
   return (
     <div className="filteredAdverts">
-      {dataAdverts.length > 0 ? (
-        dataAdverts.map((dataAdvert) => (
+      {filteredAdverts.length > 0 ? (
+        filteredAdverts.map((dataAdvert) => (
           <AdvertCard key={dataAdvert.id} advert={dataAdvert} />
         ))
       ) : (
