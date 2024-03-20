@@ -16,7 +16,7 @@ import CenturyboysLogo from "../assets/20centuryboys-logo.png";
 function CoupDeCoeur() {
   return (
     <section className="section-coup-de-coeur">
-      <h3>Coup de coeur de l'équipe</h3>
+      <h2 className="title-coup-de-coeur">Coup de coeur de l'équipe</h2>
       <ul className="section-logo">
         <li>
           <img src={NarutoLogo} alt="Logo Naruto" className="logo" />

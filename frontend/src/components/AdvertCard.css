@@ -35,6 +35,8 @@
   font-weight: normal;
   display: flex;
   align-items: start;
+  white-space: nowrap;
+  overflow: hidden;
 }
 
 .link-card-title:hover {
