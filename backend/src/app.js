@@ -17,7 +17,7 @@ const app = express();
 
 app.use(cors());
 app.use("/static", express.static(`${__dirname}/assets`));
-app.use("/static", express.static("public/uploads"));
+app.use("/static", express.static("public/upload"));
 
 // app.use("/uploads", express.static(`${__dirname}/uploads`));
 
