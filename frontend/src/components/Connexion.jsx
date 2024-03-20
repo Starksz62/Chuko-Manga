@@ -104,7 +104,7 @@ function Connexion({ handleContentModal, handleClickOpen }) {
         >
           Mot de passe oublié ?
         </p>
-        <p style={{ color: "grey", textAlign: "center" }}>
+        <p style={{ color: "var(--neutral-700)", textAlign: "center" }}>
           Tu n'as pas de compte ?{" "}
           <span
             style={{
