@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import logo from "../assets/logo.png";
 import ProfileIcon from "../assets/profile.png";
 import AdsIcon from "../assets/ads.png";
@@ -18,6 +18,11 @@ function LeftNavbar() {
   const [selectedConditionName, setSelectedConditionName] = useState("");
   const { updateFilters } = useFilters();
   const [showPriceSlider, setShowPriceSlider] = useState(false);
+  const location = useLocation();
+
+  const enableFilters =
+    location.pathname.includes("/explore") ||
+    location.pathname === "/someotherpath";
 
   const handleFilterSelection = (genreId) => {
     if (genreId === selectedGenreId) {
@@ -94,15 +99,17 @@ function LeftNavbar() {
             <img src={SortIcon} alt="Tri" />
             <span>Tri</span>
           </li>
-          <button
-            type="button"
-            onClick={toggleFilters}
-            className="filter-category"
-          >
-            <img src={FilterIcon} alt="Filtre" />
-            <span className="filter-text">Filtre</span>
-          </button>
-          {showFilters && (
+          {enableFilters && (
+            <button
+              type="button"
+              onClick={toggleFilters}
+              className="filter-category"
+            >
+              <img src={FilterIcon} alt="Filtre" />
+              <span className="filter-text">Filtre</span>
+            </button>
+          )}
+          {showFilters && enableFilters && (
             <div className="filter-dropdown">
               <ul>
                 <li>
@@ -115,7 +122,7 @@ function LeftNavbar() {
                   >
                     Genres
                   </button>
-                  {currentFilter === "Genres" && (
+                  {currentFilter === "Genres" && enableFilters && (
                     <ul>
                       {genreOptions.map((genre) => (
                         <button
@@ -135,12 +142,14 @@ function LeftNavbar() {
                 <li>
                   <button
                     type="button"
-                    className={`condition ${currentFilter === "Condition" ? "active" : ""}`}
+                    className={`condition ${
+                      currentFilter === "Condition" ? "active" : ""
+                    }`}
                     onClick={() => handleFilterClick("Condition")}
                   >
                     État
                   </button>
-                  {currentFilter === "Condition" && (
+                  {currentFilter === "Condition" && enableFilters && (
                     <ul>
                       {conditionOptions.map((condition) => (
                         <button
@@ -164,7 +173,9 @@ function LeftNavbar() {
                 <li>
                   <button
                     type="button"
-                    className={`condition ${currentFilter === "Prix" ? "active" : ""}`}
+                    className={`condition ${
+                      currentFilter === "Prix" ? "active" : ""
+                    }`}
                     onClick={handlePriceClick}
                   >
                     Prix
