@@ -14,6 +14,11 @@ function HeaderNav() {
 
   const handleClickOpen = () => {
     setOpen(!open);
+    if (!open) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "auto";
+    }
   };
 
   return (
