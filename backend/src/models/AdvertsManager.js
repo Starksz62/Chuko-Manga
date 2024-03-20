@@ -38,13 +38,13 @@ class AdvertsManager extends AbstractManager {
       WHERE advert.batch=0
       ORDER BY advert.publication_date_advert DESC;`
     );
-  
+
     return rows;
   }
 
   async findRecentBatch() {
     const [rows] = await this.database.query(
-    `SELECT advert.id, advert.title_search_manga, advert.price, article_condition.name_condition, advert_image.image_path, user.id as user_id, user.pseudo, user.picture as user_picture, joint_table.average, joint_table.feedback_nber, advert.publication_date_advert
+      `SELECT advert.id, advert.title_search_manga, advert.price, article_condition.name_condition, advert_image.image_path, user.id as user_id, user.pseudo, user.picture as user_picture, joint_table.average, joint_table.feedback_nber, advert.publication_date_advert
     FROM ${this.table}
     LEFT JOIN advert_image ON advert.id=advert_image.advert_id AND advert_image.is_primary=1
     JOIN article_condition ON advert.article_condition_id=article_condition.id
@@ -55,7 +55,7 @@ class AdvertsManager extends AbstractManager {
         GROUP BY user.pseudo) as joint_table ON user.pseudo=joint_table.rated_pseudo
     WHERE advert.batch=1
     ORDER BY advert.publication_date_advert DESC;`
-  );
+    );
 
     return rows;
   }
@@ -82,7 +82,7 @@ class AdvertsManager extends AbstractManager {
 
   async getAdvertById(id) {
     const [rows] = await this.database.query(
-      `SELECT advert.price, advert.title_search_manga, advert.description, 
+      `SELECT advert.id as advert_id, advert.price, advert.title_search_manga, advert.description, 
       article_condition.name_condition, advert.view_number, advert.publication_date_advert, 
       manga.id as manga_id, manga.title as manga_title, volume.title as volume_title, volume.ISBN, 
       user.pseudo, user.id as user_id, user.picture as user_picture, 
@@ -102,11 +102,11 @@ class AdvertsManager extends AbstractManager {
       [id]
     );
     return rows;
-}
+  }
 
   async getAdvertsBySeller(id) {
     const [rows] = await this.database.query(
-      `SELECT advert.id as advert_id, advert.title_search_manga, advert.price, article_condition.name_condition, advert_image.image_path, user.id as user_id, user.pseudo, user.picture as user_picture, joint_table.average, joint_table.feedback_nber, user.id as user_id
+      `SELECT advert.id as advert_id, advert.title_search_manga, advert.price, advert.publication_date_advert, article_condition.name_condition, advert_image.image_path, user.id as user_id, user.pseudo, user.picture as user_picture, joint_table.average, joint_table.feedback_nber, user.id as user_id
       FROM ${this.table}
       LEFT JOIN advert_image ON advert.id=advert_image.advert_id AND advert_image.is_primary=1
       JOIN article_condition ON advert.article_condition_id=article_condition.id
@@ -115,22 +115,31 @@ class AdvertsManager extends AbstractManager {
             FROM user
             JOIN feedback ON user.id = feedback.user_id
             GROUP BY user.pseudo) as joint_table ON user.pseudo=joint_table.rated_pseudo
-      WHERE advert.user_id = ?`,
+      WHERE advert.user_id = ?
+      ORDER BY advert.publication_date_advert DESC`,
       [id]
     );
     return rows;
   }
 
-
   async getMinMaxPrice(batch) {
-    const whereConditions = batch ? "WHERE batch=1" : "WHERE batch=0";
+    let whereConditions = '';
+
+    if (batch !== undefined) {
+        whereConditions = batch ? "WHERE batch = 1" : "WHERE batch = 0";
+    }
+
     const query = `
-      SELECT MIN(price) AS "minPrice", MAX(price) AS "maxPrice"
+      SELECT MIN(price) AS minPrice, MAX(price) AS maxPrice
       FROM ${this.table}
       ${whereConditions};
     `;
     const [rows] = await this.database.query(query);
-    return rows; }
+    return rows;
+
+}
+
+
 
   async addAdvert(advert) {
     // console.info("poulet");
@@ -152,55 +161,79 @@ class AdvertsManager extends AbstractManager {
     return result.insertId;
   }
 
-  async findAdverts({ batch, genreId, conditionName, minPrice, maxPrice }) {
-    let whereConditions = batch ? "WHERE advert.batch=1" : "WHERE advert.batch=0";
-    const queryParams = [];
-  
-    if (genreId) {
-      whereConditions += " AND manga.genre_id = ?";
-      queryParams.push(genreId);
-    }
-  
-    if (conditionName) {
-      whereConditions += " AND article_condition.name_condition = ?";
-      queryParams.push(conditionName);
-    }
-  
-    // Ajouter la condition pour minPrice si elle est spécifiée
-    if (minPrice !== undefined && minPrice !== null) {
-      whereConditions += " AND advert.price >= ?";
-      queryParams.push(minPrice);
-    }
-  
-    // Modifier la condition pour maxPrice pour prendre en compte le cas où seulement minPrice est spécifié
-    if (maxPrice !== undefined && maxPrice !== null) {
-      whereConditions += " AND advert.price <= ?";
-      queryParams.push(maxPrice);
-    }
-  
-    const query = `
-      SELECT advert.id, advert.title_search_manga, advert.price, article_condition.name_condition,
-      advert_image.image_path, user.pseudo, user.picture as user_picture, manga.genre_id,
-      ROUND(joint_table.average, 1) as average, joint_table.feedback_nber, advert.publication_date_advert
-      FROM ${this.table}
-      LEFT JOIN advert_image ON advert.id=advert_image.advert_id AND advert_image.is_primary=1
-      JOIN article_condition ON advert.article_condition_id=article_condition.id
-      JOIN user ON advert.user_id=user.id
-      JOIN manga ON advert.manga_id=manga.id
-      JOIN (SELECT user.pseudo as rated_pseudo, ROUND(AVG(feedback.rating), 1) as average, COUNT(feedback.rating) as feedback_nber
-            FROM user
-            JOIN feedback ON user.id = feedback.user_id
-            GROUP BY user.pseudo) as joint_table ON user.pseudo=joint_table.rated_pseudo
-      ${whereConditions}
-      ORDER BY advert.publication_date_advert DESC;
-    `;
-  
-    const [rows] = await this.database.query(query, queryParams);
-    return rows;
+ async findAdverts({ batch, genreId, conditionName, minPrice, maxPrice, searchQuery }) {
+  let whereConditions = "WHERE 1=1";
+  const queryParams = [];
+
+
+if (searchQuery) {
+  whereConditions += " AND (advert.title_search_manga LIKE ? OR manga.description LIKE ?)";
+  const searchPattern = `%${searchQuery}%`;
+  queryParams.push(searchPattern, searchPattern); 
+} else if (batch !== null && batch !== undefined) {
+  if (batch === true) {
+    whereConditions += " AND advert.batch=1";
+  } else {
+    whereConditions += " AND advert.batch=0";
   }
-
-
 }
 
+  if (genreId) {
+    whereConditions += " AND manga.genre_id = ?";
+    queryParams.push(genreId);
+  }
+  
+  if (conditionName) {
+    whereConditions += " AND article_condition.name_condition = ?";
+    queryParams.push(conditionName);
+  }
+  
+  if (minPrice !== undefined && minPrice !== null) {
+    whereConditions += " AND advert.price >= ?";
+    queryParams.push(minPrice);
+  }
+  
+  if (maxPrice !== undefined && maxPrice !== null) {
+    whereConditions += " AND advert.price <= ?";
+    queryParams.push(maxPrice);
+  }
+  
+  const query = `
+    SELECT advert.id, advert.title_search_manga, advert.price, article_condition.name_condition,
+    advert_image.image_path, user.pseudo, user.picture as user_picture, manga.genre_id,
+    ROUND(joint_table.average, 1) as average, joint_table.feedback_nber, advert.publication_date_advert
+    FROM ${this.table}
+    LEFT JOIN advert_image ON advert.id=advert_image.advert_id AND advert_image.is_primary=1
+    JOIN article_condition ON advert.article_condition_id=article_condition.id
+    JOIN user ON advert.user_id=user.id
+    JOIN manga ON advert.manga_id=manga.id
+    JOIN (SELECT user.pseudo as rated_pseudo, ROUND(AVG(feedback.rating), 1) as average, COUNT(feedback.rating) as feedback_nber
+          FROM user
+          JOIN feedback ON user.id = feedback.user_id
+          GROUP BY user.pseudo) as joint_table ON user.pseudo=joint_table.rated_pseudo
+    ${whereConditions}
+    ORDER BY advert.publication_date_advert DESC;
+  `;
+  
+  const [rows] = await this.database.query(query, queryParams);
+  return rows;
+}
+
+  async deleteAdvert(id) {
+    await this.database.query(
+      `DELETE advert_image FROM advert
+        LEFT JOIN advert_image ON advert.id = advert_image.advert_id
+        WHERE advert.id = ?`,
+      [id]
+    );
+
+    const [result] = await this.database.query(
+      `DELETE FROM ${this.table} 
+      WHERE id = ?`,
+      [id]
+    );
+    return result.affectedRows > 0 ? id : null;
+  }
+}
 
 module.exports = AdvertsManager;

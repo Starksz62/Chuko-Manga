@@ -1,182 +1,39 @@
 .navbar-header {
-  z-index: 3;
-  top: 0;
-  position: sticky;
-  background-color: var(--neutral-100);
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  /* z-index: 3; */
+  /* top: 0; */
+  /* position: sticky; */
   padding: 1rem 4rem;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  /* font-family: ; */
-}
-
-.searchbar-container {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  border: none;
-  outline: none;
-  width: 80%;
-}
-
-.result-tab {
-  position: absolute;
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
-  margin-top: 3.4rem;
-  z-index: 1000;
-  background-color: var(--neutral-200);
-  width: 50%;
-  max-height: 300px;
-  overflow-y: auto;
-  border-radius: 0.5rem;
-  box-shadow: 0px 10px 15px -3px rgba(0, 0, 0, 0.3);
-}
-
-.result-tab p {
-  font-size: var(--fs-S);
-  font-weight: 500;
-}
-
-.result-image {
-  width: 4rem;
-  height: 4rem;
-  object-fit: cover;
-}
-
-.search-result {
-  display: flex;
-  flex-direction: row;
-  gap: 1rem;
-  position: relative;
+  margin: 1rem 0;
   background-color: var(--neutral-100);
-  color: var(--neutral-900);
-  padding: 1rem;
-}
-.search-result:hover {
-  background-color: var(--neutral-200);
-  cursor: pointer;
-  transition: 0.2s ease-in-out;
-}
-
-.searchbar {
-  display: flex;
-  flex-direction: row;
-  background-color: var(--neutral-200);
-  height: 3rem;
-  padding: 1rem;
-  gap: 1rem;
-  border: none;
-  border-radius: 0.5rem;
-  width: 50%;
-  min-width: 400px;
-}
-
-.searchbar input {
-  width: 100%;
-  border: initial;
-  background-color: initial;
-  color: initial;
-  outline: initial;
-  box-shadow: initial;
-}
-
-.menu-triangle {
-  visibility: hidden;
-  background-color: #f6f6f6;
-  width: 7rem;
-  height: 100%;
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  padding: 0 0.1rem 0 0;
-}
-
-.menu-button {
-  border: none; /* Supprime la bordure */
-  outline: none; /* Supprime la mise en évidence de la bordure lorsqu'il est sélectionné */
-  background-color: #f6f6f6;
-  color: gray;
-  padding: 0;
-}
-
-/*-------------creation triangle menu-------------*/
-.icone-triangle {
-  width: 0;
-  height: 0;
-  border-right: 8px solid transparent;
-  border-left: 8px solid transparent;
-  border-top: 10px solid gray;
-}
-/*------------------------------------------------*/
-
-.scroll-menu {
-  display: flex;
-  flex-direction: column;
-  list-style-type: none;
-  padding: 0 0 0 0.7rem;
-  margin: 0;
-  background-color: #f6f6f6;
-  color: gray;
-  display: none; /*cache scroll-menu*/
-}
-.menu-triangle:hover + .scroll-menu,
-.scroll-menu:hover {
-  display: flex; /* Affiche scroll-menu lorsque l'on passe sur menu */
-  visibility: visible;
-}
-
-.Explorer {
-  padding: 1rem 0 0.5rem 0;
-}
-.Catalogue {
-  padding: 0.5rem 0 1rem 0;
-}
-
-.line {
-  border-left: 1px solid gray;
-  display: inline-block;
-  height: 2rem;
-  padding-right: 0.5rem;
-}
-
-.icone-loupe {
-  width: 1.5rem;
-  height: 1.5rem;
-  background-image: url(../assets/icone-loupe.png);
-  background-size: cover;
-  background-color: #f6f6f6;
-}
-
-.incription-login-button,
-.vendre-button {
-  display: inline-block; /* Set buttons to display inline */
-  min-width: 220px;
-  max-height: 3.5rem;
-}
-
-.incription-login-button {
-  background-color: white;
-  border: 0.1rem solid #dd7a06;
-  border-radius: 5px;
-  color: #dd7a06;
-}
-
-.vendre-button {
-  padding: 1rem;
-  background-color: var(--primary-clr);
-  border: none;
-  border-radius: 5px;
-  color: white;
-  width: fit-content;
-}
-.vendre-button:hover {
-  background-color: var(--primary-clr-accent);
 }
 
 .buttonHeader-container {
   display: flex;
   flex-direction: row;
   gap: 1rem;
+}
+
+.incription-login-button {
+  padding: 0.5rem 1rem;
+  background-color: white;
+  color: var(--primary-clr);
+  border: 0.1rem solid var(--primary-clr);
+  border-radius: 5px;
+}
+
+.vendre-button {
+  padding: 0.5rem 1rem;
+  background-color: var(--primary-clr);
+  color: white;
+  border: 0.1rem solid var(--primary-clr);
+  border-radius: 5px;
+}
+
+.vendre-button:hover {
+  background-color: var(--primary-clr-accent);
+  border: 0.1rem solid var(--primary-clr-accent);
 }

@@ -1,3 +1,7 @@
+.prefiltre-unique {
+  margin: 3rem 0;
+}
+
 .titlePrefiltreDesc {
   margin-left: 240px;
   margin-bottom: 30px;
@@ -15,16 +19,18 @@
 .leftButton {
   width: 80px;
   position: absolute;
-  top: 180px;
-  left: 230px;
+  top: 36%;
+  left: 12.5%;
   cursor: pointer;
+  z-index: 3;
 }
 .rightButton {
   width: 80px;
   position: absolute;
-  top: 180px;
-  right: 230px;
+  top: 36%;
+  right: 12.5%;
   cursor: pointer;
+  z-index: 3;
 }
 
 .FilterByDateDesc {
