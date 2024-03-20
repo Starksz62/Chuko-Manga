@@ -68,15 +68,37 @@
   font-weight: 500;
 }
 
-.new-advert input,
 .new-advert select {
   width: 100%;
   margin-bottom: 3.75rem;
 }
 
 .new-advert input {
+  width: 100%;
+  margin-bottom: 0.5rem;
   border: none;
+  border-radius: 0;
   border-bottom: 1px solid var(--neutral-700);
+  padding: 0.3rem 0;
+}
+
+.new-advert .wrong-input {
+  border: 1px solid red;
+}
+
+.new-advert .warning {
+  color: red;
+  font-size: var(--fs-XS);
+  margin-bottom: 2.25rem;
+}
+
+.new-advert .hide-warning {
+  visibility: hidden;
+}
+
+.new-advert textarea {
+  width: 100%;
+  margin-bottom: 0.5rem;
   padding: 0.3rem 0;
 }
 
@@ -84,12 +106,9 @@
   padding: 0.3rem 0.3rem;
 }
 
-.new-advert #price {
-  margin-bottom: 5rem;
-}
-
 .new-advert .tab-container {
   display: flex;
+  margin-top: 1.25rem;
 }
 
 .new-advert .tab-container button {
@@ -127,7 +146,7 @@
 
 .new-advert .instruction {
   color: var(--neutral-700);
-  font-size: var(--fs-XS);
+  font-size: var(--fs-S);
 }
 
 .new-advert .add-button {
