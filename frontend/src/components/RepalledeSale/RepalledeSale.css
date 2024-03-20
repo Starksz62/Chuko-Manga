@@ -21,15 +21,22 @@
   justify-content: center;
   gap: 10px;
 }
+
 .repalledeBoutton {
   display: flex;
   justify-content: space-around;
   align-items: center;
   border: none;
   border-radius: inherit;
+  border: 1px solid var(--primary-clr);
   background-color: var(--primary-clr);
   color: white;
   margin-left: 20px;
+}
+
+.repalledeBoutton:hover {
+  background-color: var(--primary-clr-accent);
+  border: 1px solid var(--primary-clr-accent);
   text-decoration: none;
 }
 
