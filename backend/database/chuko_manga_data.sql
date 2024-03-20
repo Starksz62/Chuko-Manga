@@ -206,7 +206,7 @@ VALUES ('Tome 1', 1, '2002', '/static/naruto.jpg', '2871294143', 1),
 ('Tome 28', 28, '2007', '/static/narutoTome28.png', '2505000921', 1),
 ('Tome 29', 29, '2007', '/static/narutoTome29.png', '2505000972', 1),
 ('Tome 30', 30, '2007', '/static/narutoTome30.png', '2505001529', 1),
-('Tome 1', 1, '1993', '/static/DragonBall_db.jpg', '287695205X', 2),
+('Tome 1', 1, '1993', '/static/dragonBall_db.jpg', '287695205X', 2),
 ('Tome 2', 2, '1993', '/static/dragonBallTome2.png', '2876952068', 2),
 ('Tome 3', 3, '1993', '/static/dragonBallTome3.png', '2876952076', 2),
 ('Tome 4', 4, '1993', '/static/dragonBallTome4.png', '2876952106', 2),
@@ -240,17 +240,17 @@ VALUES ('Tome 1', 1, '2002', '/static/naruto.jpg', '2871294143', 1),
 ('Tome 14', 14, '2007', '/static/onePieceTome14.png', '2505001529', 3),
 ('Tome 15', 15, '2007', '/static/onePieceTome15.png', '2505001529', 3),
 ('Tome 1', 1, '2000', '/static/nanaTome1.png', '9782840559573', 4),
-('Tome 0', 0, '2020', '/static/jujutsuKaisenTom0.png', '1974720144', 5),
-('Tome 1', 1, '2020', '/static/jujutsuKaisenTom1.png', '1974710025', 5),
-('Tome 2', 2, '2020', '/static/jujutsuKaisenTom2.png', '1974710033', 5),
-('Tome 3', 3, '2020', '/static/jujutsuKaisenTom3.png', '1974710041', 5),
-('Tome 4', 4, '2020', '/static/jujutsuKaisenTom4.png', '1974714802', 5),
-('Tome 5', 5, '2020', '/static/jujutsuKaisenTom5.png', '1974714810', 5),
-('Tome 6', 6, '2020', '/static/jujutsuKaisenTom6.png', '1974714829', 5),
-('Tome 7', 7, '2020', '/static/jujutsuKaisenTom7.png', '1974717119', 5),
-('Tome 8', 8, '2021', '/static/jujutsuKaisenTom8.png', '1974718719', 5),
-('Tome 9', 9, '2021', '/static/jujutsuKaisenTom9.png', '1974718727', 5),
-('Tome 10', 10, '2021', '/static/jujutsuKaisenTom10.png', '1974720756', 5);
+('Tome 0', 0, '2020', '/static/jujutsuKaisenTome0.png', '1974720144', 5),
+('Tome 1', 1, '2020', '/static/jujutsuKaisenTome1.png', '1974710025', 5),
+('Tome 2', 2, '2020', '/static/jujutsuKaisenTome2.png', '1974710033', 5),
+('Tome 3', 3, '2020', '/static/jujutsuKaisenTome3.png', '1974710041', 5),
+('Tome 4', 4, '2020', '/static/jujutsuKaisenTome4.png', '1974714802', 5),
+('Tome 5', 5, '2020', '/static/jujutsuKaisenTome5.png', '1974714810', 5),
+('Tome 6', 6, '2020', '/static/jujutsuKaisenTome6.png', '1974714829', 5),
+('Tome 7', 7, '2020', '/static/jujutsuKaisenTome7.png', '1974717119', 5),
+('Tome 8', 8, '2021', '/static/jujutsuKaisenTome8.png', '1974718719', 5),
+('Tome 9', 9, '2021', '/static/jujutsuKaisenTome9.png', '1974718727', 5),
+('Tome 10', 10, '2021', '/static/jujutsuKaisenTome10.png', '1974720756', 5);
 
 INSERT INTO article_condition (name_condition)
 VALUES ('Abimé'), ('Bon état'), ('Comme neuf');
@@ -307,155 +307,11 @@ VALUES ('1','1'),
 ('3','2'),
 ('4','2');
 
-INSERT INTO 
-advert (price, description, alert, batch, title_search_manga, publication_date_advert, user_id, volume_id, article_condition_id, manga_id) 
-VALUES 
-  (
-    -- price
-    3, 
-    -- description
-    'Vends manga Naruto en bon état. Seul défaut : la couverture est un peu cornée', 
-    -- alert
-    0, 
-    -- batch
-    0, 
-    -- title_search_manga
-    'Naruto tome 1 en bon état', 
-    -- publication_date_advert
-    '2024-02-19', 
-    -- user_id
-    1, 
-    -- volume_id
-    1, 
-    -- condition_id
-    2, 
-    -- manga_id
-    1
-    ), 
-    (
-    -- price
-    4, 
-    -- description
-    'Je mets en vente ce tome 2 de Naruto, comme neuf.', 
-    -- alert
-    0, 
-    -- batch
-    0, 
-    -- title_search_manga
-    'Naruto tome 2 comme neuf', 
-    -- publication_date_advert
-    '2024-02-20', 
-    -- user_id
-    1, 
-    -- volume_id
-    2, 
-    -- condition_id
-    3, 
-    -- manga_id
-    1
-    ),
-    (
-    -- price
-    40, 
-    -- description
-    'Je vends un lot Dragon Ball à bon prix ! Se référer aux photos pour les tomes constituant le lot.', 
-    -- alert
-    0, 
-    -- batch
-    1, 
-    -- title_search_manga
-    'Lot Dragon Ball à saisir !', 
-    -- publication_date_advert
-    '2024-02-12', 
-    -- user_id
-    1, 
-    -- volume_id
-    NULL,
-    -- condition_id
-    1, 
-    -- manga_id
-    2
-    ),
-    (
-    -- price
-    20, 
-    -- description
-    'One Piece 1 à 6. Je reste disponible si vous voulez plus de photos. Je vends également d''autres livres n''hésitez pas à faire un tour sur mon profil.', 
-    -- alert
-    0, 
-    -- batch
-    1, 
-    -- title_search_manga
-    'Lot One Piece 1 à 6', 
-    -- publication_date_advert
-    '2024-02-14', 
-    -- user_id
-    1, 
-    -- volume_id
-    NULL,
-    -- condition_id
-    2, 
-    -- manga_id
-    3
-    ),
-    (
-    -- price
-    15, 
-    -- description
-    'Lot de 3 mangas dragon Ball en excellent état - vendeur de confiance', 
-    -- alert
-    0, 
-    -- batch
-    1, 
-    -- title_search_manga
-    'Lot Dragon Ball tomes 1 à 3 !', 
-    -- publication_date_advert
-    '2024-02-21', 
-    -- user_id
-    2, 
-    -- volume_id
-    NULL,
-    -- condition_id
-    3, 
-    -- manga_id
-    2
-    ),
-    (
-    -- price
-    2, 
-    -- description
-    'A vendre : tome 1 Nana', 
-    -- alert
-    0, 
-    -- batch
-    0, 
-    -- title_search_manga
-    'Nana Tome 1', 
-    -- publication_date_advert
-    '2024-02-20', 
-    -- user_id
-    2, 
-    -- volume_id
-    3,
-    -- condition_id
-    1, 
-    -- manga_id
-    4
-    );
+INSERT INTO `advert` VALUES (1,3.00,'Vends manga Naruto en bon état. Seul défaut : la couverture est un peu corné.',0,0,'Naruto tome 1 en bon état',0,'2024-02-19',0,0,1,1,2,1),(2,4.00,'Je mets en vente ce tome 2 de Naruto, comme neuf.',0,0,'Naruto tome 2 comme neuf',0,'2024-02-20',0,0,1,2,3,1),(3,40.00,'Je vends un lot Dragon Ball à bon prix ! Se référencer aux photos pour les tomes constituant le lot.',0,1,'Lot Dragon Ball à saisir !',0,'2024-02-12',0,0,1,NULL,1,2),(4,20.00,'One Piece 66 67 68 69 70. Je reste disponible si vous voulez plus de photos. Je vends également d\'autres livres n\'hésitez pas à faire un tour sur mon profil.',0,1,'Lot One Piece 66 à 70',0,'2024-02-14',0,0,1,NULL,2,3),(5,15.00,'Lot de 3 mangas dragon Ball en excellent état - vendeur de confiance',0,1,'Lot Dragon Ball tomes 1 à 3 !',0,'2024-02-21',0,0,2,NULL,3,2),(6,2.00,'A vendre : tome 1 Nana',0,0,'Nana Tome 1',0,'2024-02-20',0,0,2,3,1,4),(7,74.00,'Vends mon tome 100 édition collector One Piece, état neuf sous blister.',0,0,'One Piece tome 100 collector',0,'2024-03-15',0,1,1,NULL,3,3),(100,110.00,'Vends collection complète HxH (1-36), en bon état.',0,1,'HunterxHunter tome 1 à 36.',0,'2024-03-15',0,0,2,NULL,3,6),(102,35.00,'Vends mon lot D.Gray-man tome 1 à 16.',0,1,'Dr.Gray-man tome 1 à 16',0,'2024-03-14',0,0,1,NULL,3,NULL),(103,50.00,'Je vends ma précieuse collection de Sun-Ken Rock collector :).',0,1,'Sun-Ken Rock collector 1 à 13.',0,'2024-03-15',0,1,2,NULL,3,NULL),(104,30.00,'Vends lot Alice in Borderland tome 1 à 17 !',0,1,'Alice in Borderland 1 à 17.',0,'2024-02-22',0,0,1,NULL,2,NULL),(105,120.00,'Bonjour, je vends mon lot Kingdom en très bon état.',0,1,'Kingdom 1 à 35.',0,'2024-03-15',0,0,2,NULL,3,NULL),(106,3.50,'Vends le tome 4 de BlueLock, sous blister.',0,0,'BlueLock tome 4.',0,'2024-03-15',0,0,2,NULL,3,NULL),(107,3.00,'Vends tome 1 de Fullmetal Alchemist bon état.',0,0,'Fullmetal Alchemist tome 1.',0,'2024-03-15',0,0,1,NULL,2,NULL),(108,35.00,'Je vends mon tome 41 collector de Berserk toujours sous blister.',0,0,'Berserk collector 41.',0,'2024-03-15',0,1,1,NULL,3,NULL),(109,2.90,'Vends tome 3 Perfect Crime quasi neuf.',0,0,'Perfect Crime tome 3.',0,'2024-01-23',0,0,2,NULL,3,NULL);
 
-INSERT INTO 
-advert_image (image_path, is_primary, advert_id)
-VALUES ('/static/Advert1_Picture1.jpeg', 1, 1), 
-('/static/Advert1_Picture2.jpeg', 0, 1),
-('/static/Advert2_Picture1.png', 1, 2),
-('/static/Advert2_Picture2.png', 0, 2),
-('/static/Advert3_Picture1.jpeg', 1, 3),
-('/static/Advert4_Picture1.jpeg', 1, 4),
-('/static/Advert4_Picture2.jpeg', 0, 4),
-('/static/Advert5_Picture1.jpeg', 1, 5),
-('/static/Advert5_Picture1.jpeg', 0, 5),
-('/static/Advert6_Picture1.jpeg', 1, 6),
-('/static/Advert6_Picture2.jpeg', 0, 6);
+
+INSERT INTO `advert_image` VALUES (1,'/static/Advert1_Picture1.jpeg',1,1),(2,'/static/Advert1_Picture2.jpeg',0,1),(3,'/static/Advert2_Picture1.png',1,2),(4,'/static/Advert2_Picture2.png',0,2),(5,'/static/Advert3_Picture1.jpeg',1,3),(6,'/static/Advert4_Picture1.jpeg',1,4),(7,'/static/Advert4_Picture2.jpeg',0,4),(8,'/static/Advert5_Picture1.jpeg',1,5),(9,'/static/Advert5_Picture1.jpeg',0,5),(10,'/static/Advert6_Picture1.jpeg',1,6),(11,'/static/OPcollectorTome100.jpg',1,7),(12,'/static/hunterxhunterBatch1-36.jpg',1,100),(13,'/static/dgraymanBatch1-16.jpg',1,102),(14,'/static/SKRcollectorBatch1-13.jpg',1,103),(15,'/static/aliceinborderlandBatch1-17.jpeg',1,104),(16,'/static/Kingdombatch1-35.jpg',1,105),(17,'/static/bluelockTome4.jpg',1,106),(18,'/static/FATome1.jpeg',1,107),(19,'/static/BerserkTomeCollector41.jpeg',1,108),(20,'/static/PerfectCrimeTome3.jpeg',1,109);
+
 
 INSERT INTO `order` (id_user_buy, total_price, order_date, status_order, feedback_order, advert_id, user_id)
 VALUES ('2','3.80', '2024/02/20', 'completed', 0, '1', '1'),

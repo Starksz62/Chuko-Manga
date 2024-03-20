@@ -1,10 +1,6 @@
-.prefilter-section {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 1rem;
-  padding: 4rem;
-  width: 100%;
+.titlePrefiltreDesc {
+  margin-left: 240px;
+  margin-bottom: 30px;
 }
 
 .FilterByDateDescWrapper {
@@ -12,35 +8,48 @@
   justify-content: center;
   flex-direction: row;
   align-items: center;
-  gap: 1rem;
   width: 100%;
+  position: relative;
+}
+
+.leftButton {
+  width: 80px;
+  position: absolute;
+  top: 36%;
+  left: 12.5%;
+  cursor: pointer;
+  z-index: 3;
+}
+.rightButton {
+  width: 80px;
+  position: absolute;
+  top: 36%;
+  right: 12.5%;
+  cursor: pointer;
+  z-index: 3;
 }
 
 .FilterByDateDesc {
   display: flex;
   flex-direction: row;
   gap: 1rem;
-  overflow-x: auto; /* Activer le défilement horizontal */
   overflow: hidden; /* Masquer la barre de défilement */
   width: calc(300px * 4 + 0 * 1rem); /* Largeur pour 4 annonces + 3 marges */
-  flex-shrink: 0;
+  overflow: hidden;
 }
 
 .FilterByDateDescInner {
   display: flex;
   flex-direction: row;
   gap: 1rem;
-  width: auto;
-  flex-shrink: 0;
 }
 
 .filteredAdverts {
   display: flex;
   flex-direction: row;
-  width: auto;
 }
 
-.seeAllTomesButtonWrapper {
+.bntSeeAllTomesDesc {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -53,14 +62,10 @@
   border: 0;
   height: 480px;
   width: 200px;
-}
-
-.textBtnDesc {
   font-size: 1.2em;
   color: var(--neutral-700);
 }
 
-.bntSeeAllTomes:hover {
-  background-color: var(--neutral-200);
-  transition: 0.5s ease;
+.LinkBtnDesc:hover {
+  text-decoration: none;
 }

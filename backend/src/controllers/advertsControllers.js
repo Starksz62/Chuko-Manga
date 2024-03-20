@@ -81,7 +81,6 @@ const getAdvertsByCondition = async (req, res) => {
   }
 };
 
-
 const getAdvertsImage = async (req, res) => {
   try {
     const adverts = await models.advert.getAdvertsImage(req.params.image_path);
@@ -95,11 +94,11 @@ const getAdvertsImage = async (req, res) => {
   }
 };
 
-// NOUVEL ESSAI
 const createAdvert = async (req, res) => {
   // console.info("image1 uploaded:", req.files["image1"][0]);
   // console.info("image2 uploaded:", req.files["image2"][0]);
   // console.info("image3 uploaded:", req.files["image3"][0]);
+  console.info("req.body is:", req.body);
   const advert = req.body;
   // console.info("this is advert", advert);
   const imageId = [];
@@ -176,26 +175,43 @@ const isBatch = batch === 'true';
 
     return res.json(adverts);
   } catch (error) {
-    console.error("Erreur lors de la récupération des annonces récentes:", error);
+    console.error(
+      "Erreur lors de la récupération des annonces récentes:",
+      error
+    );
     return res.status(500).json({ error: "Erreur interne du serveur" });
   }
 };
 const getAdvertsByPrice = async (req, res) => {
-  const { batch } = req.query; 
-  const isBatch = batch === 'true';
+  const { batch } = req.query;
+  const isBatch = batch === "true";
   try {
     const priceRange = await models.advert.getMinMaxPrice(isBatch);
 
     if (priceRange.length > 0) {
       return res.json(priceRange[0]);
-    } 
-      return res.status(404).json({ message: "Aucune annonce trouvée." });
-    
+    }
+    return res.status(404).json({ message: "Aucune annonce trouvée." });
   } catch (error) {
     console.error("Erreur lors de la récupération des prix min et max:", error);
     return res.status(500).json({ error: "Erreur interne du serveur" });
   }
 };
+
+const deleteAdvert = async (req, res) => {
+  try {
+    const advert = await models.advert.deleteAdvert(req.params.id);
+    if (advert === 0) {
+      res.sendStatus(404);
+    } else {
+      res.sendStatus(204);
+    }
+  } catch (err) {
+    console.error(err);
+    res.sendStatus(500);
+  }
+};
+
 module.exports = {
   getAllAdverts,
   getAllCards,
@@ -210,4 +226,5 @@ module.exports = {
   getAdvertsByPrice,
   createAdvert,
   getAdvertsImage,
+  deleteAdvert,
 };
