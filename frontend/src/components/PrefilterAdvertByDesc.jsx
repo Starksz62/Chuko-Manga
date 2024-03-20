@@ -90,7 +90,7 @@ function PrefilterAdvertByDesc() {
           )}
           <div className="filtered-adverts">
             {filteredAdverts.length > 0 ? (
-              filteredAdverts.map((advert) => (
+              filteredAdverts.slice(0, 8).map((advert) => (
                 <div key={advert.id} className="AdvertCard">
                   <AdvertCard advert={advert} />
                 </div>
