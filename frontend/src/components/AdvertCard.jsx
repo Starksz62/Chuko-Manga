@@ -1,8 +1,8 @@
+/* eslint-disable prettier/prettier */
 import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import "./AdvertCard.css";
 import { Link, useNavigate } from "react-router-dom";
-import collectorLogo from "../assets/CollectorLogo.png";
 import { useNotifications } from "../context/NotificationContext";
 
 function AdvertCard({ advert }) {
@@ -57,22 +57,9 @@ function AdvertCard({ advert }) {
 
   const average = parseFloat(advert.average);
 
-  // Déterminez la classe CSS à utiliser
-  const cardClass =
-    advert.is_collector === 0
-      ? "card-content-no-collector"
-      : "card-content-collector";
-
   return (
-    <section className={cardClass}>
-      <Link to={`/display-adverts/${advert.id}`} onClick={handleCardClick}>
-        {cardClass === "card-content-collector" && (
-          <img
-            src={collectorLogo}
-            alt="Collector Logo"
-            className="collector-logo"
-          />
-        )}
+    <section className="card-content">
+      <Link to={`/display-adverts/${advert.id}`} onClick={handleCardClick} className="link-card-title">
         <img
           src={`http://localhost:3310${advert.image_path}`}
           alt={advert.title_search_manga}

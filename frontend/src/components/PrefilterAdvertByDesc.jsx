@@ -66,7 +66,7 @@ function PrefilterAdvertByDesc() {
   }
 
   return (
-    <>
+    <section className="prefiltre-unique">
       <h2 className="titlePrefiltreDesc">
         Explorer les derniers tomes ajoutés :
       </h2>
@@ -108,7 +108,7 @@ function PrefilterAdvertByDesc() {
           </div>
         </div>
       </div>
-    </>
+    </section>
   );
 }
 
