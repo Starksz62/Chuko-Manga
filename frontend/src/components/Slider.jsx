@@ -1,38 +1,19 @@
-/* eslint-disable import/no-extraneous-dependencies */
 import { useState, useEffect } from "react";
 import RangeSlider from "react-range-slider-input";
 import "react-range-slider-input/dist/style.css";
 import { useFilters } from "../context/FilterContext";
 
 function PriceSlider() {
-  const { updateFilters, batch } = useFilters();
-  const [min, setMin] = useState(1);
-  const [max, setMax] = useState(100);
-  const [value, setValue] = useState([min, max]);
-  useEffect(() => {
-    const url = `http://localhost:3310/api/display-adverts-byprice?batch=${batch}`;
-    fetch(url)
-      .then((response) => response.json())
-      .then((data) => {
-        if (data.minPrice && data.maxPrice) {
-          const minPrice = parseFloat(data.minPrice);
-          const maxPrice = parseFloat(data.maxPrice);
-          setMin(minPrice);
-          setMax(maxPrice);
-          setValue([minPrice, maxPrice]);
-        }
-      })
-      .catch((error) =>
-        console.error(
-          "Erreur lors de la récupération des prix min et max:",
-          error
-        )
-      );
-  }, [batch]);
+  const { applyDynamicPriceFilter, priceRange } = useFilters();
+  const [min, setMin] = useState(priceRange.minPrice);
+  const [max, setMax] = useState(priceRange.maxPrice);
+  const [value, setValue] = useState([
+    priceRange.minPrice,
+    priceRange.maxPrice,
+  ]);
 
   const handleInput = (newValue) => {
     const minGap = 1;
-
     let newLowerValue = newValue[0];
     let newUpperValue = newValue[1];
 
@@ -46,12 +27,20 @@ function PriceSlider() {
 
     if (newLowerValue >= min && newUpperValue <= max) {
       setValue([newLowerValue, newUpperValue]);
-      updateFilters({ priceMin: newLowerValue, priceMax: newUpperValue });
-    }
+      console.info(
+        "Appel de applyDynamicPriceFilter avec les valeurs :",
+        newLowerValue,
+        newUpperValue
+      );
 
-    console.info("Nouvelles valeurs :", [newLowerValue, newUpperValue]);
-    updateFilters({ priceMin: newLowerValue, priceMax: newUpperValue });
+      applyDynamicPriceFilter(newLowerValue, newUpperValue);
+    }
   };
+
+  useEffect(() => {
+    setMin(priceRange.minPrice);
+    setMax(priceRange.maxPrice);
+  }, [priceRange.minPrice, priceRange.maxPrice]);
 
   return (
     <div className="price-slider-container">
