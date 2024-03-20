@@ -5,30 +5,7 @@
   padding: 0;
 }
 
-.card-content-collector {
-  width: 275px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  margin: 0.4rem;
-  font-family: "Monserrat", sans-serif;
-  box-shadow:
-    rgba(0, 0, 0, 0.12) 0px 1px 3px,
-    rgba(0, 0, 0, 0.24) 0px 1px 2px;
-  border-radius: 6px;
-  padding: 8px;
-  margin-right: 20px;
-  position: relative;
-}
-
-.collector-logo {
-  width: 105px;
-  position: absolute;
-  top: -6px;
-  left: -5.5px;
-}
-
-.card-content-no-collector {
+.card-content {
   width: 275px;
   display: flex;
   flex-direction: column;
@@ -60,6 +37,10 @@
   align-items: start;
 }
 
+.link-card-title:hover {
+  text-decoration: none;
+}
+
 .card-price-section {
   display: flex;
   flex: row;
@@ -73,8 +54,8 @@
 }
 
 .card-favorite {
-  width: 24px;
-  height: 24px;
+  width: 26px;
+  height: 26px;
   position: relative;
   z-index: 2;
 }

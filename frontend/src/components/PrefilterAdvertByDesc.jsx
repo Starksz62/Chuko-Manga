@@ -54,8 +54,8 @@ function PrefilterAdvertByDesc({ titlefromAnnounceDetail }) {
   };
 
   return (
-    <div className="prefilter-section">
-      <h1>{titleToShow}</h1>
+    <section className="prefiltre-unique">
+      <h2 className="titlePrefiltreDesc">{titleToShow}</h2>
       <div className="FilterByDateDescWrapper">
         <div className="FilterByDateDesc" ref={containerRef}>
           <div className="filteredAdverts">
@@ -82,7 +82,7 @@ function PrefilterAdvertByDesc({ titlefromAnnounceDetail }) {
           </button>
         </div>
       </div>
-    </div>
+    </section>
   );
 }
 

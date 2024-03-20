@@ -17,7 +17,7 @@ export default function Footer() {
         <div className="footer-links-block">
           <h3 className="footer-title">Découvrir</h3>
           <a href="youtube.com" target="_blank" rel="noreferrer">
-            Comment ça marche
+            Comment ça marche ?
           </a>
           <a href="youtube.com" target="_blank" rel="noreferrer">
             Tableau de bord
@@ -77,10 +77,10 @@ export default function Footer() {
             Politique de confidentialité
           </a>
           <a href="youtube.com" target="_blank" rel="noreferrer">
-            Politique de cookies
+            Politique des cookies
           </a>
           <a href="youtube.com" target="_blank" rel="noreferrer">
-            Paramétre de cookies
+            Paramètres des cookies
           </a>
           <a href="youtube.com" target="_blank" rel="noreferrer">
             Termes et conditions

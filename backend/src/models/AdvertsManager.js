@@ -24,7 +24,7 @@ class AdvertsManager extends AbstractManager {
 
   async findRecentUniqueItems() {
     const [rows] = await this.database.query(
-      `SELECT advert.id, advert.title_search_manga, advert.price, advert.is_collector, article_condition.name_condition, 
+      `SELECT advert.id, advert.title_search_manga, advert.price, article_condition.name_condition, 
       advert_image.image_path, user.pseudo, user.picture as user_picture, 
       ROUND(joint_table.average, 1) as average, joint_table.feedback_nber, advert.publication_date_advert
       FROM ${this.table}
@@ -44,7 +44,7 @@ class AdvertsManager extends AbstractManager {
 
   async findRecentBatch() {
     const [rows] = await this.database.query(
-      `SELECT advert.id, advert.title_search_manga, advert.price, advert.is_collector, article_condition.name_condition, advert_image.image_path, user.id as user_id, user.pseudo, user.picture as user_picture, joint_table.average, joint_table.feedback_nber, advert.publication_date_advert
+      `SELECT advert.id, advert.title_search_manga, advert.price, article_condition.name_condition, advert_image.image_path, user.id as user_id, user.pseudo, user.picture as user_picture, joint_table.average, joint_table.feedback_nber, advert.publication_date_advert
     FROM ${this.table}
     LEFT JOIN advert_image ON advert.id=advert_image.advert_id AND advert_image.is_primary=1
     JOIN article_condition ON advert.article_condition_id=article_condition.id
