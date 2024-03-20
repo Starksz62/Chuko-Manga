@@ -67,14 +67,14 @@ function PrefilterAdvertByBatch() {
 
   return (
     <section className="prefiltre-lot">
-      <h2 className="titlePrefiltreDesc">
-        Explorer les derniers lots ajoutés :
+      <h2 className="title-prefiltre-batch">
+        Explorer les derniers lots ajoutés
       </h2>
-      <div className="FilterByDateDescWrapper">
-        <div className="FilterByDateDesc" ref={containerRef}>
+      <div className="filter-by-batch-wrapper">
+        <div className="filter-by-batch" ref={containerRef}>
           {showLeftButton && (
             <img
-              className="leftButton"
+              className="left-button"
               src={Left}
               alt="left button"
               onClick={() => scrollContainer("left")}
@@ -82,13 +82,13 @@ function PrefilterAdvertByBatch() {
           )}
           {showRightButton && (
             <img
-              className="rightButton"
+              className="right-button"
               src={Right}
               alt="right button"
               onClick={() => scrollContainer("right")}
             />
           )}
-          <div className="filteredAdverts">
+          <div className="filtered-adverts-batch">
             {filteredAdverts.length > 0 ? (
               filteredAdverts.map((advert) => (
                 <div key={advert.id} className="AdvertCard">
@@ -99,9 +99,9 @@ function PrefilterAdvertByBatch() {
               <p>Loading...</p>
             )}
           </div>
-          <div className="seeAllTomesButtonWrapper">
-            <Link className="LinkBtnDesc" to="/explore">
-              <button type="button" className="bntSeeAllTomesDesc">
+          <div className="seeAllTomesButtonWrapperBatch">
+            <Link className="link-btn-batch" to="/explore">
+              <button type="button" className="bnt-see-all-tomes-batch">
                 Voir tous les lots
               </button>
             </Link>
