@@ -1,14 +1,27 @@
-.navbar-header {
+.navbar-header-desktop {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  align-items: center;
-  /* z-index: 3; */
-  /* top: 0; */
-  /* position: sticky; */
-  padding: 1rem 4rem;
-  margin: 1rem 0;
+  padding: 1rem 2rem;
+  gap: 1rem;
+  width: 100%;
   background-color: var(--neutral-100);
+}
+
+.navbar-header-mobile {
+  display: none;
+  flex-direction: column;
+  padding: 1rem 2rem;
+  gap: 1rem;
+  width: 100%;
+  background-color: var(--neutral-100);
+}
+
+.mobile-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  gap: 1rem;
 }
 
 .buttonHeader-container {
@@ -22,7 +35,7 @@
   background-color: white;
   color: var(--primary-clr);
   border: 0.1rem solid var(--primary-clr);
-  border-radius: 5px;
+  border-radius: 0.5rem;
 }
 
 .vendre-button {
@@ -30,10 +43,37 @@
   background-color: var(--primary-clr);
   color: white;
   border: 0.1rem solid var(--primary-clr);
-  border-radius: 5px;
+  border-radius: 0.5rem;
 }
 
 .vendre-button:hover {
   background-color: var(--primary-clr-accent);
   border: 0.1rem solid var(--primary-clr-accent);
+}
+
+.header-menu-btn {
+  display: none;
+  padding: 0.5rem 1rem;
+  background-color: var(--primary-clr);
+  color: white;
+  border: 0.1rem solid var(--primary-clr);
+  border-radius: 0.5rem;
+}
+
+@media (max-width: 1200px) {
+  .buttonHeader-container {
+    display: none;
+  }
+
+  .header-menu-btn {
+    display: block;
+  }
+
+  .navbar-header-mobile {
+    display: flex;
+  }
+
+  .navbar-header-desktop {
+    display: none;
+  }
 }

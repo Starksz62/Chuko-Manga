@@ -1,11 +1,10 @@
 .footer {
-  margin: 0 auto;
   text-decoration: none;
   background-color: var(--neutral-300);
   display: flex;
   flex-direction: column;
+  width: 100%;
   gap: 1px;
-  width: 80%;
 }
 
 .footer-links-container {

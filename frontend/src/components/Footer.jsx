@@ -6,7 +6,7 @@ import "./Footer.css";
 
 export default function Footer() {
   return (
-    <div className="footer">
+    <div className="footer container_limit">
       <div className="footer-links-container">
         <div className="footer-links-block">
           <h3 className="footer-title">Chuko Manga</h3>

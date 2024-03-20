@@ -3,13 +3,11 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 90%;
-  margin: 3rem 0;
-  padding: 2rem;
+  width: 100%;
+  gap: 2rem;
 }
 
 .section-logo {
-  width: 100%;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -18,5 +16,5 @@
 }
 
 .logo {
-  width: 200px;
+  width: 150px;
 }

@@ -7,7 +7,7 @@ function Order({ articleInfo }) {
       <li key={articleInfo.id}>
         <div className="card">
           <img
-            src={articleInfo.image_paths?.[0]}
+            src={`http://localhost:3310${articleInfo.image_paths[0]}`}
             alt={articleInfo.title_search_manga}
           />
           <div className="information-card">
