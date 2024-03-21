@@ -39,6 +39,9 @@
 
 .imagePathAnnonces {
   height: 20rem;
+  object-fit: contain;
+  background-color: black;
+  width: 15rem;
   border-radius: 3px;
   box-shadow: 0px 7px 9px 0px rgba(0, 0, 0, 0.56);
 }

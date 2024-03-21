@@ -74,6 +74,8 @@ router.get(
 // Route to add a new advert (page advert creation)
 router.post("/new-advert", multer, advertsControllers.createAdvert);
 
+// router.put("/update-advert/:id", multer, advertsControllers.updateAdvert);
+
 // Route to get all orders by buyer (page Profil/onglet my purchase history)
 router.get(
   "/display-order-history-bybuyer/:id",

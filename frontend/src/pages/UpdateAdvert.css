@@ -1,0 +1,141 @@
+.new-advert {
+  border: 1px solid var(--neutral-700);
+  max-width: 80%;
+  margin: auto;
+  padding: 2rem 3rem 6rem 2rem;
+}
+
+.new-advert h1 {
+  font-size: var(--fs-XL);
+  margin-bottom: 4rem;
+}
+
+.picture-container {
+  display: flex;
+  flex-direction: space-around;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 5rem;
+}
+
+.picture-box1 {
+  position: relative;
+  background-color: var(--neutral-400);
+  width: 17rem;
+  height: 17rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.label-picture {
+  position: absolute;
+}
+
+.picture-box1 input {
+  opacity: 0;
+  height: 100%;
+  width: 100%;
+}
+
+.picture-box1 .plus-icon {
+  position: absolute;
+}
+
+.preview-container {
+  position: relative;
+}
+
+.preview-image {
+  width: 17rem;
+  height: 17rem;
+  object-fit: cover;
+}
+
+.picture-box1 .delete-preview {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+.picture-box input:hover {
+  cursor: pointer;
+}
+
+.new-advert label {
+  font-size: var(--fs-M);
+  display: block;
+  margin-bottom: 1.25rem;
+  font-weight: 500;
+}
+
+.new-advert input,
+.new-advert select {
+  width: 100%;
+  margin-bottom: 3.75rem;
+}
+
+.new-advert input {
+  border: none;
+  border-bottom: 1px solid var(--neutral-700);
+  padding: 0.3rem 0;
+}
+
+.new-advert select {
+  padding: 0.3rem 0.3rem;
+}
+
+.new-advert #price {
+  margin-bottom: 5rem;
+}
+
+.new-advert .tab-container {
+  display: flex;
+}
+
+.new-advert .tab-container button {
+  width: 50%;
+  font-size: var(--fs-M);
+  padding: 1rem;
+  margin-bottom: 2.75rem;
+  font-weight: 500;
+}
+
+.active-color {
+  color: var(--neutral-800);
+}
+
+.inactive-tab {
+  color: var(--neutral-700);
+  border-bottom: 1px solid var(--neutral-800);
+}
+
+.tome-active {
+  border-top: 1px solid var(--neutral-800);
+  border-right: 1px solid var(--neutral-800);
+}
+
+.batch-active {
+  border-top: 1px solid var(--neutral-800);
+  border-left: 1px solid var(--neutral-800);
+}
+
+.new-advert .ref {
+  font-size: var(--fs-M);
+  margin-bottom: 0.6rem;
+  font-weight: 500;
+}
+
+.new-advert .instruction {
+  color: var(--neutral-700);
+  font-size: var(--fs-XS);
+}
+
+.new-advert .add-button {
+  padding: 0.5rem 3rem;
+  background-color: var(--primary-clr);
+  border: none;
+  border-radius: 5px;
+  color: var(--neutral-100);
+  font-weight: 600;
+}

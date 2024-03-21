@@ -20,24 +20,27 @@
 }
 
 .imageSell1 {
-  width: auto;
+  width: 22.5rem;
   height: 30rem;
-  object-fit: cover;
+  object-fit: contain;
+  background-color: black;
   margin-right: 1rem;
   box-shadow: rgba(0, 0, 0, 0.15) 0px 3px 3px 0px;
 }
 
 .imageSell2 {
-  width: auto;
+  width: 10.9rem;
   height: 14.5rem;
-  object-fit: cover;
+  object-fit: contain;
+  background-color: black;
   margin-bottom: 0.5rem;
   box-shadow: rgba(0, 0, 0, 0.15) 0px 3px 3px 0px;
 }
 .imageSell3 {
-  width: auto;
+  width: 10.9rem;
   height: 14.5rem;
-  object-fit: cover;
+  object-fit: contain;
+  background-color: black;
   margin-top: 0.5rem;
   box-shadow: rgba(0, 0, 0, 0.15) 0px 3px 3px 0px;
 }
@@ -82,15 +85,17 @@
   color: #b5b5b5;
   margin: 5% 0 5% 0;
 }
+.informationDesciption p {
+  width: 50%;
+}
 
-.informationISBN {
+.informationEtat {
   display: flex;
   color: #b5b5b5;
   margin-top: 1%;
   margin-bottom: 5%;
 }
 
-.informationEtat,
 .informationVues,
 .informationDate {
   display: flex;
@@ -101,7 +106,6 @@
 .informationTitle p:first-child,
 .informationDesciption p:first-child,
 .informationEtat p:first-child,
-.informationISBN p:first-child,
 .informationVues p:first-child,
 .informationDate p:first-child {
   width: 50%;
@@ -133,10 +137,6 @@
 
 /* ********************************************** */
 /* CSS for Modal */
-
-body.active-modal {
-  overflow-y: hidden;
-}
 
 .modal,
 .overlay {

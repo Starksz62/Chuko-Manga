@@ -38,6 +38,13 @@ function MyAnounces() {
     }
   };
 
+  const navigateToUpdateAdvert = () => {
+    if (anounces && anounces.length > 0) {
+      const advertId = anounces[0].advert_id;
+      navigate(`/update-advert/${advertId}`);
+    }
+  };
+
   const toggleModal = () => {
     setModal(!modal);
   };
@@ -113,9 +120,7 @@ function MyAnounces() {
             <div className="informationEtat">
               <p>État :</p> <p> {anounce.name_condition}</p>
             </div>
-            <div className="informationISBN">
-              <p>ISBN :</p> <p> {anounce.volume_ISBN}</p>
-            </div>
+
             <div className="informationVues">
               <p>Nombre de vues :</p>
               <p>{anounce.view_number}</p>
@@ -124,13 +129,10 @@ function MyAnounces() {
               <p>Ajouté le :</p>
               <p>
                 {anounces.publication_date_advert
-                  ? new Date(anounce.publication_date_advert)
-                      .toLocaleString("fr-FR", {
-                        year: "numeric",
-                        month: "2-digit",
-                        day: "2-digit",
-                      })
-                      .replace(", ", " à ")
+                  ? new Date(anounces.publication_date_advert)
+                      .toLocaleDateString("fr-FR")
+                      .split("/")
+                      .join("-")
                   : ""}
               </p>
             </div>
@@ -139,7 +141,7 @@ function MyAnounces() {
             <button
               className="btnModSup"
               type="button"
-              // onClick={navigateToModifyPageAnounce(advert.id)}
+              onClick={() => navigateToUpdateAdvert(anounce.advert_id)}
             >
               Modifier l'annonce
             </button>
