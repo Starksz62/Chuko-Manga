@@ -4,6 +4,18 @@ const express = require("express");
 // eslint-disable-next-line import/no-extraneous-dependencies
 const cors = require("cors");
 
+// const multer = require("multer");
+
+// const storage = multer.diskStorage({
+//   destination: (req, file, cb) => {
+//     return cb(null, "./public/images");
+//   },
+//   filename: (req, file, cb) => {
+//     return cb(null, `${Date.now()}_${file.originalname}`);
+//   },
+// });
+// const upload = multer({ storage });
+
 const app = express();
 
 // Configure it
@@ -17,6 +29,8 @@ const app = express();
 
 app.use(cors());
 app.use("/static", express.static(`${__dirname}/assets`));
+
+app.use("/static", express.static("public/images"));
 app.use("/static", express.static("public/upload"));
 
 // app.use("/uploads", express.static(`${__dirname}/uploads`));

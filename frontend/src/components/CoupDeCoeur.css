@@ -2,9 +2,14 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
-  width: 100%;
-  gap: 2rem;
+  /* align-items: center; */
+  width: 90%;
+  margin: 3rem 0;
+  padding: 2rem;
+}
+
+.title-coup-de-coeur {
+  margin-bottom: 0.8rem;
 }
 
 .section-logo {
@@ -12,9 +17,9 @@
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
-  gap: 1rem 4rem;
+  gap: 0.8rem 6rem;
 }
 
 .logo {
-  width: 150px;
+  width: 210px;
 }

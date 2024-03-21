@@ -1,54 +1,27 @@
-import { useState } from "react";
+/* eslint-disable react/button-has-type */
+import React, { useState } from "react";
+import Adresse from "../components/DetailsPersonalAndAdrees/Adresse";
+import DetailsPersonal from "../components/DetailsPersonalAndAdrees/DetailsPersonal";
 
 function CreerProfil() {
-  const [isEmailVisible, setIsEmailVisible] = useState(false);
+  const [addAdresseVisible, setAddAdresseVisible] = useState(false);
+  const [buttonText, setButtonText] = useState("Ajoute ton adresse +");
 
-  const handleEmailVisibilityToggle = () => {
-    setIsEmailVisible(!isEmailVisible);
-  };
-
-  const handleKeyDown = (event) => {
-    if (event.key === "Enter" || event.key === " ") {
-      handleEmailVisibilityToggle();
-    }
+  const toggleAddAdresse = () => {
+    setAddAdresseVisible(!addAdresseVisible);
+    setButtonText(
+      addAdresseVisible ? "Ajoute ton adresse +" : "Ajoute ton adresse -"
+    );
   };
 
   return (
-    <div>
-      <h1>Créé ton profil</h1>
-      <div>
-        <p>ta photo de profil</p>
-        <div>
-          {/* Круг с крестиком для добавления фото */}
-          {/* Замените следующую строку на ваш компонент для загрузки фото */}
-          <input type="file" accept="image/*" />
-        </div>
-      </div>
-      <div>
-        <label htmlFor="firstNameInput">ton prénom:</label>
-        <input type="text" id="firstNameInput" placeholder="Votre prénom" />
-      </div>
-      <div>
-        <label htmlFor="lastNameInput">ton nom:</label>
-        <input type="text" id="lastNameInput" placeholder="Votre nom" />
-      </div>
-      <div>
-        <label htmlFor="emailInput">email:</label>
-        <input type="email" id="emailInput" placeholder="Votre email" />
-        <div>
-          {/* Квадратик и галочка для видимости email */}
-          <div
-            onClick={handleEmailVisibilityToggle}
-            onKeyDown={handleKeyDown}
-            role="button"
-            tabIndex={0}
-          >
-            {isEmailVisible ? "✔️" : "□"}
-          </div>
-          <p>Rendre visible sur le profil</p>
-        </div>
-      </div>
-      <button type="button">CREER</button>
+    <div style={{ marginLeft: "50px" }}>
+      <h1>Modifier ton profil</h1>
+      <DetailsPersonal />
+      <button onClick={toggleAddAdresse} style={{ fontSize: "20px" }}>
+        {buttonText}
+      </button>
+      {addAdresseVisible ? <Adresse /> : null}
     </div>
   );
 }
