@@ -45,15 +45,6 @@ function DetailsPersonal() {
       });
   }, [id, success]);
 
-  const [isEmailVisible, setIsEmailVisible] = useState(false);
-  const handleEmailVisibilityToggle = () => {
-    setIsEmailVisible(!isEmailVisible);
-  };
-  const [isPhoneVisible, setIsPhoneVisible] = useState(false);
-  const handlePhoneVisibilityToggle = () => {
-    setIsPhoneVisible(!isPhoneVisible);
-  };
-
   const handleChange = (e) => {
     setFormData({
       ...formData,
@@ -191,10 +182,6 @@ function DetailsPersonal() {
           className="input_profil"
         />
       </div>
-      <div onClick={handleEmailVisibilityToggle} className="checkbox_container">
-        <div className="checkbox">{isEmailVisible ? "✓" : ""}</div>
-        <p>Rendre visible sur le profil</p>
-      </div>
       <div className="input_label_profil">
         <label htmlFor="phone" className="label_profil">
           Telephone:
@@ -209,10 +196,6 @@ function DetailsPersonal() {
           placeholder=""
           required
         />
-      </div>
-      <div onClick={handlePhoneVisibilityToggle} className="checkbox_container">
-        <div className="checkbox">{isPhoneVisible ? "✓" : ""}</div>
-        <p>Rendre visible sur le profil</p>
       </div>
 
       <button className="button_modifier">Modifier</button>

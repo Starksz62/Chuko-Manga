@@ -13,6 +13,7 @@ import NotFoundPage from "./pages/NotFoundPage";
 import Favorites from "./pages/Favorites";
 import Catalog from "./pages/Catalog";
 import MyAnounces from "./pages/MyAnounces";
+import ProfilVente from "./pages/ProfilVente";
 
 const router = createBrowserRouter([
   {
@@ -55,8 +56,12 @@ const router = createBrowserRouter([
         element: <CreerProfil />,
       },
       {
-        path: "/profilUser/:id",
+        path: "/profiluser/:id",
         element: <ProfilUser />,
+      },
+      {
+        path: "/profilvente/:id",
+        element: <ProfilVente />,
       },
       {
         path: "*",

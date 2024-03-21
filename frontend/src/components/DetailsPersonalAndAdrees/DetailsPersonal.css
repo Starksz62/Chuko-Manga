@@ -40,14 +40,6 @@
   position: relative;
 }
 
-#email_input {
-  margin-bottom: 0%;
-}
-
-#phone {
-  margin-bottom: 0%;
-}
-
 .checkbox_container {
   display: flex;
   align-items: center;

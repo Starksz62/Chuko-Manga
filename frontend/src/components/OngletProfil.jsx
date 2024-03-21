@@ -165,14 +165,20 @@ function OngletProfil() {
                 {console.info(evaluation.average_rating)}
                 <div className="containerCom">
                   <div className="pictureBuyerCom">
-                    <img
-                      className="picture_buyer"
-                      src={`${evaluation.picture_buyer}`}
-                      alt="image_buyer"
-                    />
+                    <Link to={`/profilvente/${evaluation.user_id}`}>
+                      <img
+                        className="picture_buyer"
+                        src={`${evaluation.picture_buyer}`}
+                        alt="image_buyer"
+                      />
+                    </Link>
                   </div>
                   <div className="commentBuyer">
-                    <div className="speudoBuyer">{`${evaluation.pseudo}`}</div>
+                    <div className="speudoBuyer">
+                      <Link to={`/profilvente/${evaluation.user_id}`}>
+                        {`${evaluation.pseudo}`}{" "}
+                      </Link>
+                    </div>
                     <div className="createdOn">
                       {`${evaluation.created_on ? new Date(evaluation.created_on).toLocaleDateString("fr-FR").split("/").join("-") : ""}`}
                     </div>
