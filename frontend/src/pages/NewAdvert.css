@@ -157,6 +157,10 @@
   font-weight: 600;
 }
 
+.new-advert .add-button:hover {
+  background-color: var(--primary-clr-accent);
+}
+
 @media screen and (max-width: 768px) {
   .new-advert {
     justify-content: center;

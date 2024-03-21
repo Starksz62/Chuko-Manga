@@ -95,25 +95,10 @@ function Connexion({ handleContentModal, handleClickOpen }) {
         </button>
       </form>
       <div className="text-connexion">
-        <p
-          style={{
-            color: "var(--primary-clr)",
-            cursor: "pointer",
-            textDecoration: "underline",
-          }}
-        >
-          Mot de passe oublié ?
-        </p>
-        <p style={{ color: "var(--neutral-700)", textAlign: "center" }}>
+        <p className="to-click">Mot de passe oublié ?</p>
+        <p className="text-info">
           Tu n'as pas de compte ?{" "}
-          <span
-            style={{
-              color: "var(--primary-clr)",
-              cursor: "pointer",
-              textDecoration: "underline",
-            }}
-            onClick={handleContentModal}
-          >
+          <span className="to-click" onClick={handleContentModal}>
             Inscris-toi
           </span>
         </p>
