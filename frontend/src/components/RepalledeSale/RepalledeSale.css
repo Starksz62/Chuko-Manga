@@ -2,11 +2,11 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: hsl(0, 0%, 97%);
-  border-radius: 5px;
+  background-color: var(--neutral-200);
+  border-radius: 1rem;
   margin: 3rem 0;
   padding: 2rem;
-  width: 80%;
+  width: 100%;
 }
 
 .repalledeText {

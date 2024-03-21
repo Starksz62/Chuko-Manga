@@ -9,6 +9,7 @@
     width 0.5s ease,
     background-color 0.5s ease;
   z-index: 10;
+  width: 250px;
 }
 
 .sidebar-logo img {
@@ -172,4 +173,11 @@
   backdrop-filter: blur(1px);
   background-color: rgba(0, 0, 0, 0.2);
   z-index: 10;
+}
+
+@media (max-width: 1200px) {
+  .sidebar-logo img {
+    width: 10rem;
+    padding: 0;
+  }
 }

@@ -1,14 +1,15 @@
-.navbar-header {
+.navbar-header-desktop {
+  top: 0;
+  position: sticky;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  align-items: center;
-  /* z-index: 3; */
-  /* top: 0; */
-  /* position: sticky; */
-  padding: 1rem 4rem;
-  margin: 1rem 0;
+  gap: 1rem;
+  width: 100%;
   background-color: var(--neutral-100);
+  z-index: 15;
+  padding: 1rem;
+  border-bottom: 1px solid var(--neutral-400);
 }
 
 .buttonHeader-container {
@@ -22,7 +23,7 @@
   background-color: white;
   color: var(--primary-clr);
   border: 0.1rem solid var(--primary-clr);
-  border-radius: 5px;
+  border-radius: 0.5rem;
 }
 
 .vendre-button {
@@ -30,10 +31,20 @@
   background-color: var(--primary-clr);
   color: white;
   border: 0.1rem solid var(--primary-clr);
-  border-radius: 5px;
+  border-radius: 0.5rem;
 }
 
 .vendre-button:hover {
   background-color: var(--primary-clr-accent);
   border: 0.1rem solid var(--primary-clr-accent);
+}
+
+@media (max-width: 1200px) {
+  .buttonHeader-container {
+    display: none;
+  }
+
+  .navbar-header-desktop {
+    display: none;
+  }
 }
