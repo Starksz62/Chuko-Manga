@@ -66,15 +66,15 @@ function PrefilterAdvertByDesc() {
   }
 
   return (
-    <>
-      <h1 className="titlePrefiltreDesc">
-        Explorer les derniers tomes ajoutés :
-      </h1>
-      <div className="FilterByDateDescWrapper">
-        <div className="FilterByDateDesc" ref={containerRef}>
+    <section className="prefiltre-unique">
+      <h2 className="title-prefiltre-desc">
+        Explorer les derniers tomes ajoutés
+      </h2>
+      <div className="filter-by-date-desc-wrapper">
+        <div className="filter-by-date-desc" ref={containerRef}>
           {showLeftButton && (
             <img
-              className="leftButton"
+              className="left-button"
               src={Left}
               alt="left button"
               onClick={() => scrollContainer("left")}
@@ -82,15 +82,15 @@ function PrefilterAdvertByDesc() {
           )}
           {showRightButton && (
             <img
-              className="rightButton"
+              className="right-button"
               src={Right}
               alt="right button"
               onClick={() => scrollContainer("right")}
             />
           )}
-          <div className="filteredAdverts">
+          <div className="filtered-adverts">
             {filteredAdverts.length > 0 ? (
-              filteredAdverts.map((advert) => (
+              filteredAdverts.slice(0, 8).map((advert) => (
                 <div key={advert.id} className="AdvertCard">
                   <AdvertCard advert={advert} />
                 </div>
@@ -100,15 +100,15 @@ function PrefilterAdvertByDesc() {
             )}
           </div>
           <div className="seeAllTomesButtonWrapper">
-            <Link className="LinkBtnDesc" to="/explore">
-              <button type="button" className="bntSeeAllTomesDesc">
+            <Link className="link-btn-desc" to="/explore">
+              <button type="button" className="bnt-see-all-tomes-desc">
                 Voir tous les tomes
               </button>
             </Link>
           </div>
         </div>
       </div>
-    </>
+    </section>
   );
 }
 

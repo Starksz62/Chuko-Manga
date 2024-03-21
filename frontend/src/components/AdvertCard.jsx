@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import "./AdvertCard.css";
@@ -55,9 +56,10 @@ function AdvertCard({ advert }) {
   };
 
   const average = parseFloat(advert.average);
+
   return (
     <section className="card-content">
-      <Link to={`/display-adverts/${advert.id}`} onClick={handleCardClick}>
+      <Link to={`/display-adverts/${advert.id}`} onClick={handleCardClick} className="link-card-title">
         <img
           src={`http://localhost:3310${advert.image_path}`}
           alt={advert.title_search_manga}
@@ -115,6 +117,7 @@ AdvertCard.propTypes = {
     title_search_manga: PropTypes.string.isRequired,
     image_path: PropTypes.string.isRequired,
     price: PropTypes.number.isRequired,
+    is_collector: PropTypes.bool.isRequired,
     name_condition: PropTypes.string.isRequired,
     user_picture: PropTypes.string.isRequired,
     pseudo: PropTypes.string.isRequired,
