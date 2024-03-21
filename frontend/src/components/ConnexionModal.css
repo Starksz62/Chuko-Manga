@@ -8,7 +8,8 @@
   width: 100%;
   height: 100%;
   background-color: rgba(0, 0, 0, 0.5);
-  z-index: 5;
+  /* Z-index passé de 5 à 11 car la leftNavBar est à z-index : 10... */
+  z-index: 11;
 }
 
 .modal-content-connexion {
@@ -16,14 +17,40 @@
   display: flex;
   justify-content: start;
   width: 40%;
-  min-height: 410px;
-  background-color: white;
+  max-width: 45rem;
+  min-width: 25rem;
+  min-height: 25rem;
+  background-color: var(--neutral-100);
   border-radius: 5px;
 }
 
 .imgIns {
   position: absolute;
   top: -100px;
-  right: -150px;
+  right: -180px;
   width: 22em;
+}
+
+@media screen and (min-width: 768px) and (max-width: 1200px) {
+  .modal-content-connexion {
+    justify-content: center;
+  }
+
+  .imgIns {
+    top: -40px;
+    right: -170px;
+    width: 18rem;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .modal-content-connexion {
+    justify-content: center;
+  }
+
+  .imgIns {
+    top: -40px;
+    right: 10px;
+    width: 6rem;
+  }
 }

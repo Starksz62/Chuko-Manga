@@ -1,8 +1,8 @@
 .new-advert {
-  border: 1px solid var(--neutral-700);
-  max-width: 80%;
   margin: auto;
-  padding: 2rem 3rem 6rem 2rem;
+  padding: 2rem 3rem;
+  background-color: var(--neutral-200);
+  border-radius: 6px;
 }
 
 .new-advert h1 {
@@ -73,6 +73,11 @@
   margin-bottom: 3.75rem;
 }
 
+.new-advert [placeholder] {
+  color: var(--neutral-800);
+  font-size: var(--fs-S);
+}
+
 .new-advert input {
   width: 100%;
   margin-bottom: 0.5rem;
@@ -80,6 +85,8 @@
   border-radius: 0;
   border-bottom: 1px solid var(--neutral-700);
   padding: 0.3rem 0;
+  background-color: var(--neutral-200);
+  color: var(--neutral-800);
 }
 
 .new-advert .wrong-input {
@@ -100,10 +107,20 @@
   width: 100%;
   margin-bottom: 0.5rem;
   padding: 0.3rem 0;
+  background-color: var(--neutral-200);
+  border: 1px solid var(--neutral-700);
+  border-radius: 3px;
 }
 
 .new-advert select {
   padding: 0.3rem 0.3rem;
+  background-color: var(--neutral-200);
+  border: 1px solid var(--neutral-700);
+  border-radius: 3px;
+}
+
+.new-advert option {
+  background-color: var(--neutral-200);
 }
 
 .new-advert .tab-container {
@@ -121,6 +138,7 @@
 
 .active-color {
   color: var(--neutral-800);
+  /* background-color: var(--neutral-100); */
 }
 
 .inactive-tab {
@@ -156,4 +174,14 @@
   border-radius: 5px;
   color: var(--neutral-100);
   font-weight: 600;
+}
+
+.new-advert .add-button:hover {
+  background-color: var(--primary-clr-accent);
+}
+
+@media screen and (max-width: 768px) {
+  .new-advert {
+    justify-content: center;
+  }
 }

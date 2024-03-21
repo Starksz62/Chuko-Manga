@@ -1,0 +1,25 @@
+.section-coup-de-coeur {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  /* align-items: center; */
+  width: 90%;
+  margin: 3rem 0;
+  padding: 2rem;
+}
+
+.title-coup-de-coeur {
+  margin-bottom: 0.8rem;
+}
+
+.section-logo {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 0.8rem 6rem;
+}
+
+.logo {
+  width: 210px;
+}

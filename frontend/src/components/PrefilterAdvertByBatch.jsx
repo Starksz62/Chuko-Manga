@@ -4,12 +4,12 @@ import React, { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 
 import AdvertCard from "./AdvertCard";
-import "./PrefilterAdvertByDesc.css";
+import "./PrefilterAdvertByBatch.css";
 
 import Left from "../assets/leftlogo.png";
 import Right from "../assets/rightlogo.png";
 
-function PrefilterAdvertByDesc() {
+function PrefilterAdvertByBatch() {
   // eslint-disable-next-line no-unused-vars
   const [adverts, setAdverts] = useState([]);
   const [filteredAdverts, setFilteredAdverts] = useState([]);
@@ -66,15 +66,15 @@ function PrefilterAdvertByDesc() {
   }
 
   return (
-    <>
-      <h1 className="titlePrefiltreDesc">
-        Explorer les derniers lots ajoutés :
-      </h1>
-      <div className="FilterByDateDescWrapper">
-        <div className="FilterByDateDesc" ref={containerRef}>
+    <section className="prefiltre-lot">
+      <h2 className="title-prefiltre-batch">
+        Explorer les derniers lots ajoutés
+      </h2>
+      <div className="filter-by-batch-wrapper">
+        <div className="filter-by-batch" ref={containerRef}>
           {showLeftButton && (
             <img
-              className="leftButton"
+              className="left-button"
               src={Left}
               alt="left button"
               onClick={() => scrollContainer("left")}
@@ -82,15 +82,15 @@ function PrefilterAdvertByDesc() {
           )}
           {showRightButton && (
             <img
-              className="rightButton"
+              className="right-button"
               src={Right}
               alt="right button"
               onClick={() => scrollContainer("right")}
             />
           )}
-          <div className="filteredAdverts">
+          <div className="filtered-adverts-batch">
             {filteredAdverts.length > 0 ? (
-              filteredAdverts.slice(0, 16).map((advert) => (
+              filteredAdverts.slice(0, 8).map((advert) => (
                 <div key={advert.id} className="AdvertCard">
                   <AdvertCard advert={advert} />
                 </div>
@@ -99,17 +99,17 @@ function PrefilterAdvertByDesc() {
               <p>Loading...</p>
             )}
           </div>
-          <div className="seeAllTomesButtonWrapper">
-            <Link className="LinkBtnDesc" to="/explore">
-              <button type="button" className="bntSeeAllTomesDesc">
+          <div className="seeAllTomesButtonWrapperBatch">
+            <Link className="link-btn-batch" to="/explore">
+              <button type="button" className="bnt-see-all-tomes-batch">
                 Voir tous les lots
               </button>
             </Link>
           </div>
         </div>
       </div>
-    </>
+    </section>
   );
 }
 
-export default PrefilterAdvertByDesc;
+export default PrefilterAdvertByBatch;

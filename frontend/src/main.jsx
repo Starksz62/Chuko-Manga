@@ -8,6 +8,7 @@ import Home from "./pages/Home";
 import PaymentPage from "./pages/PaymentPage";
 import AnnouncementDetail from "./pages/AnnouncementDetails";
 import ProfilUser from "./pages/ProfilUser";
+import CreerProfil from "./pages/CreerProfil";
 import NotFoundPage from "./pages/NotFoundPage";
 import Favorites from "./pages/Favorites";
 import Catalog from "./pages/Catalog";
@@ -48,6 +49,10 @@ const router = createBrowserRouter([
       {
         path: "/display-adverts/:id",
         element: <AnnouncementDetail />,
+      },
+      {
+        path: "/creerprofil/:id",
+        element: <CreerProfil />,
       },
       {
         path: "/profilUser/:id",

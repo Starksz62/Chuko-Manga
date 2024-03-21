@@ -1,0 +1,104 @@
+.ContainerCreation {
+  font-family: "Montserrat", sans-serif;
+  border: 1px solid black;
+  padding: 50px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 50px;
+}
+
+.custom_button {
+  margin-left: 50px;
+  background-color: rgb(182, 185, 185);
+  border-radius: 50%;
+  border: none;
+  height: 80px;
+  width: 80px;
+}
+
+.input_label_profil {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  width: 100%;
+  margin-top: 10px;
+}
+
+.label_profil {
+  margin-bottom: 8px;
+  width: 20%;
+}
+
+.input_profil {
+  border: none;
+  border-bottom: 1px solid black;
+  margin-bottom: 16px;
+  padding: 8px;
+  width: 60%;
+  box-sizing: border-box;
+  position: relative;
+}
+
+#email_input {
+  margin-bottom: 0%;
+}
+
+#phone {
+  margin-bottom: 0%;
+}
+
+.checkbox_container {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  width: 55%;
+}
+
+.checkbox {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border: 1px solid rgb(159, 155, 155);
+  text-align: center;
+  line-height: 10px;
+  font-size: 14px;
+}
+
+.checkbox_container p {
+  margin-left: 8px;
+  color: rgb(124 119 119);
+  font-size: 15px;
+}
+
+.button_modifier {
+  background-color: var(--primary-clr);
+  color: white;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-family: "Montserrat", sans-serif;
+  margin-top: auto;
+  margin-right: 50px;
+  width: 200px;
+  align-self: flex-end;
+}
+
+.button_modifier:hover {
+  background-color: var(--primary-clr-accent);
+}
+
+.upload_icon {
+  font-size: 20px;
+  margin-right: 8px;
+}
+
+.custom_file_input {
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  padding: 8px;
+  border: 1px solid gray;
+  border-radius: 5px;
+}

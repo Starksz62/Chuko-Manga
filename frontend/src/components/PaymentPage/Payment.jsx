@@ -1,10 +1,19 @@
 /* eslint-disable react/prop-types */
 import "./Payment.css";
 
-function Payment({ price }) {
+import { useNotifications } from "../../context/NotificationContext";
+
+function Payment({ price, articleData }) {
   const cost = parseFloat(price);
   const fraisDePort = (cost * 5) / 100;
   const total = cost + fraisDePort;
+  const { addNotification } = useNotifications();
+
+  const handlePayment = () => {
+    const imageUrl = `http://localhost:3310${articleData?.image_paths[0]}`;
+
+    addNotification("La vente a été réalisée avec succès !", imageUrl);
+  };
 
   return (
     <div className="resume-payment">
@@ -23,7 +32,9 @@ function Payment({ price }) {
         </div>
       </div>
       <div className="confirmation-payment">
-        <button type="button">Paiement</button>
+        <button type="button" onClick={handlePayment}>
+          Paiement
+        </button>
       </div>
       <div className="logo-card-payment">
         <img

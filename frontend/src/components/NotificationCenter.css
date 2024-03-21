@@ -98,13 +98,19 @@
 
 .content-row {
   display: flex;
-  align-items: center;
+  justify-content: flex-start;
+  width: 100%;
 }
 
 .notification-image {
   width: 65px;
   height: 65px;
   margin-right: 15px;
+  object-fit: cover;
+}
+
+.notification-text {
+  flex-grow: 1;
 }
 
 .notification-time-wrapper {
