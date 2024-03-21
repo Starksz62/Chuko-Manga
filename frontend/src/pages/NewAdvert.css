@@ -2,9 +2,10 @@
   margin: auto;
   padding: 2rem 3rem;
   background-color: var(--neutral-200);
-  border-radius: 6px;
+  border-radius: 5px;
   width: 100%;
   max-width: 1000px;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
 }
 
 .new-advert h1 {
@@ -58,6 +59,10 @@
   position: absolute;
   top: 0;
   right: 0;
+}
+
+.delete-preview img {
+  width: 2rem;
 }
 
 .picture-box input:hover {
