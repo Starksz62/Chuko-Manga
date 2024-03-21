@@ -1,6 +1,6 @@
 .sidebar {
   position: sticky;
-  background-color: #fbfbfb;
+  background-color: var(--neutral-200);
   color: #4c6374;
   height: 100vh;
   left: 0;
