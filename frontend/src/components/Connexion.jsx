@@ -79,7 +79,6 @@ function Connexion({ handleContentModal, handleClickOpen }) {
           value={inputEmail}
           onChange={handleChangeInputEmail}
         />
-        <br />
         {/* Champ pour le mot de passe */}
         <input
           type="password"

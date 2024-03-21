@@ -3,6 +3,8 @@
   padding: 2rem 3rem;
   background-color: var(--neutral-200);
   border-radius: 6px;
+  width: 100%;
+  max-width: 1000px;
 }
 
 .new-advert h1 {
@@ -12,16 +14,16 @@
 
 .picture-container {
   display: flex;
-  flex-direction: space-around;
-  flex-wrap: wrap;
+  justify-content: space-around;
   gap: 1rem;
   margin-bottom: 5rem;
+  width: 100%;
 }
 
 .picture-box {
   background-color: var(--neutral-400);
-  width: 17rem;
-  height: 17rem;
+  width: 15rem;
+  height: 15rem;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -29,6 +31,7 @@
 
 .picture-box .label-picture {
   position: absolute;
+  margin-bottom: 0;
 }
 
 .picture-box input {
@@ -46,8 +49,8 @@
 }
 
 .preview-image {
-  width: 17rem;
-  height: 17rem;
+  width: 15rem;
+  height: 15rem;
   object-fit: cover;
 }
 
@@ -75,7 +78,7 @@
 
 .new-advert [placeholder] {
   color: var(--neutral-800);
-  font-size: var(--fs-S);
+  font-size: var(--fs-XS);
 }
 
 .new-advert input {
@@ -174,14 +177,29 @@
   border-radius: 5px;
   color: var(--neutral-100);
   font-weight: 600;
+  margin: 0 auto;
+  display: block;
 }
 
 .new-advert .add-button:hover {
   background-color: var(--primary-clr-accent);
 }
 
+@media screen and (max-width: 1200px) {
+  .picture-box {
+    width: 12rem;
+    height: 12rem;
+  }
+
+  .preview-image {
+    width: 12rem;
+    height: 12rem;
+  }
+}
+
 @media screen and (max-width: 768px) {
-  .new-advert {
-    justify-content: center;
+  .picture-container {
+    flex-direction: column;
+    align-items: center;
   }
 }
