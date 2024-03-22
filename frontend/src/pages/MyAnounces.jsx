@@ -10,7 +10,7 @@ function MyAnounces() {
   const navigate = useNavigate();
   const { id } = useParams();
   const [anounces, setAnounces] = useState([]);
-  const [modal, setModal] = useState(false);
+  const [modal1, setModal1] = useState(false);
   // const [setUserId] = useState(null);
 
   useEffect(() => {
@@ -45,13 +45,13 @@ function MyAnounces() {
     }
   };
 
-  const toggleModal = () => {
-    setModal(!modal);
+  const toggleModal1 = () => {
+    setModal1(!modal1);
   };
 
   const handleKeyPress = (e) => {
     if (e.key === "Enter") {
-      toggleModal();
+      toggleModal1();
     }
   };
 
@@ -61,7 +61,7 @@ function MyAnounces() {
         .delete(`http://localhost:3310/api/advert/${advertId}`)
         .then((response) => {
           console.warn("Success delete advert:", response.data);
-          toggleModal();
+          toggleModal1();
           navigateToProfilUser();
         })
         .catch((error) => {
@@ -146,27 +146,31 @@ function MyAnounces() {
               Modifier l'annonce
             </button>
             <div>
-              <button className="btnModSup" onClick={toggleModal} type="button">
+              <button
+                className="btnModSup"
+                onClick={toggleModal1}
+                type="button"
+              >
                 Supprimer
               </button>
 
-              {modal && (
+              {modal1 && (
                 <div className="modal">
                   <div
                     role="button"
                     tabIndex={0}
-                    onClick={toggleModal}
+                    onClick={toggleModal1}
                     onKeyPress={handleKeyPress}
                     aria-label="Cliquez pour ouvrir la modal"
-                    className="overlay"
+                    className="overlayAnounces"
                   />
-                  <div className="modal-content">
+                  <div className="modalContent">
                     <h2 className="MessageModal">Supprimer l'article</h2>
                     <div className="closeConfirm">
                       <button
                         className="closeModal"
                         type="button"
-                        onClick={toggleModal}
+                        onClick={toggleModal1}
                       >
                         Annuler
                       </button>

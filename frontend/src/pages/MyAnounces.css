@@ -139,17 +139,17 @@
 /* CSS for Modal */
 
 .modal,
-.overlay {
+.overlayAnounces {
   width: 100vw;
   height: 100vh;
   position: fixed;
 }
 
-.overlay {
+.overlayAnounces {
   background: rgba(49, 49, 49, 0.8);
 }
 
-.modal-content {
+.modalContent {
   position: absolute;
   top: 40%;
   left: 50%;
