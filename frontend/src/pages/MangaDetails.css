@@ -1,6 +1,5 @@
 .naruto-details {
   margin: 0 auto;
-  width: 70vw;
   display: flex;
   flex-direction: column;
 }
@@ -8,6 +7,7 @@
 .top-section {
   display: flex;
   margin-bottom: 20px;
+  border: 1px solid blue;
 }
 
 .image-container img {
@@ -20,52 +20,79 @@
 
 .title-manga {
   padding: 20px 20px 20px 0;
-  font-size: xx-large;
+  font-size: var(--fs-XL);
+  border: 1px solid pink;
 }
 
 .description-manga {
   flex-grow: 1;
+  padding-left: 20px;
+}
+
+.description-manga p {
+  text-align: justify;
+  padding-bottom: 20px;
 }
 
 .bottom-section {
   display: flex;
   justify-content: space-between;
-  padding: 10px;
+  /* padding: 10px; */
   flex-wrap: nowrap;
+  border-radius: 60px;
 }
 
 .status-manga {
-  width: 270px;
-  text-align: left;
-  background-color: rgb(226, 111, 3);
+  /* width: 270px; */
+  background-color: var(--primary-clr);
   color: white;
-  padding: 10px;
+  padding: 2rem 3rem;
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
 }
 
-.genre-value {
-  margin-left: 5px;
+.grid-status-manga {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  max-width: 20rem;
+  margin: auto;
 }
+
+.status-manga strong,
+.status-manga p {
+  text-align: left;
+  padding: 0 0.5rem;
+}
+
+/* .genre-value {
+  margin-left: 5px;
+} */
 
 .authors-container {
   display: flex;
   flex-direction: column;
   justify-content: center;
-
   flex: 1;
-  background-color: rgb(239, 180, 125);
-  padding-left: 50px;
+  background-color: #fbc99d;
+  /* padding-left: 50px; */
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+  border: 1px solid red;
+  padding: 2rem 3rem;
 }
 
 .title-authors {
   margin-left: 10px;
   margin-top: 0;
-  color: rgb(226, 111, 3);
+  color: var(--primary-clr);
   font-size: xx-large;
+  border: 1px solid violet;
 }
 
 .data-authors {
   display: flex;
   gap: 40px;
+  border: 1px solid green;
 }
 
 .data-authors p {
@@ -75,4 +102,37 @@
 
 .data-authors p span {
   font-weight: bold;
+}
+
+@media screen and (max-width: 992px) {
+  .top-section {
+    flex-direction: column-reverse;
+    align-items: center;
+  }
+
+  .top-section .image-container {
+    display: none;
+  }
+
+  .bottom-section {
+    flex-direction: column-reverse;
+  }
+
+  .authors-container {
+    margin-bottom: 1rem;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+    padding: 1rem 2rem;
+  }
+
+  .status-manga {
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    padding: 1rem 2rem;
+    align-items: center;
+    margin: auto;
+    width: 100%;
+    border: 2px solid black;
+    text-align: center;
+  }
 }

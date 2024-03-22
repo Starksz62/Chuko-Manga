@@ -46,7 +46,7 @@ function MangaDetails({ id: propId, showVolumes = true }) {
   const imageUrl = `http://localhost:3310${manga.image}`;
 
   return (
-    <div className="naruto-details">
+    <div className="naruto-details container_limit">
       <div className="top-section">
         <div className="image-container">
           <img src={imageUrl} alt={manga.title} />
@@ -56,33 +56,27 @@ function MangaDetails({ id: propId, showVolumes = true }) {
           <p>{manga.description}</p>
         </div>
       </div>
-
       <div className="bottom-section">
         <div className="status-manga">
-          <p>
-            <strong>Sortie en France :</strong> {formatDate(manga.date_france)}
-          </p>
-          <p>
-            <strong>Sortie au Japon :</strong> {formatDate(manga.date_japan)}
-          </p>
-          <p className="genre-info">
-            <span className="genre-label">
-              <strong>Genre</strong>
-            </span>
-            <span className="genre-value">{manga.genre_genre}</span>
-          </p>
-          <p>
-            <strong>Japon</strong>{" "}
-            {manga.finish_japan ? "Terminée" : "Pas terminée"}
-          </p>
-          <p>
-            <strong>France </strong>
-            {manga.finish_france ? "Terminée" : "Pas terminée"}
-          </p>
+          <div className="grid-status-manga">
+            <strong>Sortie en France</strong>
+            <p>{formatDate(manga.date_france)}</p>
+            <strong>Sortie au Japon</strong>
+            <p>{formatDate(manga.date_japan)}</p>
+            {/* <span className="genre-label"> */}
+            <strong>Genre</strong>
+            {/* </span> */}
+            <p className="genre-info">
+              <span className="genre-value">{manga.genre_genre}</span>
+            </p>
+            <strong>Japon</strong>
+            <p>{manga.finish_japan ? "Terminée" : "Pas terminée"}</p>
+            <strong>France</strong>
+            <p>{manga.finish_france ? "Terminée" : "Pas terminée"}</p>
+          </div>
         </div>
-
         <div className="authors-container">
-          <h2 className="title-authors">Authors</h2>
+          <h2 className="title-authors">Auteurs</h2>
           <div className="data-authors">
             <p>
               <span>Auteur :</span> {manga.author}
@@ -100,6 +94,7 @@ function MangaDetails({ id: propId, showVolumes = true }) {
     </div>
   );
 }
+
 MangaDetails.propTypes = {
   id: PropTypes.number,
   showVolumes: PropTypes.bool,
