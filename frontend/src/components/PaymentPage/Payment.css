@@ -72,3 +72,22 @@
 .logo-card-payment img {
   width: 100%;
 }
+
+@media only screen and (min-width: 768px) and (max-width: 1200px) {
+  .main-content {
+    flex-direction: column-reverse;
+    align-items: center;
+  }
+  .right-column {
+    width: 100%;
+  }
+  .left-column {
+    width: 100%;
+  }
+  .confirmation-payment {
+    display: none;
+  }
+  .resume-payment {
+    height: 214px;
+  }
+}

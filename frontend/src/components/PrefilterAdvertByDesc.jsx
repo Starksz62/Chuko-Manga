@@ -4,14 +4,22 @@ import PropTypes from "prop-types";
 import AdvertCard from "./AdvertCard";
 import "./PrefilterAdvertByDesc.css";
 
-function PrefilterAdvertByDesc({ titlefromAnnounceDetail }) {
+function PrefilterAdvertByDesc({
+  titlefromAnnounceDetail,
+  titleClassName,
+  useDivWrapper,
+}) {
   const [, setAdverts] = useState([]);
   const [filteredAdverts, setFilteredAdverts] = useState([]);
   const navigate = useNavigate();
   const defaultTitle = "Explorer les derniers tomes ajoutés :";
-  const titleToShow = titlefromAnnounceDetail || defaultTitle;
+  const titleToShow = (
+    <h2 className={`titlePrefiltreDesc ${titleClassName || ""}`}>
+      {titlefromAnnounceDetail || defaultTitle}
+    </h2>
+  );
   const containerRef = useRef(null);
-
+  const renderedTitle = useDivWrapper ? <div>{titleToShow}</div> : titleToShow;
   useEffect(() => {
     fetch("http://localhost:3310/api/find-recent-adverts?batch=false")
       .then((response) => {
@@ -55,7 +63,7 @@ function PrefilterAdvertByDesc({ titlefromAnnounceDetail }) {
 
   return (
     <section className="prefiltre-unique">
-      <h2 className="titlePrefiltreDesc">{titleToShow}</h2>
+      {renderedTitle}
       <div className="FilterByDateDescWrapper">
         <div className="FilterByDateDesc" ref={containerRef}>
           <div className="filteredAdverts">
@@ -87,7 +95,15 @@ function PrefilterAdvertByDesc({ titlefromAnnounceDetail }) {
 }
 
 export default PrefilterAdvertByDesc;
-
 PrefilterAdvertByDesc.propTypes = {
-  titlefromAnnounceDetail: PropTypes.string.isRequired,
+  titlefromAnnounceDetail: PropTypes.string,
+
+  titleClassName: PropTypes.string,
+  useDivWrapper: PropTypes.bool,
+};
+
+PrefilterAdvertByDesc.defaultProps = {
+  titleClassName: "",
+  useDivWrapper: false,
+  titlefromAnnounceDetail: "",
 };

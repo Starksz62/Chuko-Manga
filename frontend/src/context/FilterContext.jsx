@@ -40,7 +40,7 @@ export function FiltersProvider({ children }) {
       dynamicPriceFilter,
       applyDynamicPriceFilter,
     };
-  }, [filters, batch, priceRange]);
+  }, [filters, batch, priceRange, dynamicPriceFilter]);
 
   return (
     <FiltersContext.Provider value={contextValue}>

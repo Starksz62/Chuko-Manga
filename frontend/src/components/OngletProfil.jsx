@@ -1,23 +1,28 @@
+/* eslint-disable react/prop-types */
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
-
 import "./OngletProfil.css";
 
-function OngletProfil() {
-  const { advertId, id } = useParams();
+function OngletProfil({ id }) {
+  const { advertId } = useParams();
   const [annonces, setAnnonces] = useState();
   const [evaluations, setEvaluations] = useState([]);
   const [historyOrders, setHistoryOrders] = useState([]);
   const [ongletActif, setongletActif] = useState("Mes annonces");
 
   useEffect(() => {
-    fetch(`http://localhost:3310/api/display-adverts-byseller/${id}`)
-      .then((res) => res.json())
-      .then((data) => {
-        console.info("Mes annonces dans OngletProfil:", data);
-        setAnnonces(data);
-      });
-  }, []);
+    if (id) {
+      fetch(`http://localhost:3310/api/display-adverts-byseller/${id}`)
+        .then((res) => res.json())
+        .then((data) => {
+          console.info("Mes annonces dans OngletProfil:", data);
+          setAnnonces(data);
+        })
+        .catch((error) =>
+          console.error("Erreur lors de la récupération des annonces", error)
+        );
+    }
+  }, [id]);
 
   useEffect(() => {
     fetch(`http://localhost:3310/api/user-profil-com/${id}`)
