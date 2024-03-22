@@ -8,7 +8,7 @@
   width: 100%;
   background-color: var(--neutral-100);
   z-index: 15;
-  padding: 1rem;
+  padding: 1rem 0;
   border-bottom: 1px solid var(--neutral-400);
 }
 
@@ -20,7 +20,7 @@
 
 .incription-login-button {
   padding: 0.5rem 1rem;
-  background-color: white;
+  background-color: var(--neutral-100);
   color: var(--primary-clr);
   border: 0.1rem solid var(--primary-clr);
   border-radius: 0.5rem;
@@ -37,6 +37,24 @@
 .vendre-button:hover {
   background-color: var(--primary-clr-accent);
   border: 0.1rem solid var(--primary-clr-accent);
+}
+
+.header-left-container {
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+}
+
+.explore-btn {
+  padding: 0.5rem 1rem;
+  height: 100%;
+  background-color: var(--neutral-300);
+  color: var(--neutral-700);
+  border-radius: 0.5rem;
+}
+
+.explore-btn:hover {
+  background-color: var(--neutral-200);
 }
 
 @media (max-width: 1200px) {

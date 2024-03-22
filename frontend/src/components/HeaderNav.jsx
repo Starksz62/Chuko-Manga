@@ -26,7 +26,15 @@ function HeaderNav() {
     <>
       {/* desktop header */}
       <header className="navbar-header-desktop container_limit">
-        <SearchBar />
+        <container className="header-left-container">
+          <Link to="/explore">
+            <button type="button" className="explore-btn">
+              Explorer
+            </button>
+          </Link>
+          <SearchBar />
+        </container>
+
         <div className="buttonHeader-container">
           {auth == null ? (
             <button
@@ -56,7 +64,7 @@ function HeaderNav() {
         </div>
       </header>
 
-      {/* mobile header */}
+      {/* mobile header (hidden by default) */}
       <HeaderNavMobile />
     </>
   );
