@@ -4,7 +4,6 @@ import "./Order.css";
 function Order({ articleInfo }) {
   return (
     <div className="component-card">
-      {console.info("order article info", articleInfo)}
       <li key={articleInfo.id}>
         <div className="card-Payment">
           <img

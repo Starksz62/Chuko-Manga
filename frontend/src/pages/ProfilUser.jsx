@@ -1,18 +1,20 @@
+/* eslint-disable import/order */
+import ButtonProfilUser from "../components/ButtonProfilUser";
 import OngletProfil from "../components/OngletProfil";
+import ProfilHead from "../components/ProfilHead";
 
 function ProfilUser() {
-  let userId;
+  let id;
 
   try {
-    // Récupérer la chaîne auth du localStorage
     const storedAuth = localStorage.getItem("auth");
 
     if (storedAuth) {
       const authObj = JSON.parse(storedAuth);
 
-      userId = authObj.user.id;
+      id = authObj.user.id;
 
-      console.info(userId);
+      console.info(id);
     }
   } catch (error) {
     console.error(
@@ -20,9 +22,13 @@ function ProfilUser() {
       error
     );
   }
+
   return (
     <div>
-      <OngletProfil id={userId} />
+      <ProfilHead>
+        <ButtonProfilUser id={id} />
+      </ProfilHead>
+      <OngletProfil />
     </div>
   );
 }

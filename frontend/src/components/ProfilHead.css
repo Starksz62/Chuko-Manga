@@ -1,0 +1,53 @@
+.main_container_user_profilhead {
+  font-family: "Montserrat", sans-serif;
+  display: flex;
+  padding-top: 20px;
+  justify-content: space-between;
+}
+.container_user_profilhead {
+  width: 70%;
+  display: flex;
+  padding: 20px;
+  justify-content: center;
+  align-items: center;
+}
+.picture_user_profilhead_img {
+  border-radius: 50%;
+  width: 270px;
+  height: 250px;
+  margin-right: 50px;
+}
+.user_profilhead_info_name {
+  font-size: 24px;
+}
+
+.user_profilhead_info_country {
+  font-size: 18px;
+}
+.user_profilhead_info_title {
+  color: var(--primary-clr);
+  font-size: 20px;
+}
+.user_profilhead_info_verification {
+  margin-top: 20px;
+}
+.user-profilhead-mail,
+.user-profilhead-phone {
+  font-size: 14px;
+}
+.user-profilhead_button {
+  background-color: var(--primary-clr);
+  color: white;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-family: "Montserrat", sans-serif;
+  margin-top: 20px;
+  margin-bottom: auto;
+  margin-right: auto;
+  width: 200px;
+}
+.user-profilhead_button:hover {
+  background-color: var(--primary-clr-accent);
+}

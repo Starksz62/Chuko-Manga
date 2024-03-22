@@ -15,7 +15,7 @@ class UsersManager extends AbstractManager {
 
   async getUserProfilById(id) {
     const [rows] = await this.database.query(
-      `SELECT user.pseudo, user.email, user.phone, user.picture, address.country, 
+      `SELECT user.lastname, user.firstname, user.pseudo, user.email, user.phone, user.picture, address.country, 
       (SELECT AVG(feedback.rating) FROM feedback WHERE user_id = ?) AS average_rating
       FROM ${this.table} 
       JOIN address_has_user on user.id = address_has_user.user_id

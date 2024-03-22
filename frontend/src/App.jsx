@@ -35,7 +35,7 @@ function App() {
       <UserContext.Provider value={userContextValue}>
         <NotificationProvider>
           <div className="mainContainer">
-            <LeftNavbar className="leftNavbar" />
+            <LeftNavbar />
             <div className="mainContent">
               <HeaderNav />
               <Outlet />

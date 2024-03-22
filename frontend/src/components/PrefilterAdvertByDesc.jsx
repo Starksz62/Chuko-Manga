@@ -1,6 +1,10 @@
-import { useState, useEffect, useRef } from "react";
-import { useNavigate } from "react-router-dom";
-import PropTypes from "prop-types";
+/* eslint-disable react/prop-types */
+/* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
+/* eslint-disable jsx-a11y/click-events-have-key-events */
+import React, { useState, useEffect, useRef } from "react";
+import { Link } from "react-router-dom";
+import Left from "../assets/leftlogo.png";
+import Right from "../assets/rightlogo.png";
 import AdvertCard from "./AdvertCard";
 import "./PrefilterAdvertByDesc.css";
 
@@ -11,8 +15,9 @@ function PrefilterAdvertByDesc({
 }) {
   const [, setAdverts] = useState([]);
   const [filteredAdverts, setFilteredAdverts] = useState([]);
-  const navigate = useNavigate();
   const defaultTitle = "Explorer les derniers tomes ajoutés :";
+  const [showLeftButton, setShowLeftButton] = useState(false);
+  const [showRightButton, setShowRightButton] = useState(true);
   const titleToShow = (
     <h2 className={`titlePrefiltreDesc ${titleClassName || ""}`}>
       {titlefromAnnounceDetail || defaultTitle}
@@ -21,73 +26,90 @@ function PrefilterAdvertByDesc({
   const containerRef = useRef(null);
   const renderedTitle = useDivWrapper ? <div>{titleToShow}</div> : titleToShow;
   useEffect(() => {
-    fetch("http://localhost:3310/api/find-recent-adverts?batch=false")
+    fetch("http://localhost:3310/api/unique-adverts-date-desc")
       .then((response) => {
         if (!response.ok) {
-          throw new Error(`Erreur HTTP, statut : ${response.status}`);
+          throw new Error(`Error HTTP, status: ${response.status}`);
         }
         return response.json();
       })
       .then((data) => {
         setAdverts(data);
-        setFilteredAdverts(data); // Initialisation avec tous les adverts
+        setFilteredAdverts(data); // Initialize with all adverts
       })
       .catch((error) => {
-        console.error(
-          "Une erreur s'est produite lors de la récupération des données:",
-          error
-        );
+        console.error("An error occurred while fetching data:", error);
       });
-
-    // Gestion du défilement à la molette de la souris
-    const handleMouseWheel = (e) => {
-      containerRef.current.scrollLeft += e.deltaY;
-      e.preventDefault();
-    };
-
-    // Ajout de l'écouteur d'événements pour la molette de la souris
-    containerRef.current.addEventListener("wheel", handleMouseWheel);
-
-    // Nettoyage de l'écouteur d'événements lors du démontage du composant
-    return () => {
-      if (containerRef.current) {
-        // Vérifie si containerRef.current est différent de null
-        containerRef.current.removeEventListener("wheel", handleMouseWheel);
-      }
-    };
   }, []);
 
-  const handleViewAllClick = () => {
-    navigate("/explore?batch=false");
-  };
+  useEffect(() => {
+    // Vérifiez si le conteneur a un défilement horizontal et mettez à jour les états de showLeftButton et showRightButton
+    if (containerRef.current) {
+      setShowLeftButton(containerRef.current.scrollLeft > 0);
+      setShowRightButton(
+        containerRef.current.scrollWidth > containerRef.current.clientWidth
+      );
+    }
+  }, [filteredAdverts]); // Ajoutez filteredAdverts en tant que dépendance
+
+  function scrollContainer(direction) {
+    if (!containerRef.current) return;
+
+    const container = containerRef.current;
+    const cardWidth = container.querySelector(".AdvertCard").clientWidth;
+
+    if (direction === "left") {
+      container.scrollLeft -= cardWidth * 2;
+    } else if (direction === "right") {
+      container.scrollLeft += cardWidth * 2;
+    }
+
+    // Vérifiez si la position de défilement horizontal permet d'afficher les images "left" et "right" et mettez à jour leurs états
+    setShowLeftButton(container.scrollLeft > 0);
+    setShowRightButton(
+      container.scrollLeft + container.clientWidth < container.scrollWidth
+    );
+  }
 
   return (
     <section className="prefiltre-unique">
-      {renderedTitle}
-      <div className="FilterByDateDescWrapper">
-        <div className="FilterByDateDesc" ref={containerRef}>
-          <div className="filteredAdverts">
+      <h2 className="title-prefiltre-desc">{renderedTitle}</h2>
+      <div className="filter-by-date-desc-wrapper">
+        <div className="filter-by-date-desc" ref={containerRef}>
+          {showLeftButton && (
+            <img
+              className="left-button"
+              src={Left}
+              alt="left button"
+              onClick={() => scrollContainer("left")}
+            />
+          )}
+          {showRightButton && (
+            <img
+              className="right-button"
+              src={Right}
+              alt="right button"
+              onClick={() => scrollContainer("right")}
+            />
+          )}
+          <div className="filtered-adverts">
             {filteredAdverts.length > 0 ? (
-              filteredAdverts.map((advert) => (
+              filteredAdverts.slice(0, 8).map((advert) => (
                 <div key={advert.id} className="AdvertCard">
                   <AdvertCard advert={advert} />
                 </div>
               ))
             ) : (
-              <p>Chargement en cours...</p>
+              <p>Loading...</p>
             )}
           </div>
-        </div>
-        <div className="seeAllTomesButtonWrapper">
-          <button
-            type="button"
-            className="bntSeeAllTomes"
-            onClick={handleViewAllClick}
-          >
-            <div className="textBtn">
-              Voir tous <br /> les tomes
-            </div>
-          </button>
+          <div className="seeAllTomesButtonWrapper">
+            <Link className="link-btn-desc" to="/explore">
+              <button type="button" className="bnt-see-all-tomes-desc">
+                Voir tous les tomes
+              </button>
+            </Link>
+          </div>
         </div>
       </div>
     </section>
@@ -95,15 +117,3 @@ function PrefilterAdvertByDesc({
 }
 
 export default PrefilterAdvertByDesc;
-PrefilterAdvertByDesc.propTypes = {
-  titlefromAnnounceDetail: PropTypes.string,
-
-  titleClassName: PropTypes.string,
-  useDivWrapper: PropTypes.bool,
-};
-
-PrefilterAdvertByDesc.defaultProps = {
-  titleClassName: "",
-  useDivWrapper: false,
-  titlefromAnnounceDetail: "",
-};
