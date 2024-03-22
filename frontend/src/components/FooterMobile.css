@@ -1,0 +1,24 @@
+.mobile-footer {
+  display: none;
+}
+
+.mobile-footer-links-container {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  width: 100%;
+}
+
+.mobile-footer-links-block {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+@media (max-width: 1200px) {
+  .mobile-footer {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+}

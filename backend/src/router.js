@@ -4,10 +4,13 @@ const express = require("express");
 const router = express.Router();
 const multer = require("./middlewares/multer-config");
 
+// const { hashPassword } = require("./services/auth");
+const multerSingle = require("./middlewares/multerConfigSingle");
 const { hashPassword, verifyToken } = require("./services/auth");
 
-const validateUser = require("./middlewares/validateUser");
 const validateAddress = require("./middlewares/validateAddress");
+const validateAdvert = require("./middlewares/validateAdvert");
+// const validateUser = require("./middlewares/validateUser");
 
 /* ************************************************************************* */
 // Define Your API Routes Here
@@ -72,7 +75,12 @@ router.get(
 
 // ROUTES TO POST ADVERTS
 // Route to add a new advert (page advert creation)
-router.post("/new-advert", multer, advertsControllers.createAdvert);
+router.post(
+  "/new-advert",
+  multer,
+  validateAdvert,
+  advertsControllers.createAdvert
+);
 
 // router.put("/update-advert/:id", multer, advertsControllers.updateAdvert);
 
@@ -103,7 +111,12 @@ router.get("/user-profil/:id", usersControllers.getUserProfilById);
 router.get("/user-profil-com/:id", usersControllers.getUserProfilComById);
 router.post("/users", hashPassword, usersControllers.add);
 // route post Update Profil User
-router.put("/user/:id", validateUser, usersControllers.updateUser);
+router.put(
+  "/user/:id",
+  // validateUser,
+  multerSingle,
+  usersControllers.updateUser
+);
 
 /* ************************************************************************* */
 // ROUTES ADDRESS

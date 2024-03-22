@@ -9,7 +9,7 @@ import DeliveryOption from "../components/PaymentPage/DeliveryOption";
 
 function PaymentPage() {
   const location = useLocation();
-  const { articleData } = location.state;
+  const { articleData } = location.state || {};
   console.info("info paymentPage", articleData);
   const [showModal, setShowModal] = useState(false);
   const [showModalCreditCard, setShowModalCreditCard] = useState(false);
@@ -40,7 +40,7 @@ function PaymentPage() {
   };
 
   return (
-    <div className="container">
+    <container className="container">
       <div className="main-content">
         <div className="left-column">
           <h3>Commande</h3>
@@ -131,10 +131,10 @@ function PaymentPage() {
           )}
         </div>
         <div className="right-column">
-          <Payment price={articleData.price} />
+          <Payment price={articleData.price} articleData={articleData} />
         </div>
       </div>
-    </div>
+    </container>
   );
 }
 

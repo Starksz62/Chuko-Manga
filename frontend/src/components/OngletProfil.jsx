@@ -23,7 +23,7 @@ function OngletProfil() {
     fetch(`http://localhost:3310/api/user-profil-com/${id}`)
       .then((res) => res.json())
       .then((data) => {
-        console.info("commentairesTableau:", data);
+        // console.info("commentairesTableau:", data);
         setEvaluations(data);
       });
   }, []);
@@ -32,7 +32,7 @@ function OngletProfil() {
     fetch(`http://localhost:3310/api/display-order-history-bybuyer/${id}`)
       .then((res) => res.json())
       .then((data) => {
-        console.info("Mon historique d'achat:", data);
+        // console.info("Mon historique d'achat:", data);
         setHistoryOrders(data);
       });
   }, []);
