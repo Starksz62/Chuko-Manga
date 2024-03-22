@@ -114,7 +114,7 @@ function MyAnounces() {
             <div className="informationTitle">
               <p>Titre :</p> <p> {anounce.title_search_manga}</p>
             </div>
-            <div className="informationDesciption">
+            <div className="informationDescription">
               <p>Description :</p> <p>{anounce.description}</p>
             </div>
             <div className="informationEtat">
