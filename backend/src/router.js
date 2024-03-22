@@ -82,6 +82,8 @@ router.post(
   advertsControllers.createAdvert
 );
 
+// router.put("/update-advert/:id", multer, advertsControllers.updateAdvert);
+
 // Route to get all orders by buyer (page Profil/onglet my purchase history)
 router.get(
   "/display-order-history-bybuyer/:id",

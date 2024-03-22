@@ -4,10 +4,12 @@ import OngletProfil from "../components/OngletProfil";
 import ProfilHead from "../components/ProfilHead";
 import { useParams } from "react-router-dom";
 
+import "./ProfilUser.css";
+
 function ProfilUser() {
   const { id } = useParams();
   return (
-    <div>
+    <div className="containerProfilUser">
       <ProfilHead>
         <ButtonProfilUser id={id} />
       </ProfilHead>
