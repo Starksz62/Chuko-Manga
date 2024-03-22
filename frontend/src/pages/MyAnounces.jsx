@@ -128,8 +128,8 @@ function MyAnounces() {
             <div className="informationDate">
               <p>Ajouté le :</p>
               <p>
-                {anounces.publication_date_advert
-                  ? new Date(anounces.publication_date_advert)
+                {anounce.publication_date_advert
+                  ? new Date(anounce.publication_date_advert)
                       .toLocaleDateString("fr-FR")
                       .split("/")
                       .join("-")
