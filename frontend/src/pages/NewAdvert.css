@@ -1,10 +1,11 @@
 .new-advert {
   margin: auto;
   padding: 2rem 3rem;
-  background-color: var(--neutral-200);
+  /* background-color: var(--neutral-200); */
   border-radius: 5px;
-  /* width: 100%;
-  max-width: 800px; */
+  width: 100%;
+  max-width: 800px;
+  /* box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px; */
   box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
 }
 
@@ -23,11 +24,12 @@
 
 .picture-box {
   background-color: var(--neutral-400);
-  width: 15rem;
-  height: 15rem;
+  width: 12rem;
+  height: 12rem;
   display: flex;
   justify-content: center;
   align-items: center;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
 }
 
 .picture-box .label-picture {
@@ -50,8 +52,8 @@
 }
 
 .preview-image {
-  width: 15rem;
-  height: 15rem;
+  width: 12rem;
+  height: 12rem;
   object-fit: cover;
 }
 
@@ -62,7 +64,7 @@
 }
 
 .delete-preview img {
-  width: 2rem;
+  width: 1.75rem;
 }
 
 .picture-box input:hover {
@@ -93,12 +95,13 @@
   border-radius: 0;
   border-bottom: 1px solid var(--neutral-700);
   padding: 0.3rem 0;
-  background-color: var(--neutral-200);
+  /* background-color: var(--neutral-200); */
   color: var(--neutral-800);
 }
 
 .new-advert .wrong-input {
   border: 1px solid red;
+  border-radius: 3px;
 }
 
 .new-advert .warning {
@@ -114,14 +117,14 @@
 .new-advert textarea {
   width: 100%;
   margin-bottom: 0.5rem;
-  padding: 0.3rem 0;
+  padding: 0.3rem;
   background-color: var(--neutral-200);
   border: 1px solid var(--neutral-700);
   border-radius: 3px;
 }
 
 .new-advert select {
-  padding: 0.3rem 0.3rem;
+  padding: 0.3rem;
   background-color: var(--neutral-200);
   border: 1px solid var(--neutral-700);
   border-radius: 3px;
@@ -141,27 +144,29 @@
   font-size: var(--fs-M);
   padding: 1rem;
   margin-bottom: 2.75rem;
-  font-weight: 500;
+  /* font-weight: 500; */
 }
 
 .active-color {
   color: var(--neutral-800);
-  /* background-color: var(--neutral-100); */
+  font-weight: 500;
+  /* border-bottom: 2px solid var(--neutral-800); */
+  border-bottom: 2px solid var(--neutral-800);
 }
 
 .inactive-tab {
   color: var(--neutral-700);
-  border-bottom: 1px solid var(--neutral-800);
+  border-bottom: 2px solid var(--neutral-600);
 }
 
 .tome-active {
-  border-top: 1px solid var(--neutral-800);
-  border-right: 1px solid var(--neutral-800);
+  /* border-top: 1px solid var(--neutral-800);
+  border-right: 1px solid var(--neutral-800); */
 }
 
 .batch-active {
-  border-top: 1px solid var(--neutral-800);
-  border-left: 1px solid var(--neutral-800);
+  /* border-top: 1px solid var(--neutral-800);
+  border-left: 1px solid var(--neutral-800); */
 }
 
 .new-advert .ref {

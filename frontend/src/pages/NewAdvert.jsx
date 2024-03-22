@@ -269,7 +269,7 @@ function NewAdvert() {
           required="required"
         />
         <div className={priceErr ? "warning" : "warning hide-warning"}>
-          Format attendu - exemple : 5.50
+          Format incorrect
         </div>
         <div className="tab-container">
           <button
