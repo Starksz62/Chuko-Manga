@@ -1,6 +1,6 @@
 .naruto-details {
   margin: 0 auto;
-  width: 70vw;
+  /* width: 70vw; */
   display: flex;
   flex-direction: column;
 }
