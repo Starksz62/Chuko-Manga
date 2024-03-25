@@ -8,7 +8,7 @@ function OngletProfil() {
   const [annonces, setAnnonces] = useState();
   const [evaluations, setEvaluations] = useState([]);
   const [historyOrders, setHistoryOrders] = useState([]);
-  const [ongletActif, setongletActif] = useState("Mes annonces");
+  const [ongletActif, setongletActif] = useState("Annonces");
 
   useEffect(() => {
     fetch(`http://localhost:3310/api/display-adverts-byseller/${id}`)
@@ -99,29 +99,39 @@ function OngletProfil() {
       <div className="containerButton">
         <button
           type="button"
-          className="buttonOnglet"
-          onClick={() => setongletActif("Mes annonces")}
+          className={
+            ongletActif === "Annonces"
+              ? "buttonOnglet selected"
+              : "buttonOnglet"
+          }
+          onClick={() => setongletActif("Annonces")}
         >
-          Mes annonces
+          Annonces
         </button>
         <button
           type="button"
-          className="buttonOnglet"
-          onClick={() => setongletActif("Mes évaluations")}
+          className={
+            ongletActif === "Évaluations"
+              ? "buttonOnglet selected"
+              : "buttonOnglet"
+          }
+          onClick={() => setongletActif("Évaluations")}
         >
-          Mes évaluations
+          Évaluations
         </button>
         <button
           type="button"
-          className="buttonOnglet"
-          onClick={() => setongletActif("Mon historique d'achat")}
+          className={
+            ongletActif === "Achat" ? "buttonOnglet selected" : "buttonOnglet"
+          }
+          onClick={() => setongletActif("Achat")}
         >
-          Mon historique d'achat
+          Achats
         </button>
       </div>
 
       <div className="containerInformations">
-        {ongletActif === "Mes annonces" && (
+        {ongletActif === "Annonces" && (
           <div className="containerAnnonces">
             {annonces?.map((annonce) => (
               <div key={advertId}>
@@ -146,17 +156,17 @@ function OngletProfil() {
           </div>
         )}
 
-        {ongletActif === "Mes évaluations" && (
+        {ongletActif === "Évaluations" && (
           <div className="containerEvaluations">
             {evaluations?.length > 0 && (
               <div className="containerNote">
                 {console.info(evaluations)}
-                <div className="average_rating">{`${(Math.round(averageRating * 100) / 100).toFixed(2)}`}</div>
+                <p className="average_rating">{`${(Math.round(averageRating * 100) / 100).toFixed(2)}`}</p>
                 <div className="StarNumbCom">
                   <div className="starcontainer">
                     {renderStars(parseFloat(averageRating))}
                   </div>
-                  <div className="Number_comment">({evaluations.length})</div>
+                  <p className="Number_comment">({evaluations.length})</p>
                 </div>
               </div>
             )}
@@ -187,7 +197,7 @@ function OngletProfil() {
           </div>
         )}
 
-        {ongletActif === "Mon historique d'achat" && (
+        {ongletActif === "Achat" && (
           <div className="containerAnnonces">
             {historyOrders?.map((order) => (
               <div key={order.id}>

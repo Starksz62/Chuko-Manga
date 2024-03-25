@@ -9,19 +9,18 @@
 }
 
 .containerButton {
-  border-bottom: solid 0.1rem;
   height: 30px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  margin-bottom: 3rem;
 }
 
 .buttonOnglet {
-  border: none;
+  border-bottom: solid 0.1rem #b5b5b5;
   background-color: rgba(255, 255, 255, 0);
-  text-decoration: underline;
-  padding-left: 4.5rem;
 }
-.buttonOnglet:hover {
-  transform: scale(1.1);
-  color: #dd7a06;
+.selected {
+  border-bottom: solid 0.2rem #dd7a06;
 }
 
 /********************** Utilise ces propriétées pour l'onglet "Mes annonces et Mon historique d'achat" ***********************/
@@ -47,6 +46,7 @@
 
 .titleSearchMangaAnnonces {
   margin-top: 1rem;
+  width: 15rem;
 }
 .priceAnnonces {
   font-weight: bold;
@@ -166,3 +166,34 @@
 }
 /* ------------------------------------------------------------------------------------------------------ */
 /******************************************************************************************************************************/
+
+@media screen and (max-width: 798px) {
+  .containerCom {
+    flex-direction: column;
+    align-items: center;
+    padding-bottom: 2rem;
+  }
+
+  .average_rating {
+    padding-left: 1.5rem;
+    font-size: 2rem;
+  }
+
+  .picture_buyer {
+    margin-left: 30px;
+    margin-right: 30px;
+    height: 8rem;
+    width: 8rem;
+  }
+
+  .buttonOnglet {
+    padding: 0;
+    padding-bottom: 0.3rem;
+  }
+
+  .commentBuyer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+}
