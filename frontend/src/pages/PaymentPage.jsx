@@ -84,7 +84,7 @@ function PaymentPage() {
           </div>
           {showModal && (
             <div className="modal">
-              <div className="modal-content">
+              <div className="modal-content-adress">
                 <button
                   className="close"
                   type="button"
@@ -122,9 +122,26 @@ function PaymentPage() {
               <span>Sélectionne le mode paiement</span>
             </div>
           </div>
+          <div className="confirmation-payment-mobile">
+            <button type="button">Paiement</button>
+
+            <div className="logo-card-payment">
+              <img
+                src="http://localhost:3310/static/cartePayment.png"
+                alt="payment-card"
+              />
+            </div>
+            <div className="information-security-payment">
+              <img
+                src="http://localhost:3310/static/crypte1.png"
+                alt="texte protection "
+              />
+              <p>Ce paiement est crypté et sécurisé</p>
+            </div>
+          </div>
           {showModalCreditCard && (
             <div className="modal">
-              <div className="modal-content">
+              <div className="modal-content-card">
                 <CreditCard updateModalCreditCard={closeModalCreditCard} />
               </div>
             </div>

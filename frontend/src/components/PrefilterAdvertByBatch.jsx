@@ -87,6 +87,7 @@ function PrefilterAdvertByBatch() {
             onClick={() => scrollContainer("right")}
           />
         )}
+
         <div className="filter-by-batch" ref={containerRef}>
           <div className="filtered-adverts-batch">
             {filteredAdverts.length > 0 ? (
@@ -98,12 +99,13 @@ function PrefilterAdvertByBatch() {
             ) : (
               <p>Loading...</p>
             )}
+
+            <Link className="link-btn-batch" to="/explore">
+              <button type="button" className="bnt-see-all-tomes-batch">
+                Voir tous les lots
+              </button>
+            </Link>
           </div>
-          <Link className="link-btn-batch" to="/explore">
-            <button type="button" className="bnt-see-all-tomes-batch">
-              Voir tous les lots
-            </button>
-          </Link>
         </div>
       </div>
     </section>

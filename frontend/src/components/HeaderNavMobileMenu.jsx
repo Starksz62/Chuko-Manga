@@ -2,7 +2,7 @@ import { useContext, useState } from "react";
 
 import { Link, useParams } from "react-router-dom";
 import PropTypes from "prop-types";
-import { useNotifications } from "../context/NotificationContext";
+// import { useNotifications } from "../context/NotificationContext";
 import { useFilters } from "../context/FilterContext";
 import UserContext from "../context/UserContext";
 
@@ -13,17 +13,19 @@ import FavoritesIcon from "../assets/favorites.png";
 import SettingsIcon from "../assets/settings.png";
 import SortIcon from "../assets/sort.png";
 import FilterIcon from "../assets/filter.png";
-import NotificationBell from "../assets/notificationBell.png";
+// import NotificationBell from "../assets/notificationBell.png";
 
-import NotificationCenter from "./NotificationCenter";
+// import NotificationCenter from "./NotificationCenter";
 import PriceSlider from "./Slider";
+import ConnexionModal from "./ConnexionModal";
 
 function HeaderNavMobileMenu({ handleMenuActive, menuMobileActive }) {
   const { id } = useParams();
   const [showFilters, setShowFilters] = useState(false);
   const [currentFilter, setCurrentFilter] = useState(null);
-  const { auth } = useContext(UserContext);
-  const { notifications } = useNotifications();
+  const { auth, setAuth } = useContext(UserContext);
+  const [open, setOpen] = useState(false);
+  // const { notifications } = useNotifications();
   const [notificationCenterVisible, setNotificationCenterVisible] =
     useState(false);
   const { updateFilters } = useFilters();
@@ -62,6 +64,19 @@ function HeaderNavMobileMenu({ handleMenuActive, menuMobileActive }) {
     setCurrentFilter(currentFilter !== "Prix" ? "Prix" : null);
   };
 
+  const handleClickOpen = () => {
+    setOpen(!open);
+    if (!open) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "auto";
+    }
+  };
+  const handleLogout = () => {
+    localStorage.removeItem("auth");
+    setAuth(null);
+  };
+
   const genreOptions = [
     { id: 1, name: "Shonen" },
     { id: 2, name: "Shojo" },
@@ -87,11 +102,39 @@ function HeaderNavMobileMenu({ handleMenuActive, menuMobileActive }) {
       )}
       <div className="mobile-sidebar">
         {menuMobileActive ? !menuMobileActive : menuMobileActive}
-        <Link to="/">
-          <div className="mobile-sidebar-logo">
-            <img src={logo} alt="Logo" />
-          </div>
+        <Link to="/explore" onClick={handleMenuActive}>
+          <button type="button" className="explore-btn">
+            Explorer
+          </button>
         </Link>
+        <Link to="/" className="mobile-sidebar-logo">
+          <img src={logo} alt="Logo" />
+        </Link>
+        <div className="mobile-buttonHeader-container">
+          {!auth?.token ? (
+            <button
+              className="incription-login-button"
+              type="button"
+              onClick={handleClickOpen}
+            >
+              S'inscrire | Se connecter
+            </button>
+          ) : (
+            <button
+              className="incription-login-button"
+              type="button"
+              onClick={handleLogout}
+            >
+              Se déconnecter
+            </button>
+          )}
+          {open && <ConnexionModal handleClickOpen={handleClickOpen} />}
+          <Link to="/new-advert">
+            <button className="vendre-button" type="button">
+              Vends tes Mangas
+            </button>
+          </Link>
+        </div>
         <div className="mobile-icon-container">
           <ul>
             <div className="mobile-header-icon">
@@ -125,7 +168,7 @@ function HeaderNavMobileMenu({ handleMenuActive, menuMobileActive }) {
               </li>
             </div>
             <div className="mobile-menu-separator" />
-            {auth && (
+            {/* {auth && (
               <li className="notification-li">
                 <div
                   className="notification-icon-wrapper"
@@ -157,7 +200,8 @@ function HeaderNavMobileMenu({ handleMenuActive, menuMobileActive }) {
                   />
                 )}
               </li>
-            )}
+            )} */}
+
             <li>
               <button
                 type="button"
