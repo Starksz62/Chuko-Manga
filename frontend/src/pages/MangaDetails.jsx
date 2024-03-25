@@ -63,9 +63,7 @@ function MangaDetails({ id: propId, showVolumes = true }) {
             <p>{formatDate(manga.date_france)}</p>
             <strong>Sortie au Japon</strong>
             <p>{formatDate(manga.date_japan)}</p>
-            {/* <span className="genre-label"> */}
             <strong>Genre</strong>
-            {/* </span> */}
             <p className="genre-info">
               <span className="genre-value">{manga.genre_genre}</span>
             </p>
@@ -78,15 +76,18 @@ function MangaDetails({ id: propId, showVolumes = true }) {
         <div className="authors-container">
           <h2 className="title-authors">Auteurs</h2>
           <div className="data-authors">
-            <p>
-              <span>Auteur :</span> {manga.author}
-            </p>
-            <p>
-              <span>Scénariste :</span> {manga.script_writer}
-            </p>
-            <p>
-              <span>Illustrateur :</span> {manga.illustrator}
-            </p>
+            <div className="authors-box">
+              <p className="data-authors-head">Auteur</p>
+              <p>{manga.author}</p>
+            </div>
+            <div className="authors-box">
+              <p className="data-authors-head">Scénariste</p>
+              <p>{manga.script_writer}</p>
+            </div>
+            <div className="authors-box">
+              <p className="data-authors-head">Illustrateur</p>
+              <p>{manga.illustrator}</p>
+            </div>
           </div>
         </div>
       </div>
@@ -104,4 +105,5 @@ MangaDetails.defaultProps = {
   id: undefined,
   showVolumes: true,
 };
+
 export default MangaDetails;

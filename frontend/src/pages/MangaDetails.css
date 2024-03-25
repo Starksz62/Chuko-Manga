@@ -49,19 +49,20 @@
   padding: 2rem 3rem;
   border-top-left-radius: 5px;
   border-bottom-left-radius: 5px;
+  flex-basis: 30%;
 }
 
 .grid-status-manga {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  max-width: 20rem;
+  grid-template-columns: 10rem 7rem;
+  /* max-width: 20rem; */
   margin: auto;
 }
 
 .status-manga strong,
 .status-manga p {
   text-align: left;
-  padding: 0 0.5rem;
+  /* padding: 0 0.5rem; */
 }
 
 /* .genre-value {
@@ -78,11 +79,11 @@
   border-top-right-radius: 5px;
   border-bottom-right-radius: 5px;
   border: 1px solid red;
-  padding: 2rem 3rem;
+  padding: 2rem 2rem;
 }
 
 .title-authors {
-  margin-left: 10px;
+  /* margin-left: 10px; */
   margin-top: 0;
   color: var(--primary-clr);
   font-size: xx-large;
@@ -91,16 +92,19 @@
 
 .data-authors {
   display: flex;
-  gap: 40px;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  /* gap: 40px; */
   border: 1px solid green;
 }
 
-.data-authors p {
-  margin: 10px;
-  color: black;
+.authors-box {
+  border: 2px solid violet;
+  margin-right: 1rem;
+  margin-bottom: 1rem;
 }
 
-.data-authors p span {
+.data-authors-head {
   font-weight: bold;
 }
 
