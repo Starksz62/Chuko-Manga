@@ -1,4 +1,3 @@
-INSERT INTO publishing_house (name_publishing_house)
 INSERT INTO `publishing_house` VALUES (1,'Crunchyroll'),(2,'Meian'),(3,'Doki-doki'),(4,'Delcourt'),(5,'Pika'),(6,'Kana'),(7,'piccoma Europe'),(8,'Crunchyroll, Kazé'),(9,'Panini'),(10,'Delcourt, Tonkam'),(11,'Asuka, Tonkam'),(12,'Akata'),(13,'Glénat'),(14,'Kurokawa'),(15,'Tonkam'),(16,'Ki-oon');
 
 INSERT INTO `genre` VALUES (1,'Shonen'),(2,'Shojo'),(3,'Seinen'),(4,'Josei'),(5,'Kodomo'),(6,'Isekai'),(7,'Manhwa');
