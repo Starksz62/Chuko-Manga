@@ -1,63 +1,3 @@
-.advert-form .picture-container {
-  display: flex;
-  justify-content: space-around;
-  gap: 1rem;
-  margin-bottom: 3rem;
-  width: 100%;
-}
-
-.advert-form .picture-box {
-  background-color: var(--neutral-300);
-  width: 12rem;
-  height: 12rem;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.advert-form .picture-box .label-picture {
-  position: absolute;
-  margin-bottom: 0;
-}
-
-.advert-form .picture-box input {
-  opacity: 0;
-  height: 100%;
-  width: 100%;
-  padding: 0;
-}
-
-.advert-form .picture-box .plus-icon {
-  position: absolute;
-}
-
-.advert-form .preview-container {
-  position: relative;
-}
-
-.advert-form .preview-image {
-  width: 12rem;
-  height: 12rem;
-  object-fit: cover;
-  position: absolute;
-  top: -6rem;
-  right: 0;
-}
-
-.advert-form .picture-box .delete-preview {
-  position: absolute;
-  top: -6rem;
-  right: 0;
-}
-
-.advert-form .delete-preview img {
-  width: 1.75rem;
-}
-
-.advert-form .picture-box input:hover {
-  cursor: pointer;
-}
-
 .advert-form label {
   font-size: var(--fs-M);
   display: block;
@@ -85,21 +25,6 @@
   color: var(--neutral-800);
 }
 
-.advert-form .wrong-input {
-  border: 1px solid red;
-  border-radius: 3px;
-}
-
-.advert-form .warning {
-  color: red;
-  font-size: var(--fs-XS);
-  margin-bottom: 2.25rem;
-}
-
-.advert-form .hide-warning {
-  visibility: hidden;
-}
-
 .advert-form textarea {
   width: 100%;
   height: 4rem;
@@ -122,40 +47,6 @@
   background-color: var(--neutral-200);
 }
 
-.advert-form .tab-container {
-  display: flex;
-  margin-top: 1.25rem;
-}
-
-.advert-form .tab-container button {
-  width: 50%;
-  font-size: var(--fs-M);
-  padding: 1rem;
-  margin-bottom: 2rem;
-}
-
-.active-tab {
-  color: var(--neutral-800);
-  font-weight: 500;
-  border-bottom: 3px solid var(--primary-clr);
-}
-
-.inactive-tab {
-  color: var(--neutral-700);
-  border-bottom: 2px solid var(--neutral-600);
-}
-
-.advert-form .ref {
-  font-size: var(--fs-M);
-  margin-bottom: 0.6rem;
-  font-weight: 500;
-}
-
-.advert-form .instruction {
-  color: var(--neutral-700);
-  font-size: var(--fs-S);
-}
-
 .advert-form .add-button {
   padding: 0.5rem 3rem;
   background-color: var(--primary-clr);
@@ -169,11 +60,4 @@
 
 .advert-form .add-button:hover {
   background-color: var(--primary-clr-accent);
-}
-
-@media screen and (max-width: 768px) {
-  .advert-form .picture-container {
-    flex-direction: column;
-    align-items: center;
-  }
 }

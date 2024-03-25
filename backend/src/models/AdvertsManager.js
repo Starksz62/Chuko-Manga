@@ -123,10 +123,10 @@ class AdvertsManager extends AbstractManager {
   }
 
   async getMinMaxPrice(batch) {
-    let whereConditions = '';
+    let whereConditions = "";
 
     if (batch !== undefined) {
-        whereConditions = batch ? "WHERE batch = 1" : "WHERE batch = 0";
+      whereConditions = batch ? "WHERE batch = 1" : "WHERE batch = 0";
     }
 
     const query = `
@@ -136,10 +136,7 @@ class AdvertsManager extends AbstractManager {
     `;
     const [rows] = await this.database.query(query);
     return rows;
-
-}
-
-
+  }
 
   async addAdvert(advert) {
     // console.info("poulet");
@@ -150,55 +147,62 @@ class AdvertsManager extends AbstractManager {
         advert.description,
         advert.alert,
         advert.batch,
-        advert.title_search_manga,
-        advert.publication_date_advert,
-        advert.user_id,
-        advert.volume_id,
-        advert.article_condition_id,
-        advert.manga_id,
+        advert.titleSearchManga,
+        advert.publicationDate,
+        advert.userId,
+        advert.volumeId,
+        advert.articleConditionId,
+        advert.mangaId,
       ]
     );
     return result.insertId;
   }
 
- async findAdverts({ batch, genreId, conditionName, minPrice, maxPrice, searchQuery }) {
-  let whereConditions = "WHERE 1=1";
-  const queryParams = [];
+  async findAdverts({
+    batch,
+    genreId,
+    conditionName,
+    minPrice,
+    maxPrice,
+    searchQuery,
+  }) {
+    let whereConditions = "WHERE 1=1";
+    const queryParams = [];
 
+    if (searchQuery) {
+      whereConditions +=
+        " AND (advert.title_search_manga LIKE ? OR manga.description LIKE ?)";
+      const searchPattern = `%${searchQuery}%`;
+      queryParams.push(searchPattern, searchPattern);
+    } else if (batch !== null && batch !== undefined) {
+      if (batch === true) {
+        whereConditions += " AND advert.batch=1";
+      } else {
+        whereConditions += " AND advert.batch=0";
+      }
+    }
 
-if (searchQuery) {
-  whereConditions += " AND (advert.title_search_manga LIKE ? OR manga.description LIKE ?)";
-  const searchPattern = `%${searchQuery}%`;
-  queryParams.push(searchPattern, searchPattern); 
-} else if (batch !== null && batch !== undefined) {
-  if (batch === true) {
-    whereConditions += " AND advert.batch=1";
-  } else {
-    whereConditions += " AND advert.batch=0";
-  }
-}
+    if (genreId) {
+      whereConditions += " AND manga.genre_id = ?";
+      queryParams.push(genreId);
+    }
 
-  if (genreId) {
-    whereConditions += " AND manga.genre_id = ?";
-    queryParams.push(genreId);
-  }
-  
-  if (conditionName) {
-    whereConditions += " AND article_condition.name_condition = ?";
-    queryParams.push(conditionName);
-  }
-  
-  if (minPrice !== undefined && minPrice !== null) {
-    whereConditions += " AND advert.price >= ?";
-    queryParams.push(minPrice);
-  }
-  
-  if (maxPrice !== undefined && maxPrice !== null) {
-    whereConditions += " AND advert.price <= ?";
-    queryParams.push(maxPrice);
-  }
-  
-  const query = `
+    if (conditionName) {
+      whereConditions += " AND article_condition.name_condition = ?";
+      queryParams.push(conditionName);
+    }
+
+    if (minPrice !== undefined && minPrice !== null) {
+      whereConditions += " AND advert.price >= ?";
+      queryParams.push(minPrice);
+    }
+
+    if (maxPrice !== undefined && maxPrice !== null) {
+      whereConditions += " AND advert.price <= ?";
+      queryParams.push(maxPrice);
+    }
+
+    const query = `
     SELECT advert.id, advert.title_search_manga, advert.price, article_condition.name_condition,
     advert_image.image_path, user.pseudo, user.picture as user_picture, manga.genre_id,
     ROUND(joint_table.average, 1) as average, joint_table.feedback_nber, advert.publication_date_advert
@@ -214,10 +218,10 @@ if (searchQuery) {
     ${whereConditions}
     ORDER BY advert.publication_date_advert DESC;
   `;
-  
-  const [rows] = await this.database.query(query, queryParams);
-  return rows;
-}
+
+    const [rows] = await this.database.query(query, queryParams);
+    return rows;
+  }
 
   async deleteAdvert(id) {
     await this.database.query(

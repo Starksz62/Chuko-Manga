@@ -1,0 +1,14 @@
+.advert-wrong-input {
+  border: 1px solid red;
+  border-radius: 3px;
+}
+
+.advert-warning {
+  color: red;
+  font-size: var(--fs-XS);
+  margin-bottom: 2.25rem;
+}
+
+.advert-hide-warning {
+  visibility: hidden;
+}

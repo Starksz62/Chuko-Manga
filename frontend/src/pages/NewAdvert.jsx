@@ -8,8 +8,6 @@ import AdvertForm from "../components/AdvertForm";
 function NewAdvert() {
   const navigate = useNavigate();
   // States designed to display options for selection and control user's input
-  // const [conditionList, setConditionList] = useState([]);
-  // const [mangaList, setMangaList] = useState([]);
   const [selectedManga, setSelectedManga] = useState(null);
   const [volumeList, setVolumeList] = useState([]);
   const [priceErr, setPriceErr] = useState(false);
@@ -21,7 +19,7 @@ function NewAdvert() {
   const [advertTitle, setAdvertTitle] = useState("");
   const [description, setDescription] = useState("");
   const [conditionId, setConditionId] = useState(null);
-  const [price, setPrice] = useState(null);
+  const [price, setPrice] = useState("");
   const [volumeId, setVolumeId] = useState(null);
   const alert = 0;
   const userId = 1;
@@ -76,23 +74,7 @@ function NewAdvert() {
     };
   }, [files]);
 
-  // Fetch condition's list, manga's list and volume's list
-  // useEffect(() => {
-  //   Promise.all([
-  //     axios.get("http://localhost:3310/api/conditions"),
-  //     axios.get("http://localhost:3310/api/mangas"),
-  //   ])
-  //     .then((responses) => {
-  //       // console.info("Condition are", responses[0].data);
-  //       // console.info("Mangas are", responses[1].data);
-  //       setConditionList(responses[0].data);
-  //       setMangaList(responses[1].data);
-  //     })
-  //     .catch((error) => {
-  //       console.error("Error fetching conditions and mangas:", error);
-  //     });
-  // }, []);
-
+  // Fetch manga's list
   useEffect(() => {
     if (selectedManga !== "") {
       axios
@@ -151,20 +133,20 @@ function NewAdvert() {
     e.preventDefault();
     // console.info("upload files", files);
     const formData = new FormData();
-    formData.append("title_search_manga", advertTitle);
+    formData.append("titleSearchManga", advertTitle);
     formData.append("description", description);
-    formData.append("article_condition_id", conditionId);
+    formData.append("articleConditionId", conditionId);
     formData.append("price", price);
     if (selectedManga !== null) {
-      formData.append("manga_id", selectedManga);
+      formData.append("mangaId", selectedManga);
     }
     if (volumeId !== null) {
-      formData.append("volume_id", volumeId);
+      formData.append("volumeId", volumeId);
     }
     formData.append("batch", batch);
     formData.append("alert", alert);
-    formData.append("user_id", userId);
-    formData.append("publication_date_advert", publicationDate);
+    formData.append("userId", userId);
+    formData.append("publicationDate", publicationDate);
     for (const key in files) {
       if (files[key]) {
         // console.info(key, files[key]);
@@ -189,7 +171,6 @@ function NewAdvert() {
       <AdvertForm
         advertTitle={advertTitle}
         batch={batch}
-        // conditionList={conditionList}
         deleteFile={deleteFile}
         description={description}
         handleDescChange={handleDescChange}
@@ -198,7 +179,6 @@ function NewAdvert() {
         handleSelectedManga={handleSelectedManga}
         handleSubmit={handleSubmit}
         handleTitleChange={handleTitleChange}
-        // mangaList={mangaList}
         maxDescReached={maxDescReached}
         maxTitleReached={maxTitleReached}
         price={price}
