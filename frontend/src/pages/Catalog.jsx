@@ -23,8 +23,8 @@ function Catalog() {
   }, []);
 
   return (
-    <div>
-      <h1>Parcourez notre catalogue</h1>
+    <div className="section-catalog">
+      <h1 className="title-catalog">Parcourez notre catalogue</h1>
       <div className="catalog-container">
         <ul>
           {mangas.map((manga) => (
@@ -36,7 +36,7 @@ function Catalog() {
                   alt={manga.title}
                 />
                 <div className="catalog-title">
-                  <h2>{manga.title}</h2>
+                  <h2 id="manga-title">{manga.title}</h2>
                 </div>
               </Link>
             </li>
