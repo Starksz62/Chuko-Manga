@@ -11,6 +11,7 @@ function Explore() {
   const searchQuery = decodeURIComponent(
     location.pathname.split("/explore/")[1] || ""
   );
+  console.info("query reçue dans explore", searchQuery);
   const queryParams = new URLSearchParams(location.search);
   const batchFromUrl = queryParams.get("batch");
   const { filters, setBatch, setMinMaxPrices, dynamicPriceFilter } =

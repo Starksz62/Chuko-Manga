@@ -56,7 +56,7 @@ function AdvertCard({ advert }) {
   const average = parseFloat(advert.average).toFixed(1); 
 
   return (
-    <section className="card-content">
+    <section className="card-content" key={advert.id}>
       <Link to={`/display-adverts/${advert.id}`} onClick={handleCardClick} className="link-card-title">
         <img
           src={`http://localhost:3310${advert.image_path}`}

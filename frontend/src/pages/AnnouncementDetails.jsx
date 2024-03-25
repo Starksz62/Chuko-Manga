@@ -10,6 +10,7 @@ function AnnouncementDetail() {
   const [detailManga, setDetailManga] = useState(null);
   const [activeTab, setActiveTab] = useState("annonce");
   const [userId, setUserId] = useState(null);
+
   useEffect(() => {
     fetch(`http://localhost:3310/api/display-adverts/${id}`)
       .then((response) => {
@@ -53,6 +54,10 @@ function AnnouncementDetail() {
             />
             <img
               src={`http://localhost:3310${detailManga[0].image_paths[1]}`}
+              alt=""
+            />
+            <img
+              src={`http://localhost:3310${detailManga[0].image_paths[2]}`}
               alt=""
             />
           </div>
