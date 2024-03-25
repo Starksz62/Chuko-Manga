@@ -1,4 +1,4 @@
-.prefiltre-unique {
+/* .prefiltre-unique {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -24,7 +24,6 @@
   flex-direction: row;
   gap: 1rem;
   overflow: hidden;
-  /* width: calc(300px * 4 + 150px); */
 }
 
 .left-button {
@@ -69,4 +68,4 @@
 
 .link-btn-desc:hover {
   text-decoration: none;
-}
+} */

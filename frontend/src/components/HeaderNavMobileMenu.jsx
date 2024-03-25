@@ -1,5 +1,7 @@
 import { useContext, useState } from "react";
+
 import { Link, useParams } from "react-router-dom";
+import PropTypes from "prop-types";
 import { useNotifications } from "../context/NotificationContext";
 import { useFilters } from "../context/FilterContext";
 import UserContext from "../context/UserContext";
@@ -16,7 +18,7 @@ import NotificationBell from "../assets/notificationBell.png";
 import NotificationCenter from "./NotificationCenter";
 import PriceSlider from "./Slider";
 
-function HeaderNavMobileMenu() {
+function HeaderNavMobileMenu({ handleMenuActive, menuMobileActive }) {
   const { id } = useParams();
   const [showFilters, setShowFilters] = useState(false);
   const [currentFilter, setCurrentFilter] = useState(null);
@@ -83,40 +85,46 @@ function HeaderNavMobileMenu() {
           onClick={() => setNotificationCenterVisible(false)}
         />
       )}
-      <div className="sidebar">
+      <div className="mobile-sidebar">
+        {menuMobileActive ? !menuMobileActive : menuMobileActive}
         <Link to="/">
-          <div className="sidebar-logo">
+          <div className="mobile-sidebar-logo">
             <img src={logo} alt="Logo" />
           </div>
         </Link>
-        <div className="icon-container">
+        <div className="mobile-icon-container">
           <ul>
-            <div className="header-icon">
-              <Link to={`/profilUser/${id}`}>
+            <div className="mobile-header-icon">
+              <Link to={`/profilUser/${id}`} onClick={handleMenuActive}>
                 <li>
                   <img src={ProfileIcon} alt="Profile" />
                   <span>Profile</span>
                 </li>
               </Link>
+              <div className="mobile-menu-separator" />
               <li>
                 <img src={AdsIcon} alt="Mes annonces" />
                 <span>Mes annonces</span>
               </li>
+              <div className="mobile-menu-separator" />
               <li>
                 <img src={FavoritesIcon} alt="Favoris" />
                 <span>
                   <a href="/favorites">Favoris</a>
                 </span>{" "}
               </li>
+              <div className="mobile-menu-separator" />
               <li>
                 <img src={SettingsIcon} alt="Paramètres" />
                 <span>Paramètres</span>
               </li>
+              <div className="mobile-menu-separator" />
               <li>
                 <img src={SortIcon} alt="Tri" />
                 <span>Tri</span>
               </li>
             </div>
+            <div className="mobile-menu-separator" />
             {auth && (
               <li className="notification-li">
                 <div
@@ -238,5 +246,10 @@ function HeaderNavMobileMenu() {
     </section>
   );
 }
+
+HeaderNavMobileMenu.propTypes = {
+  handleMenuActive: PropTypes.bool.isRequired,
+  menuMobileActive: PropTypes.bool.isRequired,
+};
 
 export default HeaderNavMobileMenu;

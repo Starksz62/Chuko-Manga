@@ -2,52 +2,56 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  margin: 3rem 0;
+  gap: 2rem;
   width: 100%;
-}
-
-.title-prefiltre-batch {
-  margin-bottom: 0.8rem;
 }
 
 .filter-by-batch-wrapper {
-  display: flex;
-  justify-content: center;
-  flex-direction: row;
-  align-items: center;
-  width: 100%;
   position: relative;
+  width: 100%;
+  height: 600px;
+  background-color: red;
+  .left-button {
+    width: 5rem;
+    height: 5rem;
+    position: absolute;
+    top: 40%;
+    transform: translate(-50%);
+    left: 0;
+    cursor: pointer;
+    z-index: 3;
+  }
+
+  .right-button {
+    width: 5rem;
+    height: 5rem;
+    position: absolute;
+    top: 40%;
+    transform: translate(-50%);
+    right: -5rem;
+    cursor: pointer;
+    z-index: 3;
+  }
 }
 
 .filter-by-batch {
+  position: relative;
   display: flex;
   flex-direction: row;
   gap: 1rem;
+  align-items: center;
+
+  width: 100%;
   overflow: hidden;
+
   /* width: calc(300px * 4 + 150px); */
-}
-
-.left-button {
-  width: 80px;
-  position: absolute;
-  top: 160px;
-  left: -40px;
-  cursor: pointer;
-  z-index: 3;
-}
-
-.right-button {
-  width: 80px;
-  position: absolute;
-  top: 160px;
-  right: -40px;
-  cursor: pointer;
-  z-index: 3;
 }
 
 .filtered-adverts-batch {
   display: flex;
   flex-direction: row;
+  width: 100%;
+  overflow: scroll;
 }
 
 .bnt-see-all-tomes-batch {
