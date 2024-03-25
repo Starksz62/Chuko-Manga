@@ -23,7 +23,7 @@
   width: 22.5rem;
   height: 30rem;
   object-fit: contain;
-  background-color: black;
+  background-color: var(--neutral-800);
   margin-right: 2rem;
   box-shadow: rgba(0, 0, 0, 0.15) 0px 3px 3px 0px;
 }
@@ -32,7 +32,7 @@
   width: 10.9rem;
   height: 14.5rem;
   object-fit: contain;
-  background-color: black;
+  background-color: var(--neutral-800);
   margin-bottom: 0.5rem;
   box-shadow: rgba(0, 0, 0, 0.15) 0px 3px 3px 0px;
 }
@@ -40,7 +40,7 @@
   width: 10.9rem;
   height: 14.5rem;
   object-fit: contain;
-  background-color: black;
+  background-color: var(--neutral-800);
   margin-top: 0.5rem;
   box-shadow: rgba(0, 0, 0, 0.15) 0px 3px 3px 0px;
 }
@@ -66,12 +66,13 @@
   flex-direction: column;
   box-shadow: rgba(0, 0, 0, 0.15) 0px 3px 3px 0px;
   margin-left: 2%;
+  font-size: var(--fs-S);
 }
 
 .informationPrice {
   font-weight: bold;
-  font-size: 1.5rem;
-  border-bottom: solid 0.1rem #b5b5b5;
+  font-size: var(--fs-L);
+  border-bottom: solid 0.1rem var(--neutral-600);
   margin-bottom: 3%;
 }
 
@@ -81,7 +82,7 @@
 .informationVues,
 .informationDate {
   display: flex;
-  color: #b5b5b5;
+  color: var(--neutral-600);
   margin-bottom: 5%;
 }
 
@@ -103,21 +104,22 @@
   width: 100%;
   gap: 75px;
   padding: 20px 0;
+  font-size: var(--fs-S);
 }
 
 .btnModSup {
   padding: 10px 20px;
   margin: 0 5px;
-  border: 1px solid #dd7a06;
-  background-color: #fff;
-  color: #dd7a06;
+  border: 1px solid var(--primary-clr);
+  background-color: var(--neutral-100);
+  color: var(--primary-clr);
   transition: all 0.3s ease;
   width: 20rem;
 }
 
 .btnModSup:hover {
-  background-color: #dd7a06;
-  color: #fff;
+  background-color: var(--primary-clr);
+  color: var(--neutral-100);
 }
 
 /* ********************************************** */
@@ -140,7 +142,7 @@
   left: 50%;
   transform: translate(-50%, -50%);
   line-height: 1.4;
-  background: #f1f1f1;
+  background: var(--neutral-100);
   padding: 14px 28 px;
   border-radius: 0.5rem;
   max-width: 20rem;
@@ -149,23 +151,25 @@
 }
 
 .MessageModal {
-  color: #dd7a06;
+  color: var(--primary-clr-accent);
   text-align: center;
   padding: 2% 5% 6% 5%;
+  font-size: var(--fs-L);
 }
 
 .closeConfirm {
   display: flex;
   justify-content: center;
+  font-size: var(--fs-S);
 }
 
 .closeModal {
-  border-right: solid 0.1rem #b5b5b5;
+  border-right: solid 0.1rem var(--neutral-600);
   padding-right: 20%;
 }
 
 .closeModal:hover {
-  color: #dd7a06;
+  color: var(--primary-clr-accent);
 }
 
 .confirmModal {
@@ -173,5 +177,5 @@
 }
 
 .confirmModal:hover {
-  color: #dd7a06;
+  color: var(--primary-clr-accent);
 }

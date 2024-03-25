@@ -26,6 +26,7 @@
 .cardAnnonces {
   margin: 30px;
   list-style: none;
+  font-size: var(--fs-S);
 }
 
 .imagePathAnnonces {
@@ -92,6 +93,10 @@
   font-weight: bold;
 }
 
+.Number_comment {
+  font-size: var(--fs-S);
+}
+
 .containerCom {
   display: flex;
   align-items: center;
@@ -123,6 +128,7 @@
 
 .comment {
   margin-top: 2%;
+  font-size: var(--fs-S);
 }
 
 .starcontainer {
