@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import "./RappelRecherche.css";
 import SearchBar from "./SearchBar";
 
@@ -26,13 +27,16 @@ function RappelRecherche() {
         Recherche le tome qu'il te manque :
       </h3>
       <SearchBar />
-      <h3 className="title-rappel-recherche">Suggestions de recherche :</h3>
-      {/* Faire un axios pour récupérer des noms de mangas du catalogue */}
+      <h3 className="title-rappel-recherche title2-rappel-recherche">
+        Suggestions de recherche :
+      </h3>
       <ul className="list-suggestion">
-        {mangas.map((manga) => (
-          <li key={manga.id} className="sugg">
-            {manga.title}
-          </li>
+        {mangas.slice(0, 7).map((manga) => (
+          <Link to={`manga/${manga.id}`} className="link-suggestion">
+            <li key={manga.id} className="sugg">
+              {manga.title}
+            </li>
+          </Link>
         ))}
       </ul>
     </section>
