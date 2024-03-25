@@ -161,7 +161,7 @@ const getSearchAdverts = async (req, res) => {
   }
 };
 const recentAdverts = async (req, res) => {
-  const { batch, genreId, conditionName, minPrice, maxPrice, searchQuery } = req.query;
+  const { batch, genreId, conditionName, minPrice, maxPrice, searchQuery,searchVolume,searchManga} = req.query;
 const isBatch = batch === 'true';
   try {
     const adverts = await models.advert.findAdverts({
@@ -170,7 +170,9 @@ const isBatch = batch === 'true';
       conditionName,
       minPrice,
       maxPrice,
-      searchQuery
+      searchQuery,
+      searchVolume,
+      searchManga
     });
 
     return res.json(adverts);

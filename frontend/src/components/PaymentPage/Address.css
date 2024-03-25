@@ -11,7 +11,7 @@
   z-index: 1000;
 }
 
-.modal-content {
+.modal-content-adress {
   background-color: #fff;
   padding: 20px;
   border-radius: 4px;
@@ -20,6 +20,9 @@
   box-shadow:
     rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
     rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+}
+.modal-content-adress label {
+  align-items: center;
 }
 
 .infoAdress {
@@ -30,6 +33,7 @@
 .modification-address {
   display: flex;
   flex-direction: column;
+  text-align: center;
 }
 
 .champ {
@@ -41,7 +45,7 @@
 
 .submit-new-address {
   margin-top: 10px;
-  width: 50%;
+  width: 100%;
 }
 
 .form-label {

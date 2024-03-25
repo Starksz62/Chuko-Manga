@@ -104,23 +104,22 @@ class AdvertsManager extends AbstractManager {
     return rows;
   }
 
-  async getAdvertsBySeller(id) {
-    const [rows] = await this.database.query(
-      `SELECT advert.id as advert_id, advert.title_search_manga, advert.price, advert.publication_date_advert, article_condition.name_condition, advert_image.image_path, user.id as user_id, user.pseudo, user.picture as user_picture, joint_table.average, joint_table.feedback_nber, user.id as user_id
-      FROM ${this.table}
-      LEFT JOIN advert_image ON advert.id=advert_image.advert_id AND advert_image.is_primary=1
-      JOIN article_condition ON advert.article_condition_id=article_condition.id
-      JOIN user ON advert.user_id=user.id 
-      JOIN (SELECT user.pseudo as rated_pseudo, AVG(feedback.rating) as average, COUNT(feedback.rating) as feedback_nber
-            FROM user
-            JOIN feedback ON user.id = feedback.user_id
-            GROUP BY user.pseudo) as joint_table ON user.pseudo=joint_table.rated_pseudo
-      WHERE advert.user_id = ?
-      ORDER BY advert.publication_date_advert DESC`,
-      [id]
-    );
-    return rows;
-  }
+async getAdvertsBySeller(id) {
+  const [rows] = await this.database.query(
+    `SELECT advert.id as advert_id, advert.title_search_manga, advert.price, advert.publication_date_advert, article_condition.name_condition, advert_image.image_path, user.id as user_id, user.pseudo, user.picture as user_picture, COALESCE(joint_table.average, 0) as average, COALESCE(joint_table.feedback_nber, 0) as feedback_nber
+    FROM ${this.table}
+    LEFT JOIN advert_image ON advert.id=advert_image.advert_id AND advert_image.is_primary=1
+    JOIN article_condition ON advert.article_condition_id=article_condition.id
+    JOIN user ON advert.user_id=user.id 
+    LEFT JOIN (SELECT feedback.user_id, AVG(feedback.rating) as average, COUNT(feedback.rating) as feedback_nber
+              FROM feedback
+              GROUP BY feedback.user_id) as joint_table ON user.id=joint_table.user_id
+    WHERE advert.user_id = ?
+    ORDER BY advert.publication_date_advert DESC`,
+    [id]
+  );
+  return rows;
+}
 
   async getMinMaxPrice(batch) {
     let whereConditions = '';
@@ -161,7 +160,7 @@ class AdvertsManager extends AbstractManager {
     return result.insertId;
   }
 
- async findAdverts({ batch, genreId, conditionName, minPrice, maxPrice, searchQuery }) {
+ async findAdverts({ batch, genreId, conditionName, minPrice, maxPrice, searchQuery, searchVolume,searchManga}) {
   let whereConditions = "WHERE 1=1";
   const queryParams = [];
 
@@ -169,7 +168,7 @@ class AdvertsManager extends AbstractManager {
 if (searchQuery) {
   whereConditions += " AND (advert.title_search_manga LIKE ? OR manga.description LIKE ?)";
   const searchPattern = `%${searchQuery}%`;
-  queryParams.push(searchPattern, searchPattern); 
+  queryParams.push(searchPattern,searchPattern)
 } else if (batch !== null && batch !== undefined) {
   if (batch === true) {
     whereConditions += " AND advert.batch=1";
@@ -177,6 +176,7 @@ if (searchQuery) {
     whereConditions += " AND advert.batch=0";
   }
 }
+
 
   if (genreId) {
     whereConditions += " AND manga.genre_id = ?";
@@ -197,16 +197,20 @@ if (searchQuery) {
     whereConditions += " AND advert.price <= ?";
     queryParams.push(maxPrice);
   }
+  if (searchVolume && searchManga) {
+  whereConditions += " AND advert.volume_id = ? AND advert.manga_id = ?";
+  queryParams.push(searchVolume, searchManga);
+  }
   
   const query = `
-    SELECT advert.id, advert.title_search_manga, advert.price, article_condition.name_condition,
+    SELECT advert.id, advert.title_search_manga, advert.price, article_condition.name_condition,advert.volume_id,
     advert_image.image_path, user.pseudo, user.picture as user_picture, manga.genre_id,
     ROUND(joint_table.average, 1) as average, joint_table.feedback_nber, advert.publication_date_advert
     FROM ${this.table}
     LEFT JOIN advert_image ON advert.id=advert_image.advert_id AND advert_image.is_primary=1
     JOIN article_condition ON advert.article_condition_id=article_condition.id
-    JOIN user ON advert.user_id=user.id
-    JOIN manga ON advert.manga_id=manga.id
+    JOIN user ON advert.user_id=user.id 
+   LEFT JOIN manga ON advert.manga_id = manga.id 
     JOIN (SELECT user.pseudo as rated_pseudo, ROUND(AVG(feedback.rating), 1) as average, COUNT(feedback.rating) as feedback_nber
           FROM user
           JOIN feedback ON user.id = feedback.user_id
