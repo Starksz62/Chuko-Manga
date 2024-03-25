@@ -6,7 +6,7 @@ function RepalledeSale() {
   return (
     <div className="repalledeContainer">
       <p className="repalledeText">Découvrer de nouvelles oeuvres</p>
-      <Link to="/manga/catalogue" type="button" className="repalledeBoutton">
+      <Link to="/manga/catalog" type="button" className="repalledeBoutton">
         <div className="repalledecontenu">
           {/* <img src={plusbutton} alt="plusbutton" className="repalledeImg" /> */}
           <p>Parcourir notre catalogue</p>
