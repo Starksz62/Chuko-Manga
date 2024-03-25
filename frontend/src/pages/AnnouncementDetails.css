@@ -8,7 +8,11 @@
   padding: 20px;
   background: #fff;
 }
-
+.image-advert-sell img {
+  margin-left: 5px;
+  width: 250px;
+  height: auto;
+}
 .image-manga-sell {
   display: flex;
   flex-direction: row;
@@ -16,9 +20,8 @@
 }
 
 .image-manga-sell img {
-  width: 30%;
+  width: 40%;
   height: auto;
-  margin-bottom: 10px;
 }
 
 .image-other-sell h2 {
@@ -42,10 +45,10 @@
 .information-manga-sell {
   width: 50%;
   padding: 20px;
-  /* Espacement interne */
+
   display: flex;
   flex-direction: column;
-  /* Organise le contenu en colonne */
+
   background: #fff;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
   margin-left: 5px;
@@ -142,4 +145,84 @@
   padding: 20px;
   border: 2px solid rgb(102, 99, 99);
   border-top: none;
+}
+
+.manga-details-container .naruto-details {
+  width: 100%;
+}
+
+@media only screen and (max-width: 820px) {
+  .container-Details {
+    margin-bottom: 0px;
+  }
+  .image-advert-sell {
+    display: flex;
+    flex-direction: row;
+  }
+
+  .button-bar {
+    gap: 7px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .number-article p {
+    font-size: 0.8rem;
+  }
+  .manga-details-container .top-section {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+  }
+  .manga-details-container .bottom-section {
+    display: flex;
+    flex-direction: column-reverse;
+  }
+  .manga-details-container .status-manga {
+    width: 100%;
+  }
+  .manga-details-container .status-manga p {
+    text-align: center;
+  }
+  .manga-details-container .authors-container {
+    padding-left: 0px;
+  }
+  .manga-details-container .description-manga p {
+    text-align: justify;
+  }
+}
+@media only screen and (min-width: 768px) and (max-width: 1200px) {
+  .button-bar {
+    gap: 20px;
+  }
+  .btn {
+    padding: 5px 10px;
+    font-size: 1rem;
+    width: 40%;
+    margin: 2px;
+  }
+  .image-manga-sell {
+    display: flex;
+    flex-direction: column;
+    width: 70%;
+  }
+  .image-manga-sell img {
+    width: 50%;
+    height: auto;
+    max-height: 185px;
+  }
+  .information-manga-sell {
+    width: auto;
+  }
+  .information-manga-sell p {
+    font-size: 0.9rem;
+  }
+  .image-advert-sell {
+    display: flex;
+    flex-direction: row;
+  }
+  .container-Details {
+    margin-bottom: 0px;
+  }
 }

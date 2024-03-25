@@ -37,7 +37,8 @@ function Connexion({ handleContentModal, handleClickOpen }) {
         const auth = await response.json();
 
         setAuth(auth);
-
+        console.info("information reçue après la connexion", auth);
+        localStorage.setItem("auth", JSON.stringify(auth));
         handleClickOpen();
       } else {
         // Log des détails de la réponse en cas d'échec

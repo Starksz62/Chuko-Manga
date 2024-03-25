@@ -59,12 +59,9 @@ const getCatalogMangas = async (req, res) => {
 
 const getMangaQuery = async (req, res) => {
   try {
-    // Extract ID from the request
     const userQuery = req.query.q;
     console.info(`Controller Search query: ${userQuery}`);
-    // Check if the item exists based on the ID
     const manga = await models.manga.getMangaOverview();
-    // If the advert is not found, respond with HTTP 404 (Not Found)
     if (manga != null) {
       res.json(manga);
       console.info(manga);
@@ -72,7 +69,6 @@ const getMangaQuery = async (req, res) => {
       res.sendStatus(404);
     }
   } catch (err) {
-    // Pass any errors to the error-handling middleware
     console.error(err);
   }
 };
