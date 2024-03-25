@@ -3,6 +3,8 @@ import ButtonProfilUser from "../components/ButtonProfilUser";
 import OngletProfil from "../components/OngletProfil";
 import ProfilHead from "../components/ProfilHead";
 
+import "./ProfilUser.css";
+
 function ProfilUser() {
   let id;
 
@@ -24,7 +26,7 @@ function ProfilUser() {
   }
 
   return (
-    <div>
+    <div className="containerProfilUser">
       <ProfilHead id={id}>
         <ButtonProfilUser id={id} />
       </ProfilHead>
