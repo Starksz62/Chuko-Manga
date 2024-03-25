@@ -17,18 +17,20 @@ function Payment({ price, articleData }) {
 
   return (
     <div className="resume-payment">
-      <p>Résumé de ta commande</p>
-      <div className="final-price">
-        <div className="commande-label">
-          Commande :<div className="price-value">{price} €</div>
-        </div>
+      <div className="calcul-payment">
+        <p>Résumé de ta commande</p>
+        <div className="final-price">
+          <div className="commande-label">
+            Commande :<div className="price-value">{price} €</div>
+          </div>
 
-        <div className="commande-label">
-          Frais de port :
-          <div className="price-value"> {fraisDePort.toFixed(2)} € </div>
-        </div>
-        <div className="commande-label">
-          Total : <div className="price-value"> {total.toFixed(2)} €</div>
+          <div className="commande-label">
+            Frais de port :
+            <div className="price-value"> {fraisDePort.toFixed(2)} € </div>
+          </div>
+          <div className="commande-label">
+            Total : <div className="price-value"> {total.toFixed(2)} €</div>
+          </div>
         </div>
       </div>
       <div className="confirmation-payment">

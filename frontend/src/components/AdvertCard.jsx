@@ -2,11 +2,10 @@
 import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import "./AdvertCard.css";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useNotifications } from "../context/NotificationContext";
 
 function AdvertCard({ advert }) {
-  const navigate = useNavigate();
   const { addNotification } = useNotifications();
   const [isFavorite, setIsFavorite] = useState(false);
 
@@ -21,7 +20,6 @@ function AdvertCard({ advert }) {
   }, [advert.id]);
 
   const handleCardClick = () => {
-    navigate(`/display-adverts/${advert.id}`);
     window.scrollTo(0, 0);
   };
 
@@ -55,10 +53,10 @@ function AdvertCard({ advert }) {
     }
   };
 
-  const average = parseFloat(advert.average);
+  const average = parseFloat(advert.average).toFixed(1); 
 
   return (
-    <section className="card-content">
+    <section className="card-content" key={advert.id}>
       <Link to={`/display-adverts/${advert.id}`} onClick={handleCardClick} className="link-card-title">
         <img
           src={`http://localhost:3310${advert.image_path}`}
@@ -115,9 +113,12 @@ AdvertCard.propTypes = {
   advert: PropTypes.shape({
     id: PropTypes.number.isRequired,
     title_search_manga: PropTypes.string.isRequired,
-    image_path: PropTypes.string.isRequired,
-    price: PropTypes.number.isRequired,
-    is_collector: PropTypes.bool.isRequired,
+    image_path: PropTypes.string,
+    price: PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.number,
+    ]).isRequired,
+    is_collector: PropTypes.bool,
     name_condition: PropTypes.string.isRequired,
     user_picture: PropTypes.string.isRequired,
     pseudo: PropTypes.string.isRequired,
