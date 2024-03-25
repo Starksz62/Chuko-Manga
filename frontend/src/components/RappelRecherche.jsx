@@ -34,12 +34,6 @@ function RappelRecherche() {
             {manga.title}
           </li>
         ))}
-        {/* <li className="sugg">Naruto</li>
-        <li className="sugg">Hajime no Ippo</li>
-        <li className="sugg">Shangri-la Frontier</li>
-        <li className="sugg">Berserk</li>
-        <li className="sugg">Blue lock</li>
-        <li className="sugg">Chi</li> */}
       </ul>
     </section>
   );
