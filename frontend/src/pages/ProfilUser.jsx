@@ -27,7 +27,7 @@ function ProfilUser() {
       <ProfilHead id={id}>
         <ButtonProfilUser id={id} />
       </ProfilHead>
-      <OngletProfil id={id} />
+      <OngletProfil />
     </div>
   );
 }
