@@ -24,29 +24,55 @@
 }
 
 .cardAnnonces {
-  margin: 30px;
-  list-style: none;
-  font-size: var(--fs-S);
+  width: 275px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: 0.4rem;
+  font-family: "Monserrat", sans-serif;
+  box-shadow:
+    rgba(0, 0, 0, 0.12) 0px 1px 3px,
+    rgba(0, 0, 0, 0.24) 0px 1px 2px;
+  border-radius: 6px;
+  padding: 8px;
+  margin-right: 20px;
+}
+.cardAnnonces:hover {
+  transform: scale(1.05);
+}
+
+.linkCard:hover {
+  text-decoration: none;
 }
 
 .imagePathAnnonces {
-  height: 20rem;
-  object-fit: contain;
-  background-color: var(--neutral-800);
-  width: 15rem;
+  width: 100%;
+  height: 300px;
+  object-fit: cover;
+  object-position: center;
+  box-shadow: 0 0 5px var(--neutral-600);
+  margin-bottom: 0.5rem;
   border-radius: 3px;
-  box-shadow: 0px 7px 9px 0px rgba(0, 0, 0, 0.56);
 }
 
 .titleSearchMangaAnnonces {
-  margin-top: 1rem;
-  width: 15rem;
+  font-size: var(--fs-XS);
+  font-weight: normal;
+  display: flex;
+  align-items: start;
+  white-space: nowrap;
+  overflow: hidden;
 }
 .priceAnnonces {
+  font-size: var(--fs-L);
   font-weight: bold;
 }
 .name_condition {
   color: var(--neutral-600);
+  font-size: var(--fs-XS);
+  margin-bottom: 0.2rem;
+  display: flex;
+  align-items: start;
 }
 /******************************************************************************************************************************/
 

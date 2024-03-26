@@ -135,22 +135,24 @@ function OngletProfil() {
           <div className="containerAnnonces">
             {annonces?.map((annonce) => (
               <div key={advertId}>
-                <li className="cardAnnonces">
-                  <Link key={advertId} to={`/myAnounces/${annonce.advert_id}`}>
+                <Link
+                  key={advertId}
+                  to={`/myAnounces/${annonce.advert_id}`}
+                  className="linkCard"
+                >
+                  <li className="cardAnnonces">
                     <div>
                       <img
                         className="imagePathAnnonces"
                         src={`http://localhost:3310${annonce.image_path}`}
                         alt="image_article_seller"
                       />
-                      <div className="titleSearchMangaAnnonces">{`${annonce.title_search_manga}`}</div>
-                      <div className="priceAnnonces">
-                        {`${annonce.price}`} €
-                      </div>
-                      <div className="name_condition">{`${annonce.name_condition}`}</div>
+                      <h2 className="titleSearchMangaAnnonces">{`${annonce.title_search_manga}`}</h2>
+                      <p className="priceAnnonces">{`${annonce.price}`} €</p>
+                      <p className="name_condition">{`${annonce.name_condition}`}</p>
                     </div>
-                  </Link>
-                </li>
+                  </li>
+                </Link>
               </div>
             ))}
           </div>
