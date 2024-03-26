@@ -164,7 +164,7 @@ function UpdateAdvert() {
   };
 
   return (
-    <div className="new-advert">
+    <div className="update-advert">
       <h1>Modifie ton annonce</h1>
       {formData && (
         // // mettre soit la ligne 172 ou 171 (et décommenter aussi la const hangleUpdateanounce (ligne 132 à 164))
@@ -249,9 +249,7 @@ function UpdateAdvert() {
               type="button"
               id="button-tome"
               onClick={() => setBatch(0)}
-              className={
-                batch === 0 ? "active-color tome-active" : "inactive-tab"
-              }
+              className={batch === 0 ? "active-tab" : "inactive-tab"}
             >
               Vends un tome
             </button>
@@ -259,9 +257,7 @@ function UpdateAdvert() {
               type="button"
               id="button-batch"
               onClick={() => setBatch(1)}
-              className={
-                batch === 1 ? "active-color batch-active" : "inactive-tab"
-              }
+              className={batch === 1 ? "active-tab" : "inactive-tab"}
             >
               Vends un lot
             </button>
