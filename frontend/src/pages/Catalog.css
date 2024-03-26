@@ -19,6 +19,7 @@
 .catalog-img-container {
   position: relative;
   overflow: hidden;
+  width: 200px;
 }
 
 .catalog-img {
@@ -30,9 +31,7 @@
 }
 
 .catalog-img:hover {
-  transform: scale(
-    1.1
-  ); /* ajoute une ombre portée plus prononcée lorsque l'utilisateur survole l'image */
+  transform: scale(1.1);
 }
 
 .title-catalog {
@@ -45,17 +44,11 @@
 
 @media (min-width: 768px) {
   .catalog-container ul {
-    gap: 60px 15px;
-  }
-
-  .catalog-img {
-    max-width: 180px;
+    gap: 25px 10px;
   }
 
   .catalog-img:hover {
-    transform: scale(
-      1.1
-    ); /* ajustez la valeur de scale en fonction de vos besoins */
+    transform: scale(1.1);
   }
 
   .title-catalog {
@@ -65,10 +58,11 @@
 
 @media (max-width: 1200px) {
   .catalog-container ul {
-    gap: 60px 20px;
+    padding: 0;
+    gap: 25px 10px;
   }
 
-  .catalog-img {
-    max-width: 200px;
+  .catalog-img-container {
+    scale: 0.9;
   }
 }

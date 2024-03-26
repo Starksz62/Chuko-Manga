@@ -23,7 +23,7 @@ function Catalog() {
   }, []);
 
   return (
-    <div className="section-catalog">
+    <div className="section-catalog container_limit">
       <h1 className="title-catalog">Parcourez notre catalogue</h1>
       <div className="catalog-container">
         <ul>
