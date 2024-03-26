@@ -127,17 +127,15 @@ function NewAdvert() {
     }
   };
 
+  // Set user id value
   let userId;
 
   try {
     const storedAuth = localStorage.getItem("auth");
-
     if (storedAuth) {
       const authObj = JSON.parse(storedAuth);
-
       userId = authObj.user.id;
-
-      console.info(userId);
+      console.info("this is user id:", userId);
     }
   } catch (error) {
     console.error(
@@ -145,6 +143,7 @@ function NewAdvert() {
       error
     );
   }
+
   // Submit form and redirect to user's profile
   const handleSubmit = (e) => {
     e.preventDefault();

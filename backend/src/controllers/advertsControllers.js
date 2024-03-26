@@ -32,6 +32,7 @@ const getRecentBatch = (req, res) => {
 const getAdvertById = async (req, res) => {
   try {
     const advert = await models.advert.getAdvertById(req.params.id);
+    // console.info("dans le back:", advert);
     if (advert == null) {
       res.sendStatus(404);
     } else {
@@ -161,8 +162,17 @@ const getSearchAdverts = async (req, res) => {
   }
 };
 const recentAdverts = async (req, res) => {
-  const { batch, genreId, conditionName, minPrice, maxPrice, searchQuery,searchVolume,searchManga} = req.query;
-const isBatch = batch === 'true';
+  const {
+    batch,
+    genreId,
+    conditionName,
+    minPrice,
+    maxPrice,
+    searchQuery,
+    searchVolume,
+    searchManga,
+  } = req.query;
+  const isBatch = batch === "true";
   try {
     const adverts = await models.advert.findAdverts({
       batch: isBatch,
@@ -172,7 +182,7 @@ const isBatch = batch === 'true';
       maxPrice,
       searchQuery,
       searchVolume,
-      searchManga
+      searchManga,
     });
 
     return res.json(adverts);
