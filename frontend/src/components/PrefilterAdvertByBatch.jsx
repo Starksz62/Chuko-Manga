@@ -66,10 +66,8 @@ function PrefilterAdvertByBatch() {
   }
 
   return (
-    <section className="prefiltre-lot">
-      <h2 className="title-prefiltre-batch">
-        Explorer les derniers lots ajoutés
-      </h2>
+    <section className="prefiltre-lot container_limit">
+      <h2 className="titlePrefilter">Explorer les derniers lots ajoutés :</h2>
       <div className="filter-by-batch-wrapper">
         {showLeftButton && (
           <img

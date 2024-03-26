@@ -19,7 +19,7 @@ function PrefilterAdvertByDesc({
   const [showLeftButton, setShowLeftButton] = useState(false);
   const [showRightButton, setShowRightButton] = useState(true);
   const titleToShow = (
-    <h2 className={`titlePrefiltreDesc ${titleClassName || ""}`}>
+    <h2 className={`titlePrefilter ${titleClassName || ""}`}>
       {titlefromAnnounceDetail || defaultTitle}
     </h2>
   );
@@ -72,26 +72,26 @@ function PrefilterAdvertByDesc({
   }
 
   return (
-    <section className="prefiltre-unique">
-      <h2 className="title-prefiltre-desc">{renderedTitle}</h2>
+    <section className="prefiltre-unique container_limit">
+      <h2 className="titlePrefilter">{renderedTitle}</h2>
       <div className="filter-by-date-desc-wrapper">
+        {showLeftButton && (
+          <img
+            className="left-button"
+            src={Left}
+            alt="left button"
+            onClick={() => scrollContainer("left")}
+          />
+        )}
+        {showRightButton && (
+          <img
+            className="right-button"
+            src={Right}
+            alt="right button"
+            onClick={() => scrollContainer("right")}
+          />
+        )}
         <div className="filter-by-date-desc" ref={containerRef}>
-          {showLeftButton && (
-            <img
-              className="left-button"
-              src={Left}
-              alt="left button"
-              onClick={() => scrollContainer("left")}
-            />
-          )}
-          {showRightButton && (
-            <img
-              className="right-button"
-              src={Right}
-              alt="right button"
-              onClick={() => scrollContainer("right")}
-            />
-          )}
           <div className="filtered-adverts">
             {filteredAdverts.length > 0 ? (
               filteredAdverts.slice(0, 8).map((advert) => (
@@ -102,8 +102,6 @@ function PrefilterAdvertByDesc({
             ) : (
               <p>Loading...</p>
             )}
-          </div>
-          <div className="seeAllTomesButtonWrapper">
             <Link className="link-btn-desc" to="/explore">
               <button type="button" className="bnt-see-all-tomes-desc">
                 Voir tous les tomes
