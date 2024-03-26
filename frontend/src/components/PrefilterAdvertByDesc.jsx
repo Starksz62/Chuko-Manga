@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable react/prop-types */
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
@@ -13,7 +14,7 @@ function PrefilterAdvertByDesc({
   titleClassName,
   useDivWrapper,
 }) {
-  const [, setAdverts] = useState([]);
+  const [adverts, setAdverts] = useState([]);
   const [filteredAdverts, setFilteredAdverts] = useState([]);
   const defaultTitle = "Explorer les derniers tomes ajoutés :";
   const [showLeftButton, setShowLeftButton] = useState(false);

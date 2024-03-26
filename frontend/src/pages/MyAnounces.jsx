@@ -9,11 +9,13 @@ import NoImage from "../assets/navBar.png";
 function MyAnounces() {
   const navigate = useNavigate();
   const { id } = useParams();
+
   const [anounces, setAnounces] = useState([]);
   const [modal1, setModal1] = useState(false);
   // const [setUserId] = useState(null);
 
   useEffect(() => {
+    console.info("valeur de l'id au fetch:", id);
     fetch(`http://localhost:3310/api/display-adverts/${id}`)
       .then((res) => {
         return res.json();
@@ -28,7 +30,7 @@ function MyAnounces() {
   }, [id]);
 
   if (!anounces) {
-    return <p>Chargement des anonces...</p>;
+    return <p>Chargement des annonces...</p>;
   }
 
   const navigateToProfilUser = () => {
@@ -73,7 +75,7 @@ function MyAnounces() {
   };
 
   return (
-    <div>
+    <div className="container_limit">
       {anounces?.map((anounce) => (
         <div key={anounce.id} className="containerAnounce">
           <div className="ContainerImage">

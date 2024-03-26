@@ -2,55 +2,43 @@
 const Joi = require("joi");
 
 const advertSchema = Joi.object({
-  title_search_manga: Joi.string().max(40).required(),
+  titleSearchManga: Joi.string().max(40).required(),
   description: Joi.string().max(255).required(),
-  article_condition_id: Joi.number().required(),
+  articleConditionId: Joi.number().required(),
   price: Joi.number().required(),
-  manga_id: Joi.number(),
-  volume_id: Joi.number(),
+  mangaId: Joi.number(),
+  volumeId: Joi.number(),
   batch: Joi.number().required(),
   alert: Joi.number().required(),
-  publication_date_advert: Joi.date().required(),
-  user_id: Joi.number().required(),
+  publicationDate: Joi.date().required(),
+  userId: Joi.number().required(),
 });
 
 const validateAdvert = (req, res, next) => {
   const {
-    // eslint-disable-next-line camelcase
-    title_search_manga,
+    titleSearchManga,
     description,
     price,
-    // eslint-disable-next-line camelcase
-    article_condition_id,
-    // eslint-disable-next-line camelcase
-    manga_id,
-    // eslint-disable-next-line camelcase
-    volume_id,
+    articleConditionId,
+    mangaId,
+    volumeId,
     batch,
     alert,
-    // eslint-disable-next-line camelcase
-    publication_date_advert,
-    // eslint-disable-next-line camelcase
-    user_id,
+    publicationDate,
+    userId,
   } = req.body;
   const { error } = advertSchema.validate(
     {
-      // eslint-disable-next-line camelcase
-      title_search_manga,
+      titleSearchManga,
       description,
       price,
-      // eslint-disable-next-line camelcase
-      article_condition_id,
-      // eslint-disable-next-line camelcase
-      manga_id,
-      // eslint-disable-next-line camelcase
-      volume_id,
+      articleConditionId,
+      mangaId,
+      volumeId,
       batch,
       alert,
-      // eslint-disable-next-line camelcase
-      publication_date_advert,
-      // eslint-disable-next-line camelcase
-      user_id,
+      publicationDate,
+      userId,
     },
     { abortEarly: false }
   );
