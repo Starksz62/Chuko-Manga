@@ -10,38 +10,21 @@
 .ContainerImage {
   display: flex;
   flex-direction: row;
-  width: 50%;
+  width: 34rem;
   flex-wrap: wrap;
 }
 
-.imageSecond {
-  display: flex;
-  flex-direction: column;
+.imagePrimary {
+  width: 22.5rem;
+  height: 30rem;
+  margin-right: 0.5rem;
+  background-color: var(--neutral-800);
 }
 
 .imageSell1 {
   width: 22.5rem;
   height: 30rem;
   object-fit: contain;
-  background-color: var(--neutral-800);
-  margin-right: 2rem;
-  box-shadow: rgba(0, 0, 0, 0.15) 0px 3px 3px 0px;
-}
-
-.imageSell2 {
-  width: 10.9rem;
-  height: 14.5rem;
-  object-fit: contain;
-  background-color: var(--neutral-800);
-  margin-bottom: 0.5rem;
-  box-shadow: rgba(0, 0, 0, 0.15) 0px 3px 3px 0px;
-}
-.imageSell3 {
-  width: 10.9rem;
-  height: 14.5rem;
-  object-fit: contain;
-  background-color: var(--neutral-800);
-  margin-top: 0.5rem;
   box-shadow: rgba(0, 0, 0, 0.15) 0px 3px 3px 0px;
 }
 
@@ -49,13 +32,36 @@
   width: 22.5rem;
   height: 30rem;
   object-fit: contain;
-  margin-right: 2rem;
+}
+
+.imageSecond {
+  display: flex;
+  flex-direction: column;
+  width: 10.9rem;
+  height: 14.5rem;
+  gap: 1rem;
+}
+
+.imageSell2 {
+  width: 10.9rem;
+  height: 14.5rem;
+  object-fit: contain;
+  background-color: var(--neutral-800);
+  box-shadow: rgba(0, 0, 0, 0.15) 0px 3px 3px 0px;
+}
+.imageSell3 {
+  width: 10.9rem;
+  height: 14.5rem;
+  object-fit: contain;
+  background-color: var(--neutral-800);
+  box-shadow: rgba(0, 0, 0, 0.15) 0px 3px 3px 0px;
 }
 
 .NoImage {
-  width: 10.9;
+  width: 10.9rem;
   height: 14.5rem;
   object-fit: contain;
+  box-shadow: rgba(0, 0, 0, 0.15) 0px 3px 3px 0px;
 }
 
 .ContainerInformationSell {
@@ -178,4 +184,103 @@
 
 .confirmModal:hover {
   color: var(--primary-clr-accent);
+}
+
+@media screen and (min-width: 1201px) and (max-width: 1356px) {
+  .ContainerInformationSell {
+    margin-left: 0;
+  }
+  .ContainerInformationSell {
+    width: unset;
+  }
+  .btnModSup {
+    width: 15rem;
+  }
+}
+
+@media screen and (max-width: 1104px) {
+  .ContainerInformationSell {
+    margin-left: 0;
+    width: unset;
+    margin-top: 1rem;
+  }
+
+  .btnModSup {
+    width: 15rem;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .ContainerImage {
+    width: 20rem;
+  }
+
+  .ContainerImage {
+    width: 15.4rem;
+  }
+
+  .imagePrimary {
+    width: 10rem;
+    height: 14rem;
+  }
+
+  .imageSell1 {
+    width: 10rem;
+    height: 14rem;
+  }
+
+  .imageSecond {
+    width: 4.9rem;
+    height: 6.5rem;
+  }
+
+  .imageSell2 {
+    width: 4.9rem;
+    height: 6.5rem;
+  }
+
+  .NoImage {
+    width: 4.9rem;
+    height: 6.5rem;
+  }
+
+  .ContainerInformationSell {
+    margin-top: 1rem;
+    margin-left: 0;
+    font-size: var(--fs-XS);
+    height: auto;
+  }
+
+  .informationPrice {
+    font-size: var(--fs-M);
+  }
+
+  .informationTitle,
+  .informationDescription,
+  .informationEtat,
+  .informationVues,
+  .informationDate {
+    flex-direction: column;
+  }
+
+  .informationDescription p {
+    width: 100%;
+  }
+
+  .informationTitle p:first-child,
+  .informationDescription p:first-child,
+  .informationEtat p:first-child,
+  .informationVues p:first-child,
+  .informationDate p:first-child {
+    width: 100%;
+    color: var(--neutral-700);
+  }
+
+  .buttonContainer {
+    gap: 25px;
+  }
+
+  .btnModSup {
+    width: 15rem;
+  }
 }
