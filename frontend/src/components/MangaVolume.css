@@ -21,10 +21,14 @@
   margin: 1rem;
   /* margin-bottom: 10px; */
   box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
-  transition: transform 0.2s ease;
+  transition: transform 0.4s ease;
 }
 
-.volume:hover {
+.clickable-volume:hover {
   cursor: pointer;
   transform: scale(1.02);
+}
+
+.disabled-volume {
+  filter: grayscale(1);
 }
