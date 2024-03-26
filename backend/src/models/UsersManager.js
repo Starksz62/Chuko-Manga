@@ -15,13 +15,13 @@ class UsersManager extends AbstractManager {
 
   async getUserProfilById(id) {
     const [rows] = await this.database.query(
-      `SELECT user.lastname, user.firstname, user.pseudo, user.email, user.phone, user.picture, address.country, 
+      `SELECT user.lastname, user.firstname, user.pseudo, user.email, user.phone, user.picture, 
+      MAX(address.country) AS country, 
       (SELECT AVG(feedback.rating) FROM feedback WHERE user_id = ?) AS average_rating
-      FROM ${this.table} 
-      JOIN address_has_user on user.id = address_has_user.user_id
-      JOIN address on address_has_user.address_id = address.id
-      WHERE address_has_user.user_id = ?
-      ORDER BY address.id ASC
+      FROM ${this.table}
+      LEFT JOIN address_has_user ON user.id = address_has_user.user_id
+      LEFT JOIN address ON address_has_user.address_id = address.id
+      WHERE user.id = ?
       LIMIT 1`,
       [id, id]
     );

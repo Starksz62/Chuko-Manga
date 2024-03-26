@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import { useFilters } from "../context/FilterContext";
 import AdvertCard from "../components/AdvertCard";
+import "./Explore.css";
 
 function Explore() {
   const [dataAdverts, setDataAdverts] = useState([]);
@@ -10,6 +11,7 @@ function Explore() {
   const searchQuery = decodeURIComponent(
     location.pathname.split("/explore/")[1] || ""
   );
+  console.info("query reçue dans explore", searchQuery);
   const queryParams = new URLSearchParams(location.search);
   const batchFromUrl = queryParams.get("batch");
   const { filters, setBatch, setMinMaxPrices, dynamicPriceFilter } =
@@ -82,7 +84,7 @@ function Explore() {
   }, [dynamicPriceFilter, dataAdverts]);
 
   return (
-    <div className="filteredAdverts">
+    <div className="filteredAdverts-explore">
       {filteredAdverts.length > 0 ? (
         filteredAdverts.map((dataAdvert) => (
           <AdvertCard key={dataAdvert.id} advert={dataAdvert} />
