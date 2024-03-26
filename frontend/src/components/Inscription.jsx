@@ -82,7 +82,6 @@ function Inscription({ handleContentModal }) {
           value={inputPseudo}
           onChange={handleChangeInputPseudo}
         />
-        <br />
         {/* Champ pour l'email */}
         <input
           ref={emailRef}
@@ -92,7 +91,6 @@ function Inscription({ handleContentModal }) {
           value={inputEmail}
           onChange={handleChangeInputEmail}
         />
-        <br />
         {/* Champ pour le mot de passe */}
         <input
           type="password"

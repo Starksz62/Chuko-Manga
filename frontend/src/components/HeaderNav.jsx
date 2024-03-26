@@ -21,14 +21,17 @@ function HeaderNav() {
       document.body.style.overflow = "auto";
     }
   };
+  const handleLogout = () => {
+    localStorage.removeItem("auth");
+    setAuth(null);
+  };
 
   return (
     <>
-      {/* desktop header */}
       <header className="navbar-header-desktop container_limit">
         <SearchBar />
         <div className="buttonHeader-container">
-          {auth == null ? (
+          {!auth?.token ? (
             <button
               className="incription-login-button"
               type="button"
@@ -40,9 +43,7 @@ function HeaderNav() {
             <button
               className="incription-login-button"
               type="button"
-              onClick={() => {
-                setAuth(null);
-              }}
+              onClick={handleLogout}
             >
               Se déconnecter
             </button>
@@ -56,7 +57,6 @@ function HeaderNav() {
         </div>
       </header>
 
-      {/* mobile header */}
       <HeaderNavMobile />
     </>
   );

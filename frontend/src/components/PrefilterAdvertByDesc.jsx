@@ -1,24 +1,31 @@
+/* eslint-disable no-unused-vars */
+/* eslint-disable react/prop-types */
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 import React, { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
-
+import Left from "../assets/leftlogo.png";
+import Right from "../assets/rightlogo.png";
 import AdvertCard from "./AdvertCard";
 import "./PrefilterAdvertByDesc.css";
 
-import Left from "../assets/leftlogo.png";
-import Right from "../assets/rightlogo.png";
-
-function PrefilterAdvertByDesc() {
-  // eslint-disable-next-line no-unused-vars
+function PrefilterAdvertByDesc({
+  titlefromAnnounceDetail,
+  titleClassName,
+  useDivWrapper,
+}) {
   const [adverts, setAdverts] = useState([]);
   const [filteredAdverts, setFilteredAdverts] = useState([]);
-  const containerRef = useRef(null);
-
-  // Ajoutez un état pour suivre si les images "left" et "right" doivent être affichées
+  const defaultTitle = "Explorer les derniers tomes ajoutés :";
   const [showLeftButton, setShowLeftButton] = useState(false);
   const [showRightButton, setShowRightButton] = useState(true);
-
+  const titleToShow = (
+    <h2 className={`titlePrefiltreDesc ${titleClassName || ""}`}>
+      {titlefromAnnounceDetail || defaultTitle}
+    </h2>
+  );
+  const containerRef = useRef(null);
+  const renderedTitle = useDivWrapper ? <div>{titleToShow}</div> : titleToShow;
   useEffect(() => {
     fetch("http://localhost:3310/api/unique-adverts-date-desc")
       .then((response) => {
@@ -67,9 +74,7 @@ function PrefilterAdvertByDesc() {
 
   return (
     <section className="prefiltre-unique">
-      <h2 className="title-prefiltre-desc">
-        Explorer les derniers tomes ajoutés
-      </h2>
+      <h2 className="title-prefiltre-desc">{renderedTitle}</h2>
       <div className="filter-by-date-desc-wrapper">
         <div className="filter-by-date-desc" ref={containerRef}>
           {showLeftButton && (
