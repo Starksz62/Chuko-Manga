@@ -50,6 +50,7 @@ function AdvertFormReference(props) {
           </label>
           <select
             id="manga"
+            className="advert-select"
             name="manga_id"
             onChange={(e) => {
               handleSelectedManga(e);
@@ -67,6 +68,7 @@ function AdvertFormReference(props) {
           </label>
           <select
             id="volume"
+            className="advert-select"
             name="volume_id"
             onChange={(e) => setVolumeId(e.target.value)}
           >
@@ -85,6 +87,7 @@ function AdvertFormReference(props) {
           </label>
           <select
             id="manga"
+            className="advert-select"
             name="manga_id"
             onChange={(e) => {
               handleSelectedManga(e);

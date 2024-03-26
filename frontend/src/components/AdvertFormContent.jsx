@@ -36,9 +36,11 @@ function AdvertFormContent(props) {
 
   return (
     <>
-      <label htmlFor="title">Titre *</label>
+      <label htmlFor="title" className="advert-label">
+        Titre *
+      </label>
       <input
-        className={maxTitleReached && "advert-wrong-input"}
+        className={`advert-input ${maxTitleReached && "advert-wrong-input"}`}
         type="text"
         id="title"
         name="title_search_manga"
@@ -56,9 +58,11 @@ function AdvertFormContent(props) {
       >
         40 caractères maximum
       </div>
-      <label htmlFor="description">Description *</label>
+      <label htmlFor="description" className="advert-label">
+        Description *
+      </label>
       <textarea
-        className={maxDescReached && "advert-wrong-input"}
+        className={`advert-description ${maxDescReached && "advert-wrong-input"}`}
         type="text"
         id="description"
         name="description"
@@ -76,9 +80,12 @@ function AdvertFormContent(props) {
       >
         255 caractères maximum
       </div>
-      <label htmlFor="condition">Etat *</label>
+      <label htmlFor="condition" className="advert-label">
+        Etat *
+      </label>
       <select
         id="condition"
+        className="advert-select"
         name="article_condition_id"
         onChange={(e) => setConditionId(e.target.value)}
       >
@@ -89,9 +96,11 @@ function AdvertFormContent(props) {
           </option>
         ))}
       </select>
-      <label htmlFor="price">Prix hors frais de port *</label>
+      <label htmlFor="price" className="advert-label">
+        Prix hors frais de port *
+      </label>
       <input
-        className={priceErr && "advert-wrong-input"}
+        className={`advert-input ${priceErr && "advert-wrong-input"}`}
         type="text"
         id="price"
         name="price"
