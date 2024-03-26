@@ -16,5 +16,26 @@ class OrdersManager extends AbstractManager {
     );
     return rows;
   }
+
+  async addOrder(orderDetails) {
+    const sql = `    INSERT INTO \`${this.table}\` 
+                 (id_user_buy, total_price, order_date, status_order, feedback_order, advert_id, user_id) 
+                 VALUES (?, ?, ?, ?, ?, ?, ?)`;
+    const values = [
+      orderDetails.id_user_buy,
+      orderDetails.total_price,
+      orderDetails.order_date,
+      orderDetails.status_order,
+      orderDetails.feedback_order,
+      orderDetails.advert_id,
+      orderDetails.user_id,
+    ];
+    try {
+      const [result] = await this.database.query(sql, values);
+      return result;
+    } catch (error) {
+      throw new Error(`Error inserting order into database: ${error.message}`);
+    }
+  }
 }
 module.exports = OrdersManager;

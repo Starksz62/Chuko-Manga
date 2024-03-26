@@ -11,7 +11,7 @@ function Connexion({ handleContentModal, handleClickOpen }) {
   // Références pour les champs email et mot de passe
   const emailRef = useRef();
   const passwordRef = useRef();
-
+  const [errorMessage, setErrorMessage] = useState("");
   const { setAuth } = useContext(UserContext);
 
   // Gestionnaire de soumission du formulaire
@@ -37,16 +37,16 @@ function Connexion({ handleContentModal, handleClickOpen }) {
         const auth = await response.json();
 
         setAuth(auth);
-        console.info("information reçue après la connexion", auth);
         localStorage.setItem("auth", JSON.stringify(auth));
         handleClickOpen();
       } else {
         // Log des détails de la réponse en cas d'échec
-        console.info(response);
+        setErrorMessage("Email ou mot de passe incorrect.");
       }
     } catch (err) {
       // Log des erreurs possibles
       console.error(err);
+      setErrorMessage("Une erreur s'est produite. Veuillez réessayer.");
     }
   };
 
@@ -90,7 +90,7 @@ function Connexion({ handleContentModal, handleClickOpen }) {
           value={inputPassword}
           onChange={handleChangeInputPassword}
         />
-        {/* Bouton de soumission du formulaire */}
+        {errorMessage && <div className="error-message">{errorMessage}</div>}
         <button className="Button-type" type="submit">
           Continuer
         </button>

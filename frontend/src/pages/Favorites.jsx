@@ -18,8 +18,6 @@ function Favorites() {
     <>
       <h1>Article Favoris</h1>
       <div className="favorite-adverts-container">
-        {" "}
-        {/* Ajoutez le className ici */}
         {favoriteAdverts.map((advert) => (
           <AdvertCard
             key={advert.id}

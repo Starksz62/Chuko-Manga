@@ -8,20 +8,54 @@
   padding: 20px;
   background: #fff;
 }
-.image-advert-sell img {
-  margin-left: 5px;
-  width: 250px;
-  height: auto;
-}
+
 .image-manga-sell {
   display: flex;
-  flex-direction: row;
-  padding: 20px;
 }
 
-.image-manga-sell img {
-  width: 40%;
-  height: auto;
+.image-advert-sell {
+  display: flex;
+}
+.image-from-annoucement img {
+  display: flex;
+  width: 35vh;
+  height: 100%;
+  object-fit: cover;
+}
+.secondary-images-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  grid-template-rows: 250px 250px;
+  gap: 5px;
+}
+
+.image-from-annoucement:nth-child(1) {
+  grid-column: 1;
+  grid-row: 1 / span 2;
+}
+
+/* Second image: spans two rows only if it's the last child (meaning there is no third image) */
+.image-from-annoucement:nth-child(2):last-child {
+  grid-column: 2;
+  grid-row: 1 / span 2;
+}
+
+/* Third image: always in the second column, second row */
+.image-from-annoucement:nth-child(3) {
+  grid-column: 2;
+  grid-row: 2;
+}
+
+.secondary-images-container.images-2 .image-from-annoucement:nth-child(2) {
+  grid-column: 2;
+  grid-row: 1 / span 2;
+}
+
+/* When there are three images */
+.secondary-images-container.images-3 .image-from-annoucement:nth-child(2),
+.secondary-images-container.images-3 .image-from-annoucement:nth-child(3) {
+  grid-column: 2;
+  grid-row: auto;
 }
 
 .image-other-sell h2 {
@@ -45,7 +79,7 @@
 .information-manga-sell {
   width: 50%;
   padding: 20px;
-
+  height: auto;
   display: flex;
   flex-direction: column;
 
@@ -66,7 +100,6 @@
 .description-annonce {
   width: 75%;
 }
-
 .information-title,
 .information-etat,
 .information-date {
@@ -151,7 +184,7 @@
   width: 100%;
 }
 
-@media only screen and (max-width: 820px) {
+/* @media only screen and (max-width: 820px) {
   .container-Details {
     margin-bottom: 0px;
   }
@@ -169,6 +202,60 @@
   .number-article p {
     font-size: 0.8rem;
   }
+} */
+@media only screen and (min-width: 768px) and (max-width: 1200px) {
+  .image-manga-sell {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+  }
+  .container-Details {
+    align-items: center;
+  }
+  .button-bar {
+    gap: 20px;
+  }
+  .btn {
+    padding: 5px 10px;
+    font-size: 1rem;
+    width: 13%;
+    margin: 2px;
+  }
+  .main-image-container img {
+    height: auto;
+    width: 100%;
+  }
+
+  .secondary-image img {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+  }
+  .information-manga-sell {
+    width: 100%;
+    margin-left: 0px;
+  }
+  .information-manga-sell p {
+    font-size: 0.9rem;
+  }
+  .image-advert-sell {
+    display: flex;
+    flex-direction: row;
+  }
+  .container-Details {
+    margin-bottom: 0px;
+  }
+  .image-from-annoucement img {
+    width: 100%;
+    max-width: 100%;
+  }
+  .tab-system {
+    width: 50%;
+  }
+
+  .number-article p {
+    font-size: 0.8rem;
+  }
   .manga-details-container .top-section {
     display: flex;
     flex-direction: column;
@@ -178,6 +265,13 @@
   .manga-details-container .bottom-section {
     display: flex;
     flex-direction: column-reverse;
+  }
+  .manga-details-container .data-authors {
+    width: 100%;
+    gap: 0px;
+  }
+  .manga-details-container .data-authors p {
+    font-size: 10px;
   }
   .manga-details-container .status-manga {
     width: 100%;
@@ -192,28 +286,36 @@
     text-align: justify;
   }
 }
-@media only screen and (min-width: 768px) and (max-width: 1200px) {
+@media only screen and (max-width: 767px) {
+  .image-manga-sell {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+  }
+  .container-Details {
+    align-items: center;
+  }
   .button-bar {
     gap: 20px;
   }
   .btn {
     padding: 5px 10px;
     font-size: 1rem;
-    width: 40%;
+    width: 13%;
     margin: 2px;
   }
-  .image-manga-sell {
+  .main-image-container img {
+    height: auto;
+    width: 100%;
+  }
+  .secondary-image img {
     display: flex;
     flex-direction: column;
-    width: 70%;
-  }
-  .image-manga-sell img {
     width: 50%;
-    height: auto;
-    max-height: 185px;
   }
   .information-manga-sell {
-    width: auto;
+    width: 100%;
+    margin-left: 0px;
   }
   .information-manga-sell p {
     font-size: 0.9rem;
@@ -224,5 +326,45 @@
   }
   .container-Details {
     margin-bottom: 0px;
+  }
+  .image-from-annoucement img {
+    width: 100%;
+    max-width: 100%;
+  }
+  .tab-system {
+    width: 50%;
+  }
+
+  .number-article p {
+    font-size: 0.8rem;
+  }
+  .manga-details-container .top-section {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+  }
+  .manga-details-container .bottom-section {
+    display: flex;
+    flex-direction: column-reverse;
+  }
+  .manga-details-container .data-authors {
+    width: 100%;
+    gap: 0px;
+  }
+  .manga-details-container .data-authors p {
+    font-size: 10px;
+  }
+  .manga-details-container .status-manga {
+    width: 100%;
+  }
+  .manga-details-container .status-manga p {
+    text-align: center;
+  }
+  .manga-details-container .authors-container {
+    padding-left: 0px;
+  }
+  .manga-details-container .description-manga p {
+    text-align: justify;
   }
 }

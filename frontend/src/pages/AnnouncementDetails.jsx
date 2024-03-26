@@ -1,8 +1,10 @@
+/* eslint-disable react/no-array-index-key */
 import "./AnnouncementDetails.css";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import AnnounceDetail from "../components/AnnouncementDetails/AnnounceDetail";
 import MangaDetails from "./MangaDetails";
+import UserContext from "../context/UserContext";
 
 function AnnouncementDetail() {
   const navigate = useNavigate();
@@ -10,7 +12,11 @@ function AnnouncementDetail() {
   const [detailManga, setDetailManga] = useState(null);
   const [activeTab, setActiveTab] = useState("annonce");
   const [userId, setUserId] = useState(null);
-
+  const imageCountClass =
+    detailManga &&
+    detailManga[0] &&
+    `images-${detailManga[0].image_paths.length}`;
+  const { setIsModalOpen } = useContext(UserContext);
   useEffect(() => {
     fetch(`http://localhost:3310/api/display-adverts/${id}`)
       .then((response) => {
@@ -38,28 +44,28 @@ function AnnouncementDetail() {
     return <p>Chargement des détails...</p>;
   }
   const navigateToPaymentPage = () => {
-    console.info("Données envoyées à la page de paiement :", detailManga[0]);
-    navigate(`/PaymentPage/${id}`, {
-      state: { articleData: detailManga[0] },
-    });
+    const token = localStorage.getItem("auth");
+    if (token) {
+      navigate(`/PaymentPage/${id}`, {
+        state: { articleData: detailManga[0] },
+      });
+    } else {
+      setIsModalOpen(true);
+    }
   };
   return (
-    <div>
+    <div className="container-limit">
       <div className="container-Details">
         <div className="image-manga-sell">
-          <div className="image-advert-sell">
-            <img
-              src={`http://localhost:3310${detailManga[0].image_paths[0]}`}
-              alt=""
-            />
-            <img
-              src={`http://localhost:3310${detailManga[0].image_paths[1]}`}
-              alt=""
-            />
-            <img
-              src={`http://localhost:3310${detailManga[0].image_paths[2]}`}
-              alt=""
-            />
+          <div className={`secondary-images-container ${imageCountClass}`}>
+            {detailManga[0].image_paths.map((imagePath, index) => (
+              <div className="image-from-annoucement" key={index}>
+                <img
+                  src={`http://localhost:3310${imagePath}`}
+                  alt={`Manga ${index + 1}`}
+                />
+              </div>
+            ))}
           </div>
           <div className="information-manga-sell">
             <p className="information-price">{detailManga[0].price} €</p>
@@ -71,7 +77,9 @@ function AnnouncementDetail() {
             <div className="information-title">
               <p>Titre:</p>
               <p>
-                {detailManga[0].manga_title}, {detailManga[0].volume_title}
+                {detailManga[0].manga_title && detailManga[0].volume_title
+                  ? `${detailManga[0].manga_title}, ${detailManga[0].volume_title}`
+                  : "Ce manga n'est pas encore référencé"}
               </p>
             </div>
             <div className="information-date">
@@ -102,9 +110,11 @@ function AnnouncementDetail() {
         <button className="btn" type="button">
           Faire une Offre
         </button>
+
         <button className="btn" type="button">
           Message
         </button>
+
         <button className="btn" type="button">
           Favoris
         </button>
