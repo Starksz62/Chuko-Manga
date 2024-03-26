@@ -94,9 +94,9 @@ class AdvertsManager extends AbstractManager {
       LEFT JOIN volume ON advert.volume_id=volume.id
       LEFT JOIN advert_image ON advert.id=advert_image.advert_id 
       JOIN user ON advert.user_id=user.id
-      JOIN (SELECT user.id as rated_user_id, AVG(feedback.rating) as average, COUNT(feedback.rating) as feedback_nber
+      LEFT JOIN (SELECT user.id as rated_user_id, AVG(feedback.rating) as average, COUNT(feedback.rating) as feedback_nber
             FROM user
-            JOIN feedback ON user.id = feedback.user_id
+            LEFT JOIN feedback ON user.id = feedback.user_id
             GROUP BY user.id) as joint_table ON user.id=joint_table.rated_user_id
       WHERE advert.id = ?`,
       [id]
