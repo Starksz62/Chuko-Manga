@@ -3,8 +3,8 @@ import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import "./OngletProfil.css";
 
-function OngletProfil({ id }) {
-  const { advertId } = useParams();
+function OngletProfil() {
+  const { advertId, id } = useParams();
   const [annonces, setAnnonces] = useState();
   const [evaluations, setEvaluations] = useState([]);
   const [historyOrders, setHistoryOrders] = useState([]);
