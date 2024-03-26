@@ -154,9 +154,10 @@ router.get("/explore/:query", advertsControllers.getSearchAdverts);
 
 // Import authControllers module for handling auth-related operations
 const authControllers = require("./controllers/authControllers");
+const cookieJwAuth = require("./middlewares/cookieJwtAuth");
 
 router.post("/login", authControllers.login);
-
+router.post("/add", cookieJwAuth, authControllers.login);
 router.use(verifyToken);
 
 // Thoses routes are protected

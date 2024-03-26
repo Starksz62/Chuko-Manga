@@ -10,6 +10,7 @@ function AnnouncementDetail() {
   const [detailManga, setDetailManga] = useState(null);
   const [activeTab, setActiveTab] = useState("annonce");
   const [userId, setUserId] = useState(null);
+
   useEffect(() => {
     fetch(`http://localhost:3310/api/display-adverts/${id}`)
       .then((response) => {
@@ -46,15 +47,20 @@ function AnnouncementDetail() {
     <div>
       <div className="container-Details">
         <div className="image-manga-sell">
-          <img
-            src={`http://localhost:3310${detailManga[0].image_paths[0]}`}
-            alt=""
-          />
-          <img
-            src={`http://localhost:3310${detailManga[0].image_paths[1]}`}
-            alt=""
-          />
-
+          <div className="image-advert-sell">
+            <img
+              src={`http://localhost:3310${detailManga[0].image_paths[0]}`}
+              alt=""
+            />
+            <img
+              src={`http://localhost:3310${detailManga[0].image_paths[1]}`}
+              alt=""
+            />
+            <img
+              src={`http://localhost:3310${detailManga[0].image_paths[2]}`}
+              alt=""
+            />
+          </div>
           <div className="information-manga-sell">
             <p className="information-price">{detailManga[0].price} €</p>
             <p>{detailManga[0].title_search_manga}</p>
@@ -63,9 +69,9 @@ function AnnouncementDetail() {
               <p>État:</p> <p> {detailManga[0].name_condition}</p>
             </div>
             <div className="information-title">
-              <p>titre:</p>
+              <p>Titre:</p>
               <p>
-                {detailManga[0].manga_title},{detailManga[0].volume_title}
+                {detailManga[0].manga_title}, {detailManga[0].volume_title}
               </p>
             </div>
             <div className="information-date">
@@ -129,14 +135,16 @@ function AnnouncementDetail() {
             </div>
           )}
           {activeTab === "manga" && (
-            <div>
+            <figure className="description-advert-manga">
               {detailManga[0] && (
-                <MangaDetails
-                  id={detailManga[0].manga_id}
-                  showVolumes={false}
-                />
+                <div className="manga-details-container">
+                  <MangaDetails
+                    id={detailManga[0].manga_id}
+                    showVolumes={false}
+                  />
+                </div>
               )}
-            </div>
+            </figure>
           )}
         </div>
       </div>

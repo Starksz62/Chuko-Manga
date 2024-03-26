@@ -22,7 +22,6 @@ function NewAdvert() {
   const [price, setPrice] = useState("");
   const [volumeId, setVolumeId] = useState(null);
   const alert = 0;
-  const userId = 1;
   const publicationDate = new Date().toISOString().split("T")[0];
 
   // States designed to preview images
@@ -128,6 +127,24 @@ function NewAdvert() {
     }
   };
 
+  let userId;
+
+  try {
+    const storedAuth = localStorage.getItem("auth");
+
+    if (storedAuth) {
+      const authObj = JSON.parse(storedAuth);
+
+      userId = authObj.user.id;
+
+      console.info(userId);
+    }
+  } catch (error) {
+    console.error(
+      "Erreur lors de la récupération de l'id utilisateur depuis localStorage",
+      error
+    );
+  }
   // Submit form and redirect to user's profile
   const handleSubmit = (e) => {
     e.preventDefault();

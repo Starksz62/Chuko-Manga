@@ -40,7 +40,9 @@ class MangasManager extends AbstractManager {
 
     // Constructing the SQL query dynamically
     const queryTerms = searchQuery.split(" "); // Split the search query into individual terms
-    const titleLike = queryTerms.map(() => `(title LIKE ?)`); // Construct LIKE conditions for each term
+    const titleLike = queryTerms
+      .map((term) => `title LIKE '%${term}%'`)
+      .join(" OR ");
     const sqlQuery = `SELECT id, title, image FROM manga WHERE ${titleLike}`; // Join LIKE conditions with OR operator
     const queryParams = queryTerms.flatMap((term) => [
       `%${term}%`,

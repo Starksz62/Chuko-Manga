@@ -30,9 +30,15 @@ const login = async (req, res, next) => {
           expiresIn: "1h",
         }
       );
+      res.cookie("token", token, {
+        httpOnly: true,
+      });
       res.json({
         token,
-        user,
+        user: {
+          id: user.id,
+          pseudo: user.pseudo,
+        },
       });
     } else {
       res.sendStatus(422);
