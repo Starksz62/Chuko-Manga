@@ -172,7 +172,16 @@ const recentAdverts = async (req, res) => {
     searchVolume,
     searchManga,
   } = req.query;
-  const isBatch = batch === "true";
+
+  let isBatch = null;
+  if (batch !== undefined) {
+    if (batch === "true") {
+      isBatch = true;
+    } else if (batch === "false") {
+      isBatch = false;
+    }
+  }
+
   try {
     const adverts = await models.advert.findAdverts({
       batch: isBatch,

@@ -170,12 +170,16 @@ class AdvertsManager extends AbstractManager {
     let whereConditions = "WHERE 1=1";
     const queryParams = [];
 
+    if (batch !== null && batch !== undefined) {
+      whereConditions += batch ? " AND advert.batch=1" : " AND advert.batch=0";
+    }
+
     if (searchQuery) {
       whereConditions +=
         " AND (advert.title_search_manga LIKE ? OR manga.description LIKE ?)";
       const searchPattern = `%${searchQuery}%`;
       queryParams.push(searchPattern, searchPattern);
-    } else if (batch !== null && batch !== undefined) {
+    } else if (batch !== null) {
       if (batch === true) {
         whereConditions += " AND advert.batch=1";
       } else {
@@ -208,7 +212,7 @@ class AdvertsManager extends AbstractManager {
     }
 
     const query = `
-    SELECT advert.id, advert.title_search_manga, advert.price, article_condition.name_condition,advert.volume_id,
+    SELECT advert.id, advert.title_search_manga, advert.price, article_condition.name_condition,advert.volume_id, advert.batch,
     advert_image.image_path, user.pseudo, user.picture as user_picture, manga.genre_id,
     ROUND(joint_table.average, 1) as average, joint_table.feedback_nber, advert.publication_date_advert
     FROM ${this.table}
