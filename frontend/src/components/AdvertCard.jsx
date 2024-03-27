@@ -53,16 +53,22 @@ function AdvertCard({ advert }) {
     }
   };
 
-  const average = parseFloat(advert.average).toFixed(1); 
+  const average = parseFloat(advert.average).toFixed(1);
 
   return (
     <section className="card-content" key={advert.id}>
-      <Link to={`/display-adverts/${advert.id}`} onClick={handleCardClick} className="link-card-title">
-        <img
-          src={`http://localhost:3310${advert.image_path}`}
-          alt={advert.title_search_manga}
-          className="card-image"
-        />
+      <Link
+        to={`/display-adverts/${advert.id}`}
+        onClick={handleCardClick}
+        className="link-card-title"
+      >
+        <div className="card-image-frame">
+          <img
+            src={`http://localhost:3310${advert.image_path}`}
+            alt={advert.title_search_manga}
+            className="card-image"
+          />
+        </div>
         <h2 className="card-title">{advert.title_search_manga}</h2>
       </Link>
       <div className="card-price-section">
@@ -114,10 +120,7 @@ AdvertCard.propTypes = {
     id: PropTypes.number.isRequired,
     title_search_manga: PropTypes.string.isRequired,
     image_path: PropTypes.string,
-    price: PropTypes.oneOfType([
-      PropTypes.string,
-      PropTypes.number,
-    ]).isRequired,
+    price: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
     is_collector: PropTypes.bool,
     name_condition: PropTypes.string.isRequired,
     user_picture: PropTypes.string.isRequired,

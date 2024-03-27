@@ -23,7 +23,7 @@ function ProfilUser() {
   }
 
   return (
-    <div className="containerProfilUser">
+    <div className="containerProfilUser container_limit">
       <ProfilHead id={id}>
         <ButtonProfilUser id={id} />
       </ProfilHead>

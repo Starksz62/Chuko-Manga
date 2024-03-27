@@ -30,7 +30,7 @@ function MyAnounces() {
   }, [id]);
 
   if (!anounces) {
-    return <p>Chargement des anonces...</p>;
+    return <p>Chargement des annonces...</p>;
   }
 
   const navigateToProfilUser = () => {
@@ -75,7 +75,7 @@ function MyAnounces() {
   };
 
   return (
-    <div>
+    <div className="container_limit">
       {anounces?.map((anounce) => (
         <div key={anounce.id} className="containerAnounce">
           <div className="ContainerImage">
