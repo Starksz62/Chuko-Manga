@@ -34,15 +34,25 @@ function MangaVolume() {
   return (
     <div>
       <div className="volumes-container">
-        {volumes.map((volume) => (
-          <Link to={`/explore/volume/${volume.id}`}>
+        {volumes.map((volume) =>
+          hasAdvert(volume.id) ? (
+            <Link
+              to={`/explore/volume/${volume.id}`}
+              key={volume.id}
+              className="volume clickable-volume"
+            >
+              <button type="button">
+                <img
+                  src={`http://localhost:3310${volume.image}`}
+                  alt={volume.title}
+                />
+              </button>
+            </Link>
+          ) : (
             <button
               type="button"
-              className={
-                hasAdvert(volume.id)
-                  ? "volume clickable-volume"
-                  : "volume disabled-volume"
-              }
+              className="volume disabled-volume"
+              disabled // Désactive le bouton si aucune annonce associée
               key={volume.id}
             >
               <img
@@ -50,8 +60,8 @@ function MangaVolume() {
                 alt={volume.title}
               />
             </button>
-          </Link>
-        ))}
+          )
+        )}
       </div>
     </div>
   );
