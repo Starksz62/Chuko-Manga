@@ -62,6 +62,11 @@
   padding-left: 4vh;
 }
 
+.modification-button {
+  padding: 10px;
+  background-color: #dd7a07;
+}
+
 .view-all-container {
   text-align: center;
   margin-top: 20px;
