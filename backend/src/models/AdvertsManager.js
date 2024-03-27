@@ -165,7 +165,6 @@ class AdvertsManager extends AbstractManager {
     maxPrice,
     searchQuery,
     searchVolume,
-    searchManga,
   }) {
     let whereConditions = "WHERE 1=1";
     const queryParams = [];
@@ -206,9 +205,9 @@ class AdvertsManager extends AbstractManager {
       whereConditions += " AND advert.price <= ?";
       queryParams.push(maxPrice);
     }
-    if (searchVolume && searchManga) {
-      whereConditions += " AND advert.volume_id = ? AND advert.manga_id = ?";
-      queryParams.push(searchVolume, searchManga);
+    if (searchVolume) {
+      whereConditions += " AND advert.volume_id = ?";
+      queryParams.push(searchVolume);
     }
 
     const query = `

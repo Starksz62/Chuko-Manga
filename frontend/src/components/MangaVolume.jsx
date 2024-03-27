@@ -31,19 +31,11 @@ function MangaVolume() {
     );
   };
 
-  // console.info("tada", volumes[0].advert_ids);
-  console.info("hasAdvert", hasAdvert(1));
-
-  // const handleVolumeClick = (volume) => {
-  //   console.info("ID du manga :", id);
-  //   console.info("ID du volume :", volume.id);
-  // };
-
   return (
     <div>
       <div className="volumes-container">
         {volumes.map((volume) => (
-          <Link to="/explore">
+          <Link to={`/explore/volume/${volume.id}`}>
             <button
               type="button"
               className={
@@ -52,7 +44,6 @@ function MangaVolume() {
                   : "volume disabled-volume"
               }
               key={volume.id}
-              // onClick={() => handleVolumeClick(volume)}
             >
               <img
                 src={`http://localhost:3310${volume.image}`}

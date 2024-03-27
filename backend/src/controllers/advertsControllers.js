@@ -170,7 +170,6 @@ const recentAdverts = async (req, res) => {
     maxPrice,
     searchQuery,
     searchVolume,
-    searchManga,
   } = req.query;
 
   let isBatch = null;
@@ -191,7 +190,6 @@ const recentAdverts = async (req, res) => {
       maxPrice,
       searchQuery,
       searchVolume,
-      searchManga,
     });
 
     return res.json(adverts);
