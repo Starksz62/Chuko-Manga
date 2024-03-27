@@ -1,7 +1,7 @@
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
-import React, { useState, useEffect, useRef } from "react";
-import { useNavigate } from "react-router-dom";
+import { useState, useEffect, useRef } from "react";
+import { Link } from "react-router-dom";
 import AdvertCard from "./AdvertCard";
 import "./PrefilterAdvertByBatch.css";
 
@@ -10,10 +10,8 @@ import Right from "../assets/rightlogo.png";
 
 function PrefilterAdvertByBatch() {
   // eslint-disable-next-line no-unused-vars
-  const [adverts, setAdverts] = useState([]);
   const [filteredAdverts, setFilteredAdverts] = useState([]);
   const containerRef = useRef(null);
-  const navigate = useNavigate();
   // Ajoutez un état pour suivre si les images "left" et "right" doivent être affichées
   const [showLeftButton, setShowLeftButton] = useState(false);
   const [showRightButton, setShowRightButton] = useState(true);
@@ -27,7 +25,6 @@ function PrefilterAdvertByBatch() {
         return response.json();
       })
       .then((data) => {
-        setAdverts(data);
         setFilteredAdverts(data); // Initialize with all adverts
       })
       .catch((error) => {
@@ -62,9 +59,6 @@ function PrefilterAdvertByBatch() {
       container.scrollLeft + container.clientWidth < container.scrollWidth
     );
   }
-  const handleViewAllClick = () => {
-    navigate("/explore?batch=true");
-  };
   return (
     <section className="prefiltre-lot container_limit">
       <h2 className="titlePrefilter">Explorer les derniers lots ajoutés :</h2>
@@ -97,17 +91,12 @@ function PrefilterAdvertByBatch() {
             ) : (
               <p>Loading...</p>
             )}
-          </div>
-          <div className="seeAllTomesButtonWrapperBatch">
-            <div className="link-btn-batch">
-              <button
-                type="button"
-                className="bnt-see-all-tomes-batch"
-                onClick={handleViewAllClick}
-              >
+
+            <Link className="link-btn-batch" to="/explore?batch=true">
+              <button type="button" className="bnt-see-all-tomes-batch">
                 Voir tous les lots
               </button>
-            </div>
+            </Link>
           </div>
         </div>
       </div>

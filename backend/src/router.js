@@ -90,7 +90,7 @@ router.get(
   "/display-order-history-bybuyer/:id",
   ordersControllers.getHistoryOrderByBuyer
 );
-// Route to get all volumes by manag ID (page manga details)
+// Route to get all volumes by manga ID (page manga details)
 router.get("/volumes/:mangaId", volumesControllers.getVolumesByMangaId);
 // Route to delete advert by user
 router.delete("/advert/:id", advertsControllers.deleteAdvert);

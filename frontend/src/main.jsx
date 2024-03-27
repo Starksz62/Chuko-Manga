@@ -29,7 +29,11 @@ const router = createBrowserRouter([
         element: <Explore />,
       },
       {
-        path: "/explore/:searchQuery",
+        path: "/explore/search/:searchQuery",
+        element: <Explore />,
+      },
+      {
+        path: "/explore/volume/:volumeId",
         element: <Explore />,
       },
       {

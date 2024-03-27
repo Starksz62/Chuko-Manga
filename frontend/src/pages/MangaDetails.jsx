@@ -56,43 +56,48 @@ function MangaDetails({ id: propId, showVolumes = true }) {
           <p>{manga.description}</p>
         </div>
       </div>
-
       <div className="bottom-section">
         <div className="status-manga">
-          <p>
-            <strong>Sortie en France :</strong> {formatDate(manga.date_france)}
-          </p>
-          <p>
-            <strong>Sortie au Japon :</strong> {formatDate(manga.date_japan)}
-          </p>
-          <p className="genre-info">
-            <span className="genre-label">
+          <div className="grid-status-manga">
+            <p>
+              <strong>Sortie en France</strong>
+            </p>
+            <p>{formatDate(manga.date_france)}</p>
+            <p>
+              <strong>Sortie au Japon</strong>
+            </p>
+            <p>{formatDate(manga.date_japan)}</p>
+            <p>
               <strong>Genre</strong>
-            </span>
-            <span className="genre-value">{manga.genre_genre}</span>
-          </p>
-          <p>
-            <strong>Japon</strong>
-            {manga.finish_japan ? "Terminée" : "Pas terminée"}
-          </p>
-          <p>
-            <strong>France </strong>
-            {manga.finish_france ? "Terminée" : "Pas terminée"}
-          </p>
+            </p>
+            <p className="genre-info">
+              <span className="genre-value">{manga.genre_genre}</span>
+            </p>
+            <p>
+              <strong>Japon</strong>
+            </p>
+            <p>{manga.finish_japan ? "Terminée" : "Pas terminée"}</p>
+            <p>
+              <strong>France</strong>
+            </p>
+            <p>{manga.finish_france ? "Terminée" : "Pas terminée"}</p>
+          </div>
         </div>
-
         <div className="authors-container">
-          <h2 className="title-authors">Authors</h2>
+          <h2 className="title-authors">Auteurs</h2>
           <div className="data-authors">
-            <p>
-              <span>Auteur :</span> {manga.author}
-            </p>
-            <p>
-              <span>Scénariste :</span> {manga.script_writer}
-            </p>
-            <p>
-              <span>Illustrateur :</span> {manga.illustrator}
-            </p>
+            <div className="authors-box">
+              <p className="data-authors-head">Auteur</p>
+              <p>{manga.author}</p>
+            </div>
+            <div className="authors-box">
+              <p className="data-authors-head">Scénariste</p>
+              <p>{manga.script_writer}</p>
+            </div>
+            <div className="authors-box">
+              <p className="data-authors-head">Illustrateur</p>
+              <p>{manga.illustrator}</p>
+            </div>
           </div>
         </div>
       </div>
@@ -100,6 +105,7 @@ function MangaDetails({ id: propId, showVolumes = true }) {
     </div>
   );
 }
+
 MangaDetails.propTypes = {
   id: PropTypes.number,
   showVolumes: PropTypes.bool,
@@ -109,4 +115,5 @@ MangaDetails.defaultProps = {
   id: undefined,
   showVolumes: true,
 };
+
 export default MangaDetails;
