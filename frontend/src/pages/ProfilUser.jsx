@@ -10,12 +10,9 @@ function ProfilUser() {
 
   try {
     const storedAuth = localStorage.getItem("auth");
-
     if (storedAuth) {
       const authObj = JSON.parse(storedAuth);
-
       id = authObj.user.id;
-
       console.info(id);
     }
   } catch (error) {
@@ -26,7 +23,7 @@ function ProfilUser() {
   }
 
   return (
-    <div className="containerProfilUser">
+    <div className="containerProfilUser container_limit">
       <ProfilHead id={id}>
         <ButtonProfilUser id={id} />
       </ProfilHead>

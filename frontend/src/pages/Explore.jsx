@@ -83,7 +83,7 @@ function Explore() {
   }, [dynamicPriceFilter, dataAdverts]);
 
   return (
-    <div className="filteredAdverts-explore">
+    <div className="filteredAdverts-explore container_limit">
       {filteredAdverts.length > 0 ? (
         filteredAdverts.map((dataAdvert) => (
           <AdvertCard key={dataAdvert.id} advert={dataAdvert} />

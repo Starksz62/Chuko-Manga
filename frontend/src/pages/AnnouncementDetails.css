@@ -1,33 +1,44 @@
+.announcement-detail {
+  width: 100%;
+}
+
 .container-Details {
   display: flex;
   flex-direction: row;
   align-items: flex-start;
   justify-content: center;
-  max-width: 1200px;
-  margin: 40px auto;
-  padding: 20px;
-  background: #fff;
+  width: 100%;
 }
 
 .image-manga-sell {
   display: flex;
-  justify-content: end;
+  flex-direction: row;
+  width: 100%;
+
+  justify-content: center;
 }
 
 .image-advert-sell {
   display: flex;
 }
+
+.image-from-annoucement {
+  overflow: hidden;
+}
+
 .image-from-annoucement img {
   display: flex;
-  width: 25vh;
+  width: 100%;
   height: 100%;
   object-fit: cover;
 }
+
 .secondary-images-container {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   grid-template-rows: 250px 250px;
   gap: 5px;
+  width: 40%;
 }
 
 .image-from-annoucement:nth-child(1) {
@@ -75,15 +86,13 @@
 }
 
 .information-manga-sell {
-  width: 50%;
-  padding: 20px;
+  width: 30%;
+  padding: 1.5rem;
   height: auto;
   display: flex;
   flex-direction: column;
 
-  background: #fff;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-  margin-left: 5px;
 }
 
 .information-manga-sell p {
@@ -130,47 +139,43 @@
   color: #fff;
 }
 
+.tab-system {
+  margin-top: 1.25rem;
+}
+
 .tabs {
   display: flex;
-  justify-content: center;
-  border-bottom: 2px solid rgb(102, 99, 99);
 }
 
-.tab-system {
-  display: flex;
-  flex-direction: column;
-  margin: 40px auto;
-  max-width: 1200px;
+.tabs button {
+  width: 50%;
+  font-size: var(--fs-M);
+  padding: 1rem;
+  margin-bottom: 1rem;
+  color: var(--neutral-700);
+  border-bottom: 2px solid var(--neutral-600);
 }
 
-.tab {
-  padding: 10px 20px;
-  cursor: pointer;
-  background-color: white;
-  width: 100%;
-}
-
-.tab.active {
-  border-top: 2px solid rgb(102, 99, 99);
-  border-right: 2px solid rgb(102, 99, 99);
-  border-left: 2px solid rgb(102, 99, 99);
-  position: relative;
-}
-
-.tab.active::before {
-  content: "";
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: -2px;
-  border-bottom: 2px solid white;
-  z-index: 1;
+.tabs button.active {
+  color: var(--neutral-800);
+  font-weight: 500;
+  border-bottom: 3px solid var(--primary-clr);
 }
 
 .content {
-  padding: 20px;
-  border: 2px solid rgb(102, 99, 99);
-  border-top: none;
+  display: flex;
+  flex-direction: column;
+}
+
+.advert-ref {
+  font-size: var(--fs-M);
+  margin-bottom: 0.6rem;
+  font-weight: 500;
+}
+
+.advert-instruction {
+  color: var(--neutral-700);
+  font-size: var(--fs-S);
 }
 
 .manga-details-container .naruto-details {
@@ -196,26 +201,31 @@
     font-size: 0.8rem;
   }
 } */
+
 @media only screen and (min-width: 768px) and (max-width: 1200px) {
   .image-manga-sell {
     display: flex;
     flex-direction: column;
-    width: 37%;
+    width: 50%;
   }
-  .container-Details {
-    align-items: center;
-  }
+
   .button-bar {
     gap: 20px;
   }
+
   .btn {
     padding: 5px 10px;
     font-size: 1rem;
     width: 13%;
     margin: 2px;
   }
+
   .main-image-container img {
     height: auto;
+    width: 100%;
+  }
+
+  .secondary-images-container {
     width: 100%;
   }
 
@@ -224,6 +234,7 @@
     flex-direction: column;
     width: 50%;
   }
+
   .information-manga-sell {
     width: 100%;
     margin-left: 0px;
@@ -233,77 +244,99 @@
     display: flex;
     flex-direction: row;
   }
+
   .container-Details {
     margin-bottom: 0px;
   }
+
   .image-from-annoucement img {
     width: 100%;
     max-width: 100%;
   }
+
   .tab-system {
-    width: 50%;
+    width: 100%;
+  }
+
+  .container-other-sell {
+    justify-content: center;
   }
 
   .number-article p {
     font-size: 0.8rem;
   }
+
   .manga-details-container .top-section {
     display: flex;
     flex-direction: column;
     justify-content: center;
     text-align: center;
   }
+
   .manga-details-container .bottom-section {
     display: flex;
     flex-direction: column-reverse;
   }
+
   .manga-details-container .data-authors {
     width: 100%;
     gap: 0px;
   }
+
   .manga-details-container .data-authors p {
     font-size: 10px;
   }
+
   .manga-details-container .status-manga {
     width: 100%;
   }
+
   .manga-details-container .status-manga p {
     text-align: center;
   }
+
   .manga-details-container .authors-container {
     padding-left: 0px;
   }
+
   .manga-details-container .description-manga p {
     text-align: justify;
   }
 }
+
 @media only screen and (max-width: 767px) {
   .image-manga-sell {
     display: flex;
     flex-direction: column;
     width: 50%;
   }
+
   .container-Details {
     align-items: center;
   }
+
   .button-bar {
     gap: 20px;
   }
+
   .btn {
     padding: 5px 10px;
     font-size: 1rem;
     width: 13%;
     margin: 2px;
   }
+
   .main-image-container img {
     height: auto;
     width: 100%;
   }
+
   .secondary-image img {
     display: flex;
     flex-direction: column;
     width: 50%;
   }
+
   .information-manga-sell {
     width: 100%;
     margin-left: 0px;
@@ -314,13 +347,16 @@
     display: flex;
     flex-direction: row;
   }
+
   .container-Details {
     margin-bottom: 0px;
   }
+
   .image-from-annoucement img {
     width: 100%;
     max-width: 100%;
   }
+
   .tab-system {
     width: 50%;
   }
@@ -328,32 +364,40 @@
   .number-article p {
     font-size: 0.8rem;
   }
+
   .manga-details-container .top-section {
     display: flex;
     flex-direction: column;
     justify-content: center;
     text-align: center;
   }
+
   .manga-details-container .bottom-section {
     display: flex;
     flex-direction: column-reverse;
   }
+
   .manga-details-container .data-authors {
     width: 100%;
     gap: 0px;
   }
+
   .manga-details-container .data-authors p {
     font-size: 10px;
   }
+
   .manga-details-container .status-manga {
     width: 100%;
   }
+
   .manga-details-container .status-manga p {
     text-align: center;
   }
+
   .manga-details-container .authors-container {
     padding-left: 0px;
   }
+
   .manga-details-container .description-manga p {
     text-align: justify;
   }

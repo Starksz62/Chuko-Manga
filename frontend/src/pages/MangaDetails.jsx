@@ -46,7 +46,7 @@ function MangaDetails({ id: propId, showVolumes = true }) {
   const imageUrl = `http://localhost:3310${manga.image}`;
 
   return (
-    <div className="naruto-details">
+    <div className="naruto-details container_limit">
       <div className="top-section">
         <div className="image-container">
           <img src={imageUrl} alt={manga.title} />
@@ -72,7 +72,7 @@ function MangaDetails({ id: propId, showVolumes = true }) {
             <span className="genre-value">{manga.genre_genre}</span>
           </p>
           <p>
-            <strong>Japon</strong>{" "}
+            <strong>Japon</strong>
             {manga.finish_japan ? "Terminée" : "Pas terminée"}
           </p>
           <p>

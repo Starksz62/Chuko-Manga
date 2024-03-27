@@ -146,11 +146,12 @@ class AdvertsManager extends AbstractManager {
         advert.description,
         advert.alert,
         advert.batch,
-        advert.title_search_manga,
-        advert.publication_date_advert,
-        advert.user_id,
-        advert.volume_id,
-        advert.article_condition_id,
+        advert.titleSearchManga,
+        advert.publicationDate,
+        advert.userId,
+        advert.volumeId,
+        advert.articleConditionId,
+        advert.mangaId,
       ]
     );
     return result.insertId;

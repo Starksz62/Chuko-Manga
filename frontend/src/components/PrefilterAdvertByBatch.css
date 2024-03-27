@@ -2,12 +2,14 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  margin: 3rem 0;
+  gap: 1rem;
   width: 100%;
+  padding: 3rem 0;
+  padding-right: 1rem;
 }
 
-.title-prefiltre-batch {
-  margin-bottom: 0.8rem;
+.titlePrefilter {
+  font-size: var(--fs-L);
 }
 
 .filter-by-batch-wrapper {
@@ -20,11 +22,9 @@
 }
 
 .filter-by-batch {
-  display: flex;
-  flex-direction: row;
-  gap: 1rem;
-  overflow: hidden;
-  /* width: calc(300px * 4 + 150px); */
+  width: 100%;
+  height: 100%;
+  overflow-x: hidden;
 }
 
 .left-button {
@@ -48,6 +48,9 @@
 .filtered-adverts-batch {
   display: flex;
   flex-direction: row;
+  background-color: orange;
+  width: 0;
+  height: 100%;
 }
 
 .bnt-see-all-tomes-batch {
@@ -61,7 +64,7 @@
     rgba(50, 50, 93, 0.25) 0px 6px 12px -2px,
     rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
   border: 0;
-  height: 480px;
+  height: 100%;
   width: 200px;
   font-size: 1.2em;
   color: var(--neutral-700);

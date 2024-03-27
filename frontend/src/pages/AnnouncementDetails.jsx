@@ -54,7 +54,7 @@ function AnnouncementDetail() {
     }
   };
   return (
-    <div className="container-limit">
+    <div className="announcement-detail container_limit">
       <div className="container-Details">
         <div className="image-manga-sell">
           <div className={`secondary-images-container ${imageCountClass}`}>

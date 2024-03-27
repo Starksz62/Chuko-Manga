@@ -27,7 +27,15 @@ function HeaderNav() {
   return (
     <>
       <header className="navbar-header-desktop container_limit">
-        <SearchBar />
+        <container className="header-left-container">
+          <Link to="/explore">
+            <button type="button" className="explore-btn">
+              Explorer
+            </button>
+          </Link>
+          <SearchBar />
+        </container>
+
         <div className="buttonHeader-container">
           {!auth?.token ? (
             <button
