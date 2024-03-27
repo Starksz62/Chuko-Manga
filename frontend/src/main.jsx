@@ -14,7 +14,7 @@ import NotFoundPage from "./pages/NotFoundPage";
 import Favorites from "./pages/Favorites";
 import Catalog from "./pages/Catalog";
 import MyAnounces from "./pages/MyAnounces";
-import ProfilVente from "./pages/ProfilVente";
+import ProfilSeller from "./pages/ProfilSeller";
 
 const router = createBrowserRouter([
   {
@@ -61,8 +61,8 @@ const router = createBrowserRouter([
         element: <ProfilUser />,
       },
       {
-        path: "/profilvente/:id",
-        element: <ProfilVente />,
+        path: "/profilseller/:id",
+        element: <ProfilSeller />,
       },
       {
         path: "*",

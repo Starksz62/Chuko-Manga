@@ -1,13 +1,13 @@
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import ProfilHead from "../components/ProfilHead";
-import "./ProfilVente.css";
+import "../components/OngletProfil.css";
 
-function ProfilVente() {
+function ProfilSeller() {
   const { advertId, id } = useParams();
   const [annonces, setAnnonces] = useState();
   const [evaluations, setEvaluations] = useState([]);
-  const [ongletActif, setongletActif] = useState("Mes annonces");
+  const [ongletActif, setongletActif] = useState("Annonces");
 
   useEffect(() => {
     fetch(`http://localhost:3310/api/display-adverts-byseller/${id}`)
@@ -16,16 +16,16 @@ function ProfilVente() {
         console.info("Mes annonces dans OngletProfil:", data);
         setAnnonces(data);
       });
-  }, []);
+  }, [id]);
 
   useEffect(() => {
     fetch(`http://localhost:3310/api/user-profil-com/${id}`)
       .then((res) => res.json())
       .then((data) => {
-        // console.info("commentairesTableau:", data);
+        console.info("commentairesTableau:", data);
         setEvaluations(data);
       });
-  }, []);
+  }, [id]);
 
   function renderStars(averageRating) {
     const fullStars = Math.floor(averageRating); // Nombre d'étoiles pleines
@@ -78,60 +78,67 @@ function ProfilVente() {
         <div className="containerButton">
           <button
             type="button"
-            className="buttonOnglet"
-            onClick={() => setongletActif("Mes annonces")}
+            className={
+              ongletActif === "Annonces"
+                ? "buttonOnglet selected"
+                : "buttonOnglet"
+            }
+            onClick={() => setongletActif("Annonces")}
           >
-            Mes annonces
+            Annonces
           </button>
           <button
             type="button"
-            className="buttonOnglet"
-            onClick={() => setongletActif("Mes évaluations")}
+            className={
+              ongletActif === "Évaluations"
+                ? "buttonOnglet selected"
+                : "buttonOnglet"
+            }
+            onClick={() => setongletActif("Évaluations")}
           >
-            Mes évaluations
+            Évaluations
           </button>
         </div>
 
         <div className="containerInformations">
-          {ongletActif === "Mes annonces" && (
+          {ongletActif === "Annonces" && (
             <div className="containerAnnonces">
               {annonces?.map((annonce) => (
                 <div key={advertId}>
-                  <li className="cardAnnonces">
-                    <Link
-                      key={advertId}
-                      to={`/myAnounces/${annonce.advert_id}`}
-                    >
+                  <Link
+                    key={advertId}
+                    to={`/myAnounces/${annonce.advert_id}`}
+                    className="linkCard"
+                  >
+                    <li className="cardAnnonces">
                       <div>
                         <img
                           className="imagePathAnnonces"
                           src={`http://localhost:3310${annonce.image_path}`}
                           alt="image_article_seller"
                         />
-                        <div className="titleSearchMangaAnnonces">{`${annonce.title_search_manga}`}</div>
-                        <div className="priceAnnonces">
-                          {`${annonce.price}`} €
-                        </div>
-                        <div className="name_condition">{`${annonce.name_condition}`}</div>
+                        <h2 className="titleSearchMangaAnnonces">{`${annonce.title_search_manga}`}</h2>
+                        <p className="priceAnnonces">{`${annonce.price}`} €</p>
+                        <p className="name_condition">{`${annonce.name_condition}`}</p>
                       </div>
-                    </Link>
-                  </li>
+                    </li>
+                  </Link>
                 </div>
               ))}
             </div>
           )}
 
-          {ongletActif === "Mes évaluations" && (
+          {ongletActif === "Évaluations" && (
             <div className="containerEvaluations">
               {evaluations?.length > 0 && (
                 <div className="containerNote">
                   {console.info(evaluations)}
-                  <div className="average_rating">{`${(Math.round(averageRating * 100) / 100).toFixed(2)}`}</div>
+                  <p className="average_rating">{`${(Math.round(averageRating * 100) / 100).toFixed(2)}`}</p>
                   <div className="StarNumbCom">
                     <div className="starcontainer">
                       {renderStars(parseFloat(averageRating))}
                     </div>
-                    <div className="Number_comment">({evaluations.length})</div>
+                    <p className="Number_comment">({evaluations.length})</p>
                   </div>
                 </div>
               )}
@@ -140,7 +147,7 @@ function ProfilVente() {
                   {console.info(evaluation.average_rating)}
                   <div className="containerCom">
                     <div className="pictureBuyerCom">
-                      <Link to={`/profilvente/${id}`}>
+                      <Link to={`/profilseller/${evaluation.user_buyer}`}>
                         <img
                           className="picture_buyer"
                           src={`${evaluation.picture_buyer}`}
@@ -150,7 +157,7 @@ function ProfilVente() {
                     </div>
                     <div className="commentBuyer">
                       <div className="speudoBuyer">
-                        <Link to={`/profilvente/${evaluation.user_id}`}>
+                        <Link to={`/profilseller/${evaluation.user_buyer}`}>
                           {`${evaluation.pseudo}`}{" "}
                         </Link>
                       </div>
@@ -172,4 +179,4 @@ function ProfilVente() {
     </div>
   );
 }
-export default ProfilVente;
+export default ProfilSeller;
