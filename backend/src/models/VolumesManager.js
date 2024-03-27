@@ -7,9 +7,11 @@ class VolumesManager extends AbstractManager {
 
   async getVolumesByMangaId(mangaId) {
     const [rows] = await this.database.query(
-      `SELECT volume.id, volume.title, volume.number_volume, volume.publication_year, volume.image, volume.ISBN, volume.manga_id
+      `SELECT volume.id, volume.title, volume.number_volume, volume.publication_year, volume.image, volume.ISBN, volume.manga_id, JSON_ARRAYAGG(advert.id) as advert_ids
        FROM volume
+       LEFT JOIN advert ON advert.volume_id = volume.id
        WHERE volume.manga_id = ?
+       GROUP BY volume.id
        ORDER BY volume.number_volume ASC`,
       [mangaId]
     );

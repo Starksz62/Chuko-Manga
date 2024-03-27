@@ -14,7 +14,6 @@ function PrefilterAdvertByDesc({
   titleClassName,
   useDivWrapper,
 }) {
-  const [adverts, setAdverts] = useState([]);
   const [filteredAdverts, setFilteredAdverts] = useState([]);
   const defaultTitle = "Explorer les derniers tomes ajoutés :";
   const [showLeftButton, setShowLeftButton] = useState(false);
@@ -27,7 +26,7 @@ function PrefilterAdvertByDesc({
   const containerRef = useRef(null);
   const renderedTitle = useDivWrapper ? <div>{titleToShow}</div> : titleToShow;
   useEffect(() => {
-    fetch("http://localhost:3310/api/unique-adverts-date-desc")
+    fetch("http://localhost:3310/api/find-recent-adverts?batch=false")
       .then((response) => {
         if (!response.ok) {
           throw new Error(`Error HTTP, status: ${response.status}`);
@@ -35,7 +34,6 @@ function PrefilterAdvertByDesc({
         return response.json();
       })
       .then((data) => {
-        setAdverts(data);
         setFilteredAdverts(data); // Initialize with all adverts
       })
       .catch((error) => {
@@ -103,7 +101,7 @@ function PrefilterAdvertByDesc({
             ) : (
               <p>Loading...</p>
             )}
-            <Link className="link-btn-desc" to="/explore">
+            <Link className="link-btn-desc" to="/explore?batch=false">
               <button type="button" className="bnt-see-all-tomes-desc">
                 Voir tous les tomes
               </button>
