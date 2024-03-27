@@ -80,7 +80,12 @@ function HeaderNavMobile() {
         </section>
         <SearchBar />
       </container>
-      {menuMobileActive ? <HeaderNavMobileMenu /> : null}
+      {menuMobileActive ? (
+        <HeaderNavMobileMenu
+          handleMenuActive={handleMobileMenuOpen}
+          menuMobileActive={menuMobileActive}
+        />
+      ) : null}
     </header>
   );
 }

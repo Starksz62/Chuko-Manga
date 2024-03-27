@@ -10,7 +10,7 @@ function HeroBanner() {
           <br /> que tu ne lis <br />
           plus ?
         </h1>
-        <Link to="/explore">
+        <Link to="/new-advert">
           <button className="vendre-button" type="button">
             Vends tes mangas
           </button>
