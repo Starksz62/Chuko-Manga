@@ -9,11 +9,13 @@ import NoImage from "../assets/navBar.png";
 function MyAnounces() {
   const navigate = useNavigate();
   const { id } = useParams();
+
   const [anounces, setAnounces] = useState([]);
-  const [modal, setModal] = useState(false);
+  const [modal1, setModal1] = useState(false);
   // const [setUserId] = useState(null);
 
   useEffect(() => {
+    console.info("valeur de l'id au fetch:", id);
     fetch(`http://localhost:3310/api/display-adverts/${id}`)
       .then((res) => {
         return res.json();
@@ -28,7 +30,7 @@ function MyAnounces() {
   }, [id]);
 
   if (!anounces) {
-    return <p>Chargement des anonces...</p>;
+    return <p>Chargement des annonces...</p>;
   }
 
   const navigateToProfilUser = () => {
@@ -38,13 +40,20 @@ function MyAnounces() {
     }
   };
 
-  const toggleModal = () => {
-    setModal(!modal);
+  const navigateToUpdateAdvert = () => {
+    if (anounces && anounces.length > 0) {
+      const advertId = anounces[0].advert_id;
+      navigate(`/update-advert/${advertId}`);
+    }
+  };
+
+  const toggleModal1 = () => {
+    setModal1(!modal1);
   };
 
   const handleKeyPress = (e) => {
     if (e.key === "Enter") {
-      toggleModal();
+      toggleModal1();
     }
   };
 
@@ -54,7 +63,7 @@ function MyAnounces() {
         .delete(`http://localhost:3310/api/advert/${advertId}`)
         .then((response) => {
           console.warn("Success delete advert:", response.data);
-          toggleModal();
+          toggleModal1();
           navigateToProfilUser();
         })
         .catch((error) => {
@@ -66,7 +75,7 @@ function MyAnounces() {
   };
 
   return (
-    <div>
+    <div className="container_limit">
       {anounces?.map((anounce) => (
         <div key={anounce.id} className="containerAnounce">
           <div className="ContainerImage">
@@ -107,15 +116,13 @@ function MyAnounces() {
             <div className="informationTitle">
               <p>Titre :</p> <p> {anounce.title_search_manga}</p>
             </div>
-            <div className="informationDesciption">
+            <div className="informationDescription">
               <p>Description :</p> <p>{anounce.description}</p>
             </div>
             <div className="informationEtat">
               <p>État :</p> <p> {anounce.name_condition}</p>
             </div>
-            <div className="informationISBN">
-              <p>ISBN :</p> <p> {anounce.volume_ISBN}</p>
-            </div>
+
             <div className="informationVues">
               <p>Nombre de vues :</p>
               <p>{anounce.view_number}</p>
@@ -123,14 +130,11 @@ function MyAnounces() {
             <div className="informationDate">
               <p>Ajouté le :</p>
               <p>
-                {anounces.publication_date_advert
+                {anounce.publication_date_advert
                   ? new Date(anounce.publication_date_advert)
-                      .toLocaleString("fr-FR", {
-                        year: "numeric",
-                        month: "2-digit",
-                        day: "2-digit",
-                      })
-                      .replace(", ", " à ")
+                      .toLocaleDateString("fr-FR")
+                      .split("/")
+                      .join("-")
                   : ""}
               </p>
             </div>
@@ -139,32 +143,36 @@ function MyAnounces() {
             <button
               className="btnModSup"
               type="button"
-              // onClick={navigateToModifyPageAnounce(advert.id)}
+              onClick={() => navigateToUpdateAdvert(anounce.advert_id)}
             >
               Modifier l'annonce
             </button>
             <div>
-              <button className="btnModSup" onClick={toggleModal} type="button">
+              <button
+                className="btnModSup"
+                onClick={toggleModal1}
+                type="button"
+              >
                 Supprimer
               </button>
 
-              {modal && (
+              {modal1 && (
                 <div className="modal">
                   <div
                     role="button"
                     tabIndex={0}
-                    onClick={toggleModal}
+                    onClick={toggleModal1}
                     onKeyPress={handleKeyPress}
                     aria-label="Cliquez pour ouvrir la modal"
-                    className="overlay"
+                    className="overlayAnounces"
                   />
-                  <div className="modal-content">
+                  <div className="modalContent">
                     <h2 className="MessageModal">Supprimer l'article</h2>
                     <div className="closeConfirm">
                       <button
                         className="closeModal"
                         type="button"
-                        onClick={toggleModal}
+                        onClick={toggleModal1}
                       >
                         Annuler
                       </button>

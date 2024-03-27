@@ -82,6 +82,8 @@ router.post(
   advertsControllers.createAdvert
 );
 
+// router.put("/update-advert/:id", multer, advertsControllers.updateAdvert);
+
 // Route to get all orders by buyer (page Profil/onglet my purchase history)
 router.get(
   "/display-order-history-bybuyer/:id",
@@ -152,9 +154,10 @@ router.get("/explore/:query", advertsControllers.getSearchAdverts);
 
 // Import authControllers module for handling auth-related operations
 const authControllers = require("./controllers/authControllers");
+const cookieJwAuth = require("./middlewares/cookieJwtAuth");
 
 router.post("/login", authControllers.login);
-
+router.post("/add", cookieJwAuth, authControllers.login);
 router.use(verifyToken);
 
 // Thoses routes are protected

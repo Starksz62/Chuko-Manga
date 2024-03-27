@@ -1,0 +1,200 @@
+/* .update-advert {
+  margin: auto;
+  padding: 2rem 3rem;
+  border-radius: 5px;
+  width: 100%;
+  max-width: 800px;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+.update-advert h1 {
+  font-size: var(--fs-XL);
+  margin-bottom: 4rem;
+}
+
+.update-advert .picture-container {
+  display: flex;
+  justify-content: space-around;
+  gap: 1rem;
+  margin-bottom: 5rem;
+  width: 100%;
+}
+
+.picture-box1 {
+  position: relative;
+  background-color: var(--neutral-400);
+  width: 12rem;
+  height: 12rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.update-advert .label-picture {
+  position: absolute;
+  margin-bottom: 0;
+}
+
+.update-advert .picture-box1 input {
+  opacity: 0;
+  height: 100%;
+  width: 100%;
+  padding: 0;
+}
+
+.update-advert .picture-box1 .plus-icon {
+  position: absolute;
+}
+
+.update-advert .preview-container {
+  position: relative;
+}
+
+.update-advert .preview-image {
+  width: 12rem;
+  height: 12rem;
+  object-fit: cover;
+  position: absolute;
+  top: 0rem;
+  right: 0;
+}
+
+.update-advert .picture-box1 .delete-preview {
+  position: absolute;
+  top: 0rem;
+  right: 0;
+}
+
+.update-advert .delete-preview img {
+  width: 1.75rem;
+}
+
+.update-advert .picture-box input:hover {
+  cursor: pointer;
+}
+
+.update-advert label {
+  font-size: var(--fs-M);
+  display: block;
+  margin-bottom: 1.25rem;
+  font-weight: 500;
+}
+
+.update-advert input,
+.update-advert select {
+  width: 100%;
+  margin-bottom: 3.75rem;
+}
+
+.update-advert [placeholder] {
+  color: var(--neutral-800);
+  font-size: var(--fs-XS);
+}
+
+.update-advert input {
+  width: 100%;
+  margin-bottom: 0.5rem;
+  border: none;
+  border-radius: 0;
+  border-bottom: 1px solid var(--neutral-700);
+  padding: 0.3rem 0;
+  color: var(--neutral-800);
+}
+
+.update-advert .wrong-input {
+  border: 1px solid red;
+  border-radius: 3px;
+}
+
+.update-advert .warning {
+  color: red;
+  font-size: var(--fs-XS);
+  margin-bottom: 2.25rem;
+}
+
+.update-advert .hide-warning {
+  visibility: hidden;
+}
+
+.update-advert textarea {
+  width: 100%;
+  height: 4rem;
+  resize: none;
+  margin-bottom: 0.5rem;
+  padding: 0.3rem;
+  background-color: var(--neutral-200);
+  border: 1px solid var(--neutral-700);
+  border-radius: 3px;
+}
+
+.update-advert select {
+  padding: 0.3rem;
+  background-color: var(--neutral-200);
+  border: 1px solid var(--neutral-700);
+  border-radius: 3px;
+}
+
+.update-advert option {
+  background-color: var(--neutral-200);
+}
+
+.update-advert .tab-container {
+  display: flex;
+  margin-top: 1.25rem;
+}
+
+.update-advert .tab-container button {
+  width: 50%;
+  font-size: var(--fs-M);
+  padding: 1rem;
+  margin-bottom: 2rem;
+}
+
+.update-advert .active-tab {
+  color: var(--neutral-800);
+  font-weight: 500;
+  border-bottom: 3px solid var(--primary-clr);
+}
+
+.update-advert .inactive-tab {
+  color: var(--neutral-700);
+  border-bottom: 2px solid var(--neutral-600);
+}
+
+.update-advert .ref {
+  font-size: var(--fs-M);
+  margin-bottom: 0.6rem;
+  font-weight: 500;
+}
+
+.update-advert .instruction {
+  color: var(--neutral-700);
+  font-size: var(--fs-S);
+}
+
+.update-advert .add-button {
+  padding: 0.5rem 3rem;
+  background-color: var(--primary-clr);
+  border: none;
+  border-radius: 5px;
+  color: var(--neutral-100);
+  font-weight: 600;
+  margin: 0 auto;
+  display: block;
+}
+
+.update-advert .add-button:hover {
+  background-color: var(--primary-clr-accent);
+}
+
+@media screen and (max-width: 768px) {
+  .update-advert {
+    box-shadow: none;
+    padding: 2rem 0rem;
+  }
+
+  .update-advert .picture-container {
+    flex-direction: column;
+    align-items: center;
+  }
+} */

@@ -1,6 +1,6 @@
+/* eslint-disable react/prop-types */
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
-
 import "./OngletProfil.css";
 
 function OngletProfil() {
@@ -8,7 +8,7 @@ function OngletProfil() {
   const [annonces, setAnnonces] = useState();
   const [evaluations, setEvaluations] = useState([]);
   const [historyOrders, setHistoryOrders] = useState([]);
-  const [ongletActif, setongletActif] = useState("Mes annonces");
+  const [ongletActif, setongletActif] = useState("Annonces");
 
   useEffect(() => {
     fetch(`http://localhost:3310/api/display-adverts-byseller/${id}`)
@@ -23,7 +23,7 @@ function OngletProfil() {
     fetch(`http://localhost:3310/api/user-profil-com/${id}`)
       .then((res) => res.json())
       .then((data) => {
-        // console.info("commentairesTableau:", data);
+        console.info("commentairesTableau:", data);
         setEvaluations(data);
       });
   }, []);
@@ -32,7 +32,7 @@ function OngletProfil() {
     fetch(`http://localhost:3310/api/display-order-history-bybuyer/${id}`)
       .then((res) => res.json())
       .then((data) => {
-        // console.info("Mon historique d'achat:", data);
+        console.info("Mon historique d'achat:", data);
         setHistoryOrders(data);
       });
   }, []);
@@ -99,64 +99,76 @@ function OngletProfil() {
       <div className="containerButton">
         <button
           type="button"
-          className="buttonOnglet"
-          onClick={() => setongletActif("Mes annonces")}
+          className={
+            ongletActif === "Annonces"
+              ? "buttonOnglet selected"
+              : "buttonOnglet"
+          }
+          onClick={() => setongletActif("Annonces")}
         >
-          Mes annonces
+          Annonces
         </button>
         <button
           type="button"
-          className="buttonOnglet"
-          onClick={() => setongletActif("Mes évaluations")}
+          className={
+            ongletActif === "Évaluations"
+              ? "buttonOnglet selected"
+              : "buttonOnglet"
+          }
+          onClick={() => setongletActif("Évaluations")}
         >
-          Mes évaluations
+          Évaluations
         </button>
         <button
           type="button"
-          className="buttonOnglet"
-          onClick={() => setongletActif("Mon historique d'achat")}
+          className={
+            ongletActif === "Achat" ? "buttonOnglet selected" : "buttonOnglet"
+          }
+          onClick={() => setongletActif("Achat")}
         >
-          Mon historique d'achat
+          Achats
         </button>
       </div>
 
       <div className="containerInformations">
-        {ongletActif === "Mes annonces" && (
+        {ongletActif === "Annonces" && (
           <div className="containerAnnonces">
             {annonces?.map((annonce) => (
               <div key={advertId}>
-                <li className="cardAnnonces">
-                  <Link key={advertId} to={`/myAnounces/${annonce.advert_id}`}>
+                <Link
+                  key={advertId}
+                  to={`/myAnounces/${annonce.advert_id}`}
+                  className="linkCard"
+                >
+                  <li className="cardAnnonces">
                     <div>
                       <img
                         className="imagePathAnnonces"
                         src={`http://localhost:3310${annonce.image_path}`}
                         alt="image_article_seller"
                       />
-                      <div className="titleSearchMangaAnnonces">{`${annonce.title_search_manga}`}</div>
-                      <div className="priceAnnonces">
-                        {`${annonce.price}`} €
-                      </div>
-                      <div className="name_condition">{`${annonce.name_condition}`}</div>
+                      <h2 className="titleSearchMangaAnnonces">{`${annonce.title_search_manga}`}</h2>
+                      <p className="priceAnnonces">{`${annonce.price}`} €</p>
+                      <p className="name_condition">{`${annonce.name_condition}`}</p>
                     </div>
-                  </Link>
-                </li>
+                  </li>
+                </Link>
               </div>
             ))}
           </div>
         )}
 
-        {ongletActif === "Mes évaluations" && (
+        {ongletActif === "Évaluations" && (
           <div className="containerEvaluations">
             {evaluations?.length > 0 && (
               <div className="containerNote">
                 {console.info(evaluations)}
-                <div className="average_rating">{`${(Math.round(averageRating * 100) / 100).toFixed(2)}`}</div>
+                <p className="average_rating">{`${(Math.round(averageRating * 100) / 100).toFixed(2)}`}</p>
                 <div className="StarNumbCom">
                   <div className="starcontainer">
                     {renderStars(parseFloat(averageRating))}
                   </div>
-                  <div className="Number_comment">({evaluations.length})</div>
+                  <p className="Number_comment">({evaluations.length})</p>
                 </div>
               </div>
             )}
@@ -193,7 +205,7 @@ function OngletProfil() {
           </div>
         )}
 
-        {ongletActif === "Mon historique d'achat" && (
+        {ongletActif === "Achat" && (
           <div className="containerAnnonces">
             {historyOrders?.map((order) => (
               <div key={order.id}>

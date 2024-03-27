@@ -9,7 +9,7 @@ import DeliveryOption from "../components/PaymentPage/DeliveryOption";
 
 function PaymentPage() {
   const location = useLocation();
-  const { articleData } = location.state;
+  const { articleData } = location.state || {};
   console.info("info paymentPage", articleData);
   const [showModal, setShowModal] = useState(false);
   const [showModalCreditCard, setShowModalCreditCard] = useState(false);
@@ -84,7 +84,7 @@ function PaymentPage() {
           </div>
           {showModal && (
             <div className="modal">
-              <div className="modal-content">
+              <div className="modal-content-adress">
                 <button
                   className="close"
                   type="button"
@@ -122,16 +122,33 @@ function PaymentPage() {
               <span>Sélectionne le mode paiement</span>
             </div>
           </div>
+          <div className="confirmation-payment-mobile">
+            <button type="button">Paiement</button>
+
+            <div className="logo-card-payment">
+              <img
+                src="http://localhost:3310/static/cartePayment.png"
+                alt="payment-card"
+              />
+            </div>
+            <div className="information-security-payment">
+              <img
+                src="http://localhost:3310/static/crypte1.png"
+                alt="texte protection "
+              />
+              <p>Ce paiement est crypté et sécurisé</p>
+            </div>
+          </div>
           {showModalCreditCard && (
             <div className="modal">
-              <div className="modal-content">
+              <div className="modal-content-card">
                 <CreditCard updateModalCreditCard={closeModalCreditCard} />
               </div>
             </div>
           )}
         </div>
         <div className="right-column">
-          <Payment price={articleData.price} />
+          <Payment price={articleData.price} articleData={articleData} />
         </div>
       </div>
     </container>

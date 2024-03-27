@@ -3,56 +3,65 @@
   flex-direction: row;
   align-items: flex-start;
   justify-content: center;
-  margin: 5% 5% 0 5%;
+  margin-top: 5%;
   flex-wrap: wrap;
 }
 
 .ContainerImage {
   display: flex;
   flex-direction: row;
-  width: 40%;
+  width: 34rem;
   flex-wrap: wrap;
+}
+
+.imagePrimary {
+  width: 22.5rem;
+  height: 30rem;
+  margin-right: 0.5rem;
+  background-color: var(--neutral-800);
+}
+
+.imageSell1 {
+  width: 22.5rem;
+  height: 30rem;
+  object-fit: contain;
+  box-shadow: rgba(0, 0, 0, 0.15) 0px 3px 3px 0px;
+}
+
+.NoImage1 {
+  width: 22.5rem;
+  height: 30rem;
+  object-fit: contain;
 }
 
 .imageSecond {
   display: flex;
   flex-direction: column;
-}
-
-.imageSell1 {
-  width: auto;
-  height: 30rem;
-  object-fit: cover;
-  margin-right: 1rem;
-  box-shadow: rgba(0, 0, 0, 0.15) 0px 3px 3px 0px;
+  width: 10.9rem;
+  height: 14.5rem;
+  gap: 1rem;
 }
 
 .imageSell2 {
-  width: auto;
+  width: 10.9rem;
   height: 14.5rem;
-  object-fit: cover;
-  margin-bottom: 0.5rem;
+  object-fit: contain;
+  background-color: var(--neutral-800);
   box-shadow: rgba(0, 0, 0, 0.15) 0px 3px 3px 0px;
 }
 .imageSell3 {
-  width: auto;
+  width: 10.9rem;
   height: 14.5rem;
-  object-fit: cover;
-  margin-top: 0.5rem;
+  object-fit: contain;
+  background-color: var(--neutral-800);
   box-shadow: rgba(0, 0, 0, 0.15) 0px 3px 3px 0px;
 }
 
-.NoImage1 {
-  width: auto;
-  height: 30rem;
-  object-fit: cover;
-  margin-right: 1rem;
-}
-
 .NoImage {
-  width: auto;
+  width: 10.9rem;
   height: 14.5rem;
   object-fit: contain;
+  box-shadow: rgba(0, 0, 0, 0.15) 0px 3px 3px 0px;
 }
 
 .ContainerInformationSell {
@@ -63,45 +72,32 @@
   flex-direction: column;
   box-shadow: rgba(0, 0, 0, 0.15) 0px 3px 3px 0px;
   margin-left: 2%;
+  font-size: var(--fs-S);
 }
 
 .informationPrice {
   font-weight: bold;
-  font-size: 1.5rem;
-  border-bottom: solid 0.1rem #b5b5b5;
+  font-size: var(--fs-L);
+  border-bottom: solid 0.1rem var(--neutral-600);
+  margin-bottom: 3%;
 }
 
-.informationTitle {
-  display: flex;
-  color: #b5b5b5;
-  margin-top: 1%;
-}
-
-.informationDesciption {
-  display: flex;
-  color: #b5b5b5;
-  margin: 5% 0 5% 0;
-}
-
-.informationISBN {
-  display: flex;
-  color: #b5b5b5;
-  margin-top: 1%;
-  margin-bottom: 5%;
-}
-
+.informationTitle,
+.informationDescription,
 .informationEtat,
 .informationVues,
 .informationDate {
   display: flex;
-  color: #b5b5b5;
-  margin-top: 1%;
+  color: var(--neutral-600);
+  margin-bottom: 5%;
+}
+
+.informationDescription p {
+  width: 50%;
 }
 
 .informationTitle p:first-child,
-.informationDesciption p:first-child,
 .informationEtat p:first-child,
-.informationISBN p:first-child,
 .informationVues p:first-child,
 .informationDate p:first-child {
   width: 50%;
@@ -114,48 +110,45 @@
   width: 100%;
   gap: 75px;
   padding: 20px 0;
+  font-size: var(--fs-S);
 }
 
 .btnModSup {
   padding: 10px 20px;
   margin: 0 5px;
-  border: 1px solid #dd7a06;
-  background-color: #fff;
-  color: #dd7a06;
+  border: 1px solid var(--primary-clr);
+  background-color: var(--neutral-100);
+  color: var(--primary-clr);
   transition: all 0.3s ease;
   width: 20rem;
 }
 
 .btnModSup:hover {
-  background-color: #dd7a06;
-  color: #fff;
+  background-color: var(--primary-clr);
+  color: var(--neutral-100);
 }
 
 /* ********************************************** */
 /* CSS for Modal */
 
-body.active-modal {
-  overflow-y: hidden;
-}
-
 .modal,
-.overlay {
+.overlayAnounces {
   width: 100vw;
   height: 100vh;
   position: fixed;
 }
 
-.overlay {
+.overlayAnounces {
   background: rgba(49, 49, 49, 0.8);
 }
 
-.modal-content {
+.modalContent {
   position: absolute;
   top: 40%;
   left: 50%;
   transform: translate(-50%, -50%);
   line-height: 1.4;
-  background: #f1f1f1;
+  background: var(--neutral-100);
   padding: 14px 28 px;
   border-radius: 0.5rem;
   max-width: 20rem;
@@ -164,23 +157,25 @@ body.active-modal {
 }
 
 .MessageModal {
-  color: #dd7a06;
+  color: var(--primary-clr-accent);
   text-align: center;
   padding: 2% 5% 6% 5%;
+  font-size: var(--fs-L);
 }
 
 .closeConfirm {
   display: flex;
   justify-content: center;
+  font-size: var(--fs-S);
 }
 
 .closeModal {
-  border-right: solid 0.1rem #b5b5b5;
+  border-right: solid 0.1rem var(--neutral-600);
   padding-right: 20%;
 }
 
 .closeModal:hover {
-  color: #dd7a06;
+  color: var(--primary-clr-accent);
 }
 
 .confirmModal {
@@ -188,5 +183,104 @@ body.active-modal {
 }
 
 .confirmModal:hover {
-  color: #dd7a06;
+  color: var(--primary-clr-accent);
+}
+
+@media screen and (min-width: 1201px) and (max-width: 1356px) {
+  .ContainerInformationSell {
+    margin-left: 0;
+  }
+  .ContainerInformationSell {
+    width: unset;
+  }
+  .btnModSup {
+    width: 15rem;
+  }
+}
+
+@media screen and (max-width: 1104px) {
+  .ContainerInformationSell {
+    margin-left: 0;
+    width: unset;
+    margin-top: 1rem;
+  }
+
+  .btnModSup {
+    width: 15rem;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .ContainerImage {
+    width: 20rem;
+  }
+
+  .ContainerImage {
+    width: 15.4rem;
+  }
+
+  .imagePrimary {
+    width: 10rem;
+    height: 14rem;
+  }
+
+  .imageSell1 {
+    width: 10rem;
+    height: 14rem;
+  }
+
+  .imageSecond {
+    width: 4.9rem;
+    height: 6.5rem;
+  }
+
+  .imageSell2 {
+    width: 4.9rem;
+    height: 6.5rem;
+  }
+
+  .NoImage {
+    width: 4.9rem;
+    height: 6.5rem;
+  }
+
+  .ContainerInformationSell {
+    margin-top: 1rem;
+    margin-left: 0;
+    font-size: var(--fs-XS);
+    height: auto;
+  }
+
+  .informationPrice {
+    font-size: var(--fs-M);
+  }
+
+  .informationTitle,
+  .informationDescription,
+  .informationEtat,
+  .informationVues,
+  .informationDate {
+    flex-direction: column;
+  }
+
+  .informationDescription p {
+    width: 100%;
+  }
+
+  .informationTitle p:first-child,
+  .informationDescription p:first-child,
+  .informationEtat p:first-child,
+  .informationVues p:first-child,
+  .informationDate p:first-child {
+    width: 100%;
+    color: var(--neutral-700);
+  }
+
+  .buttonContainer {
+    gap: 25px;
+  }
+
+  .btnModSup {
+    width: 15rem;
+  }
 }

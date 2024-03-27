@@ -1,28 +1,19 @@
-* {
-  padding: 0px;
-  margin: 0px;
-  box-sizing: border-box;
-}
-
 .containerOnglets {
-  width: 80%;
-  margin: 10%;
+  margin-top: 10%;
 }
 
 .containerButton {
-  border-bottom: solid 0.1rem;
   height: 30px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  margin-bottom: 3rem;
 }
 
 .buttonOnglet {
-  border: none;
-  background-color: rgba(255, 255, 255, 0);
-  text-decoration: underline;
-  padding-left: 4.5rem;
+  border-bottom: solid 0.1rem var(--neutral-300);
 }
-.buttonOnglet:hover {
-  transform: scale(1.1);
-  color: #dd7a06;
+.selected {
+  border-bottom: solid 0.2rem var(--primary-clr-accent);
 }
 
 /********************** Utilise ces propriétées pour l'onglet "Mes annonces et Mon historique d'achat" ***********************/
@@ -33,29 +24,60 @@
 }
 
 .cardAnnonces {
-  margin: 30px;
-  list-style: none;
+  width: 275px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: 0.4rem;
+  font-family: "Monserrat", sans-serif;
+  box-shadow:
+    rgba(0, 0, 0, 0.12) 0px 1px 3px,
+    rgba(0, 0, 0, 0.24) 0px 1px 2px;
+  border-radius: 6px;
+  padding: 8px;
+  margin-right: 20px;
+}
+.cardAnnonces:hover {
+  transform: scale(1.05);
+}
+
+.linkCard:hover {
+  text-decoration: none;
 }
 
 .imagePathAnnonces {
-  height: 20rem;
+  width: 100%;
+  height: 300px;
+  object-fit: cover;
+  object-position: center;
+  box-shadow: 0 0 5px var(--neutral-600);
+  margin-bottom: 0.5rem;
   border-radius: 3px;
-  box-shadow: 0px 7px 9px 0px rgba(0, 0, 0, 0.56);
 }
 
 .titleSearchMangaAnnonces {
-  margin-top: 1rem;
+  font-size: var(--fs-XS);
+  font-weight: normal;
+  display: flex;
+  align-items: start;
+  white-space: nowrap;
+  overflow: hidden;
 }
 .priceAnnonces {
+  font-size: var(--fs-L);
   font-weight: bold;
 }
 .name_condition {
-  color: #b5b5b5;
+  color: var(--neutral-600);
+  font-size: var(--fs-XS);
+  margin-bottom: 0.2rem;
+  display: flex;
+  align-items: start;
 }
 /******************************************************************************************************************************/
 
 .statusOrder {
-  font-size: 0.8rem;
+  font-size: var(--fs-XS);
   margin-top: 2%;
 }
 .completed {
@@ -75,7 +97,7 @@
 }
 
 .orderDate {
-  font-size: 0.8rem;
+  font-size: var(--fs-XS);
   margin-top: 2%;
 }
 
@@ -85,7 +107,7 @@
 }
 
 .containerNote {
-  border-bottom: solid 0.1rem;
+  border-bottom: solid 0.1rem var(--neutral-700);
   height: 70px;
   display: flex;
   align-items: center;
@@ -93,14 +115,18 @@
 
 .average_rating {
   padding: 0 2rem 0 4.5rem;
-  font-size: 2.5rem;
+  font-size: var(--fs-XL);
   font-weight: bold;
+}
+
+.Number_comment {
+  font-size: var(--fs-S);
 }
 
 .containerCom {
   display: flex;
   align-items: center;
-  border-bottom: solid 0.1rem #b5b5b5;
+  border-bottom: solid 0.1rem var(--neutral-300);
 }
 
 .picture_buyer {
@@ -116,22 +142,24 @@
 }
 
 .speudoBuyer {
-  color: #dd7a06;
-  font-size: 1.2rem;
+  color: var(--primary-clr-accent);
+
+  font-size: var(--fs-M);
 }
 .createdOn {
-  color: #b5b5b5;
-  font-size: 0.8rem;
+  color: var(--neutral-600);
+  font-size: var(--fs-XS);
   margin-top: 2%;
 }
 
 .comment {
   margin-top: 2%;
+  font-size: var(--fs-S);
 }
 
 .starcontainer {
   display: flex;
-  font-size: 1.5rem;
+  font-size: var(--fs-L);
 }
 
 .rating {
@@ -164,3 +192,28 @@
 }
 /* ------------------------------------------------------------------------------------------------------ */
 /******************************************************************************************************************************/
+
+@media screen and (max-width: 798px) {
+  .containerCom {
+    flex-direction: column;
+    align-items: center;
+    padding-bottom: 2rem;
+  }
+
+  .average_rating {
+    padding-left: 1.5rem;
+  }
+
+  .picture_buyer {
+    margin-left: 30px;
+    margin-right: 30px;
+    height: 8rem;
+    width: 8rem;
+  }
+
+  .commentBuyer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+}

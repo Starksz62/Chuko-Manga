@@ -1,11 +1,11 @@
-.card {
+.card-Payment {
   display: flex;
   border-radius: 8px;
   list-style: none;
   width: 70%;
 }
 
-.card img {
+.img-command-annonce {
   width: 40%;
 }
 
@@ -41,4 +41,15 @@
   clip-path: circle(50%);
   width: 24px;
   height: 24px;
+}
+
+@media only screen and (min-width: 768px) and (max-width: 1200px) {
+  .card-Payment {
+    align-items: center;
+    width: 100%;
+  }
+  .img-command-annonce {
+    width: 100px;
+    height: 100px;
+  }
 }

@@ -1,22 +1,22 @@
 import PropTypes from "prop-types";
 import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+
 import Stars from "./StarsRating";
 import FilteredadvertsCard from "../PrefilterAdvertByDesc";
 import "./AnnounceDetail.css";
+import AdvertCard from "../AdvertCard";
 
 function AnnouncementDetail({ userId, id }) {
-  const [userSells, setUserSells] = useState(null);
+  const [userSells, setUserSells] = useState([]);
+  console.info("verif data", userSells);
   const [sellerInfo, setSellerInfo] = useState({
     pseudo: "",
     user_picture: "",
     average: "",
     feedback_nber: "",
   });
-  const handleCardClick = () => {
-    window.scrollTo(0, 0);
-  };
-  console.info("sellerInfo", sellerInfo);
+
+  console.info("userSells", userSells);
   useEffect(() => {
     fetch(`http://localhost:3310/api/display-adverts-byseller/${userId}`)
       .then((response) => {
@@ -26,7 +26,10 @@ function AnnouncementDetail({ userId, id }) {
         return response.json();
       })
       .then((data) => {
-        console.info("verif data", data);
+        const transformedData = data.map((advert) => ({
+          ...advert,
+          id: advert.advert_id, // Renommez advert_id en id
+        }));
         setSellerInfo({
           pseudo: data[0].pseudo,
           user_picture: data[0].user_picture,
@@ -34,7 +37,7 @@ function AnnouncementDetail({ userId, id }) {
           feedback_nber: data[0].feedback_nber,
         });
 
-        setUserSells(data);
+        setUserSells(transformedData);
       })
       .catch((error) => {
         console.error(
@@ -74,26 +77,16 @@ function AnnouncementDetail({ userId, id }) {
         </div>
       </div>
       <div className="container-other-sell">
-        {filteredSells.map((sell) => (
-          <div className="image-other-sell" key={sell.advert_id}>
-            <Link
-              to={`/display-adverts/${sell.advert_id}`}
-              onClick={handleCardClick}
-            >
-              <img
-                className="image-other-sell"
-                src={`http://localhost:3310${sell.image_path}`}
-                alt=""
-              />
-            </Link>
-            <h2>{sell.title_search_manga}</h2>
-            <p className="price-other-sell">{sell.price} €</p>
-            <p className="condition-other-sell">{sell.name_condition}</p>
-          </div>
+        {userSells.map((userSell) => (
+          <AdvertCard key={userSell.id} advert={userSell} />
         ))}
       </div>
       <div>
-        <FilteredadvertsCard titlefromAnnounceDetail="Ces annonces peuvent vous intéresser :" />
+        <FilteredadvertsCard
+          titlefromAnnounceDetail="Ces annonces peuvent vous intéresser :"
+          titleClassName="specific-title-class"
+          useDivWrapper
+        />
       </div>
     </>
   );

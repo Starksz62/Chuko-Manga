@@ -1,6 +1,6 @@
 .sidebar {
   position: sticky;
-  background-color: #fbfbfb;
+  background-color: var(--neutral-200);
   color: #4c6374;
   height: 100vh;
   left: 0;
@@ -9,6 +9,7 @@
     width 0.5s ease,
     background-color 0.5s ease;
   z-index: 10;
+  width: 250px;
 }
 
 .sidebar-logo img {
@@ -172,4 +173,11 @@
   backdrop-filter: blur(1px);
   background-color: rgba(0, 0, 0, 0.2);
   z-index: 10;
+}
+
+@media (max-width: 1200px) {
+  .sidebar-logo img {
+    width: 10rem;
+    padding: 0;
+  }
 }

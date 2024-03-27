@@ -7,7 +7,7 @@ import NegimaLogo from "../assets/negima-logo.png";
 import FairyTailLogo from "../assets/fairytail-logo.png";
 import DetectiveConanLogo from "../assets/detectiveconan-logo.png";
 import SoloLevelingLogo from "../assets/sololeveling-logo.png";
-import BlackCloverLogo from "../assets/blackclover-logo.webp";
+import BlackCloverLogo from "../assets/blackclover-logo.png";
 import MashleLogo from "../assets/mashle-logo.png";
 import ShamanKingLogo from "../assets/shamanking-logo.webp";
 import JujutsuKaisenLogo from "../assets/jujutsukaisen-logo.png";
@@ -16,7 +16,7 @@ import CenturyboysLogo from "../assets/20centuryboys-logo.png";
 function CoupDeCoeur() {
   return (
     <section className="section-coup-de-coeur">
-      <h3>Coup de coeur de l'équipe</h3>
+      <h2 className="title-coup-de-coeur">Coup de coeur de l'équipe</h2>
       <ul className="section-logo">
         <li>
           <img src={NarutoLogo} alt="Logo Naruto" className="logo" />

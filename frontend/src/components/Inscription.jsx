@@ -70,7 +70,7 @@ function Inscription({ handleContentModal }) {
   };
 
   return (
-    <div className="form">
+    <div className="inscription-form">
       <h1>Inscription</h1>
       <form className="inForm" onSubmit={handleSubmit}>
         {/* Champ pour le pseudo */}
@@ -82,7 +82,6 @@ function Inscription({ handleContentModal }) {
           value={inputPseudo}
           onChange={handleChangeInputPseudo}
         />
-        <br />
         {/* Champ pour l'email */}
         <input
           ref={emailRef}
@@ -92,7 +91,6 @@ function Inscription({ handleContentModal }) {
           value={inputEmail}
           onChange={handleChangeInputEmail}
         />
-        <br />
         {/* Champ pour le mot de passe */}
         <input
           type="password"
@@ -108,12 +106,9 @@ function Inscription({ handleContentModal }) {
       </form>
       <div className="text-inscription">
         {/* Paragraphe pour le lien de connexion */}
-        <p style={{ color: "orange" }}>
-          Vous avez déjà un compte?{" "}
-          <span
-            style={{ cursor: "pointer", textDecoration: "underline" }}
-            onClick={handleContentModal}
-          >
+        <p className="text-info">
+          Vous avez déjà un compte ?{" "}
+          <span className="to-click" onClick={handleContentModal}>
             Connectez-vous
           </span>
         </p>

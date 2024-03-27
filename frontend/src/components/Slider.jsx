@@ -40,6 +40,7 @@ function PriceSlider() {
   useEffect(() => {
     setMin(priceRange.minPrice);
     setMax(priceRange.maxPrice);
+    setValue([priceRange.minPrice, priceRange.maxPrice]);
   }, [priceRange.minPrice, priceRange.maxPrice]);
 
   return (

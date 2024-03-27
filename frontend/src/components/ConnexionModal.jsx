@@ -16,8 +16,15 @@ function ConnexionModal({ handleClickOpen }) {
     setShowConnexion(!showConnexion);
   };
 
+  const handleBackgroundClick = (e) => {
+    // Check if the clic is on the background (not on the modal itself)
+    if (e.target === e.currentTarget) {
+      handleClickOpen();
+    }
+  };
+
   return (
-    <div className="modal-connexion">
+    <div className="modal-connexion" onClick={handleBackgroundClick}>
       <div className="modal-content-connexion">
         {showConnexion === true ? (
           <Connexion

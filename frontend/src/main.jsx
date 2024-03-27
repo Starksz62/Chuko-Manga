@@ -4,6 +4,7 @@ import App from "./App";
 import MangaDetails from "./pages/MangaDetails";
 import Explore from "./pages/Explore";
 import NewAdvert from "./pages/NewAdvert";
+import UpdateAdvert from "./pages/UpdateAdvert";
 import Home from "./pages/Home";
 import PaymentPage from "./pages/PaymentPage";
 import AnnouncementDetail from "./pages/AnnouncementDetails";
@@ -74,6 +75,10 @@ const router = createBrowserRouter([
       {
         path: "/myAnounces/:id",
         element: <MyAnounces />,
+      },
+      {
+        path: "/update-advert/:id",
+        element: <UpdateAdvert />,
       },
       {
         path: "/favorites",

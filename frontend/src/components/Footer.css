@@ -1,5 +1,4 @@
 .footer {
-  margin: 0 auto;
   text-decoration: none;
   background-color: var(--neutral-300);
   display: flex;
@@ -76,4 +75,10 @@
   background-color: var(--neutral-100);
   display: flex;
   justify-content: space-around;
+}
+
+@media (max-width: 1200px) {
+  .footer {
+    display: none;
+  }
 }
