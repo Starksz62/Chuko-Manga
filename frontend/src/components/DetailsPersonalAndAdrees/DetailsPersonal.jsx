@@ -87,7 +87,7 @@ function DetailsPersonal() {
   };
 
   return (
-    <form className="ContainerCreation">
+    <form className="personal_details_form">
       <div className="input_label_profil">
         <label htmlFor="picture" className="label_profil">
           Choisi ta photo:

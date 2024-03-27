@@ -76,7 +76,7 @@ function Adresse() {
   };
 
   return (
-    <form className="ContainerCreation" onSubmit={handleUpdateAdresseUser}>
+    <form className="personal_details_form" onSubmit={handleUpdateAdresseUser}>
       <div className="input_label_profil">
         <label htmlFor="country" className="label_profil">
           Pays:
