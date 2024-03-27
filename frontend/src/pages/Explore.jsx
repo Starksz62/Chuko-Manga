@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useParams } from "react-router-dom";
 import { useFilters } from "../context/FilterContext";
 import AdvertCard from "../components/AdvertCard";
 import "./Explore.css";
@@ -8,9 +8,7 @@ function Explore() {
   const [dataAdverts, setDataAdverts] = useState([]);
   const [filteredAdverts, setFilteredAdverts] = useState([]);
   const location = useLocation();
-  const searchQuery = decodeURIComponent(
-    location.pathname.split("/explore/")[1] || ""
-  );
+  const { searchQuery } = useParams();
   console.info("query reçue dans explore", searchQuery);
   const queryParams = new URLSearchParams(location.search);
   const batchFromUrl = queryParams.get("batch");
@@ -24,7 +22,7 @@ function Explore() {
         let url = "http://localhost:3310/api/find-recent-adverts?";
         if (searchQuery) {
           url += `searchQuery=${encodeURIComponent(searchQuery)}`;
-        } else if (batchFromUrl !== undefined) {
+        } else if (batchFromUrl !== null && batchFromUrl !== undefined) {
           url += `batch=${encodeURIComponent(batchFromUrl)}`;
         }
         if (filters.genreId) {
@@ -71,6 +69,7 @@ function Explore() {
     filters.condition,
     filters.priceMin,
     filters.priceMax,
+    dynamicPriceFilter,
   ]);
   useEffect(() => {
     console.info("Mise à jour du filtrage dynamique", dynamicPriceFilter);

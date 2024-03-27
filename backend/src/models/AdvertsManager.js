@@ -151,7 +151,6 @@ class AdvertsManager extends AbstractManager {
         advert.user_id,
         advert.volume_id,
         advert.article_condition_id,
-        advert.manga_id,
       ]
     );
     return result.insertId;
@@ -203,10 +202,12 @@ class AdvertsManager extends AbstractManager {
       queryParams.push(maxPrice);
     }
     if (searchVolume && searchManga) {
-      whereConditions += " AND advert.volume_id = ? AND advert.manga_id = ?";
+      whereConditions += " AND advert.volume_id = ?";
       queryParams.push(searchVolume, searchManga);
     }
-
+if (batch !== null && batch !== undefined) {
+  whereConditions += batch ? " AND advert.batch=1" : " AND advert.batch=0";
+}
     const query = `
     SELECT advert.id, advert.title_search_manga, advert.price, article_condition.name_condition,advert.volume_id,
     advert_image.image_path, user.pseudo, user.picture as user_picture, manga.genre_id,

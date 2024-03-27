@@ -69,7 +69,9 @@ function AnnouncementDetail() {
           </div>
           <div className="information-manga-sell">
             <p className="information-price">{detailManga[0].price} €</p>
-            <p>{detailManga[0].title_search_manga}</p>
+            <p style={{ fontWeight: "bold", fontSize: "1.3rem" }}>
+              {detailManga[0].title_search_manga}
+            </p>
             <p className="description-annonce">{detailManga[0].description}</p>
             <div className="information-etat">
               <p>État:</p> <p> {detailManga[0].name_condition}</p>

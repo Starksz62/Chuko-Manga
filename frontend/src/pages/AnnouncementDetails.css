@@ -11,6 +11,7 @@
 
 .image-manga-sell {
   display: flex;
+  justify-content: end;
 }
 
 .image-advert-sell {
@@ -18,7 +19,7 @@
 }
 .image-from-annoucement img {
   display: flex;
-  width: 35vh;
+  width: 25vh;
   height: 100%;
   object-fit: cover;
 }
@@ -34,13 +35,11 @@
   grid-row: 1 / span 2;
 }
 
-/* Second image: spans two rows only if it's the last child (meaning there is no third image) */
 .image-from-annoucement:nth-child(2):last-child {
   grid-column: 2;
   grid-row: 1 / span 2;
 }
 
-/* Third image: always in the second column, second row */
 .image-from-annoucement:nth-child(3) {
   grid-column: 2;
   grid-row: 2;
@@ -51,7 +50,6 @@
   grid-row: 1 / span 2;
 }
 
-/* When there are three images */
 .secondary-images-container.images-3 .image-from-annoucement:nth-child(2),
 .secondary-images-container.images-3 .image-from-annoucement:nth-child(3) {
   grid-column: 2;
@@ -100,17 +98,12 @@
 .description-annonce {
   width: 75%;
 }
-.information-title,
-.information-etat,
-.information-date {
-  display: flex;
-  flex-direction: row;
-}
 
 .information-title p:first-child,
 .information-etat p:first-child,
 .information-date p:first-child {
   width: 50%;
+  font-weight: bold;
 }
 
 .button-bar {
@@ -207,7 +200,7 @@
   .image-manga-sell {
     display: flex;
     flex-direction: column;
-    width: 50%;
+    width: 37%;
   }
   .container-Details {
     align-items: center;
@@ -235,9 +228,7 @@
     width: 100%;
     margin-left: 0px;
   }
-  .information-manga-sell p {
-    font-size: 0.9rem;
-  }
+
   .image-advert-sell {
     display: flex;
     flex-direction: row;
@@ -316,10 +307,9 @@
   .information-manga-sell {
     width: 100%;
     margin-left: 0px;
+    font-size: 1.5rem;
   }
-  .information-manga-sell p {
-    font-size: 0.9rem;
-  }
+
   .image-advert-sell {
     display: flex;
     flex-direction: row;

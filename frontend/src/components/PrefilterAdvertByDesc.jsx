@@ -26,7 +26,7 @@ function PrefilterAdvertByDesc({
   const containerRef = useRef(null);
   const renderedTitle = useDivWrapper ? <div>{titleToShow}</div> : titleToShow;
   useEffect(() => {
-    fetch("http://localhost:3310/api/unique-adverts-date-desc")
+    fetch("http://localhost:3310/api/find-recent-adverts?batch=false")
       .then((response) => {
         if (!response.ok) {
           throw new Error(`Error HTTP, status: ${response.status}`);
