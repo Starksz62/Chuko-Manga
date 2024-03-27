@@ -10,7 +10,6 @@ function HeaderNav() {
   const navigate = useNavigate();
   const { auth, setAuth, isModalOpen, setIsModalOpen } =
     useContext(UserContext);
-  console.info("azerzearzearazerar", auth);
   const handleClickOpen = () => {
     setIsModalOpen(!isModalOpen);
     if (!isModalOpen) {
