@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { Link, useParams } from "react-router-dom";
 
 import "./MangaVolume.css";
-import { useParams } from "react-router-dom";
 
 function MangaVolume() {
   const { id } = useParams();
@@ -43,21 +43,23 @@ function MangaVolume() {
     <div>
       <div className="volumes-container">
         {volumes.map((volume) => (
-          <button
-            type="button"
-            className={
-              hasAdvert(volume.id)
-                ? "volume clickable-volume"
-                : "volume disabled-volume"
-            }
-            key={volume.id}
-            // onClick={() => handleVolumeClick(volume)}
-          >
-            <img
-              src={`http://localhost:3310${volume.image}`}
-              alt={volume.title}
-            />
-          </button>
+          <Link to="/explore">
+            <button
+              type="button"
+              className={
+                hasAdvert(volume.id)
+                  ? "volume clickable-volume"
+                  : "volume disabled-volume"
+              }
+              key={volume.id}
+              // onClick={() => handleVolumeClick(volume)}
+            >
+              <img
+                src={`http://localhost:3310${volume.image}`}
+                alt={volume.title}
+              />
+            </button>
+          </Link>
         ))}
       </div>
     </div>

@@ -1,7 +1,7 @@
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 import React, { useState, useEffect, useRef } from "react";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 import AdvertCard from "./AdvertCard";
 import "./PrefilterAdvertByBatch.css";
@@ -11,7 +11,8 @@ import Right from "../assets/rightlogo.png";
 
 function PrefilterAdvertByBatch() {
   // eslint-disable-next-line no-unused-vars
-  const [adverts, setAdverts] = useState([]);
+  const navigate = useNavigate();
+  const [, setAdverts] = useState([]);
   const [filteredAdverts, setFilteredAdverts] = useState([]);
   const containerRef = useRef(null);
 
@@ -20,7 +21,7 @@ function PrefilterAdvertByBatch() {
   const [showRightButton, setShowRightButton] = useState(true);
 
   useEffect(() => {
-    fetch("http://localhost:3310/api/batch-adverts-date-desc")
+    fetch("http://localhost:3310/api/find-recent-adverts?batch=true")
       .then((response) => {
         if (!response.ok) {
           throw new Error(`Error HTTP, status: ${response.status}`);
@@ -65,6 +66,10 @@ function PrefilterAdvertByBatch() {
     );
   }
 
+  const handleViewAllClick = () => {
+    navigate("/explore?batch=true");
+  };
+
   return (
     <section className="prefiltre-lot">
       <h2 className="title-prefiltre-batch">
@@ -100,11 +105,15 @@ function PrefilterAdvertByBatch() {
             )}
           </div>
           <div className="seeAllTomesButtonWrapperBatch">
-            <Link className="link-btn-batch" to="/explore">
-              <button type="button" className="bnt-see-all-tomes-batch">
+            <div className="link-btn-batch">
+              <button
+                type="button"
+                className="bnt-see-all-tomes-batch"
+                onClick={handleViewAllClick}
+              >
                 Voir tous les lots
               </button>
-            </Link>
+            </div>
           </div>
         </div>
       </div>

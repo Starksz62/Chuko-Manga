@@ -3,7 +3,7 @@
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 import React, { useState, useEffect, useRef } from "react";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import Left from "../assets/leftlogo.png";
 import Right from "../assets/rightlogo.png";
 import AdvertCard from "./AdvertCard";
@@ -14,6 +14,7 @@ function PrefilterAdvertByDesc({
   titleClassName,
   useDivWrapper,
 }) {
+  const navigate = useNavigate();
   const [adverts, setAdverts] = useState([]);
   const [filteredAdverts, setFilteredAdverts] = useState([]);
   const defaultTitle = "Explorer les derniers tomes ajoutés :";
@@ -27,7 +28,7 @@ function PrefilterAdvertByDesc({
   const containerRef = useRef(null);
   const renderedTitle = useDivWrapper ? <div>{titleToShow}</div> : titleToShow;
   useEffect(() => {
-    fetch("http://localhost:3310/api/unique-adverts-date-desc")
+    fetch("http://localhost:3310/api/find-recent-adverts?batch=false")
       .then((response) => {
         if (!response.ok) {
           throw new Error(`Error HTTP, status: ${response.status}`);
@@ -52,6 +53,10 @@ function PrefilterAdvertByDesc({
       );
     }
   }, [filteredAdverts]); // Ajoutez filteredAdverts en tant que dépendance
+
+  const handleViewAllClick = () => {
+    navigate("/explore?batch=false");
+  };
 
   function scrollContainer(direction) {
     if (!containerRef.current) return;
@@ -105,11 +110,15 @@ function PrefilterAdvertByDesc({
             )}
           </div>
           <div className="seeAllTomesButtonWrapper">
-            <Link className="link-btn-desc" to="/explore">
-              <button type="button" className="bnt-see-all-tomes-desc">
+            <div className="link-btn-desc">
+              <button
+                type="button"
+                className="bnt-see-all-tomes-desc"
+                onClick={handleViewAllClick}
+              >
                 Voir tous les tomes
               </button>
-            </Link>
+            </div>
           </div>
         </div>
       </div>
