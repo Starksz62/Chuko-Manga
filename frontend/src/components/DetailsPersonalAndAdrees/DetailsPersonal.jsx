@@ -3,7 +3,7 @@
 /* eslint-disable react/button-has-type */
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { useParams } from "react-router-dom";
 import "./DetailsPersonal.css";
 import axios from "axios";
@@ -21,6 +21,8 @@ function DetailsPersonal() {
     picture: "",
   });
 
+  const fileInputRef = useRef();
+
   useEffect(() => {
     fetch(`http://localhost:3310/api/user/${id}`)
       .then((res) => {
@@ -30,7 +32,6 @@ function DetailsPersonal() {
         return res.json();
       })
       .then((data) => {
-        console.info("Mes donnees user :", data);
         setFormData({
           pseudo: data.pseudo,
           firstname: data.firstname,
@@ -39,34 +40,41 @@ function DetailsPersonal() {
           phone: data.phone,
           picture: data.picture,
         });
+        setFile(data.picture);
       })
       .catch((error) => {
         console.error("Error fetching user data:", error);
       });
   }, [id, success]);
 
-  const handleChange = (e) => {
+  const handleChange = (evt) => {
+    evt.preventDefault();
     setFormData({
       ...formData,
-      [e.target.name]: e.target.value,
+      [evt.target.name]: evt.target.value,
     });
   };
 
-  const handleFileChange = (e) => {
-    setFile(e.target.files[0]);
-    console.info("my file is:", file);
+  const handleFileChange = (evt) => {
+    evt.preventDefault();
+    setFile(evt.target.files[0]);
   };
 
-  const handleUpdateUser = (e) => {
-    e.preventDefault();
+  const handleUpdateUser = (evt) => {
+    evt.preventDefault();
+
     const data = new FormData();
-    console.log("poulet", data);
+
     data.append("pseudo", formData.pseudo);
     data.append("firstname", formData.firstname);
     data.append("lastname", formData.lastname);
     data.append("email", formData.email);
     data.append("phone", formData.phone);
-    data.append("file", file);
+    if (typeof file === "object") {
+      data.append("file", file);
+    } else {
+      data.append("picture", file);
+    }
     axios
       .put(`http://localhost:3310/api/user/${id}`, data)
       .then((response) => {
@@ -79,25 +87,7 @@ function DetailsPersonal() {
   };
 
   return (
-    <form className="ContainerCreation" onSubmit={handleUpdateUser}>
-      {console.info("my file is:", file)}
-      {/* <div>
-        <input
-          type="file"
-          id="picture_input"
-          name="picture"
-          accept="image/*"
-          onChange={handleFileChange}
-        />
-        {formData.picture && (
-          <img
-            src={`http://localhost:3310${formData.picture}`}
-            alt="Selected"
-            style={{ borderRadius: "50%", width: "100%", height: "100%" }}
-          />
-        )}
-      </div> */}
-
+    <form className="ContainerCreation">
       <div className="input_label_profil">
         <label htmlFor="picture" className="label_profil">
           Choisi ta photo:
@@ -110,10 +100,14 @@ function DetailsPersonal() {
           onChange={handleFileChange}
           className="input_profil"
           style={{ display: "none" }}
+          ref={fileInputRef}
         />
         <button
           className="custom_button"
-          onClick={() => document.getElementById("picture_input").click()}
+          onClick={(evt) => {
+            evt.preventDefault();
+            fileInputRef.current.click();
+          }}
         >
           {formData.picture ? (
             <img
@@ -138,6 +132,7 @@ function DetailsPersonal() {
           onChange={handleChange}
           className="input_profil"
           placeholder=" "
+          required
         />
       </div>
       <div className="input_label_profil">
@@ -180,6 +175,7 @@ function DetailsPersonal() {
           value={formData.email}
           onChange={handleChange}
           className="input_profil"
+          required
         />
       </div>
       <div className="input_label_profil">
@@ -198,7 +194,9 @@ function DetailsPersonal() {
         />
       </div>
 
-      <button className="button_modifier">Modifier</button>
+      <button className="button_modifier" onClick={handleUpdateUser}>
+        Modifier
+      </button>
     </form>
   );
 }
