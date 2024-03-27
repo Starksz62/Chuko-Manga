@@ -163,7 +163,7 @@ const getSearchAdverts = async (req, res) => {
 };
 const recentAdverts = async (req, res) => {
   const { batch, genreId, conditionName, minPrice, maxPrice, searchQuery,searchVolume,searchManga} = req.query;
-  let isBatch = null; // Par défaut, isBatch est null
+  let isBatch = null;
   if (batch !== undefined) {
     if (batch === 'true') {
       isBatch = true;

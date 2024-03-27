@@ -18,23 +18,37 @@ class OrdersManager extends AbstractManager {
   }
 
   async addOrder(orderDetails) {
-    const sql = `    INSERT INTO \`${this.table}\` 
-                 (id_user_buy, total_price, order_date, status_order, feedback_order, advert_id, user_id) 
-                 VALUES (?, ?, ?, ?, ?, ?, ?)`;
-    const values = [
-      orderDetails.id_user_buy,
-      orderDetails.total_price,
-      orderDetails.order_date,
-      orderDetails.status_order,
-      orderDetails.feedback_order,
-      orderDetails.advert_id,
-      orderDetails.user_id,
-    ];
+    const connection = await this.database.getConnection();
     try {
-      const [result] = await this.database.query(sql, values);
-      return result;
+      await connection.beginTransaction();
+
+      // Ajout de la commande
+      const sqlOrder = `INSERT INTO \`${this.table}\` 
+                        (id_user_buy, total_price, order_date, status_order, feedback_order, advert_id, user_id) 
+                        VALUES (?, ?, ?, ?, ?, ?, ?)`;
+      const valuesOrder = [
+        orderDetails.id_user_buy,
+        orderDetails.total_price,
+        orderDetails.order_date,
+        orderDetails.status_order,
+        orderDetails.feedback_order,
+        orderDetails.advert_id,
+        orderDetails.user_id,
+      ];
+      const [resultOrder] = await connection.query(sqlOrder, valuesOrder);
+
+      // Mise à jour de l'annonce comme étant supprimée
+      const sqlAdvert = `UPDATE \`advert\` SET delete_advert = true WHERE id = ?`;
+      const valuesAdvert = [orderDetails.advert_id];
+      await connection.query(sqlAdvert, valuesAdvert);
+
+      await connection.commit();
+      return resultOrder;
     } catch (error) {
-      throw new Error(`Error inserting order into database: ${error.message}`);
+      await connection.rollback();
+      throw new Error(`Error processing transaction: ${error.message}`);
+    } finally {
+      connection.release();
     }
   }
 }

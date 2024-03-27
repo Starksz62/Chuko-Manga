@@ -178,10 +178,6 @@
   font-size: var(--fs-S);
 }
 
-.manga-details-container .naruto-details {
-  width: 100%;
-}
-
 /* @media only screen and (max-width: 820px) {
   .container-Details {
     margin-bottom: 0px;
@@ -265,43 +261,6 @@
   .number-article p {
     font-size: 0.8rem;
   }
-
-  .manga-details-container .top-section {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    text-align: center;
-  }
-
-  .manga-details-container .bottom-section {
-    display: flex;
-    flex-direction: column-reverse;
-  }
-
-  .manga-details-container .data-authors {
-    width: 100%;
-    gap: 0px;
-  }
-
-  .manga-details-container .data-authors p {
-    font-size: 10px;
-  }
-
-  .manga-details-container .status-manga {
-    width: 100%;
-  }
-
-  .manga-details-container .status-manga p {
-    text-align: center;
-  }
-
-  .manga-details-container .authors-container {
-    padding-left: 0px;
-  }
-
-  .manga-details-container .description-manga p {
-    text-align: justify;
-  }
 }
 
 @media only screen and (max-width: 767px) {
@@ -363,42 +322,5 @@
 
   .number-article p {
     font-size: 0.8rem;
-  }
-
-  .manga-details-container .top-section {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    text-align: center;
-  }
-
-  .manga-details-container .bottom-section {
-    display: flex;
-    flex-direction: column-reverse;
-  }
-
-  .manga-details-container .data-authors {
-    width: 100%;
-    gap: 0px;
-  }
-
-  .manga-details-container .data-authors p {
-    font-size: 10px;
-  }
-
-  .manga-details-container .status-manga {
-    width: 100%;
-  }
-
-  .manga-details-container .status-manga p {
-    text-align: center;
-  }
-
-  .manga-details-container .authors-container {
-    padding-left: 0px;
-  }
-
-  .manga-details-container .description-manga p {
-    text-align: justify;
   }
 }

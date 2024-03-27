@@ -167,7 +167,7 @@ class AdvertsManager extends AbstractManager {
     searchVolume,
     searchManga,
   }) {
-    let whereConditions = "WHERE 1=1";
+    let whereConditions = "WHERE 1=1 AND advert.delete_advert = 0";
     const queryParams = [];
 
     if (searchQuery) {
