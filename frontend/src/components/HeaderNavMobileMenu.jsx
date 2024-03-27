@@ -1,6 +1,8 @@
 import { useContext, useState } from "react";
+
 import { Link, useParams } from "react-router-dom";
-import { useNotifications } from "../context/NotificationContext";
+import PropTypes from "prop-types";
+// import { useNotifications } from "../context/NotificationContext";
 import { useFilters } from "../context/FilterContext";
 import UserContext from "../context/UserContext";
 
@@ -11,17 +13,19 @@ import FavoritesIcon from "../assets/favorites.png";
 import SettingsIcon from "../assets/settings.png";
 import SortIcon from "../assets/sort.png";
 import FilterIcon from "../assets/filter.png";
-import NotificationBell from "../assets/notificationBell.png";
+// import NotificationBell from "../assets/notificationBell.png";
 
-import NotificationCenter from "./NotificationCenter";
+// import NotificationCenter from "./NotificationCenter";
 import PriceSlider from "./Slider";
+import ConnexionModal from "./ConnexionModal";
 
-function HeaderNavMobileMenu() {
+function HeaderNavMobileMenu({ handleMenuActive, menuMobileActive }) {
   const { id } = useParams();
   const [showFilters, setShowFilters] = useState(false);
   const [currentFilter, setCurrentFilter] = useState(null);
-  const { auth } = useContext(UserContext);
-  const { notifications } = useNotifications();
+  const { auth, setAuth } = useContext(UserContext);
+  const [open, setOpen] = useState(false);
+  // const { notifications } = useNotifications();
   const [notificationCenterVisible, setNotificationCenterVisible] =
     useState(false);
   const { updateFilters } = useFilters();
@@ -60,6 +64,19 @@ function HeaderNavMobileMenu() {
     setCurrentFilter(currentFilter !== "Prix" ? "Prix" : null);
   };
 
+  const handleClickOpen = () => {
+    setOpen(!open);
+    if (!open) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "auto";
+    }
+  };
+  const handleLogout = () => {
+    localStorage.removeItem("auth");
+    setAuth(null);
+  };
+
   const genreOptions = [
     { id: 1, name: "Shonen" },
     { id: 2, name: "Shojo" },
@@ -83,41 +100,79 @@ function HeaderNavMobileMenu() {
           onClick={() => setNotificationCenterVisible(false)}
         />
       )}
-      <div className="sidebar">
-        <Link to="/">
-          <div className="sidebar-logo">
-            <img src={logo} alt="Logo" />
-          </div>
+      <div className="mobile-sidebar">
+        {menuMobileActive ? !menuMobileActive : menuMobileActive}
+        <Link to="/explore" onClick={handleMenuActive}>
+          <button type="button" className="explore-btn">
+            Explorer
+          </button>
         </Link>
-        <div className="icon-container">
+        <Link to="/" className="mobile-sidebar-logo">
+          <img src={logo} alt="Logo" />
+        </Link>
+        <div className="mobile-buttonHeader-container">
+          {!auth?.token ? (
+            <button
+              className="incription-login-button"
+              type="button"
+              onClick={handleClickOpen}
+            >
+              S'inscrire | Se connecter
+            </button>
+          ) : (
+            <button
+              className="incription-login-button"
+              type="button"
+              onClick={handleLogout}
+            >
+              Se déconnecter
+            </button>
+          )}
+          {open && <ConnexionModal handleClickOpen={handleClickOpen} />}
+          <Link to="/new-advert">
+            <button
+              className="vendre-button"
+              type="button"
+              onClick={handleMenuActive}
+            >
+              Vends tes Mangas
+            </button>
+          </Link>
+        </div>
+        <div className="mobile-icon-container">
           <ul>
-            <div className="header-icon">
-              <Link to={`/profilUser/${id}`}>
+            <div className="mobile-header-icon">
+              <Link to={`/profilUser/${id}`} onClick={handleMenuActive}>
                 <li>
                   <img src={ProfileIcon} alt="Profile" />
                   <span>Profile</span>
                 </li>
               </Link>
+              <div className="mobile-menu-separator" />
               <li>
                 <img src={AdsIcon} alt="Mes annonces" />
                 <span>Mes annonces</span>
               </li>
+              <div className="mobile-menu-separator" />
               <li>
                 <img src={FavoritesIcon} alt="Favoris" />
                 <span>
                   <a href="/favorites">Favoris</a>
                 </span>{" "}
               </li>
+              <div className="mobile-menu-separator" />
               <li>
                 <img src={SettingsIcon} alt="Paramètres" />
                 <span>Paramètres</span>
               </li>
+              <div className="mobile-menu-separator" />
               <li>
                 <img src={SortIcon} alt="Tri" />
                 <span>Tri</span>
               </li>
             </div>
-            {auth && (
+            <div className="mobile-menu-separator" />
+            {/* {auth && (
               <li className="notification-li">
                 <div
                   className="notification-icon-wrapper"
@@ -149,7 +204,8 @@ function HeaderNavMobileMenu() {
                   />
                 )}
               </li>
-            )}
+            )} */}
+
             <li>
               <button
                 type="button"
@@ -238,5 +294,10 @@ function HeaderNavMobileMenu() {
     </section>
   );
 }
+
+HeaderNavMobileMenu.propTypes = {
+  handleMenuActive: PropTypes.bool.isRequired,
+  menuMobileActive: PropTypes.bool.isRequired,
+};
 
 export default HeaderNavMobileMenu;

@@ -7,7 +7,7 @@ import NegimaLogo from "../assets/negima-logo.png";
 import FairyTailLogo from "../assets/fairytail-logo.png";
 import DetectiveConanLogo from "../assets/detectiveconan-logo.png";
 import SoloLevelingLogo from "../assets/sololeveling-logo.png";
-import BlackCloverLogo from "../assets/blackclover-logo.webp";
+import BlackCloverLogo from "../assets/blackclover-logo.png";
 import MashleLogo from "../assets/mashle-logo.png";
 import ShamanKingLogo from "../assets/shamanking-logo.webp";
 import JujutsuKaisenLogo from "../assets/jujutsukaisen-logo.png";
