@@ -23,20 +23,22 @@ function Catalog() {
   }, []);
 
   return (
-    <div>
-      <h1>Parcourez notre catalogue</h1>
+    <div className="section-catalog container_limit">
+      <h1 className="title-catalog">Parcourez notre catalogue</h1>
       <div className="catalog-container">
         <ul>
           {mangas.map((manga) => (
             <li key={manga.id}>
               <Link to={`/manga/${manga.id}`} className="catalog">
-                <img
-                  className="catalog-img"
-                  src={`http://localhost:3310${manga.image}`}
-                  alt={manga.title}
-                />
+                <div className="catalog-img-container">
+                  <img
+                    className="catalog-img"
+                    src={`http://localhost:3310${manga.image}`}
+                    alt={manga.title}
+                  />
+                </div>
                 <div className="catalog-title">
-                  <h2>{manga.title}</h2>
+                  <h2 id="manga-title">{manga.title}</h2>
                 </div>
               </Link>
             </li>
