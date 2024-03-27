@@ -46,6 +46,7 @@ function NotificationCenter({ setIsVisible }) {
       <div className={`notification-center ${isPopupVisible ? "blurred" : ""}`}>
         <button
           type="button"
+          className="modification-button"
           onClick={() => setIsPopupVisible(!isPopupVisible)}
         >
           Modifier
