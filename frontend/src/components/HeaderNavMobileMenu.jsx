@@ -130,7 +130,11 @@ function HeaderNavMobileMenu({ handleMenuActive, menuMobileActive }) {
           )}
           {open && <ConnexionModal handleClickOpen={handleClickOpen} />}
           <Link to="/new-advert">
-            <button className="vendre-button" type="button">
+            <button
+              className="vendre-button"
+              type="button"
+              onClick={handleMenuActive}
+            >
               Vends tes Mangas
             </button>
           </Link>
