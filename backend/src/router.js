@@ -10,7 +10,7 @@ const { hashPassword, verifyToken } = require("./services/auth");
 
 const validateAddress = require("./middlewares/validateAddress");
 const validateAdvert = require("./middlewares/validateAdvert");
-// const validateUser = require("./middlewares/validateUser");
+const validateUser = require("./middlewares/validateUser");
 
 /* ************************************************************************* */
 // Define Your API Routes Here
@@ -85,6 +85,7 @@ router.post(
 // router.put("/update-advert/:id", multer, advertsControllers.updateAdvert);
 
 // Route to get all orders by buyer (page Profil/onglet my purchase history)
+router.post("/parcel-order", verifyToken, ordersControllers.addOrder);
 router.get(
   "/display-order-history-bybuyer/:id",
   ordersControllers.getHistoryOrderByBuyer
@@ -103,6 +104,7 @@ router.get("/conditions", conditionsControllers.getAllConditions);
 
 // Route to get all users table
 router.get("/users", usersControllers.getAllUsers);
+
 // Route to get all users for one specific user
 router.get("/user/:id", usersControllers.getUserById);
 // Route to get profil user for one specific user
@@ -113,8 +115,8 @@ router.post("/users", hashPassword, usersControllers.add);
 // route post Update Profil User
 router.put(
   "/user/:id",
-  // validateUser,
   multerSingle,
+  validateUser,
   usersControllers.updateUser
 );
 

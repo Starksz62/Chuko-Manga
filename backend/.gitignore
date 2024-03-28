@@ -4,3 +4,6 @@ coverage
 public/upload/*.png
 public/upload/*.jpeg
 public/upload/*.jpg
+public/images/*.png
+public/images/*.jpeg
+public/images/*.jpg

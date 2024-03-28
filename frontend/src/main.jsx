@@ -9,11 +9,13 @@ import Home from "./pages/Home";
 import PaymentPage from "./pages/PaymentPage";
 import AnnouncementDetail from "./pages/AnnouncementDetails";
 import ProfilUser from "./pages/ProfilUser";
-import CreerProfil from "./pages/CreerProfil";
+import CreateProfil from "./pages/CreateProfil";
 import NotFoundPage from "./pages/NotFoundPage";
 import Favorites from "./pages/Favorites";
 import Catalog from "./pages/Catalog";
 import MyAnounces from "./pages/MyAnounces";
+import RequireAuth from "./context/RequireAuth";
+import ProfilSeller from "./pages/ProfilSeller";
 
 const router = createBrowserRouter([
   {
@@ -45,23 +47,44 @@ const router = createBrowserRouter([
       },
       {
         path: "/paymentPage/:id",
-        element: <PaymentPage />,
+        element: (
+          <RequireAuth>
+            <PaymentPage />
+          </RequireAuth>
+        ),
       },
       {
         path: "/new-advert",
-        element: <NewAdvert />,
+        element: (
+          <RequireAuth>
+            <NewAdvert />
+          </RequireAuth>
+        ),
       },
       {
         path: "/display-adverts/:id",
         element: <AnnouncementDetail />,
       },
       {
-        path: "/creerprofil/:id",
-        element: <CreerProfil />,
+        path: "/createprofil/:id",
+        element: (
+          <RequireAuth>
+            <CreateProfil />
+          </RequireAuth>
+        ),
       },
       {
         path: "/profilUser/:id",
-        element: <ProfilUser />,
+        element: (
+          <RequireAuth>
+            {" "}
+            <ProfilUser />{" "}
+          </RequireAuth>
+        ),
+      },
+      {
+        path: "/profilseller/:id",
+        element: <ProfilSeller />,
       },
       {
         path: "*",
@@ -73,11 +96,19 @@ const router = createBrowserRouter([
       },
       {
         path: "/myAnounces/:id",
-        element: <MyAnounces />,
+        element: (
+          <RequireAuth>
+            <MyAnounces />
+          </RequireAuth>
+        ),
       },
       {
         path: "/update-advert/:id",
-        element: <UpdateAdvert />,
+        element: (
+          <RequireAuth>
+            <UpdateAdvert />
+          </RequireAuth>
+        ),
       },
       {
         path: "/favorites",

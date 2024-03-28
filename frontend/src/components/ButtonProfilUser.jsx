@@ -7,13 +7,16 @@ function ButtonProfilUser({ id }) {
   return (
     <button className="user-profilhead_button">
       <Link
-        to={`/creerprofil/${id}`}
-        style={{ textDecoration: "none", color: "inherit" }}
+        to={`/createprofil/${id}`}
+        style={{
+          textDecoration: "none",
+          color: "inherit",
+          pointerEvents: "auto",
+        }}
       >
         Modifier mon profil
       </Link>
     </button>
   );
 }
-
 export default ButtonProfilUser;

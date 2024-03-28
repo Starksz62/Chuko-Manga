@@ -1,29 +1,27 @@
-import React, { useState, useContext } from "react";
-import { Link } from "react-router-dom";
+import { useContext } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import UserContext from "../context/UserContext";
-
 import ConnexionModal from "./ConnexionModal";
-
 import "./HeaderNav.css";
 import SearchBar from "./SearchBar";
 import HeaderNavMobile from "./HeaderNavMobile";
 
 function HeaderNav() {
-  const { auth, setAuth } = useContext(UserContext);
-
-  const [open, setOpen] = useState(false);
-
+  const navigate = useNavigate();
+  const { auth, setAuth, isModalOpen, setIsModalOpen } =
+    useContext(UserContext);
   const handleClickOpen = () => {
-    setOpen(!open);
-    if (!open) {
+    setIsModalOpen(!isModalOpen);
+    if (!isModalOpen) {
       document.body.style.overflow = "hidden";
     } else {
       document.body.style.overflow = "auto";
     }
   };
   const handleLogout = () => {
-    localStorage.removeItem("auth");
+    navigate("/");
     setAuth(null);
+    localStorage.removeItem("auth");
   };
 
   return (
@@ -56,7 +54,7 @@ function HeaderNav() {
               Se déconnecter
             </button>
           )}
-          {open && <ConnexionModal handleClickOpen={handleClickOpen} />}
+          {isModalOpen && <ConnexionModal handleClickOpen={handleClickOpen} />}
           <Link to="/new-advert">
             <button className="vendre-button" type="button">
               Vends tes Mangas

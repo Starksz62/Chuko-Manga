@@ -41,16 +41,12 @@ function AdvertCard({ advert }) {
     localStorage.setItem("favoriteAdverts", JSON.stringify(updatedFavorites));
 
     console.info("Favori cliqué");
-    // Condition pour ajouter une image uniquement lors de l'ajout aux favoris
     if (newIsFavorite) {
       addNotification(
         "Article ajouté aux favoris.",
         `http://localhost:3310${advert.image_path}`
       );
-    } else {
-      // Lors de la suppression des favoris, notifier sans image
-      addNotification("Article retiré des favoris.");
-    }
+    } 
   };
 
   const average = parseFloat(advert.average).toFixed(1);
@@ -89,7 +85,7 @@ function AdvertCard({ advert }) {
       <div className="card-user-section">
         <div className="user">
           <img
-            src={advert.user_picture}
+            src={`http://localhost:3310${advert.user_picture}`}
             alt="user"
             className="card-user-photo"
           />
