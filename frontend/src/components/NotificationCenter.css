@@ -14,6 +14,15 @@
   z-index: 1000;
   padding: 20px;
   width: 200px;
+  border-radius: 10px;
+}
+
+.popup-up {
+  top: 27%;
+}
+
+.popup-lower {
+  top: calc(39% - 100px);
 }
 
 .popup-option {
@@ -38,18 +47,48 @@
 
 .notification-center {
   position: fixed;
-  top: 46%;
+  top: 50%;
   left: 17%;
   transform: translate(-50%, -50%);
   background: white;
   padding: 20px;
   border-radius: 10px;
   z-index: 50;
-  /* width: 360px; */
   height: auto;
+  max-height: 60%;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: var(--primary-clr) rgba(0, 0, 0, 0.1);
+}
+
+.higher {
+  top: 30%;
+}
+
+.notification-center::-webkit-scrollbar {
+  width: 8px;
+}
+
+.notification-center::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.1);
+}
+
+.notification-center::-webkit-scrollbar-thumb {
+  background-color: var(--primary-clr);
+  border-radius: 20px;
+  border: 3px solid var(--primary-clr);
+}
+
+.modification-button {
+  padding: 0.5rem 1rem;
+  background-color: var(--primary-clr);
+  color: white;
+  border: 0.1rem solid var(--primary-clr);
+  border-radius: 0.5rem;
 }
 
 .notification-center h4 {
+  margin-top: 20px;
   margin-bottom: 20px;
 }
 
@@ -68,7 +107,7 @@
 }
 
 .view-all-button {
-  background-color: #dd7a07;
+  background-color: var(--primary-clr);
   color: white;
   border: none;
   padding: 10px 20px;
@@ -76,6 +115,15 @@
   border-radius: 5px;
   margin-top: 10px;
   font-weight: bold;
+}
+.view-less-button {
+  display: block;
+  margin: 20px auto;
+  padding: 0.5rem 1rem;
+  background-color: var(--primary-clr);
+  color: white;
+  border: 0.1rem solid var(--primary-clr);
+  border-radius: 0.5rem;
 }
 
 .notification-time {
@@ -128,8 +176,17 @@
   border-bottom: none;
 }
 
-hr {
+.separate-line {
   border: none;
   border-top: 1px solid #ccc;
-  margin: 10px 0;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.close-notification-center-button {
+  padding: 0.5rem 1rem;
+  background-color: var(--neutral-100);
+  color: var(--primary-clr);
+  border: 0.1rem solid var(--primary-clr);
+  border-radius: 0.5rem;
 }
