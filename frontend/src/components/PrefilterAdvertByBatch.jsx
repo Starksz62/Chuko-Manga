@@ -11,7 +11,6 @@ import Right from "../assets/rightlogo.png";
 
 function PrefilterAdvertByBatch() {
   // eslint-disable-next-line no-unused-vars
-  const [adverts, setAdverts] = useState([]);
   const [filteredAdverts, setFilteredAdverts] = useState([]);
   const containerRef = useRef(null);
 
@@ -20,7 +19,7 @@ function PrefilterAdvertByBatch() {
   const [showRightButton, setShowRightButton] = useState(true);
 
   useEffect(() => {
-    fetch("http://localhost:3310/api/batch-adverts-date-desc")
+    fetch("http://localhost:3310/api/find-recent-adverts?batch=true")
       .then((response) => {
         if (!response.ok) {
           throw new Error(`Error HTTP, status: ${response.status}`);
@@ -28,7 +27,6 @@ function PrefilterAdvertByBatch() {
         return response.json();
       })
       .then((data) => {
-        setAdverts(data);
         setFilteredAdverts(data); // Initialize with all adverts
       })
       .catch((error) => {
@@ -98,7 +96,7 @@ function PrefilterAdvertByBatch() {
               <p>Loading...</p>
             )}
 
-            <Link className="link-btn-batch" to="/explore">
+            <Link className="link-btn-batch" to="/explore?batch=true">
               <button type="button" className="bnt-see-all-tomes-batch">
                 Voir tous les lots
               </button>

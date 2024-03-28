@@ -1,11 +1,6 @@
 /* eslint-disable no-restricted-syntax */
 const models = require("../modelsProviders");
 
-// const pictureUpdate = (req, res) => {
-//   console.log("body", req.body);
-//   console.log("file", req.file);
-// };
-
 const getAllUsers = (req, res) => {
   models.user
     .findAll()
@@ -69,13 +64,11 @@ const getUserProfilComById = async (req, res) => {
 };
 
 const updateUser = async (req, res) => {
-  console.log("body", req.body);
-  console.log("file", req.file);
   const { id } = req.params;
   const user = req.body;
-  user.picture = `/static/${req.file.filename}`;
-  console.log("user : --- ", user);
-
+  if (req.file) {
+    user.picture = `/static/${req.file.filename}`;
+  }
   try {
     user.id = id;
     const result = await models.user.updateUser(user);

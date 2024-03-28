@@ -10,7 +10,7 @@ const { hashPassword, verifyToken } = require("./services/auth");
 
 const validateAddress = require("./middlewares/validateAddress");
 const validateAdvert = require("./middlewares/validateAdvert");
-// const validateUser = require("./middlewares/validateUser");
+const validateUser = require("./middlewares/validateUser");
 
 /* ************************************************************************* */
 // Define Your API Routes Here
@@ -89,7 +89,7 @@ router.get(
   "/display-order-history-bybuyer/:id",
   ordersControllers.getHistoryOrderByBuyer
 );
-// Route to get all volumes by manag ID (page manga details)
+// Route to get all volumes by manga ID (page manga details)
 router.get("/volumes/:mangaId", volumesControllers.getVolumesByMangaId);
 // Route to delete advert by user
 router.delete("/advert/:id", advertsControllers.deleteAdvert);
@@ -113,8 +113,8 @@ router.post("/users", hashPassword, usersControllers.add);
 // route post Update Profil User
 router.put(
   "/user/:id",
-  // validateUser,
   multerSingle,
+  validateUser,
   usersControllers.updateUser
 );
 
