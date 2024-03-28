@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useLocation, useParams } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import { useFilters } from "../context/FilterContext";
 import AdvertCard from "../components/AdvertCard";
 import "./Explore.css";
@@ -8,11 +8,12 @@ function Explore() {
   const [dataAdverts, setDataAdverts] = useState([]);
   const [filteredAdverts, setFilteredAdverts] = useState([]);
   const location = useLocation();
-  const { searchQuery, volumeId } = useParams();
-  // console.info("searchQuery reçue dans explore", searchQuery);
+  const searchQuery = decodeURIComponent(
+    location.pathname.split("/explore/")[1] || ""
+  );
+  console.info("query reçue dans explore", searchQuery);
   const queryParams = new URLSearchParams(location.search);
   const batchFromUrl = queryParams.get("batch");
-  // console.info("volumeId reçu dans explore", volumeId);
   const { filters, setBatch, setMinMaxPrices, dynamicPriceFilter } =
     useFilters();
 
@@ -25,10 +26,6 @@ function Explore() {
           url += `searchQuery=${encodeURIComponent(searchQuery)}`;
         } else if (batchFromUrl !== undefined) {
           url += `batch=${encodeURIComponent(batchFromUrl)}`;
-        }
-        if (volumeId) {
-          url += `&searchVolume=${encodeURIComponent(volumeId)}`;
-          console.info("searchVolumeFromUrl", volumeId);
         }
         if (filters.genreId) {
           url += `&genreId=${encodeURIComponent(filters.genreId)}`;
@@ -43,7 +40,7 @@ function Explore() {
           url += `&maxPrice=${encodeURIComponent(filters.priceMax)}`;
         }
 
-        // console.info("URL de la requête fetch :", url);
+        console.info("URL de la requête fetch :", url);
         const response = await fetch(url);
         if (!response.ok) {
           throw new Error(`Erreur HTTP, statut : ${response.status}`);
@@ -56,7 +53,7 @@ function Explore() {
           const calculatedMaxPrice = Math.max(...prices);
           setMinMaxPrices(calculatedMinPrice, calculatedMaxPrice);
           setFilteredAdverts(data);
-          // console.info("resulat annonce dans explore", data);
+          console.info("resulat annonce dans explore", data);
         }
       } catch (error) {
         console.error(
@@ -76,7 +73,7 @@ function Explore() {
     filters.priceMax,
   ]);
   useEffect(() => {
-    // console.info("Mise à jour du filtrage dynamique", dynamicPriceFilter);
+    console.info("Mise à jour du filtrage dynamique", dynamicPriceFilter);
     const filtered = dataAdverts.filter((advert) =>
       dynamicPriceFilter.minPrice != null && dynamicPriceFilter.maxPrice != null
         ? parseFloat(advert.price) >= dynamicPriceFilter.minPrice &&
