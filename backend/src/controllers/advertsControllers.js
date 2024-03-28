@@ -203,7 +203,15 @@ const recentAdverts = async (req, res) => {
 };
 const getAdvertsByPrice = async (req, res) => {
   const { batch } = req.query;
-  const isBatch = batch === "true";
+  let isBatch = null; // Par défaut, isBatch est null
+  if (batch !== undefined) {
+    if (batch === 'true') {
+      isBatch = true;
+    } else if (batch === 'false') {
+      isBatch = false;
+    }
+
+  }
   try {
     const priceRange = await models.advert.getMinMaxPrice(isBatch);
 

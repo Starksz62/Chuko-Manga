@@ -1,5 +1,7 @@
+/* eslint-disable jsx-a11y/click-events-have-key-events */
+/* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 import { useContext, useState } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useNotifications } from "../context/NotificationContext";
 import { useFilters } from "../context/FilterContext";
 import UserContext from "../context/UserContext";
@@ -22,8 +24,9 @@ function LeftNavbar() {
   const location = useLocation();
   const [showFilters, setShowFilters] = useState(false);
   const [currentFilter, setCurrentFilter] = useState(null);
-  const { auth } = useContext(UserContext);
+  const { auth, setIsModalOpen } = useContext(UserContext);
   const { notifications } = useNotifications();
+  const navigate = useNavigate();
   const [notificationCenterVisible, setNotificationCenterVisible] =
     useState(false);
   const { updateFilters } = useFilters();
@@ -61,7 +64,13 @@ function LeftNavbar() {
     setShowPriceSlider((prev) => !prev);
     setCurrentFilter(currentFilter !== "Prix" ? "Prix" : null);
   };
-
+  const handleProfileClick = () => {
+    if (auth && auth.user) {
+      navigate(`/profilUser/${auth.user.id}`); // Navigue vers le profil si authentifié
+    } else {
+      setIsModalOpen(true); // Sinon, ouvre la modal de connexion
+    }
+  };
   const genreOptions = [
     { id: 1, name: "Shonen" },
     { id: 2, name: "Shojo" },
@@ -75,7 +84,7 @@ function LeftNavbar() {
     { id: 2, name: "bon état" },
     { id: 3, name: "comme neuf" },
   ];
-
+  // const token = localStorage.getItem("auth");
   return (
     <>
       {notificationCenterVisible && (
@@ -94,14 +103,11 @@ function LeftNavbar() {
         <div className="icon-container">
           <ul>
             <div className="header-icon">
-              <Link
-                to={auth && auth.user ? `/profilUser/${auth.user.id}` : "/"}
-              >
-                <li>
-                  <img src={ProfileIcon} alt="Profile" />
-                  <span>Profile</span>
-                </li>
-              </Link>
+              <li onClick={handleProfileClick} style={{ cursor: "pointer" }}>
+                <img src={ProfileIcon} alt="Profile" />
+                <span>Profile</span>
+              </li>
+
               <li>
                 <img src={AdsIcon} alt="Mes annonces" />
                 <span>Mes annonces</span>
@@ -109,8 +115,8 @@ function LeftNavbar() {
               <li>
                 <img src={FavoritesIcon} alt="Favoris" />
                 <span>
-                  <a href="/favorites">Favoris</a>
-                </span>{" "}
+                  <Link to="/favorites">Favoris</Link>
+                </span>
               </li>
               <li>
                 <img src={SettingsIcon} alt="Paramètres" />

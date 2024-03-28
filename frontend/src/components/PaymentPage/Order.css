@@ -55,7 +55,7 @@
     width: 100%;
   }
   .img-command-annonce {
-    width: 100px;
-    height: 100px;
+    width: 25%;
+    object-fit: cover;
   }
 }

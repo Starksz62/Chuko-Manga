@@ -41,22 +41,21 @@
   margin-top: 25px;
 }
 
-.logo-card-payment {
+.logo-card-payment-desktop {
   display: flex;
   justify-content: center;
   margin-top: 30px;
   width: 100%;
 }
 
-.information-security-payment {
+.information-security-payment-desktop {
   display: flex;
   text-align: start;
   align-items: center;
   margin-top: 15px;
-  width: 68%;
 }
 
-.information-security-payment img {
+.information-security-payment-desktop img {
   width: 10%;
   padding-bottom: 10px;
 }
@@ -76,7 +75,7 @@
   color: white;
 }
 
-.logo-card-payment img {
+.logo-card-payment-desktop img {
   width: 100%;
 }
 
@@ -97,5 +96,11 @@
 
   .resume-payment {
     height: 214px;
+  }
+  .logo-card-payment-desktop {
+    display: none;
+  }
+  .information-security-payment-desktop {
+    display: none;
   }
 }
