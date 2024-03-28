@@ -6,19 +6,25 @@
   color: var(--primary-clr);
 }
 .personal_details_form {
-  border: 1px solid black;
+  box-shadow:
+    rgba(0, 0, 0, 0.12) 0px 1px 3px,
+    rgba(0, 0, 0, 0.24) 0px 1px 2px;
+  border: 1px solid var(--neutral-700);
   padding: 50px;
   display: flex;
   flex-direction: column;
   margin: 50px;
 }
 .custom_button {
-  margin-left: 50px;
   background-color: rgb(182, 185, 185);
-  border-radius: 50%;
-  border: none;
-  height: 80px;
-  width: 80px;
+  height: 10rem;
+  width: 10rem;
+  clip-path: circle(50%);
+  object-fit: cover;
+  margin: 20px 45px 20px 90px;
+}
+.custom_button img {
+  object-fit: cover;
 }
 .input_label_profil {
   display: flex;
@@ -58,6 +64,10 @@
   }
   .title_of_create_profil {
     font-size: var(--fs-S);
+  }
+  .custom_button {
+    height: 5rem;
+    width: 5rem;
   }
   .personal_details_form {
     padding: 10px;

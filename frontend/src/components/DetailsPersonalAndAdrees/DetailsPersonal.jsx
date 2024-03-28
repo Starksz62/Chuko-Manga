@@ -90,7 +90,7 @@ function DetailsPersonal() {
     <form className="personal_details_form">
       <div className="input_label_profil">
         <label htmlFor="picture" className="label_profil">
-          Choisi ta photo:
+          Choisis ta photo:
         </label>
         <input
           type="file"
@@ -122,7 +122,7 @@ function DetailsPersonal() {
       </div>
       <div className="input_label_profil">
         <label htmlFor="pseudo" className="label_profil">
-          Ton pseudo:
+          Ton pseudo
         </label>
         <input
           type="text"
@@ -137,7 +137,7 @@ function DetailsPersonal() {
       </div>
       <div className="input_label_profil">
         <label htmlFor="firstname" className="label_profil">
-          Ton prénom:
+          Ton prénom
         </label>
         <input
           type="text"
@@ -152,7 +152,7 @@ function DetailsPersonal() {
       </div>
       <div className="input_label_profil">
         <label htmlFor="lastname" className="label_profil">
-          Ton nom:
+          Ton nom
         </label>
         <input
           type="text"
@@ -166,7 +166,7 @@ function DetailsPersonal() {
       </div>
       <div className="input_label_profil">
         <label htmlFor="email" className="label_profil">
-          Email:
+          Email
         </label>
         <input
           type="text"
@@ -180,7 +180,7 @@ function DetailsPersonal() {
       </div>
       <div className="input_label_profil">
         <label htmlFor="phone" className="label_profil">
-          Telephone:
+          Telephone
         </label>
         <input
           type="text"
