@@ -68,7 +68,7 @@ function AnnouncementDetail({ userId, id }) {
           {articlesCount > 1 ? "s" : ""} pour ce vendeur
         </p>
         <div className="seller-information">
-          <img src={sellerInfo.user_picture} alt="" />
+          <img src={`http://localhost:3310${sellerInfo.user_picture}`} alt="" />
           <div className="information-from-card">
             <p>{sellerInfo.pseudo}</p>
             <div className="feedback-stars">
