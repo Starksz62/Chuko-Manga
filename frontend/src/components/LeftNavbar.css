@@ -181,3 +181,11 @@
     padding: 0;
   }
 }
+
+.filter-dropdown {
+  max-height: 400px;
+  overflow-y: scroll;
+}
+.filter-dropdown::-webkit-scrollbar {
+  display: none; /* Masquer la barre de défilement */
+}

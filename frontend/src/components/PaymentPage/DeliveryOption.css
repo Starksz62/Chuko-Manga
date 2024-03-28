@@ -7,6 +7,9 @@
   background: #f8f8f8;
   border-radius: 4px;
   gap: 6px;
+  box-shadow:
+    rgba(0, 0, 0, 0.12) 0px 1px 3px,
+    rgba(0, 0, 0, 0.24) 0px 1px 2px;
 }
 
 .delivery-option-container h3 {
