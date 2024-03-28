@@ -25,8 +25,12 @@ function AdvertForm(props) {
     previewUrls,
     setBatch,
     setConditionId,
+    conditionAnounce,
     setVolumeId,
+    volumeAnounce,
     volumeList,
+    isNewAdvertPage,
+    mangaAnounce,
   } = props;
 
   return (
@@ -47,6 +51,8 @@ function AdvertForm(props) {
         price={price}
         priceErr={priceErr}
         setConditionId={setConditionId}
+        conditionAnounce={conditionAnounce}
+        isNewAdvertPage={isNewAdvertPage}
       />
       <AdvertFormReference
         batch={batch}
@@ -54,9 +60,12 @@ function AdvertForm(props) {
         setBatch={setBatch}
         setVolumeId={setVolumeId}
         volumeList={volumeList}
+        volumeAnounce={volumeAnounce}
+        mangaAnounce={mangaAnounce}
+        isNewAdvertPage={isNewAdvertPage}
       />
       <button className="add-button" type="submit">
-        Ajouter
+        {isNewAdvertPage ? "Ajouter" : "Modifier"}
       </button>
     </form>
   );
@@ -93,4 +102,8 @@ AdvertForm.propTypes = {
       title: PropTypes.string.isRequired,
     })
   ).isRequired,
+  volumeAnounce: PropTypes.string.isRequired,
+  conditionAnounce: PropTypes.string.isRequired,
+  isNewAdvertPage: PropTypes.bool.isRequired,
+  mangaAnounce: PropTypes.string.isRequired,
 };

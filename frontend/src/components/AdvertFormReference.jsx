@@ -5,8 +5,16 @@ import PropTypes from "prop-types";
 import "./AdvertFormReference.css";
 
 function AdvertFormReference(props) {
-  const { batch, handleSelectedManga, setBatch, setVolumeId, volumeList } =
-    props;
+  const {
+    batch,
+    handleSelectedManga,
+    setBatch,
+    setVolumeId,
+    volumeList,
+    volumeAnounce,
+    mangaAnounce,
+    isNewAdvertPage,
+  } = props;
 
   const [mangaList, setMangaList] = useState([]);
 
@@ -21,6 +29,22 @@ function AdvertFormReference(props) {
         console.error("Error fetching conditions and mangas:", error);
       });
   }, []);
+
+  console.info(
+    "récupération du batch de l'annonce dans advertformreference :",
+    batch
+  );
+  console.info(
+    "récupération du volume de l'annonce dans advertformreference :",
+    volumeAnounce
+  );
+
+  let volumeText;
+  if (isNewAdvertPage) {
+    volumeText = "Sélectionne le volume";
+  } else {
+    volumeText = batch !== 1 ? "Sélectionne le volume" : volumeAnounce;
+  }
 
   return (
     <>
@@ -43,6 +67,7 @@ function AdvertFormReference(props) {
         </button>
       </div>
       <div className="advert-ref">Référencement</div>
+
       {batch === 0 ? (
         <>
           <label htmlFor="manga" className="advert-instruction">
@@ -56,7 +81,12 @@ function AdvertFormReference(props) {
               handleSelectedManga(e);
             }}
           >
-            <option value="">Sélectionne ton manga</option>
+            <option value="">
+              {isNewAdvertPage
+                ? "Sélectionne ton manga"
+                : (batch === 0 && !isNewAdvertPage && mangaAnounce) ||
+                  (batch === 1 && !isNewAdvertPage && "Sélectionne ton manga")}
+            </option>
             {mangaList.map((manga) => (
               <option key={manga.id} value={manga.id}>
                 {manga.title}
@@ -72,7 +102,7 @@ function AdvertFormReference(props) {
             name="volume_id"
             onChange={(e) => setVolumeId(e.target.value)}
           >
-            <option value="">Sélectionne le volume</option>
+            <option value="">{volumeText}</option>
             {volumeList.map((volumeItem) => (
               <option key={volumeItem.id} value={volumeItem.id}>
                 {volumeItem.title}
@@ -93,7 +123,11 @@ function AdvertFormReference(props) {
               handleSelectedManga(e);
             }}
           >
-            <option value="">Sélectionne ton manga</option>
+            <option value="">
+              {isNewAdvertPage
+                ? "Sélectionne ton manga"
+                : batch === 1 && !isNewAdvertPage && mangaAnounce}
+            </option>
             {mangaList.map((manga) => (
               <option key={manga.id} value={manga.id}>
                 {manga.title}
@@ -118,4 +152,7 @@ AdvertFormReference.propTypes = {
       title: PropTypes.string.isRequired,
     })
   ).isRequired,
+  isNewAdvertPage: PropTypes.bool.isRequired,
+  mangaAnounce: PropTypes.string.isRequired,
+  volumeAnounce: PropTypes.string.isRequired,
 };
