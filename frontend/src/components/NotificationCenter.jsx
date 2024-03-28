@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import { formatDistanceToNow } from "date-fns";
 import "./NotificationCenter.css";
@@ -9,23 +9,21 @@ function NotificationCenter({ setIsVisible }) {
   const { notifications, removeNotification } = useNotifications();
   const [isPopupVisible, setIsPopupVisible] = useState(false);
   const [visibleNotifications, setVisibleNotifications] = useState(3);
-  const [popupClass, setPopupClass] = useState(
-    notifications.length > 0 ? "popup" : "popup popup-lower"
-  );
+
+  const [popupClass, setPopupClass] = useState("popup");
+
+  useEffect(() => {
+    let className = "popup";
+    if (isPopupVisible) {
+      className += notifications.length === 0 ? " popup-lower" : " popup-up";
+    }
+    setPopupClass(className);
+  }, [isPopupVisible, notifications.length]);
+
+  const notificationCenterClass = `notification-center ${notifications.length === 0 ? "higher" : ""}`;
 
   const togglePopupVisibility = () => {
     setIsPopupVisible(!isPopupVisible);
-    if (!isPopupVisible) {
-      if (notifications.length === 0) {
-        setPopupClass("popup popup-lower");
-      } else if (visibleNotifications >= notifications.length) {
-        setPopupClass("popup popup-up");
-      } else {
-        setPopupClass("popup");
-      }
-    } else {
-      setPopupClass("popup");
-    }
   };
 
   const handleDeleteAll = () => {
@@ -33,17 +31,18 @@ function NotificationCenter({ setIsVisible }) {
       removeNotification(notification.id)
     );
     setIsPopupVisible(false);
-    setPopupClass("popup popup-lower");
   };
 
   const handleViewAll = () => {
     setVisibleNotifications(notifications.length);
-    setPopupClass("popup popup-up");
   };
 
   const handleClosePopup = () => {
     setIsPopupVisible(false);
-    setPopupClass(notifications.length === 0 ? "popup" : "popup popup-lower");
+  };
+
+  const handleViewLess = () => {
+    setVisibleNotifications(3);
   };
 
   return (
@@ -68,7 +67,7 @@ function NotificationCenter({ setIsVisible }) {
         </div>
       )}
 
-      <div className={`notification-center ${isPopupVisible ? "blurred" : ""}`}>
+      <div className={notificationCenterClass}>
         <button
           type="button"
           className="modification-button"
@@ -117,30 +116,29 @@ function NotificationCenter({ setIsVisible }) {
           )}
         </div>
 
-        {visibleNotifications > 3 && (
-          <button
-            type="button"
-            className="view-less-button"
-            onClick={() => setVisibleNotifications(3)}
-          >
-            Voir moins
-          </button>
-        )}
+        {notifications.length > 3 &&
+          visibleNotifications >= notifications.length && (
+            <button
+              type="button"
+              className="view-less-button"
+              onClick={handleViewLess}
+            >
+              Voir moins
+            </button>
+          )}
 
-        <div className="notification-center-actions">
-          {notifications.length > 3 &&
-            visibleNotifications < notifications.length && (
-              <div className="view-all-container">
-                <button
-                  type="button"
-                  className="view-all-button"
-                  onClick={handleViewAll}
-                >
-                  Voir tout
-                </button>
-              </div>
-            )}
-        </div>
+        {notifications.length > 3 &&
+          visibleNotifications < notifications.length && (
+            <div className="view-all-container">
+              <button
+                type="button"
+                className="view-all-button"
+                onClick={handleViewAll}
+              >
+                Voir tout
+              </button>
+            </div>
+          )}
       </div>
     </div>
   );
