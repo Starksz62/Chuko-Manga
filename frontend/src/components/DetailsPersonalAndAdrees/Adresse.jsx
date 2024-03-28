@@ -76,7 +76,7 @@ function Adresse() {
   };
 
   return (
-    <form className="ContainerCreation" onSubmit={handleUpdateAdresseUser}>
+    <form className="personal_details_form" onSubmit={handleUpdateAdresseUser}>
       <div className="input_label_profil">
         <label htmlFor="country" className="label_profil">
           Pays:
@@ -93,7 +93,7 @@ function Adresse() {
       </div>
       <div className="input_label_profil">
         <label htmlFor="city" className="label_profil">
-          Ville:
+          Ville
         </label>
         <input
           type="text"
@@ -107,7 +107,7 @@ function Adresse() {
       </div>
       <div className="input_label_profil">
         <label htmlFor="zipCode" className="label_profil">
-          Code postal:
+          Code postal
         </label>
         <input
           type="text"
@@ -121,7 +121,7 @@ function Adresse() {
       </div>
       <div className="input_label_profil">
         <label htmlFor="numberStreet" className="label_profil">
-          Rue:
+          Rue
         </label>
         <input
           type="text"
@@ -135,7 +135,7 @@ function Adresse() {
       </div>
       <div className="input_label_profil">
         <label htmlFor="nameAdress" className="label_profil">
-          Nom de l'adresse:
+          Nom de l'adresse
         </label>
         <input
           type="text"

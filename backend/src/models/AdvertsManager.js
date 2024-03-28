@@ -223,7 +223,7 @@ if (batch !== null && batch !== undefined) {
    LEFT JOIN manga ON advert.manga_id = manga.id 
     JOIN (SELECT user.pseudo as rated_pseudo, ROUND(AVG(feedback.rating), 1) as average, COUNT(feedback.rating) as feedback_nber
           FROM user
-          JOIN feedback ON user.id = feedback.user_id
+          LEFT JOIN feedback ON user.id = feedback.user_id
           GROUP BY user.pseudo) as joint_table ON user.pseudo=joint_table.rated_pseudo
     ${whereConditions}
     ORDER BY advert.publication_date_advert DESC;
