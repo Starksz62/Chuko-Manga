@@ -156,88 +156,94 @@ function LeftNavbar() {
             )}
             <li>
               {location.pathname.startsWith("/explore") && (
-                <button
-                  type="button"
-                  onClick={toggleFilters}
-                  className="filter-category"
-                >
-                  <img src={FilterIcon} alt="Filtre" />
-                  <span className="filter-text">Filtre</span>
-                </button>
+                <>
+                  <button
+                    type="button"
+                    onClick={toggleFilters}
+                    className="filter-category"
+                  >
+                    <img src={FilterIcon} alt="Filtre" />
+                    <span className="filter-text">Filtre</span>
+                  </button>
+                  {showFilters && (
+                    <li className="filter-dropdown">
+                      <ul>
+                        <li>
+                          <button
+                            type="button"
+                            className={`genres ${currentFilter === "Genres" ? "active" : ""}`}
+                            onClick={() => handleFilterClick("Genres")}
+                          >
+                            Genres
+                          </button>
+                          {currentFilter === "Genres" && (
+                            <ul>
+                              {genreOptions.map((genre) => (
+                                <li key={genre.id}>
+                                  <button
+                                    type="button"
+                                    onClick={() =>
+                                      handleFilterSelection(genre.id)
+                                    }
+                                    className={
+                                      selectedGenreId === genre.id
+                                        ? "active"
+                                        : ""
+                                    }
+                                  >
+                                    {genre.name}
+                                  </button>
+                                </li>
+                              ))}
+                            </ul>
+                          )}
+                        </li>
+                        <li>
+                          <button
+                            type="button"
+                            className={`condition ${currentFilter === "Condition" ? "active" : ""}`}
+                            onClick={() => handleFilterClick("Condition")}
+                          >
+                            État
+                          </button>
+                          {currentFilter === "Condition" && (
+                            <ul>
+                              {conditionOptions.map((condition) => (
+                                <li key={condition.id}>
+                                  <button
+                                    type="button"
+                                    onClick={() =>
+                                      handleConditionSelection(condition.name)
+                                    }
+                                    className={
+                                      selectedConditionName === condition.name
+                                        ? "active"
+                                        : ""
+                                    }
+                                  >
+                                    {condition.name}
+                                  </button>
+                                </li>
+                              ))}
+                            </ul>
+                          )}
+                        </li>
+                        <li>
+                          <button
+                            type="button"
+                            className={`price ${currentFilter === "Prix" ? "active" : ""}`}
+                            onClick={handlePriceClick}
+                          >
+                            Prix
+                          </button>
+                          {showPriceSlider && <PriceSlider />}
+                        </li>
+                      </ul>
+                    </li>
+                  )}
+                </>
               )}
             </li>
-            {showFilters && (
-              <li className="filter-dropdown">
-                <ul>
-                  <li>
-                    <button
-                      type="button"
-                      className={`genres ${currentFilter === "Genres" ? "active" : ""}`}
-                      onClick={() => handleFilterClick("Genres")}
-                    >
-                      Genres
-                    </button>
-                    {currentFilter === "Genres" && (
-                      <ul>
-                        {genreOptions.map((genre) => (
-                          <li key={genre.id}>
-                            <button
-                              type="button"
-                              onClick={() => handleFilterSelection(genre.id)}
-                              className={
-                                selectedGenreId === genre.id ? "active" : ""
-                              }
-                            >
-                              {genre.name}
-                            </button>
-                          </li>
-                        ))}
-                      </ul>
-                    )}
-                  </li>
-                  <li>
-                    <button
-                      type="button"
-                      className={`condition ${currentFilter === "Condition" ? "active" : ""}`}
-                      onClick={() => handleFilterClick("Condition")}
-                    >
-                      État
-                    </button>
-                    {currentFilter === "Condition" && (
-                      <ul>
-                        {conditionOptions.map((condition) => (
-                          <li key={condition.id}>
-                            <button
-                              type="button"
-                              onClick={() =>
-                                handleConditionSelection(condition.name)
-                              }
-                              className={
-                                selectedConditionName === condition.name
-                                  ? "active"
-                                  : ""
-                              }
-                            >
-                              {condition.name}
-                            </button>
-                          </li>
-                        ))}
-                      </ul>
-                    )}
-                  </li>
-                  <li>
-                    <button
-                      type="button"
-                      className={`price ${currentFilter === "Prix" ? "active" : ""}`}
-                      onClick={handlePriceClick}
-                    >
-                      Prix
-                    </button>
-                    {showPriceSlider && <PriceSlider />}
-                  </li>
-                </ul>
-              </li>
-            )}
           </ul>
         </div>
       </div>
