@@ -103,7 +103,7 @@ VALUES
 -- role
 'user', 
 -- picture
-'https://images.pexels.com/photos/1239291/pexels-photo-1239291.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1' 
+'/static/julie.jpeg' 
 ),
 (
   -- firstname
@@ -121,7 +121,7 @@ VALUES
 -- role
 'user', 
 -- picture
-'https://images.pexels.com/photos/2379004/pexels-photo-2379004.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'
+'/static/marc.jpeg'
 );
 
 INSERT INTO address (city, zip_code, number_street, country, name_adress)
