@@ -13,6 +13,19 @@ const getHistoryOrderByBuyer = async (req, res) => {
   }
 };
 
+const addOrder = async (req, res) => {
+  try {
+    const orderDetails = req.body;
+    const result = await models.order.addOrder(orderDetails);
+    res
+      .status(201)
+      .json({ orderId: result.insertId, message: "Order added successfully" });
+  } catch (err) {
+    console.error("Error adding order:", err);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+};
 module.exports = {
   getHistoryOrderByBuyer,
+  addOrder,
 };

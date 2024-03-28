@@ -85,7 +85,7 @@ function AdvertCard({ advert }) {
       <div className="card-user-section">
         <div className="user">
           <img
-            src={advert.user_picture}
+            src={`http://localhost:3310${advert.user_picture}`}
             alt="user"
             className="card-user-photo"
           />

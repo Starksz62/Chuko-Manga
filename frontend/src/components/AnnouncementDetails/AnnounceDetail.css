@@ -69,9 +69,19 @@
   .container-other-sell {
     display: grid;
     grid-template-columns: repeat(2, 300px);
-    gap: 20px;
   }
   .titlePrefiltreDesc.specific-title-class {
     margin-left: 0px;
+  }
+
+  .container-other-sell .card-content {
+    width: 250px;
+  }
+}
+
+@media only screen and (max-width: 767px) {
+  .container-other-sell {
+    display: grid;
+    grid-template-columns: repeat(2, 300px);
   }
 }

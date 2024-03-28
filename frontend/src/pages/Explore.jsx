@@ -23,7 +23,7 @@ function Explore() {
         let url = "http://localhost:3310/api/find-recent-adverts?";
         if (searchQuery) {
           url += `searchQuery=${encodeURIComponent(searchQuery)}`;
-        } else if (batchFromUrl !== undefined) {
+        } else if (batchFromUrl !== null && batchFromUrl !== undefined) {
           url += `batch=${encodeURIComponent(batchFromUrl)}`;
         }
         if (volumeId) {
@@ -74,6 +74,7 @@ function Explore() {
     filters.condition,
     filters.priceMin,
     filters.priceMax,
+    dynamicPriceFilter,
   ]);
   useEffect(() => {
     // console.info("Mise à jour du filtrage dynamique", dynamicPriceFilter);

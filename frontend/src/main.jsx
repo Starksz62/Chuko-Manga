@@ -14,6 +14,7 @@ import NotFoundPage from "./pages/NotFoundPage";
 import Favorites from "./pages/Favorites";
 import Catalog from "./pages/Catalog";
 import MyAnounces from "./pages/MyAnounces";
+import RequireAuth from "./context/RequireAuth";
 import ProfilSeller from "./pages/ProfilSeller";
 
 const router = createBrowserRouter([
@@ -46,11 +47,19 @@ const router = createBrowserRouter([
       },
       {
         path: "/paymentPage/:id",
-        element: <PaymentPage />,
+        element: (
+          <RequireAuth>
+            <PaymentPage />
+          </RequireAuth>
+        ),
       },
       {
         path: "/new-advert",
-        element: <NewAdvert />,
+        element: (
+          <RequireAuth>
+            <NewAdvert />
+          </RequireAuth>
+        ),
       },
       {
         path: "/display-adverts/:id",
@@ -58,11 +67,20 @@ const router = createBrowserRouter([
       },
       {
         path: "/createprofil/:id",
-        element: <CreateProfil />,
+        element: (
+          <RequireAuth>
+            <CreateProfil />
+          </RequireAuth>
+        ),
       },
       {
-        path: "/profiluser/:id",
-        element: <ProfilUser />,
+        path: "/profilUser/:id",
+        element: (
+          <RequireAuth>
+            {" "}
+            <ProfilUser />{" "}
+          </RequireAuth>
+        ),
       },
       {
         path: "/profilseller/:id",
@@ -78,11 +96,19 @@ const router = createBrowserRouter([
       },
       {
         path: "/myAnounces/:id",
-        element: <MyAnounces />,
+        element: (
+          <RequireAuth>
+            <MyAnounces />
+          </RequireAuth>
+        ),
       },
       {
         path: "/update-advert/:id",
-        element: <UpdateAdvert />,
+        element: (
+          <RequireAuth>
+            <UpdateAdvert />
+          </RequireAuth>
+        ),
       },
       {
         path: "/favorites",

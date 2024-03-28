@@ -138,7 +138,7 @@ class AdvertsManager extends AbstractManager {
   }
 
   async addAdvert(advert) {
-    // console.info("poulet");
+  
     const [result] = await this.database.query(
       `INSERT INTO ${this.table} (price, description, alert, batch, title_search_manga, publication_date_advert, user_id, volume_id, article_condition_id, manga_id) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
       [
@@ -166,7 +166,7 @@ class AdvertsManager extends AbstractManager {
     searchQuery,
     searchVolume,
   }) {
-    let whereConditions = "WHERE 1=1";
+    let whereConditions = "WHERE 1=1 AND advert.delete_advert = 0";
     const queryParams = [];
 
     if (batch !== null && batch !== undefined) {
@@ -187,7 +187,7 @@ class AdvertsManager extends AbstractManager {
     }
 
     if (genreId) {
-      whereConditions += " AND manga.genre_id = ?";
+  whereConditions += " AND manga.genre_id = ?";
       queryParams.push(genreId);
     }
 
@@ -209,7 +209,9 @@ class AdvertsManager extends AbstractManager {
       whereConditions += " AND advert.volume_id = ?";
       queryParams.push(searchVolume);
     }
-
+if (batch !== null && batch !== undefined) {
+  whereConditions += batch ? " AND advert.batch=1" : " AND advert.batch=0";
+}
     const query = `
     SELECT advert.id, advert.title_search_manga, advert.price, article_condition.name_condition,advert.volume_id, advert.batch,
     advert_image.image_path, user.pseudo, user.picture as user_picture, manga.genre_id,
@@ -221,7 +223,7 @@ class AdvertsManager extends AbstractManager {
    LEFT JOIN manga ON advert.manga_id = manga.id 
     JOIN (SELECT user.pseudo as rated_pseudo, ROUND(AVG(feedback.rating), 1) as average, COUNT(feedback.rating) as feedback_nber
           FROM user
-          JOIN feedback ON user.id = feedback.user_id
+          LEFT JOIN feedback ON user.id = feedback.user_id
           GROUP BY user.pseudo) as joint_table ON user.pseudo=joint_table.rated_pseudo
     ${whereConditions}
     ORDER BY advert.publication_date_advert DESC;

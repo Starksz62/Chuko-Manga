@@ -124,13 +124,6 @@ function PaymentPage() {
           </div>
           <div className="confirmation-payment-mobile">
             <button type="button">Paiement</button>
-
-            <div className="logo-card-payment">
-              <img
-                src="http://localhost:3310/static/cartePayment.png"
-                alt="payment-card"
-              />
-            </div>
             <div className="information-security-payment">
               <img
                 src="http://localhost:3310/static/crypte1.png"
