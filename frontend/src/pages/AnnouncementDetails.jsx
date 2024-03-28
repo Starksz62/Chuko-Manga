@@ -5,20 +5,17 @@ import { useParams, useNavigate } from "react-router-dom";
 import AnnounceDetail from "../components/AnnouncementDetails/AnnounceDetail";
 import MangaDetails from "./MangaDetails";
 import UserContext from "../context/UserContext";
-import { useNotifications } from "../context/NotificationContext";
 
 function AnnouncementDetail() {
   const navigate = useNavigate();
   const { id } = useParams();
   const [detailManga, setDetailManga] = useState(null);
-  const [, setIsFavorited] = useState(false);
   const [activeTab, setActiveTab] = useState("annonce");
   const [userId, setUserId] = useState(null);
   const imageCountClass =
     detailManga &&
     detailManga[0] &&
     `images-${detailManga[0].image_paths.length}`;
-  const { addNotification } = useNotifications();
   const { setIsModalOpen } = useContext(UserContext);
   useEffect(() => {
     fetch(`http://localhost:3310/api/display-adverts/${id}`)
@@ -42,7 +39,9 @@ function AnnouncementDetail() {
         );
       });
   }, [id]);
-
+  const navigateToFavorites = () => {
+    navigate("/favorites");
+  };
   if (!detailManga) {
     return <p>Chargement des détails...</p>;
   }
@@ -54,42 +53,6 @@ function AnnouncementDetail() {
       });
     } else {
       setIsModalOpen(true);
-    }
-  };
-  const toggleFavorite = () => {
-    const favoriteAdverts =
-      JSON.parse(localStorage.getItem("favoriteAdverts")) || [];
-    const isAlreadyFavorited = favoriteAdverts.some(
-      (advert) => advert.id === id
-    );
-
-    let newFavoriteAdvert; // Déclarer la variable en dehors de la condition if/else
-
-    if (isAlreadyFavorited) {
-      const updatedFavorites = favoriteAdverts.filter(
-        (advert) => advert.id !== id
-      );
-      localStorage.setItem("favoriteAdverts", JSON.stringify(updatedFavorites));
-      setIsFavorited(false);
-      addNotification("Article retiré des favoris.");
-    } else {
-      newFavoriteAdvert = {
-        id,
-        ...detailManga[0],
-        imageUrls: detailManga[0].image_paths,
-      };
-      const updatedFavorites = [...favoriteAdverts, newFavoriteAdvert];
-      localStorage.setItem("favoriteAdverts", JSON.stringify(updatedFavorites));
-      setIsFavorited(true);
-    }
-
-    if (newFavoriteAdvert) {
-      console.info("New favorite advert:", newFavoriteAdvert);
-
-      addNotification(
-        "Article ajouté aux favoris.",
-        `http://localhost:3310${newFavoriteAdvert.imageUrls[0]}`
-      );
     }
   };
   return (
@@ -148,7 +111,7 @@ function AnnouncementDetail() {
         >
           Acheter
         </button>
-        <button className="btn" type="button" onClick={toggleFavorite}>
+        <button className="btn" type="button" onClick={navigateToFavorites}>
           Favoris
         </button>
       </div>
