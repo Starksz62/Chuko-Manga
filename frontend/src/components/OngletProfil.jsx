@@ -17,7 +17,7 @@ function OngletProfil() {
         console.info("Mes annonces dans OngletProfil:", data);
         setAnnonces(data);
       });
-  }, []);
+  }, [id]); // Ajoutez un identifiant en fonction de celui-ci pour que useEffect se déclenche lorsque l'identifi
 
   useEffect(() => {
     fetch(`http://localhost:3310/api/user-profil-com/${id}`)
@@ -26,7 +26,7 @@ function OngletProfil() {
         console.info("commentairesTableau:", data);
         setEvaluations(data);
       });
-  }, []);
+  }, [id]); // Ajoutez un identifiant en fonction de celui-ci pour que useEffect se déclenche lorsque l'identifi
 
   useEffect(() => {
     fetch(`http://localhost:3310/api/display-order-history-bybuyer/${id}`)
@@ -35,7 +35,7 @@ function OngletProfil() {
         console.info("Mon historique d'achat:", data);
         setHistoryOrders(data);
       });
-  }, []);
+  }, [id]); // Ajoutez un identifiant en fonction de celui-ci pour que useEffect se déclenche lorsque l'identifi
 
   function renderStars(averageRating) {
     const fullStars = Math.floor(averageRating); // Nombre d'étoiles pleines
@@ -177,14 +177,20 @@ function OngletProfil() {
                 {console.info(evaluation.average_rating)}
                 <div className="containerCom">
                   <div className="pictureBuyerCom">
-                    <img
-                      className="picture_buyer"
-                      src={`${evaluation.picture_buyer}`}
-                      alt="image_buyer"
-                    />
+                    <Link to={`/profilseller/${evaluation.user_buyer}`}>
+                      <img
+                        className="picture_buyer"
+                        src={`${evaluation.picture_buyer}`}
+                        alt="image_buyer"
+                      />
+                    </Link>
                   </div>
                   <div className="commentBuyer">
-                    <div className="speudoBuyer">{`${evaluation.pseudo}`}</div>
+                    <div className="speudoBuyer">
+                      <Link to={`/profilseller/${evaluation.user_buyer}`}>
+                        {`${evaluation.pseudo}`}{" "}
+                      </Link>
+                    </div>
                     <div className="createdOn">
                       {`${evaluation.created_on ? new Date(evaluation.created_on).toLocaleDateString("fr-FR").split("/").join("-") : ""}`}
                     </div>

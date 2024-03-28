@@ -10,7 +10,7 @@ const { hashPassword, verifyToken } = require("./services/auth");
 
 const validateAddress = require("./middlewares/validateAddress");
 const validateAdvert = require("./middlewares/validateAdvert");
-// const validateUser = require("./middlewares/validateUser");
+const validateUser = require("./middlewares/validateUser");
 
 /* ************************************************************************* */
 // Define Your API Routes Here
@@ -113,8 +113,8 @@ router.post("/users", hashPassword, usersControllers.add);
 // route post Update Profil User
 router.put(
   "/user/:id",
-  // validateUser,
   multerSingle,
+  validateUser,
   usersControllers.updateUser
 );
 

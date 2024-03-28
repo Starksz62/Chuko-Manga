@@ -29,6 +29,7 @@ const validateUser = (req, res, next) => {
   }
 
   if (errors.length) {
+    console.error(errors);
     res.status(422).json({ validationErrors: errors });
   } else {
     next();

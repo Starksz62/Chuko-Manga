@@ -9,11 +9,12 @@ import Home from "./pages/Home";
 import PaymentPage from "./pages/PaymentPage";
 import AnnouncementDetail from "./pages/AnnouncementDetails";
 import ProfilUser from "./pages/ProfilUser";
-import CreerProfil from "./pages/CreerProfil";
+import CreateProfil from "./pages/CreateProfil";
 import NotFoundPage from "./pages/NotFoundPage";
 import Favorites from "./pages/Favorites";
 import Catalog from "./pages/Catalog";
 import MyAnounces from "./pages/MyAnounces";
+import ProfilSeller from "./pages/ProfilSeller";
 
 const router = createBrowserRouter([
   {
@@ -56,12 +57,16 @@ const router = createBrowserRouter([
         element: <AnnouncementDetail />,
       },
       {
-        path: "/creerprofil/:id",
-        element: <CreerProfil />,
+        path: "/createprofil/:id",
+        element: <CreateProfil />,
       },
       {
-        path: "/profilUser/:id",
+        path: "/profiluser/:id",
         element: <ProfilUser />,
+      },
+      {
+        path: "/profilseller/:id",
+        element: <ProfilSeller />,
       },
       {
         path: "*",
