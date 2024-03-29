@@ -4,7 +4,7 @@
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 import React, { useState, useEffect, useRef } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import "./DetailsPersonal.css";
 import axios from "axios";
 
@@ -193,9 +193,8 @@ function DetailsPersonal() {
           required
         />
       </div>
-
       <button className="button_modifier" onClick={handleUpdateUser}>
-        Modifier
+        <Link to={`/profiluser/${id}`}>Modifier</Link>
       </button>
     </form>
   );

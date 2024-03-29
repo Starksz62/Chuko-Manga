@@ -53,9 +53,13 @@
   margin-right: 25px;
   width: 25%;
   align-self: flex-end;
+  text-decoration: none;
 }
 .button_modifier:hover {
   background-color: var(--primary-clr-accent);
+}
+.button_modifier a {
+  text-decoration: none;
 }
 
 @media (max-width: 768px) {
