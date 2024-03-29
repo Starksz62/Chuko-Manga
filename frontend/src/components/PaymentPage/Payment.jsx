@@ -1,18 +1,53 @@
 /* eslint-disable react/prop-types */
+import { useNavigate } from "react-router-dom";
+import { useContext } from "react";
 import "./Payment.css";
 
 import { useNotifications } from "../../context/NotificationContext";
+import UserContext from "../../context/UserContext";
 
 function Payment({ price, articleData }) {
+  const navigate = useNavigate();
   const cost = parseFloat(price);
   const fraisDePort = (cost * 5) / 100;
   const total = cost + fraisDePort;
   const { addNotification } = useNotifications();
+  const { auth } = useContext(UserContext);
 
+  const orderDetails = {
+    id_user_buy: auth.user.id,
+    total_price: articleData.price,
+    order_date: new Date().toISOString().slice(0, 10),
+    status_order: "pending",
+    feedback_order: 0,
+    advert_id: articleData.advert_id,
+    user_id: articleData.user_id,
+  };
   const handlePayment = () => {
     const imageUrl = `http://localhost:3310${articleData?.image_paths[0]}`;
 
-    addNotification("La vente a été réalisée avec succès !", imageUrl);
+    fetch("http://localhost:3310/api/parcel-order", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${auth.token}`,
+      },
+      body: JSON.stringify(orderDetails),
+    })
+      .then((response) => {
+        if (response.ok) {
+          return response.json();
+        }
+        throw new Error("Network response was not ok");
+      })
+      .then((data) => {
+        console.info(data.message);
+        addNotification("La vente a été réalisée avec succès !", imageUrl);
+        navigate("/");
+      })
+      .catch((error) => {
+        console.error("Erreur lors de l'enregistrement de la commande:", error);
+      });
   };
 
   return (
@@ -38,13 +73,13 @@ function Payment({ price, articleData }) {
           Paiement
         </button>
       </div>
-      <div className="logo-card-payment">
+      <div className="logo-card-payment-desktop">
         <img
           src="http://localhost:3310/static/cartePayment.png"
           alt="payment-card"
         />
       </div>
-      <div className="information-security-payment">
+      <div className="information-security-payment-desktop">
         <img
           src="http://localhost:3310/static/crypte1.png"
           alt="texte protection "

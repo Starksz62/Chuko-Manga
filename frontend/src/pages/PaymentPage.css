@@ -22,7 +22,6 @@
 
 .right-column {
   width: 25%;
-  /* margin-left: auto;  */
 }
 
 .order-cards {
@@ -129,7 +128,7 @@
     width: 100%;
   }
 
-  .confirmation-payment-mobile .logo-card-payment img {
+  .confirmation-payment-mobile img {
     width: 25%;
   }
   .main-content {
@@ -137,9 +136,16 @@
   }
   .confirmation-payment-mobile .information-security-payment {
     width: 100%;
+    display: flex;
     justify-content: center;
   }
-  .confirmation-payment-mobile .information-security-payment img {
-    width: 3%;
+
+  .information-security-payment {
+    margin-top: 20px;
+  }
+  .information-security-payment img {
+    width: 20px;
+    object-fit: cover;
+    height: 20px;
   }
 }

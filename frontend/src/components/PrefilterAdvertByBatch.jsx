@@ -1,8 +1,7 @@
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
-import React, { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
-
 import AdvertCard from "./AdvertCard";
 import "./PrefilterAdvertByBatch.css";
 
@@ -13,7 +12,6 @@ function PrefilterAdvertByBatch() {
   // eslint-disable-next-line no-unused-vars
   const [filteredAdverts, setFilteredAdverts] = useState([]);
   const containerRef = useRef(null);
-
   // Ajoutez un état pour suivre si les images "left" et "right" doivent être affichées
   const [showLeftButton, setShowLeftButton] = useState(false);
   const [showRightButton, setShowRightButton] = useState(true);
@@ -56,13 +54,11 @@ function PrefilterAdvertByBatch() {
       container.scrollLeft += cardWidth * 2;
     }
 
-    // Vérifiez si la position de défilement horizontal permet d'afficher les images "left" et "right" et mettez à jour leurs états
     setShowLeftButton(container.scrollLeft > 0);
     setShowRightButton(
       container.scrollLeft + container.clientWidth < container.scrollWidth
     );
   }
-
   return (
     <section className="prefiltre-lot container_limit">
       <h2 className="titlePrefilter">Explorer les derniers lots ajoutés :</h2>

@@ -1,49 +1,102 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
-import PlusIcon from "../assets/Plus_Icon.png";
-import DeleteIcon from "../assets/Delete_Icon.png";
 
 import "./UpdateAdvert.css";
 
+import AdvertForm from "../components/AdvertForm";
+
 function UpdateAdvert() {
   const { id } = useParams();
+  // defined if we are on the New-Advert or Update-Advert page with a boolean
+  const isNewAdvertPage = false;
   const navigate = useNavigate();
-  // States designed to display options for selection
-  const [conditionList, setConditionList] = useState([]);
-  const [mangaList, setMangaList] = useState([]);
-  const [selectedManga, setSelectedManga] = useState("");
+  // States designed to display options for selection and control user's input
+  const [selectedManga, setSelectedManga] = useState(null);
   const [volumeList, setVolumeList] = useState([]);
+  const [priceErr, setPriceErr] = useState(false);
 
   // State designed to switch tab : selling a tome or a batch
   const [batch, setBatch] = useState(0);
 
-  // States designed to handle values provided by user
-  // const [advertTitle, setAdvertTitle] = useState("");
-  // const [description, setDescription] = useState("");
-  // const [conditionId, setConditionId] = useState(null);
-  const [formData, setFormData] = useState({});
+  // States designed to handle values provided by advert
+  const [advertTitle, setAdvertTitle] = useState("");
+  const [description, setDescription] = useState("");
+  const [conditionId, setConditionId] = useState(null);
+  const [conditionAnounce, setConditionAnounce] = useState();
+  const [price, setPrice] = useState("");
   const [volumeId, setVolumeId] = useState(null);
+  const [volumeAnounce, setVolumeAnounce] = useState();
+  const [mangaAnounce, setMangaAnounce] = useState("");
   const alert = 0;
-  const userId = 1;
   const publicationDate = new Date().toISOString().split("T")[0];
 
-  // State designed to preview and transfer images
+  // States designed to preview images
+  const [previewUrls, setPreviewUrls] = useState({
+    image1: "",
+    image2: "",
+    image3: "",
+  });
+
+  // States designed transfer images
   const [files, setFiles] = useState({
     image1: null,
     image2: null,
     image3: null,
   });
-  const [previewUrls, setPreviewUrls] = useState({
-    image1: null,
-    image2: null,
-    image3: null,
-  });
 
+  useEffect(() => {
+    fetch(`http://localhost:3310/api/display-adverts/${id}`)
+      .then((res) => {
+        return res.json();
+      })
+      .then((data) => {
+        console.info("récupération de l'annonce :", data);
+        setAdvertTitle(data[0].title_search_manga);
+        setDescription(data[0].description);
+        setConditionAnounce(data[0].name_condition);
+        setPrice(data[0].price);
+        setBatch(data[0].batch);
+        setMangaAnounce(data[0].manga_title);
+        setVolumeAnounce(data[0].volume_title);
+        // Vérification des images retournées par l'API
+        const imagePaths = data[0].image_paths;
+        const images = {};
+        if (imagePaths && imagePaths.length > 0) {
+          images.image1 = `http://localhost:3310${imagePaths[0]}`;
+          if (imagePaths.length > 1) {
+            images.image2 = `http://localhost:3310${imagePaths[1]}`;
+          }
+          if (imagePaths.length > 2) {
+            images.image3 = `http://localhost:3310${imagePaths[2]}`;
+          }
+        }
+        setPreviewUrls(images);
+      })
+      .catch((error) => {
+        console.error("Error get advert:", error);
+      });
+  }, [id]);
+
+  // Variables designed to control user's input
+  const MAX_LENGTH_TITLE = 40;
+  const MAX_LENGTH_DESC = 255;
+  const maxTitleReached = advertTitle.length >= MAX_LENGTH_TITLE;
+  const maxDescReached = description.length >= MAX_LENGTH_DESC;
+
+  // Set manga selection
+  const handleSelectedManga = (e) => {
+    setVolumeList([]);
+    setSelectedManga(e.target.value);
+    // console.info("Manga selected:", selectedManga);
+  };
+
+  // Handle image selection
   const handleImageChange = (e) => {
     setFiles({ ...files, [e.target.name]: e.target.files[0] });
   };
 
+  // Create image preview
   useEffect(() => {
     for (const key in files) {
       if (files[key]) {
@@ -51,7 +104,6 @@ function UpdateAdvert() {
         setPreviewUrls((prevUrls) => ({ ...prevUrls, [key]: url }));
       }
     }
-    // Clean up the URLs when component unmounts or files change
     return () => {
       for (const key in files) {
         if (files[key]) {
@@ -61,28 +113,7 @@ function UpdateAdvert() {
     };
   }, [files]);
 
-  const handleSelectedManga = (e) => {
-    setVolumeList([]);
-    setSelectedManga(e.target.value);
-    // console.info("Manga selected:", selectedManga);
-  };
-
-  useEffect(() => {
-    Promise.all([
-      axios.get("http://localhost:3310/api/conditions"),
-      axios.get("http://localhost:3310/api/mangas"),
-    ])
-      .then((responses) => {
-        // console.info("Condition are", responses[0].data);
-        // console.info("Mangas are", responses[1].data);
-        setConditionList(responses[0].data);
-        setMangaList(responses[1].data);
-      })
-      .catch((error) => {
-        console.error("Error fetching conditions and mangas:", error);
-      });
-  }, []);
-
+  // Fetch manga's list
   useEffect(() => {
     if (selectedManga !== "") {
       axios
@@ -97,27 +128,7 @@ function UpdateAdvert() {
     }
   }, [selectedManga]);
 
-  useEffect(() => {
-    fetch(`http://localhost:3310/api/display-adverts/${id}`)
-      .then((res) => {
-        return res.json();
-      })
-      .then((data) => {
-        console.info("récupération de l'annonce :", data);
-        setFormData(data[0]);
-      })
-      .catch((error) => {
-        console.error("Error get advert:", error);
-      });
-  }, [id]);
-
-  const handleChange = (e) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value,
-    });
-  };
-
+  // Delete selected image and corresponding preview
   const deleteFile = (key) => {
     const updatedFiles = { ...files };
     updatedFiles[key] = null;
@@ -129,25 +140,72 @@ function UpdateAdvert() {
     }
   };
 
-  const handleUpdateanounce = (e) => {
+  // Manage and control user's inputs
+  const handleTitleChange = (e) => {
+    if (e.target.value.length <= MAX_LENGTH_TITLE) {
+      setAdvertTitle(e.target.value);
+    }
+  };
+
+  const handleDescChange = (e) => {
+    if (e.target.value.length <= MAX_LENGTH_DESC) {
+      setDescription(e.target.value);
+    }
+  };
+
+  const handlePriceChange = (e) => {
+    setPriceErr(false);
+    const inputValue = e.target.value;
+    const regex = /^\d*\.?\d{0,2}$/;
+    if (regex.test(inputValue)) {
+      setPrice(inputValue);
+      // console.info("regex.test:", regex.test(inputValue));
+    }
+    if (!regex.test(inputValue)) {
+      setPriceErr(true);
+      // console.info("regex.test:", regex.test(inputValue));
+    }
+  };
+
+  // Set user id value
+  let userId;
+
+  try {
+    const storedAuth = localStorage.getItem("auth");
+    if (storedAuth) {
+      const authObj = JSON.parse(storedAuth);
+      userId = authObj.user.id;
+      console.info("this is user id:", userId);
+    }
+  } catch (error) {
+    console.error(
+      "Erreur lors de la récupération de l'id utilisateur depuis localStorage",
+      error
+    );
+  }
+
+  // Submit form and redirect to user's profile
+  const handleSubmit = (e) => {
     e.preventDefault();
-    console.info("upload files01 ", files);
-    const data = new FormData();
-    data.append("title_search_manga", formData.title);
-    data.append("description", formData.description);
-    data.append("article_condition_id", formData.conditionId);
-    data.append("price", formData.price);
-    data.append("manga_id", formData.selectedManga);
+    // console.info("upload files", files);
+    const formData = new FormData();
+    formData.append("titleSearchManga", advertTitle);
+    formData.append("description", description);
+    formData.append("articleConditionId", conditionId);
+    formData.append("price", price);
+    if (selectedManga !== null) {
+      formData.append("mangaId", selectedManga);
+    }
     if (volumeId !== null) {
-      formData.append("volume_id", volumeId);
+      formData.append("volumeId", volumeId);
     }
     formData.append("batch", batch);
     formData.append("alert", alert);
-    formData.append("user_id", userId);
-    formData.append("publication_date_advert", publicationDate);
+    formData.append("userId", userId);
+    formData.append("publicationDate", publicationDate);
     for (const key in files) {
       if (files[key]) {
-        console.info(key, files[key]);
+        // console.info(key, files[key]);
         formData.append(key, files[key]);
       }
     }
@@ -156,175 +214,42 @@ function UpdateAdvert() {
       .post("http://localhost:3310/api/new-advert", formData)
       .then((res) => {
         console.info("Advert created successfully", res.data);
+        navigate(`/profilUser/${userId}`);
       })
       .catch((error) => {
         console.error("Error creating advert", error);
       });
-    navigate(`/profilUser/${userId}`);
   };
 
   return (
-    <div className="update-advert">
+    <section className="update-advert">
       <h1>Modifie ton annonce</h1>
-      {formData && (
-        // // mettre soit la ligne 172 ou 171 (et décommenter aussi la const hangleUpdateanounce (ligne 132 à 164))
-        <form onSubmit={handleUpdateanounce}>
-          {/* <form> */}
-          <div className="picture-container">
-            {[0, 1, 2].map((index) => (
-              <div key={index} className="picture-box1">
-                {formData.image_paths && formData.image_paths[index] ? (
-                  <>
-                    <img
-                      src={`http://localhost:3310${formData.image_paths[index]}`}
-                      alt={`imageAnnonce ${index + 1}`}
-                      className="preview-image"
-                    />
-                    <button
-                      className="delete-preview"
-                      type="button"
-                      onClick={() => deleteFile(index)}
-                    >
-                      <img src={DeleteIcon} alt="delete" />
-                    </button>
-                  </>
-                ) : (
-                  <>
-                    <label className="label-picture" htmlFor="file">
-                      <img src={PlusIcon} alt="Ajouter" />
-                    </label>
-                    <input
-                      id="file"
-                      type="file"
-                      name={`image${index + 1}`}
-                      onChange={handleImageChange}
-                    />
-                  </>
-                )}
-              </div>
-            ))}
-          </div>
-          <label htmlFor="title">Titre </label>
-          <input
-            type="text"
-            id="title"
-            name="title_search_manga"
-            value={formData.title_search_manga}
-            onChange={handleChange}
-            placeholder="ex: Naruto, tome 44"
-          />
-          <label htmlFor="description">Description</label>
-          <input
-            type="text"
-            id="description"
-            name="description"
-            value={formData.description}
-            onChange={handleChange}
-            placeholder="ex: Pages intactes, mais couverture légèrement usée"
-          />
-          <label htmlFor="condition">Etat</label>
-          <select
-            id="condition"
-            name="article_condition_id"
-            // onChange={(e) => setConditionId(e.target.value)}
-          >
-            <option value="">{formData.name_condition}</option>
-            {conditionList.map((conditionItem) => (
-              <option key={conditionItem.id} value={conditionItem.id}>
-                {conditionItem.name_condition}
-              </option>
-            ))}
-          </select>
-          <label htmlFor="price">Prix hors frais de port </label>
-          <input
-            type="text"
-            id="price"
-            name="price"
-            value={formData.price}
-            onChange={handleChange}
-            placeholder=" "
-          />
-          <div className="tab-container">
-            <button
-              type="button"
-              id="button-tome"
-              onClick={() => setBatch(0)}
-              className={batch === 0 ? "active-tab" : "inactive-tab"}
-            >
-              Vends un tome
-            </button>
-            <button
-              type="button"
-              id="button-batch"
-              onClick={() => setBatch(1)}
-              className={batch === 1 ? "active-tab" : "inactive-tab"}
-            >
-              Vends un lot
-            </button>
-          </div>
-          <div className="ref">Référencement</div>
-          {batch === 0 ? (
-            <>
-              <label htmlFor="manga" className="instruction">
-                Associe ton annonce au manga correspondant dans la liste
-              </label>
-              <select
-                id="manga"
-                name="manga_id"
-                onChange={(e) => {
-                  handleSelectedManga(e);
-                }}
-              >
-                <option value="">Sélectionne ton manga</option>
-                {mangaList.map((manga) => (
-                  <option key={manga.id} value={manga.id}>
-                    {manga.title}
-                  </option>
-                ))}
-              </select>
-              <label htmlFor="volume" className="instruction">
-                Associe ton annonce au volume correspondant dans la liste
-              </label>
-              <select
-                id="volume"
-                name="volume_id"
-                onChange={(e) => setVolumeId(e.target.value)}
-              >
-                <option value="">Sélectionne le volume</option>
-                {volumeList.map((volumeItem) => (
-                  <option key={volumeItem.id} value={volumeItem.id}>
-                    {volumeItem.title}
-                  </option>
-                ))}
-              </select>
-            </>
-          ) : (
-            <>
-              <label htmlFor="manga" className="instruction">
-                Associe ton annonce au manga correspondant dans la liste
-              </label>
-              <select
-                id="manga"
-                name="manga_id"
-                onChange={(e) => {
-                  handleSelectedManga(e);
-                }}
-              >
-                <option value="">Sélectionne ton manga</option>
-                {mangaList.map((manga) => (
-                  <option key={manga.id} value={manga.id}>
-                    {manga.title}
-                  </option>
-                ))}
-              </select>
-            </>
-          )}
-          <button className="add-button" type="submit">
-            Modifier
-          </button>
-        </form>
-      )}
-    </div>
+      <AdvertForm
+        advertTitle={advertTitle}
+        batch={batch}
+        deleteFile={deleteFile}
+        description={description}
+        handleDescChange={handleDescChange}
+        handleImageChange={handleImageChange}
+        handlePriceChange={handlePriceChange}
+        handleSelectedManga={handleSelectedManga}
+        handleSubmit={handleSubmit}
+        handleTitleChange={handleTitleChange}
+        maxDescReached={maxDescReached}
+        maxTitleReached={maxTitleReached}
+        price={price}
+        priceErr={priceErr}
+        previewUrls={previewUrls}
+        setBatch={setBatch}
+        setConditionId={setConditionId}
+        conditionAnounce={conditionAnounce}
+        setVolumeId={setVolumeId}
+        volumeAnounce={volumeAnounce}
+        volumeList={volumeList}
+        isNewAdvertPage={isNewAdvertPage}
+        mangaAnounce={mangaAnounce}
+      />
+    </section>
   );
 }
 

@@ -8,7 +8,6 @@ import AdvertCard from "../AdvertCard";
 
 function AnnouncementDetail({ userId, id }) {
   const [userSells, setUserSells] = useState([]);
-  console.info("verif data", userSells);
   const [sellerInfo, setSellerInfo] = useState({
     pseudo: "",
     user_picture: "",
@@ -16,7 +15,6 @@ function AnnouncementDetail({ userId, id }) {
     feedback_nber: "",
   });
 
-  console.info("userSells", userSells);
   useEffect(() => {
     fetch(`http://localhost:3310/api/display-adverts-byseller/${userId}`)
       .then((response) => {
@@ -26,36 +24,40 @@ function AnnouncementDetail({ userId, id }) {
         return response.json();
       })
       .then((data) => {
-        const transformedData = data.map((advert) => ({
-          ...advert,
-          id: advert.advert_id, // Renommez advert_id en id
-        }));
-        setSellerInfo({
-          pseudo: data[0].pseudo,
-          user_picture: data[0].user_picture,
-          average: data[0].average,
-          feedback_nber: data[0].feedback_nber,
-        });
+        if (data && data.length > 0) {
+          const transformedData = data.map((advert) => ({
+            ...advert,
+            id: advert.advert_id, // Assurez-vous que chaque annonce a une propriété `id`.
+          }));
+          setSellerInfo({
+            pseudo: data[0].pseudo,
+            user_picture: data[0].user_picture,
+            average: data[0].average,
+            feedback_nber: data[0].feedback_nber,
+          });
 
-        setUserSells(transformedData);
+          setUserSells(transformedData);
+        }
       })
       .catch((error) => {
         console.error(
-          "Erreur lors de la récupération des détails de l'annonce",
+          "Erreur lors de la récupération des annonces du vendeur",
           error
         );
       });
   }, [userId]);
 
-  if (!userSells) {
+  // Filtrez les annonces pour exclure l'annonce actuelle avant de les mapper pour l'affichage.
+  const filteredSells = userSells.filter(
+    (sell) => sell.id.toString() !== id.toString()
+  );
+
+  if (!userSells.length) {
     return (
-      <p>Cet utilisateur n'a pas d'autres mangas en ventes pour le moment</p>
+      <p>Cet utilisateur n'a pas d'autres mangas en ventes pour le moment.</p>
     );
   }
 
-  const filteredSells = userSells.filter(
-    (sell) => sell.advert_id.toString() !== id
-  );
   const articlesCount = filteredSells.length;
 
   return (
@@ -66,7 +68,7 @@ function AnnouncementDetail({ userId, id }) {
           {articlesCount > 1 ? "s" : ""} pour ce vendeur
         </p>
         <div className="seller-information">
-          <img src={sellerInfo.user_picture} alt="" />
+          <img src={`http://localhost:3310${sellerInfo.user_picture}`} alt="" />
           <div className="information-from-card">
             <p>{sellerInfo.pseudo}</p>
             <div className="feedback-stars">
@@ -77,7 +79,7 @@ function AnnouncementDetail({ userId, id }) {
         </div>
       </div>
       <div className="container-other-sell">
-        {userSells.map((userSell) => (
+        {filteredSells.map((userSell) => (
           <AdvertCard key={userSell.id} advert={userSell} />
         ))}
       </div>
@@ -91,6 +93,7 @@ function AnnouncementDetail({ userId, id }) {
     </>
   );
 }
+
 AnnouncementDetail.propTypes = {
   userId: PropTypes.number.isRequired,
   id: PropTypes.number.isRequired,

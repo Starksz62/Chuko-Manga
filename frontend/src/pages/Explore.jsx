@@ -8,11 +8,9 @@ function Explore() {
   const [dataAdverts, setDataAdverts] = useState([]);
   const [filteredAdverts, setFilteredAdverts] = useState([]);
   const location = useLocation();
-  const { searchQuery, volumeId } = useParams();
-  // console.info("searchQuery reçue dans explore", searchQuery);
+  const { searchQuery, volumeId } = useParams(); // console.info("searchQuery reçue dans explore", searchQuery);
   const queryParams = new URLSearchParams(location.search);
-  const batchFromUrl = queryParams.get("batch");
-  // console.info("volumeId reçu dans explore", volumeId);
+  const batchFromUrl = queryParams.get("batch"); // console.info("volumeId reçu dans explore", volumeId);
   const { filters, setBatch, setMinMaxPrices, dynamicPriceFilter } =
     useFilters();
 
@@ -23,7 +21,7 @@ function Explore() {
         let url = "http://localhost:3310/api/find-recent-adverts?";
         if (searchQuery) {
           url += `searchQuery=${encodeURIComponent(searchQuery)}`;
-        } else if (batchFromUrl !== undefined) {
+        } else if (batchFromUrl !== null && batchFromUrl !== undefined) {
           url += `batch=${encodeURIComponent(batchFromUrl)}`;
         }
         if (volumeId) {
@@ -41,9 +39,8 @@ function Explore() {
         }
         if (filters.priceMax) {
           url += `&maxPrice=${encodeURIComponent(filters.priceMax)}`;
-        }
+        } // console.info("URL de la requête fetch :", url);
 
-        // console.info("URL de la requête fetch :", url);
         const response = await fetch(url);
         if (!response.ok) {
           throw new Error(`Erreur HTTP, statut : ${response.status}`);
@@ -55,8 +52,7 @@ function Explore() {
           const calculatedMinPrice = Math.min(...prices);
           const calculatedMaxPrice = Math.max(...prices);
           setMinMaxPrices(calculatedMinPrice, calculatedMaxPrice);
-          setFilteredAdverts(data);
-          // console.info("resulat annonce dans explore", data);
+          setFilteredAdverts(data); // console.info("resulat annonce dans explore", data);
         }
       } catch (error) {
         console.error(
@@ -74,6 +70,7 @@ function Explore() {
     filters.condition,
     filters.priceMin,
     filters.priceMax,
+    dynamicPriceFilter,
   ]);
   useEffect(() => {
     // console.info("Mise à jour du filtrage dynamique", dynamicPriceFilter);
@@ -88,13 +85,14 @@ function Explore() {
 
   return (
     <div className="filteredAdverts-explore container_limit">
+      {" "}
       {filteredAdverts.length > 0 ? (
         filteredAdverts.map((dataAdvert) => (
           <AdvertCard key={dataAdvert.id} advert={dataAdvert} />
         ))
       ) : (
         <p>Aucun article ne correspond à vos critères de recherche.</p>
-      )}
+      )}{" "}
     </div>
   );
 }
