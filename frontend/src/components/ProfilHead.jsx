@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable react/button-has-type */
 /* eslint-disable no-plusplus */
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import Stars from "./AnnouncementDetails/StarsRating";
 import "./ProfilHead.css";
@@ -41,7 +41,6 @@ function ProfilHead({ children }) {
         return res.json();
       })
       .then((data) => {
-        console.info("Mes donnees user :", data);
         const rating = parseFloat(data[0].average_rating);
         setFormData({ ...data[0], rating });
       })

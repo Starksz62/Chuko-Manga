@@ -9,10 +9,8 @@ import Left from "../assets/leftlogo.png";
 import Right from "../assets/rightlogo.png";
 
 function PrefilterAdvertByBatch() {
-  // eslint-disable-next-line no-unused-vars
   const [filteredAdverts, setFilteredAdverts] = useState([]);
   const containerRef = useRef(null);
-  // Ajoutez un état pour suivre si les images "left" et "right" doivent être affichées
   const [showLeftButton, setShowLeftButton] = useState(false);
   const [showRightButton, setShowRightButton] = useState(true);
 
@@ -25,7 +23,7 @@ function PrefilterAdvertByBatch() {
         return response.json();
       })
       .then((data) => {
-        setFilteredAdverts(data); // Initialize with all adverts
+        setFilteredAdverts(data);
       })
       .catch((error) => {
         console.error("An error occurred while fetching data:", error);

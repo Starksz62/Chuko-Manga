@@ -27,7 +27,7 @@ function AnnouncementDetail({ userId, id }) {
         if (data && data.length > 0) {
           const transformedData = data.map((advert) => ({
             ...advert,
-            id: advert.advert_id, // Assurez-vous que chaque annonce a une propriété `id`.
+            id: advert.advert_id,
           }));
           setSellerInfo({
             pseudo: data[0].pseudo,
@@ -47,7 +47,6 @@ function AnnouncementDetail({ userId, id }) {
       });
   }, [userId]);
 
-  // Filtrez les annonces pour exclure l'annonce actuelle avant de les mapper pour l'affichage.
   const filteredSells = userSells.filter(
     (sell) => sell.id.toString() !== id.toString()
   );

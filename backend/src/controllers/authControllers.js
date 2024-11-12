@@ -1,13 +1,10 @@
-/* eslint-disable import/no-extraneous-dependencies */
 const argon2 = require("argon2");
 const jwt = require("jsonwebtoken");
 
-// Import access to database tables
 const models = require("../modelsProviders");
 
 const login = async (req, res, next) => {
   try {
-    // Fetch a specific user from the database based on the provided email
     const user = await models.user.readByEmailWithPassword(req.body.email);
 
     if (user == null) {
@@ -21,7 +18,6 @@ const login = async (req, res, next) => {
     );
 
     if (verified) {
-      // Respond with the user and a signed token in JSON format (but without the hashed password)
       delete user.hashed_password;
       const token = await jwt.sign(
         { sub: user.id, role: user.role },
@@ -30,8 +26,11 @@ const login = async (req, res, next) => {
           expiresIn: "1h",
         }
       );
+
       res.cookie("token", token, {
         httpOnly: true,
+        secure: req.secure || req.headers["x-forwarded-proto"] === "https",
+        SameSite: "Strict",
       });
       res.json({
         token,
@@ -44,7 +43,6 @@ const login = async (req, res, next) => {
       res.sendStatus(422);
     }
   } catch (err) {
-    // Pass any errors to the error-handling middleware
     next(err);
   }
 };

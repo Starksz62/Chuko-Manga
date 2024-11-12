@@ -8,7 +8,6 @@ function MangaVolume() {
   const { id } = useParams();
   const [volumes, setVolumes] = useState([]);
 
-  // Get the list of volumes given the manga id
   useEffect(() => {
     axios
       .get(`http://localhost:3310/api/volumes/${id}`)

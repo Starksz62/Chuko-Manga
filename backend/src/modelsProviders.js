@@ -19,9 +19,7 @@ const AdvertImagesManager = require("./models/advertImagesManager");
 
 const managers = [
   ItemManager,
-  // Add other managers here
   CharactersManager,
-  // housesManager,
   MangasManager,
   AdvertsManager,
   UsersManager,

@@ -1,10 +1,8 @@
 const express = require("express");
-// http://localhost:4242/api/characters
 
 const router = express.Router();
 const multer = require("./middlewares/multer-config");
 
-// const { hashPassword } = require("./services/auth");
 const multerSingle = require("./middlewares/multerConfigSingle");
 const { hashPassword, verifyToken } = require("./services/auth");
 
@@ -12,11 +10,6 @@ const validateAddress = require("./middlewares/validateAddress");
 const validateAdvert = require("./middlewares/validateAdvert");
 const validateUser = require("./middlewares/validateUser");
 
-/* ************************************************************************* */
-// Define Your API Routes Here
-/* ************************************************************************* */
-
-// Import itemControllers module for handling item-related operations
 const mangasControllers = require("./controllers/mangasControllers");
 const advertsControllers = require("./controllers/advertsControllers");
 const itemControllers = require("./controllers/itemControllers");
@@ -26,18 +19,15 @@ const conditionsControllers = require("./controllers/conditionsControllers");
 const ordersControllers = require("./controllers/ordersControllers");
 const addressControllers = require("./controllers/addressControllers");
 const volumesControllers = require("./controllers/volumesControllers");
-// const searchControllers = require("./controllers/searchControllers");
-// const moviesControllers = require("./controllers/moviesControllers");
 
 // Route to get mangas
 router.get("/mangas", mangasControllers.getMangas);
 router.get("/manga/catalog", mangasControllers.getCatalogMangas);
 router.get("/mangas/:id", mangasControllers.getMangaById);
 
-// ROUTES TO GET ADVERTS
 // Route to display advert table
 router.get("/adverts", advertsControllers.getAllAdverts);
-// router.get("/adverts/:id", advertsControllers.getAllAdvertsById);
+
 // Route to display advert card
 router.get("/display-adverts", advertsControllers.getAllCards);
 router.get("/advert-image", advertsControllers.getAdvertsImage);

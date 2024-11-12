@@ -115,7 +115,9 @@ function LeftNavbar() {
               <li>
                 <img src={FavoritesIcon} alt="Favoris" />
                 <span>
-                  <Link to="/favorites">Favoris</Link>
+                  <Link style={{ textDecoration: "none" }} to="/favorites">
+                    Favoris
+                  </Link>
                 </span>
               </li>
               <li>

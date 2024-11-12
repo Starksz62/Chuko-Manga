@@ -1,5 +1,4 @@
 const validateAddress = (req, res, next) => {
-  // eslint-disable-next-line camelcase
   const { country, nameAdress, numberStreet, zipCode, city } = req.body;
   const errors = [];
   if (country == null) {

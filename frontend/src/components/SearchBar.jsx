@@ -17,8 +17,6 @@ function SearchBar() {
           `http://localhost:3310/api/mangas?q=${searchQuery}`
         );
         setQueryResult(response.data);
-        console.info("Vous ecrivez:", searchQuery);
-        console.info("Response from backend:", response.data);
       } catch (err) {
         console.error("Error while fetching search results:", err);
       }

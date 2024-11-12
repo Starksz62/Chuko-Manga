@@ -8,23 +8,21 @@ import UserContext from "../context/UserContext";
 import "./Connexion.css";
 
 function Connexion({ handleContentModal, handleClickOpen }) {
-  // Références pour les champs email et mot de passe
   const emailRef = useRef();
   const passwordRef = useRef();
   const [errorMessage, setErrorMessage] = useState("");
   const { setAuth } = useContext(UserContext);
 
-  // Gestionnaire de soumission du formulaire
   const handleSubmit = async (event) => {
     event.preventDefault();
 
     try {
-      // Appel à l'API pour demander une connexion
       const response = await fetch(
         `${import.meta.env.VITE_BACKEND_URL}/api/login`,
         {
           method: "post",
           headers: { "Content-Type": "application/json" },
+          credentials: "include",
           body: JSON.stringify({
             email: emailRef.current.value,
             password: passwordRef.current.value,
@@ -32,7 +30,6 @@ function Connexion({ handleContentModal, handleClickOpen }) {
         }
       );
 
-      // Redirection vers la page de connexion si la création réussit
       if (response.status === 200) {
         const auth = await response.json();
 
@@ -40,11 +37,9 @@ function Connexion({ handleContentModal, handleClickOpen }) {
         localStorage.setItem("auth", JSON.stringify(auth));
         handleClickOpen();
       } else {
-        // Log des détails de la réponse en cas d'échec
         setErrorMessage("Email ou mot de passe incorrect.");
       }
     } catch (err) {
-      // Log des erreurs possibles
       console.error(err);
       setErrorMessage("Une erreur s'est produite. Veuillez réessayer.");
     }

@@ -34,7 +34,7 @@ function PrefilterAdvertByDesc({
         return response.json();
       })
       .then((data) => {
-        setFilteredAdverts(data); // Initialize with all adverts
+        setFilteredAdverts(data);
       })
       .catch((error) => {
         console.error("An error occurred while fetching data:", error);
@@ -42,14 +42,13 @@ function PrefilterAdvertByDesc({
   }, []);
 
   useEffect(() => {
-    // Vérifiez si le conteneur a un défilement horizontal et mettez à jour les états de showLeftButton et showRightButton
     if (containerRef.current) {
       setShowLeftButton(containerRef.current.scrollLeft > 0);
       setShowRightButton(
         containerRef.current.scrollWidth > containerRef.current.clientWidth
       );
     }
-  }, [filteredAdverts]); // Ajoutez filteredAdverts en tant que dépendance
+  }, [filteredAdverts]);
 
   function scrollContainer(direction) {
     if (!containerRef.current) return;
@@ -63,7 +62,6 @@ function PrefilterAdvertByDesc({
       container.scrollLeft += cardWidth * 2;
     }
 
-    // Vérifiez si la position de défilement horizontal permet d'afficher les images "left" et "right" et mettez à jour leurs états
     setShowLeftButton(container.scrollLeft > 0);
     setShowRightButton(
       container.scrollLeft + container.clientWidth < container.scrollWidth

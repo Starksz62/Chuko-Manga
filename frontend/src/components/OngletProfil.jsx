@@ -180,7 +180,7 @@ function OngletProfil() {
                     <Link to={`/profilseller/${evaluation.user_buyer}`}>
                       <img
                         className="picture_buyer"
-                        src={`${evaluation.picture_buyer}`}
+                        src={`http://localhost:3310${evaluation.picture_buyer}`}
                         alt="image_buyer"
                       />
                     </Link>

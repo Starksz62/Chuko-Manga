@@ -1,80 +1,18 @@
-// Load the express module to create a web application
-
 const express = require("express");
-// eslint-disable-next-line import/no-extraneous-dependencies
 const cors = require("cors");
-
-// const multer = require("multer");
-
-// const storage = multer.diskStorage({
-//   destination: (req, file, cb) => {
-//     return cb(null, "./public/images");
-//   },
-//   filename: (req, file, cb) => {
-//     return cb(null, `${Date.now()}_${file.originalname}`);
-//   },
-// });
-// const upload = multer({ storage });
 
 const app = express();
 
-// Configure it
-
-/* ************************************************************************* */
-
-// CORS Handling: Why is the current code commented out and do I need to define specific allowed origins for my project?
-
-// CORS (Cross-Origin Resource Sharing) is a security mechanism in web browsers that blocks requests from a different domain than the server.
-// You may find the following magic line in forums:
-
-app.use(cors());
+app.use(
+  cors({
+    origin: "http://localhost:3000",
+    credentials: true,
+  })
+);
 app.use("/static", express.static(`${__dirname}/assets`));
 
 app.use("/static", express.static("public/images"));
 app.use("/static", express.static("public/upload"));
-
-// app.use("/uploads", express.static(`${__dirname}/uploads`));
-
-// app.use("/static", express.static(`${__dirname}/src/assets`));
-
-// You should NOT do that: such code uses the `cors` module to allow all origins, which can pose security issues.
-// For this pedagogical template, the CORS code is commented out to show the need for defining specific allowed origins.
-
-// To enable CORS and define allowed origins:
-// 1. Install the `cors` module in the backend directory
-// 2. Uncomment the line `const cors = require("cors");`
-// 3. Uncomment the section `app.use(cors({ origin: [...] }))`
-// 4. Be sure to only have URLs in the array with domains from which you want to allow requests.
-// For example: ["http://mysite.com", "http://another-domain.com"]
-
-/*
-const cors = require("cors");
-
-app.use(
-  cors({
-    origin: [
-      process.env.FRONTEND_URL, // keep this one, after checking the value in `backend/.env`
-      "http://mysite.com",
-      "http://another-domain.com",
-    ]
-  })
-);
-*/
-
-/* ************************************************************************* */
-
-// Request Parsing: Understanding the purpose of this part
-
-// Request parsing is necessary to extract data sent by the client in an HTTP request.
-// For example to access the body of a POST request.
-// The current code contains different parsing options as comments to demonstrate different ways of extracting data.
-
-// 1. `express.json()`: Parses requests with JSON data.
-// 2. `express.urlencoded()`: Parses requests with URL-encoded data.
-// 3. `express.text()`: Parses requests with raw text data.
-// 4. `express.raw()`: Parses requests with raw binary data.
-
-// Uncomment one or more of these options depending on the format of the data sent by your client:
 
 app.use(express.json());
 app.use(express.urlencoded());

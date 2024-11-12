@@ -30,7 +30,6 @@ function CreditCard({ updateModalCreditCard }) {
   const handleValidation = () => {
     updateModalCreditCard();
   };
-
   return (
     <div className="card-information">
       <Cards
